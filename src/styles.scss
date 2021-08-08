@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+$flexContentSize: 0 1 auto;
+$flexRemainingSpace: 1 1 1e-9px;
+
+.app-spacer {
+    flex: 1;
+}
+
+.flexContentSize {
+  flex: $flexContentSize;
+}
+
+.flexRemainingSpace {
+  flex: $flexRemainingSpace;
+}
+
+.flexContainer {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 5px;
+  overflow: auto;
+}
+
+.lightThemeRouterLinkActive{
+  background-color: #d3d3d3;
+  color:#434fd3;
+}
+
+.darkThemeRouterLinkActive{
+  background-color: #535eda;
+  color:black;
+}
