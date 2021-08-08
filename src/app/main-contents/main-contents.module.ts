@@ -8,7 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import  {MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatButtonModule} from '@angular/material/button';
     FlexLayoutModule,
     RouterModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    FontAwesomeModule
   ]
 })
 export class MainContentsModule { }
