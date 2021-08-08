@@ -1,1 +1,7 @@
-<p>main-contents works!</p>
+<div class="flexContainer">
+    <main-content-topbar class="flexContentSize"></main-content-topbar>
+    <div class="flexRemainingSpace" style="overflow: auto;">
+        <router-outlet></router-outlet>
+    </div>
+    <main-content-footer class="flexContentSize"></main-content-footer>
+</div>

@@ -1,0 +1,9 @@
+.topbarButtons {
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.topbarButtons:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
