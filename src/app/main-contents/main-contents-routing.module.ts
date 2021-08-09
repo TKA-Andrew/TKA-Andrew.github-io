@@ -9,10 +9,15 @@ const routes: Routes = [
     component: MainContentsComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'aboutMe'
+      },
+      {
         path: 'aboutMe',
         component: AboutMeComponent
       }
     ]
+    
   },
 ];
 
