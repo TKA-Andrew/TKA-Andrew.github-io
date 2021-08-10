@@ -32,9 +32,16 @@ pre code {
 .lightThemeRouterLinkActive{
   background-color: #d3d3d3;
   color:#434fd3;
+  font-weight: bold;
 }
 
 .darkThemeRouterLinkActive{
   background-color: #535eda;
   color:black;
+  font-weight: bold;
+
+}
+
+.storyCard {
+  border-radius: 10px;
 }
