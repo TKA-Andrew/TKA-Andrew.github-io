@@ -1,10 +1,12 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="start center" style="padding: 10px 50px;">
+<mat-toolbar fxLayout="row" fxLayoutAlign="start center" style="padding: 10px 50px; height: 78px;">
     <div fxLayout="column" fxLayoutAlign="center center">
-        <p style="font-size: 30px; margin: 0px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Tan Kui An Andrew</p>
-        <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Mechatronics Graduate | R&D Enginner</span>
+        <p id="name" style="font-size: 30px; margin: 0px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Tan Kui An Andrew</p>
+        <span id="title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Mechatronics Graduate | R&D Enginner</span>
     </div>
     <span class="app-spacer"></span>
-    <div fxFlexAlign="start center" fxLayoutGap="10px">
+
+
+    <div fxShow="true" fxHide.lt-lg="true" fxFlexAlign="start center" fxLayoutGap="10px">
         <button mat-button class="topbarButtons" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
         <span>|</span>
         <button mat-button class="topbarButtons">About</button> <!--resume-->
@@ -15,5 +17,9 @@
         <button mat-button class="topbarButtons">Projects</button> <!--Github projects-->
         <span>|</span>
         <button mat-button class="topbarButtons">Technical Notes</button>
+    </div>
+
+    <div fxShow="true" fxHide.gt-md="true" (click)="toggleSideNav()">
+        <fa-icon [icon]="faBars" size="2x"></fa-icon>
     </div>
 </mat-toolbar>

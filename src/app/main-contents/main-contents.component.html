@@ -1,6 +1,13 @@
 <div class="flexContainer">
-    <main-content-topbar class="flexContentSize"></main-content-topbar>
+    <main-content-topbar class="flexContentSize" (toggleEvent)="toggleMenu()"></main-content-topbar>
     <div class="flexRemainingSpace" style="overflow: auto;">
+        <div fxLayout="column" id="responsiveMenu" style="z-index: 200px;" [style.display]="showMenu ? 'flex': 'none'">
+            <button mat-button class="topbarButtons" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
+            <button mat-button class="topbarButtons">About</button>
+            <button mat-button class="topbarButtons">Achievements</button>
+            <button mat-button class="topbarButtons">Projects</button>
+            <button mat-button class="topbarButtons">Technical Notes</button>
+        </div>
         <router-outlet></router-outlet>
     </div>
 </div>

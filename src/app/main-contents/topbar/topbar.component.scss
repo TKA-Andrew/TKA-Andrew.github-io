@@ -8,3 +8,30 @@
     transform: translateY(-1px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
+
+@media screen and (max-width: 420px) {
+    mat-toolbar {
+        padding: 10px 20px !important;
+    }
+
+    #name{
+        font-size: 25px !important;
+    }
+    #title{
+        font-size: 15px !important;
+
+    }
+}
+
+@media screen and (max-width: 340px) {
+    mat-toolbar {
+        padding: 10px 20px !important;
+    }
+
+    #name{
+        font-size: 20px !important;
+    }
+    #title{
+        font-size: 10px !important;
+    }
+}
