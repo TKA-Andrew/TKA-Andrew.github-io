@@ -13,8 +13,12 @@ mat-panel-title {
 }
 
 mat-expansion-panel-header {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+mat-expansion-panel-body {
+    padding-bottom: 0px !important;
 }
 
 mat-expansion-panel-header:hover{
@@ -25,20 +29,38 @@ mat-expansion-panel {
     color: aquamarine
 }
 
-.mat-button {
+.listItem {
     text-transform: unset;
     white-space: normal;
+    line-height: 1.2rem;
+    font-size: 1rem;
     width: 100%;
+    min-height: 30px;
     text-align: left;
     background-color: transparent;
     color: $normalTextColor;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-.mat-button:hover {
+.listItem:hover {
     background-color: $hoverBackgroundColor;
-    color: $hoverTextColor
+    color: $hoverTextColor;
+    font-style: italic;
 }
 
 mat-drawer {
     width: 300px;
+}
+
+#sideDrawerControl {
+    width: 100%;
+    text-align: center;
+    padding-top: 3px;
+}
+
+@media screen and (max-width: 420px) {
+    #sideDrawer {
+        width: 200px !important;
+    }
 }

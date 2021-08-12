@@ -1,40 +1,46 @@
-    <mat-drawer-container class="flexContainer">
-        <mat-drawer mode="side" opened displayMode="flat" style="background-color: rgb(61, 61, 61);">
-            <mat-accordion>
-                <mat-expansion-panel style="margin-top: 10px;">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            General
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <button mat-button>Design Pattern</button>
-                    <button mat-button>Refactoring</button>
-                </mat-expansion-panel>
-                <mat-expansion-panel style="margin-top: 10px;">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Web Development
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <button mat-button>Sequelize</button>
-                </mat-expansion-panel>
-                <mat-expansion-panel style="margin-top: 10px;">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Image Processing
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <button mat-button>OpenCV</button>
-                </mat-expansion-panel>
-                <mat-expansion-panel style="margin-top: 10px;">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            How Tos
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <button mat-button>OpenCV</button>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </mat-drawer>
-        <mat-drawer-content>Main content</mat-drawer-content>
-    </mat-drawer-container>
+<mat-drawer-container class="flexContainer">
+    <mat-drawer id="sideDrawer" mode="side" [opened]="isSideDrawerOpened" style="background-color: rgb(61, 61, 61);">
+        <mat-accordion displayMode="flat">
+            <mat-expansion-panel style="margin-top: 5px;">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        General
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button class="listItem">Design Pattern</button>
+                <button mat-button class="listItem">Refactoring</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Web Development
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button class="listItem">Sequelize</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Image Processing
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button class="listItem">OpenCV</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        How Tos
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button class="listItem">Dual boot Windows 10 with Ubuntu 20.04</button>
+                <button mat-button class="listItem">Convert Python project to exe file</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-drawer>
+    <mat-drawer-content>
+        <button mat-button id="sideDrawerControl" fxShow="true" fxHide.gt-sm="true" (click)="toggleSideDrawer()">
+            <fa-icon [icon]="faList" size="1x"></fa-icon>
+        </button>
+        Main content
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -8,6 +8,8 @@ import { TechnicalNotesComponent } from './technical-notes.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [TechnicalNotesComponent],
@@ -18,7 +20,9 @@ import { MatCardModule } from '@angular/material/card';
     MatExpansionModule,
     MatSidenavModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
+    FontAwesomeModule
   ]
 })
 export class TechnicalNotesModule { }
