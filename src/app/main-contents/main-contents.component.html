@@ -6,7 +6,7 @@
             <button mat-button class="topbarButtons">About</button>
             <button mat-button class="topbarButtons">Achievements</button>
             <button mat-button class="topbarButtons">Projects</button>
-            <button mat-button class="topbarButtons">Technical Notes</button>
+            <button mat-button class="topbarButtons" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
         </div>
         <router-outlet></router-outlet>
     </div>

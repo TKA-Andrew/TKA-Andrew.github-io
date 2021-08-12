@@ -1,0 +1,44 @@
+$hoverBackgroundColor: rgb(102, 102, 102);
+$hoverTextColor: white;
+$normalTextColor: #d9d9d9;
+
+mat-panel-title {
+    color: $normalTextColor;
+    text-align: left;
+    line-height: 18px;
+    display: block;
+    position: relative;
+    padding-left: 0px !important;
+    text-transform: uppercase;
+}
+
+mat-expansion-panel-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+mat-expansion-panel-header:hover{
+    background-color:$hoverBackgroundColor ;
+}
+
+mat-expansion-panel {
+    color: aquamarine
+}
+
+.mat-button {
+    text-transform: unset;
+    white-space: normal;
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    color: $normalTextColor;
+}
+
+.mat-button:hover {
+    background-color: $hoverBackgroundColor;
+    color: $hoverTextColor
+}
+
+mat-drawer {
+    width: 300px;
+}
