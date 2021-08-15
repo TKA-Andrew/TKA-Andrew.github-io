@@ -3,11 +3,11 @@
     <div class="flexRemainingSpace">
         <div class="flexContainer">
             <div *ngIf="showMenu" fxLayout="column" id="responsiveMenu" style="z-index: 2;">
-                <button mat-button class="topbarButtons" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
-                <button mat-button class="topbarButtons">About</button>
-                <button mat-button class="topbarButtons">Achievements</button>
-                <button mat-button class="topbarButtons">Projects</button>
-                <button mat-button class="topbarButtons" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
+                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
+                <button mat-button class="topbarButtons" (click)="toggleMenu()">About</button>
+                <button mat-button class="topbarButtons" (click)="toggleMenu()">Achievements</button>
+                <button mat-button class="topbarButtons" (click)="toggleMenu()">Projects</button>
+                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
             </div>
             <div class="flexRemainingSpace" style="overflow: auto;">
                 <router-outlet></router-outlet>

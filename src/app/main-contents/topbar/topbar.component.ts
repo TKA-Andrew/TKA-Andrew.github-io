@@ -10,7 +10,7 @@ export class TopbarComponent {
   public faBars = faBars
   @Output() toggleEvent = new EventEmitter<null>();
 
-  toggleSideNav() {
+  toggleMenu() {
     this.toggleEvent.emit();
   }
 
