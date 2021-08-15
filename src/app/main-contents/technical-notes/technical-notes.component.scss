@@ -2,7 +2,7 @@ $hoverBackgroundColor: rgb(102, 102, 102);
 $hoverTextColor: white;
 $normalTextColor: #d9d9d9;
 $routerActiveBackgroundColor: #838383;
-$routerActiveColor: #535eda;
+$routerActiveColor: rgb(95, 181, 231);
 
 mat-panel-title {
     color: $normalTextColor;
@@ -28,7 +28,7 @@ mat-expansion-panel-header:hover{
 }
 
 mat-expansion-panel {
-    color: aquamarine
+    color: rgb(95, 181, 231)
 }
 
 .listItem {
