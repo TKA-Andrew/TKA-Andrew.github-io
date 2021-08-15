@@ -12,9 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GeneralComponent } from './coding/general/general.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
 
 @NgModule({
-  declarations: [TechnicalNotesComponent, GeneralComponent],
+  declarations: [TechnicalNotesComponent, GeneralComponent, AlgoExpertFundamentalComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
