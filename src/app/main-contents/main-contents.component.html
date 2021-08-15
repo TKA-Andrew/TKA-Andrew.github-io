@@ -1,13 +1,17 @@
-<div class="flexContainer">
+<div style="height: 100%; display: flex; flex-direction: column;">
     <main-content-topbar class="flexContentSize" (toggleEvent)="toggleMenu()"></main-content-topbar>
     <div class="flexRemainingSpace" style="overflow: auto;">
-        <div *ngIf="showMenu" fxLayout="column" id="responsiveMenu" style="z-index: 2;">
-            <button mat-button class="topbarButtons" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
-            <button mat-button class="topbarButtons">About</button>
-            <button mat-button class="topbarButtons">Achievements</button>
-            <button mat-button class="topbarButtons">Projects</button>
-            <button mat-button class="topbarButtons" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
+        <div class="flexContainer">
+            <div *ngIf="showMenu" fxLayout="column" id="responsiveMenu" style="z-index: 2;">
+                <button mat-button class="topbarButtons" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
+                <button mat-button class="topbarButtons">About</button>
+                <button mat-button class="topbarButtons">Achievements</button>
+                <button mat-button class="topbarButtons">Projects</button>
+                <button mat-button class="topbarButtons" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
+            </div>
+            <div class="flexRemainingSpace">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-        <router-outlet></router-outlet>
     </div>
 </div>
