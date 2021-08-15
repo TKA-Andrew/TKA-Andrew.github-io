@@ -1,22 +1,53 @@
-<div class="flexContainer">
-    <mat-accordion displayMode="flat">
+<div class="flexContainer" style="overflow: auto;">
+    <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
         <mat-expansion-panel style="margin-top: 5px;">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     General
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <button mat-button class="listItem">Refactoring</button>
-            <button mat-button class="listItem">Design Pattern</button>
-            <button mat-button class="listItem">SOLID Principles</button>
+            <button mat-button class="listItem" (click)="scrollTo('refactoring')">Refactoring</button>
+            <button mat-button class="listItem" (click)="scrollTo('designPattern')">Design Pattern</button>
+            <button mat-button class="listItem" (click)="scrollTo('solidPrinciples')">SOLID Principles</button>
             <button mat-button class="listItem">Coding Practices</button>
         </mat-expansion-panel>
-        <h1>Design Pattern</h1>
-        <h2>Introduction</h2>
-        <p>Design Patterns are blueprints for sctructuring your complex code to make it more managable and extensible.
-        Note that you shouldn't use design patterns for simple code.
-        </p>
-        <h2>Useful Resources</h2>
-        <a href="https://refactoring.guru/design-patterns" target="_blank" rel="noopener noreferrer">Detailed catalog and explanations of Design Patterns</a>
+        <div fxLayout="column" fxLayout="column">
+            <div id="refactoring">
+                <h1>Refactoring</h1>
+                <h2>Introduction</h2>
+                <p>Refactoring is about transforming code into clean code in order to improve the readability, reduce duplication and for easier code maintenance.
+                </p>
+                <h2>Useful Resources</h2>
+                <a href="https://refactoring.guru/refactoring" target="_blank" rel="noopener noreferrer">Detailed catalog and explanations of Refactoring</a>
+                <mat-divider></mat-divider>
+            </div>
+            <div id="designPattern">
+                <h1>Design Pattern</h1>
+                <h2>Introduction</h2>
+                <p>Design Patterns are blueprints for sctructuring your complex code to make it more managable and extensible.
+                Note that you shouldn't use design patterns for simple code.
+                </p>
+                <h2>Useful Resources</h2>
+                <a href="https://refactoring.guru/design-patterns" target="_blank" rel="noopener noreferrer">Detailed catalog and explanations of Design Patterns</a>
+                <mat-divider></mat-divider>
+            </div>
+            <div id="solidPrinciples">
+                <h1>SOLID Principles</h1>
+                <h2>Introduction</h2>
+                <p>SOLID Principles are the acronym for:</p>
+                    <ul>
+                        <li>S - Single-responsiblity Principle</li>
+                        <li>O - Open-closed Principle</li>
+                        <li>L - Liskov Substitution Principle</li>
+                        <li>I - Interface Segregation Principle</li>
+                        <li>D - Dependency Inversion Principle</li>
+                    </ul>
+                <p>These are the principles for developing maintainable and extensible software project.</p>
+                <h2>Useful Resources</h2>
+                <a href="https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design" target="_blank" rel="noopener noreferrer">Detailed explanations of SOLID Principles</a>
+                <mat-divider></mat-divider>
+            </div>
+        </div>
+
     </mat-accordion>
 </div>

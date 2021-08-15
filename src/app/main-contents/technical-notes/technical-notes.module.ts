@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GeneralComponent } from './coding/general/general.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [TechnicalNotesComponent, GeneralComponent],
@@ -23,6 +24,7 @@ import { GeneralComponent } from './coding/general/general.component';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatDividerModule,
     FontAwesomeModule
   ]
 })
