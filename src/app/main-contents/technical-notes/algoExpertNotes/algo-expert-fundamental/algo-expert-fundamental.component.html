@@ -11,6 +11,7 @@
             <button mat-button class="listItem" (click)="scrollTo('bigONotation')">Big O Notation</button>
             <button mat-button class="listItem" (click)="scrollTo('arrays')">Arrays</button>
             <button mat-button class="listItem" (click)="scrollTo('linkedLists')">Linked Lists</button>
+            <button mat-button class="listItem" (click)="scrollTo('hashTables')">Hash Tables</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -216,6 +217,62 @@ null &lt;- 2 &lt;-> 5 &lt;-> 3 &lt;-> 6 &lt;-> null
             </tr>
         </table>
         <p>Another special linked list is circular linked list, which doesn't have clear "tail" and "head"</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div id="hashTables">
+        <h2>Hash Tables</h2>
+        <p>Hash Tables are basically key-value stores.</p>
+        <p>A lot of modern programming languages have built-in hash tables. For example:</p>
+        <ul>
+            <li>Python - Dictionary</li>
+            <li>Javascript - Object</li>
+        </ul>
+        <p>An example of hash table using Javascript Object:</p>
+        <pre>
+            <code>
+// Javascript Object example
+const monthRecord = &#123;
+    'AUG': 8,
+    'SEP': 9,
+    'OCT': 10
+}
+            </code>
+        </pre>
+        <p>Under the hood, a hash table uses a Dynamic Array of Linked Lists to store the key-value pairs.</p>
+        <p>When inserting a key-value pair, the <span style="font-style: italic">key</span> is hashed into an integer, 
+            which will be used as index of the underlying dynamic array. Then, the <span style="font-style: italic">value</span>
+            associated with the <span style="font-style: italic">key</span> will be added to the linked list stored at the index
+            in the dynamic array. A reference to the <span style="font-style: italic">key</span> is also stored with that <span style="font-style: italic">value</span>.
+        </p>
+        <p>Hence, when there are multiple <span style="font-style: italic">keys</span> being hashed into a same integer, 
+        the length of linked list at the integer will be longer.</p>
+        <p>The example below shows the best case and worst case of hashing:</p>
+        <pre>
+            <code>
+// BEST CASE
+[
+    0: (9, 'SEP') -> null
+    1: (10, 'OCT') -> null
+    2: (8, 'AUG') -> null
+]
+
+// WORST CASE
+[
+    0: (9, 'SEP') -> (10, 'OCT') -> (8, 'AUG') -> null
+    1: null
+    2: null
+]
+            </code>
+        </pre>
+        <p>However, in practice, we typically assume that the built-in hash functions are good enough to give us the best case 
+            for most of the time. And with knowledge about time complexity for different operations in Linked List, we can say that:
+        </p>
+        The time complexity is O(1) on average; O(n) in the worse case for:
+        <ul>
+            <li>Inserting a key-value pair</li>
+            <li>Removing a key-value pair</li>
+            <li>Looking up a key</li>
+        </ul>
         <mat-divider></mat-divider>
     </div>
 </div>
