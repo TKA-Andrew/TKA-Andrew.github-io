@@ -1,4 +1,4 @@
-<div class="flexContainer" style="overflow: auto;">
+<div class="flexContainer">
     <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
         <mat-expansion-panel style="margin-top: 5px;">
             <mat-expansion-panel-header>
@@ -12,110 +12,210 @@
             <button mat-button class="listItem" (click)="scrollTo('arrays')">Arrays</button>
             <button mat-button class="listItem" (click)="scrollTo('linkedLists')">Linked Lists</button>
         </mat-expansion-panel>
-        <div fxLayout="column" fxLayout="column">
-            <div>
-                <h1>Algo Expert Fundamental</h1>
-                <h2>Introduction</h2>
-                <p>These are my personal notes when I go through the <a href="https://www.algoexpert.io/product" target="_blank" rel="noopener noreferrer">AlgoExpert course</a>.</p>
-                <p>These are just short notes, the course is recommended as there are some great explanations for different algorithm questions.</p>
-                <p>However, for alternative option, you may proceed with <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer">LeetCode</a>.</p>
-                <mat-divider></mat-divider>
-            </div>
-            <div id="complexAnalysis">
-                <h2>Complexity Analysis</h2>
-                <p>Commonly there are more than one solution to a problem. And how do we determine which one is better?
-                    Through complexity analysis. The worse solutions normally have needless complexity. There are 2 types of complexity, time complexity and space complexity. You can refer to them together as space-time complexity as well.</p>
-                <p>Time complexity is a measure of how fast an algorithm or solution runs.</p>
-                <p>Space complexity is a measure of how much memory or space an algorithm uses up.</p>
-                <mat-divider></mat-divider>
-            </div>
-            <div id="memory">
-                <h2>Memory</h2>
-                <p>There are few things that you need to know:</p>
-                <ul>
-                    <li>There are limited memory in each computer</li>
-                    <li>The data are stored in bytes ( 8 bits = 1 byte)</li>
-                    <li>Int is 32-bit integer and Long is 64-bit integer, and these are called fixed-width integers</li>
-                    <li>Hence, the memory taken up by the integers are fixed, depending on their data type, not their value</li>
-                    <li>The idea of pointer is you record the memory address of another memory slot in a memory slot</li>
-                </ul>
-                <mat-divider></mat-divider>
-            </div>
-            <div id="bigONotation">
-                <h2>Big O Notation</h2>
-                <p>Big O Notation is a notation used to describe the time complexity and space complexity of an algorithm.
-                    For time complexity, it is not logical to exactly describe the speed of an algorithm with the unit of milliseconds or seconds,
-                    as the execution time is affected by many factors such as programs running in the background or even processing ability of your CPU.</p>
-                <p>Hence, to describe time complexity, we usually describe how fast an algorithm runs as the input size increases.
-                    This is because different algorithms have different processing speeds when the input size is different.
-                    Hence, we describe them with a notation, without any SI unit.</p>
-                <p>The following are some common examples of complexities and their Big O Notations (ordered from fastest to slowest):</p>
-                <ul>
-                    <li>Constant: O(1)</li>
-                    <li>Logarithmic: O(log(n))</li>
-                    <li>Linear: O(n)</li>
-                    <li>Log-Linear: O(nlog(n))</li>
-                    <li>Quadaratic: O(n^2)</li>
-                    <li>Cubic: O(n^3)</li>
-                    <li>Exponential: O(2^n)</li>
-                    <li>Factorial: O(n!)</li>
-                </ul>
-                <mat-divider></mat-divider>
-            </div>
-            <div id="arrays">
-                <h2>Arrays</h2>
-                <p>There are two types of arrays: Static Array & Dynamic Array. </p>
-                <p>In C++ or Java, when you declare an array, you need to specify the length of the array.
-                    On the other hand, in Python or Javascript, you do not need to specify the length of an array.</p>
-                <p>The follwing are some array's standard operations and their corresponding time complexities:</p>
-                <table>
-                    <tr>
-                        <th>Operation</th>
-                        <th>Time Complexity</th>
-                    </tr>
-                    <tr>
-                        <td>Accessing a value at a given index</td>
-                        <td>O(1)</td>
-                    </tr>
-                    <tr>
-                        <td>Updating a value at a given index</td>
-                        <td>O(1)</td>
-                    </tr>
-                    <tr>
-                        <td>Inserting a value at the beginning</td>
-                        <td>O(n)</td>
-                    </tr>
-                    <tr>
-                        <td>Inserting a value in the middle</td>
-                        <td>O(n)</td>
-                    </tr>
-                    <tr>
-                        <td>Inserting a value at the end</td>
-                        <td>
-                            <div><span>O(1) if Dynamic Array has enough space; else O(n)</span></div>
-                            <div><span>O(n) for Static Array, as the subsequent slots might be taken up</span></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Removing a value at the beginning</td>
-                        <td>O(n)</td>
-                    </tr>
-                    <tr>
-                        <td>Removing a value in the middle</td>
-                        <td>O(n)</td>
-                    </tr>
-                    <tr>
-                        <td>Removing a value at the end</td>
-                        <td>O(1)</td>
-                    </tr>
-                    <tr>
-                        <td>Copying the array</td>
-                        <td>O(n)</td>
-                    </tr>
-                </table>
-                <mat-divider></mat-divider>
-                
-            </div>
-        </div>
     </mat-accordion>
+    <div fxLayout="column" fxLayout="column">
+        <div>
+            <h1>Algo Expert Fundamental</h1>
+            <h2>Introduction</h2>
+            <p>These are my personal notes when I go through the <a href="https://www.algoexpert.io/product" target="_blank" rel="noopener noreferrer">AlgoExpert course</a>.</p>
+            <p>These are just short notes, the course is recommended as there are some great explanations for different algorithm questions.</p>
+            <p>However, for alternative option, you may proceed with <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer">LeetCode</a>.</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="complexAnalysis">
+            <h2>Complexity Analysis</h2>
+            <p>Commonly there are more than one solution to a problem. And how do we determine which one is better?
+                Through complexity analysis. The worse solutions normally have needless complexity. There are 2 types of complexity, time complexity and space complexity. You can refer to them together as space-time complexity as well.</p>
+            <p>Time complexity is a measure of how fast an algorithm or solution runs.</p>
+            <p>Space complexity is a measure of how much memory or space an algorithm uses up.</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="memory">
+            <h2>Memory</h2>
+            <p>There are few things that you need to know:</p>
+            <ul>
+                <li>There are limited memory in each computer</li>
+                <li>The data are stored in bytes ( 8 bits = 1 byte)</li>
+                <li>Int is 32-bit integer and Long is 64-bit integer, and these are called fixed-width integers</li>
+                <li>Hence, the memory taken up by the integers are fixed, depending on their data type, not their value</li>
+                <li>The idea of pointer is you record the memory address of another memory slot in a memory slot</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="bigONotation">
+            <h2>Big O Notation</h2>
+            <p>Big O Notation is a notation used to describe the time complexity and space complexity of an algorithm.
+                For time complexity, it is not logical to exactly describe the speed of an algorithm with the unit of milliseconds or seconds,
+                as the execution time is affected by many factors such as programs running in the background or even processing ability of your CPU.</p>
+            <p>Hence, to describe time complexity, we usually describe how fast an algorithm runs as the input size increases.
+                This is because different algorithms have different processing speeds when the input size is different.
+                Hence, we describe them with a notation, without any SI unit.</p>
+            <p>The following are some common examples of complexities and their Big O Notations (ordered from fastest to slowest):</p>
+            <ul>
+                <li>Constant: O(1)</li>
+                <li>Logarithmic: O(log(n))</li>
+                <li>Linear: O(n)</li>
+                <li>Log-Linear: O(nlog(n))</li>
+                <li>Quadaratic: O(n^2)</li>
+                <li>Cubic: O(n^3)</li>
+                <li>Exponential: O(2^n)</li>
+                <li>Factorial: O(n!)</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="arrays">
+            <h2>Arrays</h2>
+            <p>There are two types of arrays: Static Array & Dynamic Array. </p>
+            <p>In C++ or Java, when you declare an array, you need to specify the length of the array.
+                On the other hand, in Python or Javascript, you do not need to specify the length of an array.</p>
+            <p>The follwing are some array's standard operations and their corresponding time complexities:</p>
+            <table>
+                <tr>
+                    <th>Operation</th>
+                    <th>Time Complexity</th>
+                    <th>Space Complexity</th>
+                </tr>
+                <tr>
+                    <td>Accessing a value at a given index</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Updating a value at a given index</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Inserting a value at the beginning</td>
+                    <td>O(n)</td>
+                    <td>
+                        <div><span>Dynamic Array: O(1) or O(n)</span></div>
+                        <div><span>Staticc Array: O(1)</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Inserting a value in the middle</td>
+                    <td>O(n)</td>
+                    <td>
+                        <div><span>Dynamic Array: O(1) or O(n)</span></div>
+                        <div><span>Static Array: O(1)</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Inserting a value at the end</td>
+                    <td>
+                        <div><span>Dynamic Array: O(1) or O(n)</span></div>
+                        <div><span>Static Array: O(n)</span></div>
+                    </td>
+                    <td>
+                        <div><span>Dynamic Array: O(1) or O(n)</span></div>
+                        <div><span>Static Array: O(1)</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Removing a value at the beginning</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Removing a value in the middle</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Removing a value at the end</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Copying the array</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Traversing the array</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+            </table>
+            <p>Side Notes:</p>
+            <ul>
+                <li>For Dynamic Array, time complexity of inserting a value at the end will take O(1) if it has enough
+                    memory slots. Else, it will take O(n)+ time complexity, which also called 
+                    <a href="https://medium.com/@satorusasozaki/amortized-time-in-the-time-complexity-of-an-algorithm-6dd9a5d38045" target="_blank" rel="noopener noreferrer">Armotized O(1)</a>.
+                </li>
+                <li>The space complexity for inserting value in Dynamic Array is also depending on whether it has enough memory slots.</li>
+                <li>However, for Static Array, everytime when an additional value is inserted, the array will be copied
+                    and relocated to new memory slots. This is because it is not guaranteed that the subsequent memory slots are available for expanding the array. 
+                    After copying, the previous memory slots will be free, hence resulting in O(1) space complexity.
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+    <div id="linkedLists">
+        <h2>Linked Lists</h2>
+        <p>Linked list is quite similar to an array, except that it has pointers between each element.</p>
+        <p>There are 2 common types of linked lists: Singly Linked List & Doubly Linked List.</p>
+        <ul>
+            <li>Each node of a Singly Linked List is a node (class) with <span style="font-style: italic;">value</span> and <span style="font-style: italic;">next</span> properties.
+                The first node is called <span style="font-style: italic;">head</span>, whereas the last node which has the <span style="font-style: italic;">next</span> property points to a null value is called <span style="font-style: italic;">tail</span>.</li>
+            <li>Each node of a Doubly Linked List has two pointers, one pointing to the previous node and another one pointing to the next node.</li>
+        </ul>
+        <pre>
+            <code>
+// Singly Linked List example
+1 -> 4 -> 3 -> 8 -> 3 -> null
+
+// Doubly Linked List example
+null &lt;- 2 &lt;-> 5 &lt;-> 3 &lt;-> 6 &lt;-> null
+            </code>
+        </pre>
+        <p>Other than that, the way a linked list is stored in memory is different from an array. Unlike arrays, linked lists are not stored back-to-back. Because of this, some operations in linked lists are faster than arrays.
+            The time complexities of these operations also depend on whether the linked lists have the tail and head declared.</p>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Time Complexity</th>
+                <th>Space Complexity</th>
+            </tr>
+            <tr>
+                <td>Accessing the head</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Accessing the tail</td>
+                <td>O(1) if tail is defined; else O(n)</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Accessing a middle node</td>
+                <td>O(i), where i is the index of the node</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Inserting/Removing the head</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Inserting/Removing the tail</td>
+                <td>O(1) if tail is defined; else O(n)</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Inserting/Removing a middle node</td>
+                <td>O(i), where i is the index of the node</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Searching for a value</td>
+                <td>O(n)</td>
+                <td>O(1)</td>
+            </tr>
+        </table>
+        <p>Another special linked list is circular linked list, which doesn't have clear "tail" and "head"</p>
+        <mat-divider></mat-divider>
+    </div>
 </div>

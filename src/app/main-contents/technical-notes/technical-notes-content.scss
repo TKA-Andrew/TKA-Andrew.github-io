@@ -77,3 +77,27 @@ mat-drawer {
     color: $routerActiveColor;
     font-weight: bold;
 }
+
+table {
+    overflow: auto;
+    display: block;
+    border: solid;
+    border-color: grey;
+    border-radius: 15px;
+}
+
+th {
+    padding: 5px 15px !important;
+    text-align: center !important;
+    color: black;
+    font-weight: bold;
+}
+
+td {
+    padding: 5px 15px !important;
+    text-align: center !important;
+}
+
+li {
+    text-align: justify;
+}
