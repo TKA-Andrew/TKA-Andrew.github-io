@@ -12,6 +12,7 @@
             <button mat-button class="listItem" (click)="scrollTo('arrays')">Arrays</button>
             <button mat-button class="listItem" (click)="scrollTo('linkedLists')">Linked Lists</button>
             <button mat-button class="listItem" (click)="scrollTo('hashTables')">Hash Tables</button>
+            <button mat-button class="listItem" (click)="scrollTo('stacksAndQueues')">Stacks & Queues</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -273,6 +274,60 @@ const monthRecord = &#123;
             <li>Removing a key-value pair</li>
             <li>Looking up a key</li>
         </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div id="stacksAndQueues">
+        <h2>Stacks And Queues</h2>
+        <table>
+            <tr>
+                <th style="width: 50%">Stack</th>
+                <th style="width: 50%">Queue</th>
+            </tr>
+            <tr>
+                <td>An array-like data structure whose elements follow the Last In First Out (LIFO) rule</td>
+                <td>An array-like data structure whose elements follow the First In First Out (FIFO) rule</td>
+            </tr>
+            <tr>
+                <td>Similar to a stack of book, the last book will always be the first one to be removed from the stack.</td>
+                <td>Similar to a group of people queueing to buy something, and the first one in the queue will be the first one 
+                    to be served and get out of the queue.
+                </td>
+            </tr>
+            <tr>
+                <td>Typically implemented with a dynamic array or singly linked list</td>
+                <td>Typically implemented with a doubly linked list</td>
+            </tr>
+        </table>
+        <p>Both stack and queue have the same time complexity for the following operations,
+            take note of the difference in naming used for "insert" and "remove" operations:</p>
+        <table>
+            <tr>
+                <th>Stack</th>
+                <th>Queue</th>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Pushing an element onto the stack</td>
+                <td>Enqueueing an element into the queue</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Popping an element off the stack</td>
+                <td>Dequeueing an element out of the queue</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Peeking at the element on the top of the stack</td>
+                <td>Peeking at the element at the front of the queue</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Searching for an element in the stack</td>
+                <td>Searching for an element in the queue</td>
+                <td>O(n)</td>
+            </tr>
+        </table>
+        <p>The space complexity of the operations are basically O(1) space, except copying.</p>
         <mat-divider></mat-divider>
     </div>
 </div>
