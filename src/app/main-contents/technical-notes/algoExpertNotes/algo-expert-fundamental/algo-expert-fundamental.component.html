@@ -13,6 +13,7 @@
             <button mat-button class="listItem" (click)="scrollTo('linkedLists')">Linked Lists</button>
             <button mat-button class="listItem" (click)="scrollTo('hashTables')">Hash Tables</button>
             <button mat-button class="listItem" (click)="scrollTo('stacksAndQueues')">Stacks & Queues</button>
+            <button mat-button class="listItem" (click)="scrollTo('strings')">Strings</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -328,6 +329,48 @@ const monthRecord = &#123;
             </tr>
         </table>
         <p>The space complexity of the operations are basically O(1) space, except copying.</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div id="strings">
+        <h2>Strings</h2>
+        <p>Strings are implemented differently depending on the programming languages.</p>
+        <p>Strings are basically an array of integers which are mapped to the characters of the string via character-enconding standard such as ASCII.</p>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Time Complexity</th>
+                <th>Space Complexity</th>
+            </tr>
+            <tr>
+                <td>Traverse a string</td>
+                <td>O(n)</td>
+                <td>O(1)</td>
+            </tr>
+            <tr>
+                <td>Copying a string</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+            </tr>
+            <tr>
+                <td>Accessing a character at a given index</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+            </tr>
+        </table>
+        <p>In most programming languages (except C++), strings are immutable, means they cannot be edited after creation.
+            Hence, simple operations such as appending a character to a string is much expensivex than they might appear.
+        This is because when we want to edit immutable strings, we are basically creating new strings.</p>
+        <p>For example, if we want to add a string "def" after the immutable string "abc":</p>
+        <pre>
+            <code>
+// example
+string1 = 'abc';
+string1 += 'def';
+
+Space-Time complexity: O(n+m) where the n is due to copying the string and the m is due to adding of the 'def'
+            </code>
+        </pre>
+        <p>Therefore, it is recommended to store string in the form of array of characters if possible.</p>
         <mat-divider></mat-divider>
     </div>
 </div>
