@@ -14,6 +14,7 @@
             <button mat-button class="listItem" (click)="scrollTo('hashTables')">Hash Tables</button>
             <button mat-button class="listItem" (click)="scrollTo('stacksAndQueues')">Stacks & Queues</button>
             <button mat-button class="listItem" (click)="scrollTo('strings')">Strings</button>
+            <button mat-button class="listItem" (click)="scrollTo('graphs')">Graphs</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -371,6 +372,45 @@ Space-Time complexity: O(n+m) where the n is due to copying the string and the m
             </code>
         </pre>
         <p>Therefore, it is recommended to store string in the form of array of characters if possible.</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div id="graphs">
+        <h2>Graphs</h2>
+        <p>Graphs are collection of nodes that might or might not connected to one another. 
+            The nodes are called <span style="font-style: italic;">vertices</span> and the arrows or connections between the vertices are called <span style="font-style: italic;">edges</span>.</p>
+        <p>Some terms and definitions:</p>
+        <table>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td>Graph Cycle</td>
+                <td>A closed loop formed by vertices</td>
+            </tr>
+            <tr>
+                <td>Acyclic Graph</td>
+                <td>A graph that has no cycles</td>
+            </tr>
+            <tr>
+                <td>Cyclic Graph</td>
+                <td>A graph that has at least one cycle</td>
+            </tr>
+            <tr>
+                <td>Directed Graph</td>
+                <td>A graph with directed edges, and can only be traversed in one direction</td>
+            </tr>
+            <tr>
+                <td>Undirected Graph</td>
+                <td>A graph with undirected edges, and can be traversed in both directions</td>
+            </tr>
+            <tr>
+                <td>Connected Graph</td>
+                <td>A graph that has one or more edges in every pair of vertices.</td>
+            </tr>
+        </table>
+        <p>Two types of traversing method: Depth-first Search & Breadth-first Search</p>
+        <p>Traversing the graph will need O(V+E) Space-Time Complexity, where V is number of vertices and E is number edges.</p>
         <mat-divider></mat-divider>
     </div>
 </div>
