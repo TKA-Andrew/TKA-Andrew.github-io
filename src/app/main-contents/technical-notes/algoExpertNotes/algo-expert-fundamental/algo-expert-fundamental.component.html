@@ -15,6 +15,7 @@
             <button mat-button class="listItem" (click)="scrollTo('stacksAndQueues')">Stacks & Queues</button>
             <button mat-button class="listItem" (click)="scrollTo('strings')">Strings</button>
             <button mat-button class="listItem" (click)="scrollTo('graphs')">Graphs</button>
+            <button mat-button class="listItem" (click)="scrollTo('trees')">Trees</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -411,6 +412,59 @@ Space-Time complexity: O(n+m) where the n is due to copying the string and the m
         </table>
         <p>Two types of traversing method: Depth-first Search & Breadth-first Search</p>
         <p>Traversing the graph will need O(V+E) Space-Time Complexity, where V is number of vertices and E is number edges.</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div id="trees">
+        <h2>Trees</h2>
+        <p>Tree is a special type of graph, which is acyclic, directed and connected. Each node of tree can only have one parent.</p>
+        <p>Tree nodes normally don't have a pointer to their parents, but they can if desired.</p>
+        <p>The first node of the tree is called <span style="font-style: italic;">root</span>, 
+            the nodes at the bottom without child nodes are called <span style="font-style: italic;">leaf nodes</span>, 
+            whereas the nodes between root and leaf nodes are called <span style="font-style: italic;">branches</span>.</p>
+        <p>The <span style="font-style: italic;">height </span> <span style="text-decoration: underline;">of a tree</span> is referring to the length of the longest branch,
+            whereas the <span style="font-style: italic;">depth </span> <span style="text-decoration: underline;">of a node</span> is its distance from the root node. 
+            <a>For illustarion</a></p>
+        <p>There are many types of trees:</p>
+        <table>
+            <tr>
+                <th>Tree</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td>Binary Tree</td>
+                <td>A tree whose nodes have up to 2 child nodes</td>
+            </tr>
+            <tr>
+                <td>K-ary Tree</td>
+                <td>A tree whose nodes have up to k child nodes</td>
+            </tr>
+            <tr>
+                <td>Heaps</td>
+                <td>Min-Heaps and Max-Heaps are also Binary Heaps where every node in the tree satisfies the Min or Max Heap property</td>
+            </tr>
+            <tr>
+                <td>Tries</td>
+                <td>A tree-like data structure that stores characters in a string</td>
+            </tr>
+            <tr>
+                <td>Perfect Binary Tree</td>
+                <td>A tree with all nodes having 2 child nodes, and all leaf nodes have the same depth.</td>
+            </tr>
+            <tr>
+                <td>Complete Binary Tree</td>
+                <td>A binary tree that is almost perfect, with all nodes having 2 child nodes, but the leaf nodes don't necessarily have the same depth.
+                    More importantly, the nodes in the last level are as far as possible.
+                </td>
+            </tr>
+            <tr>
+                <td>Balanced Binary Tree</td>
+                <td>A binary tree with left and right subtrees of all nodes having height difference not more than 1.</td>
+            </tr>
+            <tr>
+                <td>Full Binary Tree</td>
+                <td>A binary tree with nodes having either zero child nodes or 2 child nodes</td>
+            </tr>
+        </table>
         <mat-divider></mat-divider>
     </div>
 </div>
