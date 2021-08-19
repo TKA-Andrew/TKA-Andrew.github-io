@@ -10,14 +10,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { GeneralComponent } from './coding/general/general.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
+import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 
 @NgModule({
-  declarations: [TechnicalNotesComponent, GeneralComponent, AlgoExpertFundamentalComponent, SystemExpertFundamentalComponent, CodingResourcesComponent],
+  declarations: [
+    TechnicalNotesComponent,
+    AlgoExpertFundamentalComponent,
+    SystemExpertFundamentalComponent,
+    CodingResourcesComponent,
+    CodingGeneralComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
+import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
-import { GeneralComponent } from './coding/general/general.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { TechnicalNotesComponent } from './technical-notes.component';
 
@@ -11,8 +11,8 @@ const routes: Routes = [{
   component:TechnicalNotesComponent,
   children: [
     {
-      path: 'general',
-      component: GeneralComponent
+      path: 'coding/general',
+      component: CodingGeneralComponent
     },
     {
       path:'coding/resources',
