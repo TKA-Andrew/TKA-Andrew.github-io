@@ -14,9 +14,10 @@ import { GeneralComponent } from './coding/general/general.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
+import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 
 @NgModule({
-  declarations: [TechnicalNotesComponent, GeneralComponent, AlgoExpertFundamentalComponent, SystemExpertFundamentalComponent],
+  declarations: [TechnicalNotesComponent, GeneralComponent, AlgoExpertFundamentalComponent, SystemExpertFundamentalComponent, CodingResourcesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
