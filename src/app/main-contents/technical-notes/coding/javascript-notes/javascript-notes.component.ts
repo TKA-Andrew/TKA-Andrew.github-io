@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-algo-expert-fundamental',
-  templateUrl: './algo-expert-fundamental.component.html',
-  styleUrls: ['./algo-expert-fundamental.component.scss']
+  selector: 'app-javascript-notes',
+  templateUrl: './javascript-notes.component.html',
+  styleUrls: ['./javascript-notes.component.scss']
 })
-export class AlgoExpertFundamentalComponent {
+export class JavascriptNotesComponent {
 
   constructor(
     private router: Router
@@ -18,4 +18,5 @@ export class AlgoExpertFundamentalComponent {
       if (element != undefined) element.scrollIntoView();
     });
   }
+
 }

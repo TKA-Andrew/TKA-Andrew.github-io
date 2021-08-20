@@ -1,0 +1,53 @@
+<div class="flexContainer">
+    <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
+        <mat-expansion-panel style="margin-top: 5px;">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    JavaScript/Node.js
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div fxLayout="column" fxLayout="column">
+        <div>
+            <h1>Javascript in Node.js</h1>
+            <h2>Introduction</h2>
+            <p>The following are mainly the notes for Javascript in Node.js. </p>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="difference">
+            <h2>Broswer vs Node.js</h2>
+            <p>Both the broswer and Node.js use Javacript as their programming langauge. However, building apps that run in the browser
+                is different than building a Node.js application.
+            </p>
+            <table>
+                <tr>
+                    <th style="width: 50%">Browser</th>
+                    <th style="width: 50%">Node.js</th>
+                </tr>
+                <tr>
+                    <td>For frontend development</td>
+                    <td>Mainly for server-side development</td>
+                </tr>
+                <tr>
+                    <td>Can interact with DOM, or other Web Platform APIs like Cookies</td>
+                    <td>Cannot interact with the DOMs and Web Platform APIs</td>
+                </tr>
+                <tr>
+                    <td>Does not have nice APIs</td>
+                    <td>Has nice APIs provided through modules</td>
+                </tr>
+                <tr>
+                    <td>Cannot be written in other languages</td>
+                    <td>Can be written in C++ so that it can directly interact with the OS</td>
+                </tr>
+                <tr>
+                    <td>Started implementing ES modules standard</td>
+                    <td>Uses CommonJS module system</td>
+                </tr>
+            </table>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>

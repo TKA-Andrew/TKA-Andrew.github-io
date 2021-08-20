@@ -16,6 +16,7 @@ import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-exp
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
+import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequel
     SystemExpertFundamentalComponent,
     CodingResourcesComponent,
     CodingGeneralComponent,
-    SequelizeNotesComponent],
+    SequelizeNotesComponent,
+    JavascriptNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
