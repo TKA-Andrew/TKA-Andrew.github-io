@@ -5,6 +5,7 @@ import { CodingGeneralComponent } from './coding/coding-general/coding-general.c
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { TechnicalNotesComponent } from './technical-notes.component';
+import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'systemExpert/fundamental',
       component: SystemExpertFundamentalComponent
+    },
+    {
+      path: 'webDevelopment/sequelize',
+      component: SequelizeNotesComponent
     }
   ]
 }];

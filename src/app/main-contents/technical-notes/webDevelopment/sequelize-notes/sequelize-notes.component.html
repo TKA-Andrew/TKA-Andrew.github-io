@@ -1,0 +1,87 @@
+<div class="flexContainer">
+    <div fxLayout="column" fxLayout="column">
+        <div>
+            <h1>Sequelize Notes</h1>
+            <h2>Introduction</h2>
+            <p>Sequelize is a promise-based Node.js Object-Relational Mapping (ORM) for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server.</p>
+            <p>Most of the usage guides are available in <a href="https://sequelize.org/master/" target="_blank" rel="noopener noreferrer">Sequelize v6 Documentation</a>.</p>
+            <p>The following sections are my personal notes.</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Declaring array-type column in model declaration</h3>
+            <pre>
+                <code>
+    // example
+    item_ids: &#123;
+        type: DataTypes.ARRAY(DataTypes.TEXT),
+        defaultValue: []
+    },                  
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Finding data according to length of array of a specific column</h3>
+            <pre>
+                <code>
+    // example
+    db.models.inventoryModel.findAll(&#123;
+        raw: true,
+        where: [
+            sequelize.where(
+                sequelize.fn('array_length', sequelize.col('item_ids'), 1),
+                &#123; [Op.lt]: 10 }
+            ),
+            &#123; item_type: 'pen' },
+        ]
+    })                                 
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Finding rows that contain a certain value in an array column</h3>
+            <pre>
+                <code>
+    // example
+    db.models.inventoryModel.findAll(&#123;
+        raw: true,
+        where: &#123;
+            item_ids: &#123; [Op.contains]: idsOfDeletedItem }
+        }
+    })                                             
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Adding/Updating multiple rows of data at once</h3>
+            <p>The <span style="font-style: italic">bulkCreate</span> by default will create multiple new rows at once, but with
+                the <span style="font-style: italic">updateOnDuplicate</span>, it will update if the unique keys of that row already exist in the table.</p>
+            <pre>
+                <code>
+    // example
+    const newBulk = []
+    await Promise.all(itemConfigurationList.map(async (itemObject) => &#123;
+        const passingObject = &#123;
+            item_id: itemObject.item_id
+            item_name: itemObject.tariff_name,
+            item_price: itemObject.item_price,
+            item_supplier: itemObject.item_supplier,
+        }
+        newBulk.push(passingObject)
+        }))
+    db.models.itemModel.bulkCreate(newBulk, &#123;
+        updateOnDuplicate: ['item_name', 'item_price', 'item_supplier']
+    }).then(() => &#123;
+        res.status(statusOK).send('Successfully updated Item Configuration.')
+    }).catch((error) => &#123;
+        res.status(s500).send(&#123; message: error.message })
+    })                  
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>

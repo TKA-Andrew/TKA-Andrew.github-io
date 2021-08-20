@@ -15,6 +15,7 @@ import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fu
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
+import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CodingGeneralComponent } from './coding/coding-general/coding-general.c
     AlgoExpertFundamentalComponent,
     SystemExpertFundamentalComponent,
     CodingResourcesComponent,
-    CodingGeneralComponent],
+    CodingGeneralComponent,
+    SequelizeNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
