@@ -9,6 +9,7 @@
             <button mat-button class="listItem" (click)="scrollTo('refactoring')">Refactoring</button>
             <button mat-button class="listItem" (click)="scrollTo('designPattern')">Design Pattern</button>
             <button mat-button class="listItem" (click)="scrollTo('solidPrinciples')">SOLID Principles</button>
+            <button mat-button class="listItem" (click)="scrollTo('asynchronity')">Asynchronity in Programming Languages</button>
         </mat-expansion-panel>
         <div fxLayout="column" fxLayout="column">
             <div id="refactoring">
@@ -50,6 +51,15 @@
                 <ul>
                     <li><a href="https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design" target="_blank" rel="noopener noreferrer">Detailed explanations of SOLID Principles</a></li>
                 </ul>
+                <mat-divider></mat-divider>
+            </div>
+            <div id="asynchronity">
+                <h1>Asynchronity in Programming Languages</h1>
+                <h2>Introduction</h2>
+                <p>Asynchronous means that things can happen independently of the main program flow.</p>
+                <p>C, Java, C#, PHP, Go, Ruby, Swift, and Python are all synchronous by default.
+                    Some of them handle async by using threads, spawning a new process.</p>
+                <p>JavaScript is asynchronous in nature and in NodeJS.</p>
                 <mat-divider></mat-divider>
             </div>
         </div>
