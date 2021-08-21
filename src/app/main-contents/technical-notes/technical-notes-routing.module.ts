@@ -4,6 +4,7 @@ import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fu
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
+import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { TechnicalNotesComponent } from './technical-notes.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
@@ -40,6 +41,10 @@ const routes: Routes = [{
     {
       path: 'webDevelopment/sequelize',
       component: SequelizeNotesComponent
+    },
+    {
+      path: 'miscellaneuos/npm',
+      component: NpmNotesComponent
     }
   ]
 }];
