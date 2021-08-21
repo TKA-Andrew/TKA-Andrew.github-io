@@ -3,51 +3,19 @@
         <mat-expansion-panel style="margin-top: 5px;">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    JavaScript/CommonJS
+                    JavaScript
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
         <div>
-            <h1>Javascript in Node.js</h1>
+            <h1>Javascript</h1>
             <h2>Introduction</h2>
-            <p>The following are mainly the notes for Javascript in Node.js. </p>
+            <p>The following are mainly the notes for Javascript in Node.js using CommonJS modules. </p>
+            <p>Some people always confused that Javascript is asynchronous in nature, but actually Javascript is synchronous and single-threaded. 
+                Javascript can behave as if it is asynchronous when there are some ajax calls, events or timers being used, but in actual, it is still synchronous.
+            For a detailed explanation, please refer to the answer posted by user2603796 in this <a href="https://stackoverflow.com/questions/2035645/when-is-javascript-synchronous" target="_blank" rel="noopener noreferrer">stackoverflow post</a>.</p>
             <mat-divider></mat-divider>
         </div>
-        <div id="difference">
-            <h2>Broswer vs Node.js</h2>
-            <p>Both the broswer and Node.js use Javacript as their programming langauge. However, building apps that run in the browser
-                is different than building a Node.js application, one of the reasons is the difference in the module system used.
-            </p>
-            <table>
-                <tr>
-                    <th style="width: 50%">Browser</th>
-                    <th style="width: 50%">Node.js</th>
-                </tr>
-                <tr>
-                    <td>For frontend development</td>
-                    <td>Mainly for server-side development</td>
-                </tr>
-                <tr>
-                    <td>Can interact with DOM, or other Web Platform APIs like Cookies</td>
-                    <td>Cannot interact with the DOMs and Web Platform APIs</td>
-                </tr>
-                <tr>
-                    <td>Does not have nice APIs</td>
-                    <td>Has nice APIs provided through modules</td>
-                </tr>
-                <tr>
-                    <td>Cannot be written in other languages</td>
-                    <td>Can be written in C++ so that it can directly interact with the OS</td>
-                </tr>
-                <tr>
-                    <td>Modern browsers support ES6 Modules</td>
-                    <td>Uses CommonJS module system</td>
-                </tr>
-            </table>
-            <mat-divider></mat-divider>
-        </div>
-    </div>
 </div>
