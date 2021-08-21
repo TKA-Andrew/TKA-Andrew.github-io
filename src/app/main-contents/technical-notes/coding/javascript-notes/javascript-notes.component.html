@@ -6,6 +6,7 @@
                     JavaScript
                 </mat-panel-title>
             </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('hoisting')">Hoisting</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -18,4 +19,57 @@
             For a detailed explanation, please refer to the answer posted by user2603796 in this <a href="https://stackoverflow.com/questions/2035645/when-is-javascript-synchronous" target="_blank" rel="noopener noreferrer">stackoverflow post</a>.</p>
             <mat-divider></mat-divider>
         </div>
+        <div id="hoisting">
+            <h2>Hoisting</h2>
+            <p>Hoisting is JavaScript's default behavior of moving declarations to the top. Therefore, in JavaScript, a variable can be declared after it has been used.</p>
+            <p>Understanding Javascript Hoisting is important for us to futher understand why there is difference in using var and let in some cases.</p>
+            <p>Hoisting can only be demonstrated in CommonJS as the ES6 module is automatically in strict-mode</p>
+            <pre>
+                <code>
+    // WRITTEN CODE
+
+    x = 5
+    var x
+    console.log(x)
+
+
+    // ACTUAL PROCESS due to hoisting
+
+    var x
+    x = 5
+    console.log(x)
+                </code>
+            </pre>
+            <p>The following example demonstrates why the result is undefined instead of having ReferenceError when the if statement is not met:</p>
+            <pre>
+                <code>
+    // WRITTEN CODE
+
+    function isLessThan10_var (number) &#123;
+        if (number &lt; 10) &#123;
+            var lessThan10 = true
+        }
+        return lessThan10
+    }
+    console.log(isLessThan10_var(2)) // &lt;&lt; true
+    console.log(isLessThan10_var(12)) // &lt;&lt; undefined
+
+
+    // ACTUAL PROCESS due to hoisting
+
+    function isLessThan10_var (number) &#123;
+        var lessThan10
+        if (number &lt; 10) &#123;
+            lessThan10 = true
+        }
+        return lessThan10
+    }
+    console.log(isLessThan10_var(2)) // &lt;&lt; true
+    console.log(isLessThan10_var(12)) // &lt;&lt; undefined
+                </code>
+            </pre>
+            <p><a href="https://www.geeksforgeeks.org/javascript-hoisting/" target="_blank" rel="noopener noreferrer">A much detailed reference.</a></p>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
 </div>
