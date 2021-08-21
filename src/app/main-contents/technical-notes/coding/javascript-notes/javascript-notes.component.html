@@ -3,7 +3,7 @@
         <mat-expansion-panel style="margin-top: 5px;">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    JavaScript/Node.js
+                    JavaScript/CommonJS
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
@@ -19,7 +19,7 @@
         <div id="difference">
             <h2>Broswer vs Node.js</h2>
             <p>Both the broswer and Node.js use Javacript as their programming langauge. However, building apps that run in the browser
-                is different than building a Node.js application.
+                is different than building a Node.js application, one of the reasons is the difference in the module system used.
             </p>
             <table>
                 <tr>
@@ -43,7 +43,7 @@
                     <td>Can be written in C++ so that it can directly interact with the OS</td>
                 </tr>
                 <tr>
-                    <td>Started implementing ES modules standard</td>
+                    <td>Modern browsers support ES6 Modules</td>
                     <td>Uses CommonJS module system</td>
                 </tr>
             </table>

@@ -8,6 +8,7 @@ import { TechnicalNotesComponent } from './technical-notes.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDividerModule } from '@angular/material/divider';
@@ -17,6 +18,7 @@ import { CodingResourcesComponent } from './coding/coding-resources/coding-resou
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
+import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-n
     CodingResourcesComponent,
     CodingGeneralComponent,
     SequelizeNotesComponent,
-    JavascriptNotesComponent],
+    JavascriptNotesComponent,
+    WebDevelopmentGeneralComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -36,6 +39,7 @@ import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-n
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatTableModule,
     MatDividerModule,
     FontAwesomeModule
   ]

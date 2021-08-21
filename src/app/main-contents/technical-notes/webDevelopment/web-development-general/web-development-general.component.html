@@ -1,0 +1,92 @@
+<div class="flexContainer">
+    <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
+        <mat-expansion-panel style="margin-top: 5px;">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    General
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('esModules')">ES Modules</button>
+            <button mat-button class="listItem" (click)="scrollTo('commonJS')">CommonJS</button>
+            <button mat-button class="listItem" (click)="scrollTo('esModulesVsCommonJS')">ES Modules vs CommonJS</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div fxLayout="column" fxLayout="column">
+        <div id="esModules">
+            <h1>Web Development General Knowledge</h1>
+            <h2>ES Modules</h2>
+            <p>ES Modules is the ECMAScript (the scripting language that forms the basis of JavaScript) standard for working with modules.</p>
+            <p>Node.js has been using the CommonJS standard for years but there was no concept of modules in Javascript, and &lt;script> tags were used to load multiple Javascript files. 
+                Therefore, the module system support is finally standardized in ES6 and then browsers started to implement it. Now Chrome, Safari, Edge and Firefox (starting from version 60) all support ES modules.
+            </p>
+            <p>Some important notes:</p>
+            <ul>
+                <li>ES6 modules are automatically strict-mode code, even if you don’t write "use strict"; in them</li>
+                <li>Everything inside an ES6 module is private by default</li>
+                <li>Public variables, functions and classes are exposed using <span style="font-style:italic">export</span></li>
+                <li>Exposed modules are called into other modules using <span style="font-style:italic">import</span></li>
+                <li>The <span style="font-style:italic">type="module"</span> directive must be included in the script tag in order to include modules</li>
+                <li>You need to add <span style="font-style:italic">nomodule</span> directive in script tag for browsers without module support</li>
+                <li>Regular script tags can fetch scripts on other domains but modules are fetched using cross-origin resource sharing (CORS). Modules on different domains must therefore set an appropriate HTTP header, such as Access-Control-Allow-Origin: *</li>
+                <li>Modules are deferred, and only run after a document is loaded</li>
+            </ul>
+            <p>For a better reference: <a href="https://ponyfoo.com/articles/es6-modules-in-depth" target="_blank" rel="noopener noreferrer">ES6 Modules in Depth</a></p>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayout="column">
+        <div id="commonJS">
+            <h2>CommonJS</h2>
+            <p>The CommonJS module specification is the standard used in Node.js for working with modules.</p>
+            <p>The npm ecosystem is built upon this CommonJS format.</p>
+            <p>In CommonJS, modules are loaded synchronously, and processed in the order the JavaScript runtime finds them.</p>
+            <p>CommonJS was born with server-side Javascript in mind whereas ES Modules were introduced for client-side Javascript.</p>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayout="column">
+        <div id="esModulesVsCommonJS">
+            <h2>ES Modules vs CommonJS</h2>
+            <p>Take note that Node 14 introduces ECMAScript Modules, hence, you can use both ES Modules and CommonJS modules in Node 14.
+                For this, you need to know how to make the files being treated as ECMAScript modules or CommonJS modules by referring to 
+                <a href="https://keenethics.com/blog/ecmascript-modules-nodejs-v14" target="_blank" rel="noopener noreferrer">this article</a>.</p>
+            <p>Import examples:</p>
+            <pre>
+                <code>
+    // IN ES module standard
+    import &#123;map, reduce} from 'lodash'
+    import _ from 'lodash' // Default Import
+    import &#123;cloneDeep as clone} from 'lodash' // Named Imports
+
+    // IN CommonJS standard
+    const &#123;map, reduce} = require('lodash')
+    const _ = require('lodash') // Default Import
+    const &#123;cloneDeep: clone} = require('lodash'); // Named Imports
+                </code>
+            </pre>
+            <p>Export examples:</p>
+            <pre>
+                <code>
+    // IN ES module standard
+    export default 1
+    export default 'foo'
+    export default &#123; foo: 'bar' }
+    export default ['foo', 'bar']
+    export default function foo () &#123;}
+    export const fooString = 'foo' // Name Exports
+    export const consoleABC = function () &#123; console.log('ABC') } // Named Exports
+
+    // IN CommonJS standard
+    module.exports = 1
+    module.exports = 'foo'
+    module.exports = &#123; foo: 'bar' }
+    module.exports = ['foo', 'bar']
+    module.exports = function foo () &#123;}
+    module.exports.fooString = 'foo' // Name Exports
+    module.exports.consoleABC = function () &#123; console.log('ABC') } // Named Exports
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
