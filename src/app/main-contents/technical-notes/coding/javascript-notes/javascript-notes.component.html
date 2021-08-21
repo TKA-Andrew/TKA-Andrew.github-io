@@ -7,6 +7,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('hoisting')">Hoisting</button>
+            <button mat-button class="listItem" (click)="scrollTo('var&let&const')">var, let & const</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -69,6 +70,71 @@
                 </code>
             </pre>
             <p><a href="https://www.geeksforgeeks.org/javascript-hoisting/" target="_blank" rel="noopener noreferrer">A much detailed reference.</a></p>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="var&let&const">
+            <h2>var, let & const</h2>
+            <p>The let statement is one of the most well-known features in ES6, and it is not available before ES6.</p>
+            <p>Simple & quick notes:</p>
+            <ul>
+                <li>var is function-scoped</li>
+                <li>let is block-scoped</li>
+                <li>const is block-scoped</li>
+                <li>const behaves similar to let when it comes to hoisting, except that it cannot be modified after declaration</li>
+            </ul>
+            <p>For the code snippet below, both .mjs and .cjs will have the same result:</p>
+            <pre>
+                <code>
+    function printX_var() &#123;
+        try &#123;
+            console.log('printX_var OUTPUT:', x);
+            var x=5; // function-scoped and supports hoisting
+            console.log('printX_var OUTPUT:', x);
+        }
+        catch(err) &#123;
+            console.log('printX_var ERROR: ', err.message)
+        }
+    }
+    
+    printX_var()
+    
+    function printX_let() &#123;
+        try &#123;
+            console.log('printX_let OUTPUT:', x);
+            let x=5; // block-scoped and not affected by hoisting
+            console.log('printX_let OUTPUT:', x);
+        }
+        catch(err) &#123;
+            console.log('printX_let ERROR: ', err.message)
+        }
+    }
+    
+    printX_let()
+    
+    function printX_const() &#123;
+        try&#123;
+            console.log('printX_const OUTPUT:', x);
+            const x=5; // block-scoped and not affected by hoisting
+            console.log('printX_const OUTPUT:', x);
+        }
+        catch(err) &#123;
+            console.log('printX_const ERROR: ', err.message)
+        }
+    }
+    
+    printX_const()
+                </code>
+            </pre>
+            <pre>
+                <code>
+    // console.log output
+
+    printX_var OUTPUT: undefined
+    printX_var OUTPUT: 5
+    printX_let ERROR:  Cannot access 'x' before initialization
+    printX_const ERROR:  Cannot access 'x' before initialization
+                </code>
+            </pre>
             <mat-divider></mat-divider>
         </div>
     </div>
