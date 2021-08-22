@@ -1,0 +1,74 @@
+<div class="flexContainer">
+    <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
+        <mat-expansion-panel style="margin-top: 5px;">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    C++
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div fxLayout="column" fxLayout="column">
+        <div>
+            <h1>C++</h1>
+            <h2>Introduction</h2>
+            <p>The following are mainly the notes summarized from <a href="https://www.learncpp.com/" target="_blank" rel="noopener noreferrer">learncpp.com</a>.</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter1">
+            <h2>Chapter 1: C++ Basics</h2>
+            <ul>
+                <li>Every C++ program must have a special function named main (all lower case letters).</li>
+                <li>In C++, an <strong>object</strong> is a region of storage (usually memory) that has a value and other associated properties.</li>
+                <li>A named object is called a <strong>variable</strong>, and the name of the object is called an <strong>identifier</strong></li>
+                <li>In C++, the type of a variable must be known at compile-time (when the program is compiled), and that type can not be changed without recompiling the program.</li>
+                <li>4 ways to initialize variables in C++</li>
+                    <ul>
+                        <li>int a; // Uninitalizaed (ERROR)</li>
+                        <li>int b = 5; // Copy Initialization (NOT RECOMMENDED)</li>
+                        <li>int c(6); // Direct Initialization (NOT RECOMMENDED)</li>
+                        <li>int d&#123;7}; // List Initilization or Uniform Initilization (RECOMMENDED)</li>
+                    </ul>
+                <li>List initialization has the added benefit of disallowing “narrowing” conversions, whereas copy initialization and direct initialization only prompt warning.</li>
+                <ul>
+                    <li>int a = 3.5; // will have warning</li>
+                    <li>int b(3.5); // will have warning</li>
+                    <li>int c&#123;3.5}; // will have error</li>
+                </ul>
+                <li>Initializing variables with empty braces &#123;} will initialize the variable to either zero or empty</li>
+                <li>Using '\n' is typically preferred as compared to std::endl because the later has an extra unnecessary action of flushing the output.</li>
+                <li>Using this statement as example: int x&#123;2 + 3}</li>
+                    <ul>
+                        <li>'2' and '3' are <strong>literal</strong></li>
+                        <li>'+' is <strong>operator</strong></li>
+                        <li>'2 + 3' is <strong>expression</strong></li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter4">
+            <h2>Chapter 4: Fundamental Data Types</h2>
+            <ul>
+
+                <li><span style="font-style:italic">#include &lt;cstdint&gt; is the way to import fixed width standard library</span> </li>
+                <li>Fixed width integers should be avoided as they may not be defined on all architectures</li>
+                <li>FAST and LEAST types can be used instead</li>
+                    <pre>
+                        <code>
+    // USE of FAST and LEAST integers
+    std::cout &lt;&lt; "fast 8: " &lt;&lt; sizeof(std::int_fast8_t) * 8 &lt;&lt; " bits\n";
+    std::cout &lt;&lt; "fast 16: " &lt;&lt; sizeof(std::int_fast16_t) * 8 &lt;&lt; " bits\n";
+    std::cout &lt;&lt; "fast 32: " &lt;&lt; sizeof(std::int_fast32_t) * 8 &lt;&lt; " bits\n";
+    std::cout &lt;&lt; "least 8: " &lt;&lt; sizeof(std::int_least8_t) * 8 &lt;&lt; " bits\n";
+    std::cout &lt;&lt; "least 16: " &lt;&lt; sizeof(std::int_least16_t) * 8 &lt;&lt; " bits\n";
+    std::cout &lt;&lt; "least 32: " &lt;&lt; sizeof(std::int_least32_t) * 8 &lt;&lt; " bits\n\n";
+                        </code>
+                    </pre>
+                <li></li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div> 
+    </div>
+</div>

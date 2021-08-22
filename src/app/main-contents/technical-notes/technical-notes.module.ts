@@ -20,6 +20,7 @@ import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequel
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
+import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component
     SequelizeNotesComponent,
     JavascriptNotesComponent,
     WebDevelopmentGeneralComponent,
-    NpmNotesComponent],
+    NpmNotesComponent,
+    CppNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

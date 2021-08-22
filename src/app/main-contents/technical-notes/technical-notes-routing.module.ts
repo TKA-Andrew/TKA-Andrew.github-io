@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
+import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
@@ -17,6 +18,10 @@ const routes: Routes = [{
     {
       path: 'coding/general',
       component: CodingGeneralComponent
+    },
+    {
+      path: 'coding/cpp',
+      component: CppNotesComponent
     },
     {
       path: 'coding/javaScript',
