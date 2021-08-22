@@ -8,13 +8,14 @@
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('hoisting')">Hoisting</button>
             <button mat-button class="listItem" (click)="scrollTo('var&let&const')">var, let & const</button>
+            <button mat-button class="listItem" (click)="scrollTo('asynchronousProgramming')">Asynchronous Programming</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
         <div>
             <h1>Javascript</h1>
             <h2>Introduction</h2>
-            <p>The following are mainly the notes for Javascript in Node.js using CommonJS modules. </p>
+            <p>The following are mainly the notes for Javascript in Node.js 14 runtime environment.</p>
             <p>Some people always confused that Javascript is asynchronous in nature, but actually Javascript is synchronous and single-threaded. 
                 Javascript can behave as if it is asynchronous when there are some ajax calls, events or timers being used, but in actual, it is still synchronous.
             For a detailed explanation, please refer to the answer posted by user2603796 in this <a href="https://stackoverflow.com/questions/2035645/when-is-javascript-synchronous" target="_blank" rel="noopener noreferrer">stackoverflow post</a>.</p>
@@ -135,6 +136,23 @@
     printX_const ERROR:  Cannot access 'x' before initialization
                 </code>
             </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="asynchronousProgramming">
+            <h2>Javascript Asynchronous Programming</h2>
+            <p>Again, JavaScript is synchronous by default and is single threaded. 
+                This means that Javascript code cannot create new threads and run in parallel.</p>
+            <p>However, with the APIs provided by the broswers' engines or Node.js, it can behave as if it is asynchronous.</p>
+            <p>Some common APIs that react asynchronously such as onClick, onMouseOver and OnChange are all not from Javascript engine itself.</p>
+            <p>To do JavaScript Asynchronous Programming, you can make use of these:</p>
+            <ul>
+                <li><a href="https://nodejs.dev/learn/javascript-asynchronous-programming-and-callbacks" target="_blank" rel="noopener noreferrer">Event Callbacks</a></li>
+                <li><a href="https://nodejs.dev/learn/understanding-javascript-promises" target="_blank" rel="noopener noreferrer">Promises</a></li>
+                <li><a href="https://nodejs.dev/learn/modern-asynchronous-javascript-with-async-and-await" target="_blank" rel="noopener noreferrer">Async/Await</a></li>
+            </ul>
+            <p>The references above are very detailed and easy to understand. If you would like to see some templates, you may check out my 
+                <a href="https://github.com/TKA-Andrew/JavascriptTutorialTemplate" target="_blank" rel="noopener noreferrer">Github Repo</a>,
+                especially the JS_Async.js which mimics the database query process and how to control the asynchronous flow using Promises and Async/Await.</p>
             <mat-divider></mat-divider>
         </div>
     </div>
