@@ -186,9 +186,106 @@
     }
                                         </code>
                                     </pre>
-                                <li><span style="background-color: whitesmoke;">#ifdef PRINT_BOB</span> can also be written as <span style="background-color: whitesmoke;">#if defined(PRINT_BOB)</span></li>
+                                <li><span style="background-color: whitesmoke; font-style: italic;">#ifdef PRINT_BOB</span> can also be written as <span style="background-color: whitesmoke; font-style: italic;">#if defined(PRINT_BOB)</span></li>
                             </ul>
                         <li>Directives defined in one code file do not have impact on other code files in the same project. In other words, they are not in global scope.</li>
+                    </ul>
+                <li>Header files</li>
+                    <ul>
+                        <li>Best practice: Use a .h suffix when naming your header files.</li>
+                        <li>Best practice: When including a header file from the standard library, use the version without the .h extension if it exists.</li>
+                        <li>Best practice: DO NOT put any function definition in header files.</li>
+                        <li>Best practice: If a header file is paired with a code file (e.g. add.h with add.cpp), they should both have the same base name (add).</li>
+                        <li>Best practice: Code files should #include their paired header file (if one exists).</li>
+                        <pre>
+                            <code>
+    // IN add.h
+    int add (int x, int y)
+
+    // IN add.cpp
+    #include "add.h"
+    int add (int x, int y) &#123;
+        return x + y;
+    }
+
+    // IN main.cpp
+    #include "add.h"         // double quotes
+    #include &lt;iostream>      // angled quotes, and without .h extension
+    
+    int main()
+    &#123;
+        std::cout &lt;&lt; "The sum of 3 and 4 is " &lt;&lt; add(3, 4) &lt;&lt; '\n';
+        return 0;
+    }
+                            </code>
+                        </pre>
+                        <li>Angled brackets vs double quotes</li>
+                            <ul>
+                                <li>When we use angled brackets, we’re telling the preprocessor that this is a header file we didn’t write ourselves.</li>
+                                <ul>
+                                    <li>The compiler will search for the header only in the directories specified by the <span style="background-color: whitesmoke; font-style: italic;">include directories</span>.</li>
+                                    <li>The <span style="background-color: whitesmoke; font-style: italic;">include directories</span> are configured as part of your project/IDE settings/compiler settings, 
+                                        and typically default to the directories containing the header files that come with your compiler and/or OS.</li>
+                                    <li>The compiler WILL NOT search for the header file in your project’s source code directory.</li>
+                                </ul>
+                                <li>When we use double-quotes, we’re telling the preprocessor that this is a header file that we wrote.</li>
+                                <ul>
+                                    <li>The compiler will first search for the header file in the current directory.</li>
+                                    <li>If it can’t find a matching header there, it WILL then search the <span style="background-color: whitesmoke; font-style: italic;">include directories</span>.</li>
+                                </ul>
+                            </ul>
+                        <li>Why doesn’t iostream have a .h extension?</li>
+                            <ul>
+                                <li>iostream.h and iostream are two different header files.</li>
+                                <li>iostream.h was initally used and the iostream is a new header file with std namespace implementation</li>
+                                <li>iostream.h is for the support of older programs</li>
+                                <li>Hence, when including a header file from the standard library, use the version without the .h extension if it exists.</li>
+                            </ul>
+                        <li>Best practice: Each file should explicitly #include all the header files needed for its compilation. DO NOT rely on headers included in other some other header files.</li>
+                        <li>Best practice: Order your #includes as follows and sort each section alphabetically:
+                            <ul>
+                                <li>your own user-defined headers</li>
+                                <li>3rd party library headers</li>
+                                <li>standard library headers</li>
+                            </ul>
+                        </li>
+                    </ul>
+                <li>Header Guards</li>
+                    <ul>
+                        <li>As header files may include other headers, it is possible that we include a same header multiple times, and this will lead to compilation error due to duplicate definition.</li>
+                        <li>Hence, we need <strong>Header Guards</strong>, which are the conditional compilation directives.</li>
+                        <li>Example:</li>
+                            <pre>
+                                <code>
+    // IN add.h
+    #ifndef ADD_H
+    #define ADD_H
+    int add(int x, int y);
+    ##endif
+
+    // IN add.cpp
+    #include "add.h"
+    int add(int x, int y) &#123;
+        return x + y;
+    }
+
+    // IN main.cpp
+    #include "add.h"
+    #include &lt;iostream>
+    
+    int main() &#123;
+        std::cout &lt;&lt; "1 + 2 = " &lt;&lt; add(1,2) &lt;&lt; '\n';
+    
+        return 0;
+    }
+                                </code>
+                            </pre>
+                        <li>#pragma once</li>
+                            <ul>
+                                <li><span style="background-color: whitesmoke; font-style: italic;">#pragma once</span> is an alternative type of header guards</li>
+                                <li>However, <span style="background-color: whitesmoke; font-style: italic;">#pragma once</span> is NOT an official part of the C++ language, and not all compilers support it (although most modern compilers do).</li>
+                                <li>Best practice: For compatibility purposes, stick to traditional header guards.</li>
+                            </ul>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
