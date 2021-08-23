@@ -8,6 +8,7 @@
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
         </mat-expansion-panel>
     </mat-accordion>
@@ -289,11 +290,19 @@
                     </ul>
             </ul>
             <mat-divider></mat-divider>
-        </div> 
+        </div>
+        <div id="chapter3">
+            <h2>Chapter 3: Debugging C++ Programs</h2>
+            <p>Debugging is general skill and debugging skill should be polished through hands-on. Hence, not many notes for this chapter.</p>
+            <ul>
+                <li>A <strong>syntax error</strong> occurs when you write a statement that is not valid according to the grammar of the C++ language.</li>
+                <li>A <strong>semantic error</strong> occurs when a statement is syntactically valid, but does not do what the programmer intended.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
         <div id="chapter4">
             <h2>Chapter 4: Fundamental Data Types</h2>
             <ul>
-
                 <li><span style="font-style:italic">#include &lt;cstdint&gt; is the way to import fixed width standard library</span> </li>
                 <li>Fixed width integers should be avoided as they may not be defined on all architectures</li>
                 <li>FAST and LEAST types can be used instead</li>
