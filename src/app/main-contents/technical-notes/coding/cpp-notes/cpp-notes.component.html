@@ -7,6 +7,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
         </mat-expansion-panel>
     </mat-accordion>
@@ -48,6 +49,150 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+        <div id="chapter2">
+            <h2>Chapter 2: Functions and Files</h2>
+            <ul>
+                <li>Nested functions are not supported in C++</li>
+                <li>Your main function should return 0 if the program ran normally.</li>
+                <li>The C++ standard only defines the meaning of 3 status codes:
+                    <ul>
+                        <li>0 >> means the program executed successfully</li>
+                        <li>EXIT_SUCCESS >> means the program executed successfully</li>
+                        <li>EXIT_FAILURE >> means the program did not executed successfully</li>
+                    </ul>
+                </li>
+                <li>Failure to return a value from a function with a non-void return type (other than main) will result in undefined behavior.</li>
+                <li>A <strong>function parameter</strong> is a variable used in a function.</li>
+                <li>An <strong>argument</strong> is a value that is passed from the caller to the function</li>
+                <li>The C++ specification does not define whether function calls evaluate arguments left to right or right to left. 
+                    Take care not to make function calls where argument order matters.</li>
+                <li>Always do a <strong>forward declaration</strong> to tell the compiler about the existence of an identifier (including function) before actually defining the identifier.</li>
+                <li>Example:</li>
+                <pre>
+                    <code>
+    #include &lt;iostream>
+    int getValueFromUser(); // forward declaration
+    int multiplyBy2(int num); // forward declaration
+
+    int main()
+    &#123;
+        int num&#123; getValueFromUser() }; // initialize num with the return value of getValueFromUser()
+        std::cout &lt;&lt; num &lt;&lt; " doubled is: " &lt;&lt; multiplyBy2(num) &lt;&lt; '\n'; // num here is called argument
+        return 0;
+    }
+
+    int getValueFromUser()
+    &#123;
+        std::cout &lt;&lt; "Enter an integer: ";
+        int input&#123;};
+        std::cin >> input;
+
+        return input;
+    }
+
+    // num here is called parameter
+    int multiplyBy2(int num) &#123;
+        return num * 2;
+    }
+                    </code>
+                </pre>
+                <li>Declaration vs Definition</li>
+                    <ul>
+                        <li>A <strong>declaration</strong> is a statement that tells the compiler about the existence of an identifier
+                            and its type information.</li>
+                        <li>A <strong>definition</strong> actually implements (for functions or types) or instantiates (for variables) the identifier.</li>
+                    </ul>
+                <li>Namespace</li>
+                    <ul>
+                        <li>A <strong>namespace</strong> is a declarative region that provides a scope (called namespace scope) to the identifiers (the names of types, functions, variables, etc) inside it</li>
+                        <li>In C++, any name that is not defined inside a class, function, or a namespace is considered to be part of <strong>global namespace</strong> (sometimes called <strong>global scope</strong>)</li>
+                        <li>If there are identical names within an explicit namespace or global namespace, <strong>naming collision</strong> error will be produced.</li>
+                        <li>A common namespace that we always use is <span style="font-style: italic;">std</span>, which we always use the :: symbol (scope resolution operator) to link 
+                            std namespace and the identifiers within it.</li>
+                            <ul>
+                                <li>std::cout &lt;&lt; "Hello world!"; // example</li>
+                            </ul>
+                        <li>Another way to access identifiers inside a namespace is to use a <span style="font-style: italic;">using directive</span> statement (for example: <span style="font-style: italic;">using namespace std;</span>).
+                        However, avoid using this as it violates the reason why namespaces were added in the first place.</li>
+                    </ul>
+                <li>Translation & Preprocessor</li>
+                    <ul>
+                        <li>Prior to compilation, the code file goes through a phase known as <strong>translation</strong>.</li>
+                        <li>The translation phases involves the <strong>preprocessor</strong>, which can be best thought of as a separate program that manipulates the text in each code file.</li>
+                        <li><strong>Preprocessor directives</strong> are instructions that start with a # symbol and end with a newline (NOT a semicolon).</li>
+                        <li>Directives are resolved before compilation, from top to bottom on a file-by-file basis, therefore the output of the preprocessor contains no directives at all.</li>
+                        <li>#include</li>
+                            <ul>
+                                <li>When you #include a file, the preprocessor replaces the #include directive with the contents of the included file.</li>
+                            </ul>
+                        <li>#define</li>
+                            <ul>
+                                <li>The #define directive can be used to create a macro.</li>
+                            </ul>
+                        <li>Macro</li>
+                            <ul>
+                                <li>In C++, a <strong>macro</strong> is a rule that defines how input text is converted into replacement output text.</li>
+                                <li>Object-like macros with substitution text</li>
+                                    <ul>
+                                        <li>The preprocessor will replace any futher occurence of the identifier (normally in all capital letters and use underscores to represent spaces)
+                                             by the <span style="font-style: italic;">substitution text</span>.</li>
+                                        <li>The text substitution action will not affect other preprocessor directives.</li>
+                                        <pre>
+                                            <code>
+    #include &lt;iostream>
+    #define MY_NAME "ALEX"
+    int main() &#123;
+        std::cout &lt;&lt; "My name is: " &lt;&lt; MY_NAME;
+    }
+                                            </code>
+                                        </pre>
+                                    </ul>
+                                <li>Object-like macros without substitution text</li>
+                                    <ul>
+                                        <li>This is useless for doing text substitution but it is used for conditional compilation.</li>
+                                        <li>#define USE_YEN // example</li>
+                                    </ul>
+                            </ul>
+                        <li>Conditional Compilation</li>
+                            <ul>
+                                <li>The commonly used conditional compilation directives are:</li>
+                                    <ul>
+                                        <li>#ifdef</li>
+                                        <li>#ifndef</li>
+                                        <li>#endif</li>
+                                        <li>#if 0</li>
+                                    </ul>
+                                <li>Example:</li>
+                                    <pre>
+                                        <code>
+    #include &lt;iostream>
+
+    #define PRINT_JOE
+        
+    int main() &#123;
+        #ifdef PRINT_JOE
+            std::cout &lt;&lt; "Joe is defined\n"; // if PRINT_JOE is defined, compile this code
+        #endif
+            
+        #ifndef PRINT_BOB
+            std::cout &lt;&lt; "Bob is not defined\n"; // if PRINT_BOB is defined, compile this code
+        #endif
+
+        #if 0 // Don't compile anything starting here
+            std::cout &lt;&lt; "Test 123\n";
+        #endif // until this point
+            
+        return 0;
+    }
+                                        </code>
+                                    </pre>
+                                <li><span style="background-color: whitesmoke;">#ifdef PRINT_BOB</span> can also be written as <span style="background-color: whitesmoke;">#if defined(PRINT_BOB)</span></li>
+                            </ul>
+                        <li>Directives defined in one code file do not have impact on other code files in the same project. In other words, they are not in global scope.</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div> 
         <div id="chapter4">
             <h2>Chapter 4: Fundamental Data Types</h2>
             <ul>
