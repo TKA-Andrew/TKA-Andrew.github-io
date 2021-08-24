@@ -101,3 +101,16 @@ td {
 li {
     text-align: justify;
 }
+
+.floatingIconDiv {
+    position:fixed;
+    padding: 0px;
+	bottom:30px;
+	right:30px;
+	background-color:#535eda;
+	color:black;
+	border-radius:50%;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+    cursor: pointer;
+}

@@ -1,17 +1,19 @@
 <div class="flexContainer">
-    <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
-        <mat-expansion-panel style="margin-top: 5px;">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    C++
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
-            <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
-            <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
-            <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
-        </mat-expansion-panel>
-    </mat-accordion>
+    <div id="contentList">
+        <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
+            <mat-expansion-panel style="margin-top: 5px;">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        C++
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
+                <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
+                <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
+                <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
     <div fxLayout="column" fxLayout="column">
         <div>
             <h1>C++</h1>
@@ -303,6 +305,17 @@
         <div id="chapter4">
             <h2>Chapter 4: Fundamental Data Types</h2>
             <ul>
+                <li>Bits, bytes, and memory addressing</li>
+                    <ul>
+                        <li>The smallest unit of memory is a binary digit (also called a bit)</li>
+                        <li>Memory is organized into sequential units called memory addresses</li>
+                        <li>Each memory address holds 1 byte of data (1 byte = 8 sequential bits)</li>
+                        <li>In C++, we typically work with “byte-sized” chunks of data.</li>
+                    </ul>
+                <li>Fundamental data types</li>
+                    <ul>
+                        <li></li>
+                    </ul>
                 <li><span style="font-style:italic">#include &lt;cstdint&gt; is the way to import fixed width standard library</span> </li>
                 <li>Fixed width integers should be avoided as they may not be defined on all architectures</li>
                 <li>FAST and LEAST types can be used instead</li>
@@ -321,5 +334,8 @@
             </ul>
             <mat-divider></mat-divider>
         </div> 
+    </div>
+    <div (click)="scrollTo('contentList')" class="floatingIconDiv">
+        <fa-icon  [icon]="faArrowAltCircleUp" size="2x"></fa-icon>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { faArrowAltCircleUp } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-cpp-notes',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cpp-notes.component.scss']
 })
 export class CppNotesComponent {
+  public faArrowAltCircleUp = faArrowAltCircleUp
 
   constructor(
     private router: Router
