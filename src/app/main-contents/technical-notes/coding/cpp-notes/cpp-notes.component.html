@@ -1,4 +1,4 @@
-<div class="flexContainer">
+<div class="flexContainer" id="container">
     <div id="contentList">
         <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
             <mat-expansion-panel style="margin-top: 5px;">
@@ -312,9 +312,96 @@
                         <li>Each memory address holds 1 byte of data (1 byte = 8 sequential bits)</li>
                         <li>In C++, we typically work with “byte-sized” chunks of data.</li>
                     </ul>
-                <li>Fundamental data types</li>
+                <li>_t suffix</li>
                     <ul>
-                        <li></li>
+                        <li>Many of the types defined in newer versions of C++ (e.g. std::nullptr_t) use a _t suffix.</li>
+                        <li>This suffix means “type”, and it’s a common nomenclature applied to modern types.</li>
+                    </ul>
+                <li>Object sizes and the sizeof operator</li>
+                    <ul>
+                        <li>A single object may use 2, 4, 8, or even more consecutive memory addresses. </li>
+                        <li>The amount of memory that an object uses is based on its data type.</li>
+                        <li>The size of a given data type is dependent on the compiler and/or the computer architecture!</li>
+                        <li>C++ only guarantees that each fundamental data types will have a minimum size:</li>
+                            <table style="margin: 10px; overflow: auto; width: 100%;">
+                                <tr class="trFlex">
+                                    <th class="thQuarter">Category</th>
+                                    <th class="thQuarter">Types</th>
+                                    <th class="thQuarter">Minumum Size</th>
+                                    <th class="thQuarter">Note</th>
+                                </tr>
+                                <tr class="trFlex">
+                                    <td class="tdQuarter">Integral (Boolean)</td>
+                                    <td class="tdQuarter">bool</td>
+                                    <td class="tdQuarter">1 byte</td>
+                                    <td class="tdQuarter"></td>
+                                </tr>
+                                <tr class="trFlex">
+                                    <td class="tdQuarter">
+                                        Integral (Character)
+                                    </td>
+                                    <td class="tdQuarter">
+                                        <div>char</div>
+                                        <div>wchar_t</div>
+                                        <div>char8_t</div>
+                                        <div>char16_t</div>
+                                        <div>char32_t</div>
+                                    </td>
+                                    <td class="tdQuarter">
+                                        <div>1 byte</div>
+                                        <div>2 bytes</div>
+                                        <div>1 byte</div>
+                                        <div>2 bytes</div>
+                                        <div>4 bytes</div>
+                                    </td>
+                                    <td class="tdQuarter">
+                                        <div>Always 1 byte</div>
+                                        <div>-</div>
+                                        <div>-</div>
+                                        <div>-</div>
+                                        <div>-</div>
+                                    </td>
+                                </tr>
+                                <tr class="trFlex">
+                                    <td class="tdQuarter">Integral (Integer)</td>
+                                    <td class="tdQuarter">
+                                        <div>short</div>
+                                        <div>int</div>
+                                        <div>long</div>
+                                        <div>long long</div>
+                                    </td>
+                                    <td class="tdQuarter">
+                                        <div>2 bytes</div>
+                                        <div>2 bytes</div>
+                                        <div>4 bytes</div>
+                                        <div>8 bytes</div>
+                                    </td>
+                                    <td class="tdQuarter"></td>
+                                </tr>
+                                <tr class="trFlex">
+                                    <td class="tdQuarter">Floating Point</td>
+                                    <td class="tdQuarter">
+                                        <div>float</div>
+                                        <div>double</div>
+                                        <div>long double</div>
+                                    </td>
+                                    <td class="tdQuarter">
+                                        <div>4 bytes</div>
+                                        <div>8 bytes</div>
+                                        <div>8 bytes</div>
+                                    </td>
+                                    <td class="tdQuarter"></td>
+                                </tr>
+                            </table>
+                        <li>Best practice: For maximum compatibility, you shouldn’t assume that variables are larger than the specified minimum size.</li>
+                        <li>The <strong>sizeof operator</strong> can be used to get the size in bytes of a date type or variable.</li>
+                    </ul>
+                <li>integers</li>
+                    <ul>
+                        <li>By default, integers are <strong>signed</strong>, which means the number’s sign is stored as part of the number (using a single bit called the sign bit).</li>
+                        <li>An n-bit signed variable has a range of -(2<sup>n-1</sup>) to 2<sup>n-1</sup>-1.</li>
+                        <li><strong>Integer overflow</strong> occurs when we try to store a value that is outside the range of the type.</li>
+                        <li><strong>Warning: </strong>Signed integer overflow will result in undefined behavior.</li>
                     </ul>
                 <li><span style="font-style:italic">#include &lt;cstdint&gt; is the way to import fixed width standard library</span> </li>
                 <li>Fixed width integers should be avoided as they may not be defined on all architectures</li>
@@ -330,7 +417,6 @@
     std::cout &lt;&lt; "least 32: " &lt;&lt; sizeof(std::int_least32_t) * 8 &lt;&lt; " bits\n\n";
                         </code>
                     </pre>
-                <li></li>
             </ul>
             <mat-divider></mat-divider>
         </div> 
