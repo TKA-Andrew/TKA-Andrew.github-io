@@ -480,6 +480,16 @@
                             <li>Avoid 8-bit fixed-width integer types.</li>
                             <li>Avoid compiler-specific fixed-width integers, for example, Visual Studio defines __int8, __int16, etc</li>
                         </ul>
+                    <li>Scientic Notation</li>
+                        <ul>
+                            <li>Numbers in scientific notation take the following form: significand x 10<sup>exponent</sup></li>
+                            <li>For example: 1.2 x 10<sup>4</sup></li>
+                            <li>In C++, the letter ‘e’ (or sometimes ‘E’) is used to represent the “times 10 to the power of” part of the equation</li>
+                            <li>For example: 5.9736 x 10<sup>24</sup> could be written as 5.9736e24</li>
+                            <li>The digits in the significand (the part before the ‘e’) are called the significant digits. </li>
+                            <li>In standard scientfic notation, the trailing zeros after a decimal point represents the precision of a number. 
+                                However, in C++, 88 and 88.000 are treated exactly the same by the compiler.</li>
+                        </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
