@@ -402,21 +402,84 @@
                         <li>An n-bit signed variable has a range of -(2<sup>n-1</sup>) to 2<sup>n-1</sup>-1.</li>
                         <li><strong>Integer overflow</strong> occurs when we try to store a value that is outside the range of the type.</li>
                         <li><strong>Warning: </strong>Signed integer overflow will result in undefined behavior.</li>
+                        <li><strong>Warning: </strong>When doing division with two integers (called integer division), C++ always produces an integer result. 
+                            Since integers can’t hold fractional values, any fractional portion is simply dropped (not rounded!).</li>
                     </ul>
-                <li><span style="font-style:italic">#include &lt;cstdint&gt; is the way to import fixed width standard library</span> </li>
-                <li>Fixed width integers should be avoided as they may not be defined on all architectures</li>
-                <li>FAST and LEAST types can be used instead</li>
-                    <pre>
-                        <code>
-    // USE of FAST and LEAST integers
-    std::cout &lt;&lt; "fast 8: " &lt;&lt; sizeof(std::int_fast8_t) * 8 &lt;&lt; " bits\n";
-    std::cout &lt;&lt; "fast 16: " &lt;&lt; sizeof(std::int_fast16_t) * 8 &lt;&lt; " bits\n";
-    std::cout &lt;&lt; "fast 32: " &lt;&lt; sizeof(std::int_fast32_t) * 8 &lt;&lt; " bits\n";
-    std::cout &lt;&lt; "least 8: " &lt;&lt; sizeof(std::int_least8_t) * 8 &lt;&lt; " bits\n";
-    std::cout &lt;&lt; "least 16: " &lt;&lt; sizeof(std::int_least16_t) * 8 &lt;&lt; " bits\n";
-    std::cout &lt;&lt; "least 32: " &lt;&lt; sizeof(std::int_least32_t) * 8 &lt;&lt; " bits\n\n";
-                        </code>
-                    </pre>
+                <li>unsigned integers</li>
+                    <ul>
+                        <li>An n-bit unsigned variable has a range of 0 to (2<sup>n</sup>)-1.</li>
+                        <li>To define an unsigned integer, we use the unsigned keyword. By convention, this is placed before the type:</li>
+                        <li>Unsigned integer overflow</li>
+                            <ul>
+                                <li>When unsigned integer overflow happens, the value can be determined and it is not undefined dehaviour.</li>
+                                <li>The result of overflowed unsigned integer will be the overflow value divided by number of integers it can present, and only the remainder kept.</li>
+                                <li>For example, 1-byte unsigned integer has a range of 0 - 255, if the unsigned integer overflows to 256, it will be 0,
+                                    and if it overflows to 513, the value will be 1.
+                                </li>
+                                <li>In another way round, -negative numbers will be wrapped also. For example, setting a 1-byte unsigned integer to -1 will get 255.</li>
+                                <li><strong>Warning: </strong>Avoid using unsigned numbers, except in specific cases or when unavoidable.</li>
+                                <li><strong>Warning: </strong>If you do use unsigned numbers, avoid mixing signed and unsigned numbers where possible.</li>
+                                <li>However, unsigned numbers are preferred when:</li>
+                                    <ul>
+                                        <li>dealing with bit manipulation</li>
+                                        <li>array indexing</li>
+                                        <li>dealing with embedded system for performance reasons</li>
+                                    </ul>
+                            </ul>
+                    </ul>
+                <li>Fixed-width integers and size_t</li>
+                    <ul>
+                        <li>C++ only guarantees that integer variables will have a minimum size -- but they could be larger, depending on the target system.</li>
+                        <li>When dealing with types that have uncertain ranges, it is possible that a program might work on one architecture but no on another due to
+                            difference in the range that they support.
+                        </li>
+                        <li>To help with cross-platform portability, C99 defined a set of <strong>fixed-width integers</strong> (in the stdint.h header) that are guaranteed to have the same size on any architecture.</li>
+                        <li><strong>Warning: </strong>Using fixed-width integers doesn't guarantee faster processing, it may be slower, it's depending on the architectures.</li>
+                        <li><strong>Warning: </strong>Fixed-width integers should be avoided, as they may not be defined on all target architectures.</li>
+                    </ul>
+                <li>Fast and least integers</li>
+                    <ul>
+                        <li>The <strong>fast type</strong> (std::int_fast#_t) provides the fastest signed integer type with a width of at least # bits (where # = 8, 16, 32, or 64).</li>
+                        <li>The <strong>least type</strong> (std::int_least#_t) provides the smallest signed integer type with a width of at least # bits (where # = 8, 16, 32, or 64).</li>
+                        <pre style="margin: 0px">
+                            <code>
+    #include &lt;cstdint>
+    #inlcude &lt;iostream>
+    
+    int main() &#123;
+        std::cout &lt;&lt; "fast 8: " &lt;&lt; sizeof(std::int_fast8_t) * 8 &lt;&lt; " bits\n";
+        std::cout &lt;&lt; "fast 16: " &lt;&lt; sizeof(std::int_fast16_t) * 8 &lt;&lt; " bits\n";
+        std::cout &lt;&lt; "fast 32: " &lt;&lt; sizeof(std::int_fast32_t) * 8 &lt;&lt; " bits\n";
+        std::cout &lt;&lt; "least 8: " &lt;&lt; sizeof(std::int_least8_t) * 8 &lt;&lt; " bits\n";
+        std::cout &lt;&lt; "least 16: " &lt;&lt; sizeof(std::int_least16_t) * 8 &lt;&lt; " bits\n";
+        std::cout &lt;&lt; "least 32: " &lt;&lt; sizeof(std::int_least32_t) * 8 &lt;&lt; " bits\n\n";
+        return 0
+    }
+                            </code>
+                        </pre>
+                        <li>These fast and least types are guaranteed to be defined, and are safe to use.</li>
+                        <li>Best practice: Favor the std::int_fast#_t and std::int_least#_t integers when you need an integer guaranteed to be at least a certain minimum size.</li>
+                    </ul>
+                    <li><strong>Warning: </strong>std::int8_t and std::uint8_t may behave like chars instead of integers</li>
+                        <ul>
+                            <li>For example, for the case below, most systems will print 'A' and only some systems may print 65.</li>
+                            <pre style="margin: 0px">
+                                <code>
+    std::int8_t myint&#123;65};
+    std::cout &lt;&lt; myint;                                
+                                </code>
+                            </pre>
+                            <li><strong>Warning: </strong>Avoid the 8-bit fixed-width integer types. If you do use them, note that they are often treated like chars.</li>
+                        </ul>
+                    <li>Integer best practices</li>
+                        <ul>
+                            <li>Use int when the size of the integer doesn’t matter (numbers always fit within the range of -65535 to 65535)</li>           
+                            <li>For guaranteed size and better performance, use std::int_fast#_t.</li>
+                            <li>For guaranteed size and better memory conservation, use std::int_least#_t.</li>
+                            <li>Avoid unsigned types unless really needed.</li>
+                            <li>Avoid 8-bit fixed-width integer types.</li>
+                            <li>Avoid compiler-specific fixed-width integers, for example, Visual Studio defines __int8, __int16, etc</li>
+                        </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
