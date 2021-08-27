@@ -490,6 +490,89 @@
                             <li>In standard scientfic notation, the trailing zeros after a decimal point represents the precision of a number. 
                                 However, in C++, 88 and 88.000 are treated exactly the same by the compiler.</li>
                         </ul>
+                    <li>Floating point numbers</li>
+                        <ul>
+                            <li>A floating point type variable is a variable that can hold a real number, such as 4320.0, -3.33, or 0.01226.</li>
+                            <li>There are three different floating point data types: <strong>float</strong>, <strong>double</strong>, and <strong>long double</strong>.</li>
+                            <li>Floating point data types are always signed</li>
+                            <li>When using floating point literals, always include at least one decimal place (even if the decimal is 0). 
+                                This helps the compiler understand that the number is a floating point number and not an integer.</li>
+                            <li>By default, floating point literals default to type double. An f suffix is used to denote a literal of type float.</li>
+                            <li>Best Practice: Always make sure the type of your literals match the type of the variables they’re being assigned to or used to initialize. Otherwise an unnecessary conversion will result, possibly with a loss of precision.</li>
+                            <pre>
+                                <code>
+    int v&#123; 5.0 }; // will have conversion error
+    int w&#123; 5 }; 
+    double x&#123; 5 }; // avoid using integer literals for floating point variables
+    double y&#123; 5.0 }; // no suffix means double type by default
+    float z&#123; 5.0f }; // f suffix means float type
+    std::cout &lt;&lt; x &lt;&lt; "\n"; // output: 5
+    std::cout &lt;&lt; y &lt;&lt; "\n"; // output: 5
+    std::cout &lt;&lt; z &lt;&lt; "\n"; // output: 5
+    std::cout &lt;&lt; 5.0 &lt;&lt; '\n'; // output: 5
+    std::cout &lt;&lt; 6.7f &lt;&lt; '\n'; // output: 6.7
+    std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
+                                </code>
+                            </pre>
+                            <li>When outputting floating point numbers, std::cout has a default precision of 6 -- that is, 
+                                it assumes all floating point variables are only significant to 6 digits (the minimum precision of a float), and hence it will truncate anything after that.</li>
+                            <li>We can override the default precision that std::cout shows by using an output manipulator function named <strong>std::setprecision()</strong></li>
+                            <li>floating numbers precision:</li>
+                                <ul>
+                                    <li>Float values have between 6 and 9 digits of precision.</li>
+                                    <li>Double values have between 15 and 18 digits of precision.</li>
+                                    <li>Long double has a minimum precision of 15, 18, or 33 significant digits</li>
+                                </ul>
+                            <li>Best practice: Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.</li>
+                            <pre>
+                                <code>
+    #include &lt;iomanip>
+    #include &lt;iostream>
+
+    int main() &#123;
+        std::cout &lt;&lt; std::setprecision(16); // show 16 digits of precision
+        std::cout &lt;&lt; 3.33333333333333333333333333333333333333f &lt;&lt; '\n'; // output: 3.333333253860474 (float has lower precision, hence more errors)
+        std::cout &lt;&lt; 3.33333333333333333333333333333333333333 &lt;&lt; '\n'; // output: 3.333333333333333
+        float f&#123; 123456789.0f };
+        std::cout &lt;&lt; std::setprecision(9); // to show 9 digits in f
+        std::cout &lt;&lt; f &lt;&lt; '\n';
+        // output: 123456792 // float only has 7 digits of precision, hence it is only precise to 7 significant figures
+
+        return 0;
+    }
+                                </code>
+                            </pre>
+                            <li><strong>Warning: </strong>Never assume your floating point numbers are exact.</li>
+                            <pre>
+                                <code>
+    double d1&#123; 1.0 };
+    std::cout &lt;&lt; d1 &lt;&lt; '\n'; // output: 1
+    double d2&#123; 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1}; // should be equal to 1.0
+    std::cout &lt;&lt; std::setprecision(17);
+    std::cout &lt;&lt; d2 &lt;&lt; '\n'; // output: 0.99999999999999989
+                                </code>
+                            </pre>
+                        </ul>
+                <li>NaN & Inf</li>
+                    <ul>
+                        <li><strong>NaN</strong>, stands for “Not a Number”</li>
+                        <li><strong>Inf</strong>, represents infinity, can be positive or negative</li>
+                        <li>NaN and Inf are only available if the compiler uses a specific format (IEEE 754) for floating point numbers.</li>
+                        <li>The following are results using Visual Studio 2019 on Windows</li>
+                            <pre>
+                                <code>
+    double posinf &#123; 5.0 / zero }; // positive infinity
+    std::cout &lt;&lt; posinf &lt;&lt; '\n'; // output: inf
+
+    double neginf &#123; -5.0 / zero }; // negative infinity
+    std::cout &lt;&lt; neginf &lt;&lt; '\n'; // output: -inf
+
+    double nan &#123; zero / zero }; // not a number (mathematically invalid)
+    std::cout &lt;&lt; nan &lt;&lt; '\n'; // output: -nan(ind)
+                                </code>
+                            </pre>
+                        <li>Best practice: Avoid division by 0 altogether, even if your compiler supports it.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
