@@ -573,6 +573,28 @@
                             </pre>
                         <li>Best practice: Avoid division by 0 altogether, even if your compiler supports it.</li>
                     </ul>
+                <li>Boolean values</li>
+                    <ul>
+                        <li>Boolean variables can have only two possible values: true, and false.</li>
+                        <li>To declare a Boolean variable, we use the keyword bool.</li>
+                        <li>In C++, std::cout prints 0 for false, and 1 for true:</li>
+                        <li>If you want std::cout to print “true” or “false” instead of 0 or 1, you can use std::boolalpha.</li>
+                        <li>To make std::cin accept “false” and “true” as inputs, need to enable the std::boolalpha option as well.</li>
+                        <pre>
+                            <code>
+    std::cout &lt;&lt; true &lt;&lt; '\n'; // output: 0
+    std::cout &lt;&lt; false &lt;&lt; '\n'; // output: 1
+    std::cout &lt;&lt; std::boolalpha; // enable cout std::boolalpha
+    std::cout &lt;&lt; true &lt;&lt; '\n'; // output: true
+    std::cout &lt;&lt; false &lt;&lt; '\n'; // output: false
+    bool b&#123;}; // default initialize to false
+    std::cout &lt;&lt; "Enter a boolean value: ";
+    std::cin >> std::boolalpha; // enable cin std::boolalpha
+    std::cin >> b; // input: 'true'
+    std::cout &lt;&lt; b &lt;&lt; '\n'; // output: true 
+                            </code>
+                        </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
