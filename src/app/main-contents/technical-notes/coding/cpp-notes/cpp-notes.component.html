@@ -716,6 +716,29 @@
                                     </pre>
                             </ul>
                     </ul>
+                <li>Constants</li>
+                    <ul>
+                        <li>Runtime constants & Compile-time constants</li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+    const int maxAge &#123;100} // compile-time constant
+    constexpr int maxNameLength &#123; 30 }; // compile-time constant
+    int main() &#123;
+        constexpr double gravity &#123; 9.8 }; // compile-time constant
+        std::cout &lt;&lt; "Enter your age: ";
+        int age&#123;};
+        std::cin >> age;
+        const int usersAge &#123; age }; // runtime constant because the value isn't known until the program is run
+        constexpr int myAge &#123; age }; // will have error because age is not known during compile-time
+        return 0;
+    }
+                                </code>
+                            </pre>
+                        <li>Best practice: If the constant value is known before running the program, use <strong>constexpr</strong> to declare. Else, use <strong>const</strong>.</li>
+                        <li><strong>Warning: </strong>Avoid using #define to create symbolic constants macros.</li>
+                        <li>Best practice: Use constexpr variables to provide a name and context for your magic numbers.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
