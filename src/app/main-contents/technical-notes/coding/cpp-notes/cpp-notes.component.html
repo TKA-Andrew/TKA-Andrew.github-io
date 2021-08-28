@@ -644,6 +644,78 @@
                         </pre>
                         <li>.length() can be used to get the length of a string</li>
                     </ul>
+                <li>Literal constants</li>
+                    <ul>
+                        <li>Literal suffix can be used to change the type of a literal</li>
+                        <pre>
+                            <code>
+    std::cout &lt;&lt; 5 &lt;&lt; "\n"; // 5 (no suffix) is type int (by default)
+    std::cout &lt;&lt; 5u &lt;&lt; "\n"; // 5u is type unsigned int
+    std::cout &lt;&lt; 5L &lt;&lt; "\n"; // 5L is type long
+    std::cout &lt;&lt; 5.0 &lt;&lt; "\n"; // 5.0 (no suffix) is type double (by default)
+    std::cout &lt;&lt; 5.0f &lt;&lt; "\n"; // 5.0f is type float
+    std::cout &lt;&lt; 5.0L &lt;&lt; "\n"; // 5.0L is type logn double
+
+    // String literals
+    std::cout &lt;&lt; "Hello, world!"; // "Hello, world!" is a C-style string literal
+    std::cout &lt;&lt; "Hello," " world!"; // C++ will concatenate sequential string literals
+    
+    // Scientific notation for floating point literals
+    double pi &#123; 3.14159 }; // 3.14159 is a double literal in standard notation
+    double avogadro &#123; 6.02e23 }; // 6.02 x 10^23 is a double literal in scientific notation
+
+    // Octal and hexadecimal literals
+    int a&#123; 12 } // 12 in decimal 
+    int b&#123; 014 }; // 0 before the number means this is octal // equivalent to 12 in decimal 
+    int c&#123; 0xC} // 0x before the number means this is hexadecimal // equivalent to 12 in decimal
+                            </code>
+                        </pre>
+                        <li>C++14 binary literals and digit separators</li>
+                            <ul>
+                                <li>In C++14, we can assign binary literals by using the 0b prefix:</li>
+                                <pre>
+                                    <code>
+    int bin&#123;};        // assume 32-bit ints
+    bin = 0b1;        // assign binary 0000 0000 0000 0001 to the variable
+    bin = 0b11;       // assign binary 0000 0000 0000 0011 to the variable
+    bin = 0b1010;     // assign binary 0000 0000 0000 1010 to the variable
+    bin = 0b1111'0000; // quotation mark (‘) can be used as a digit separator
+    int bin2 &#123; 0b1011'0010 };  // quotation mark (‘) can be used as a digit separator
+                                    </code>
+                                </pre>
+                            </ul>
+                        <li>Printing decimal, octal, hexadecimal, and binary numbers</li>
+                            <ul>
+                                <li>By default, C++ prints values in decimal.</li>
+                                <li>You need to use std::dec, std::oct, and std::hex to print the number in different bases.</li>
+                                <pre>
+                                    <code>
+    int x &#123; 12 };
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // decimal (by default)
+    std::cout &lt;&lt; std::hex &lt;&lt; x &lt;&lt; '\n'; // hexadecimal
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // now hexadecimal
+    std::cout &lt;&lt; std::oct &lt;&lt; x &lt;&lt; '\n'; // octal
+    std::cout &lt;&lt; std::dec &lt;&lt; x &lt;&lt; '\n'; // return to decimal
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // decimal
+                                    </code>
+                                </pre>
+                                <li>To print in binary, we need to use std::bitset:</li>
+                                    <pre>
+                                        <code>
+    #include &lt;bitset> // for std::bitset
+    #include &lt;iostream>
+    
+    int main() &#123;
+        // std::bitset&lt;8> means we want to store 8 bits
+        std::bitset&lt;8> bin1&#123; 0b1100'0101 }; // binary literal for binary 1100 0101
+        std::bitset&lt;8> bin2&#123; 0xC5 }; // hexadecimal literal for binary 1100 0101
+        std::cout &lt;&lt; bin1 &lt;&lt; ' ' &lt;&lt; bin2 &lt;&lt; '\n'; // output: 11000101 11000101
+        return 0;
+    }
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
