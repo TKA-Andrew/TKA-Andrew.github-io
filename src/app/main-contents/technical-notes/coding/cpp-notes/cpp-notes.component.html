@@ -622,6 +622,28 @@
                                 <li>You won’t need to use char8_t, char16_t, or char32_t unless you’re planning on making your program Unicode compatible.</li>
                             </ul>
                     </ul>
+                <li>String</li>
+                    <ul>
+                        <li>In C++, strings aren’t a fundamental type. Hence, to use strings in C++, we first need to #include the &lt;string> header to bring in the declarations for std::string.</li>
+                        <li><strong>Warning: </strong>Don't use std::cin to read strings, use std::getline instead.</li>
+                        <li>Best practice: If using std::getline to read strings, use the <strong>std::ws</strong> input manipulator to ignore leading whitespace. For detailed reason, 
+                        refer to <a href="https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdstring/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
+                        <pre>
+                            <code>
+    #include &lt;string>
+    #include &lt;iostream>
+    
+    int main() &#123;
+        std::cout &lt;&lt; "Now enter your name: ";
+        std::string name&#123;};
+        std::getline(std::cin >> std::ws, name); // note: added std::ws here
+        std::cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; '\n';
+        return 0;
+    }
+                            </code>
+                        </pre>
+                        <li>.length() can be used to get the length of a string</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
