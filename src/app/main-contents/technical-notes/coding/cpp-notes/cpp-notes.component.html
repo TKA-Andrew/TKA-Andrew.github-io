@@ -595,6 +595,33 @@
                             </code>
                         </pre>
                     </ul>
+                <li>Chars</li>
+                    <ul>
+                        <li>The <strong>char</strong> data type was designed to hold a character.</li>
+                        <li>A character can be a single letter, number, symbol, or whitespace.</li>
+                        <li>The char data type is an integral type, meaning the underlying value is stored as an integer.</li>
+                        <li>The integer stored by a char variable are intepreted as an ASCII character.</li>
+                        <li>Character literals are always placed between single quotes (e.g. ‘g’, ‘1’, ‘ ‘).</li>
+                        <li>Key insight: Whenever you see C++ syntax (excluding the preprocessor) that makes use of angled brackets, 
+                            the thing between the angled brackets will most likely be a type.
+                            This is typically how C++ deals with concepts that need a parameterizable type.</li>
+                        <li>Char variables can only hold 1 character, if you input more than one characters in std::cin, 
+                            it will put the rest in input buffer.</li>
+                        <li>Char is defined by C++ to always be 1 byte in size.</li>
+                        <li>By default, a char may be signed or unsigned (though it’s usually signed).</li>
+                        <li>Single Quotes vs Double Quotes</li>
+                            <ul>
+                                <li>Stand-alone chars are always put in single quotes</li>
+                                <li>Text put between double quotes (e.g. “Hello, world!”) is called a <strong>string</strong></li>
+                            </ul>
+                        <li>wchar_t, char8_t, char16_t, and char32_t</li>
+                            <ul>
+                                <li>wchar_t should be avoided in almost all cases (except when interfacing with the Windows API). </li>
+                                <li>char16_t and char32_t were added to C++11 to provide explicit support for 16-bit and 32-bit Unicode characters.</li>
+                                <li>char8_t has been added in C++20.</li>
+                                <li>You won’t need to use char8_t, char16_t, or char32_t unless you’re planning on making your program Unicode compatible.</li>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div> 
