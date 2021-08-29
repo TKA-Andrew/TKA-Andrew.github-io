@@ -11,6 +11,7 @@
                 <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
                 <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
                 <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
+                <button mat-button class="listItem" (click)="scrollTo('chapter5')">Chapter 5: Operators</button>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -742,6 +743,14 @@
             </ul>
             <mat-divider></mat-divider>
         </div> 
+        <div id="chapter5">
+            <h2>Chapter 5: Operators</h2>
+            <ul>
+                <li>The operators in C++ have different precedences, refer to <a href="https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" target="_blank" rel="noopener noreferrer">this page</a> for detailed list of operators.</li>
+                <li>Best practice: Use parentheses to make it clear how an expression should evaluate, even if they are technically unnecessary.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
     <div (click)="scrollTo('contentList')" class="floatingIconDiv">
         <fa-icon  [icon]="faArrowAltCircleUp" size="2x"></fa-icon>
