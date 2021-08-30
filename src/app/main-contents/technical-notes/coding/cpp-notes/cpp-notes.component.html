@@ -826,9 +826,44 @@
                         </code>
                     </pre>
                 <li>If a high level of precision is required, comparing floating point values using any of the relational operators can be dangerous.</li>
-                <li><storng>Warning: </storng>Avoid using operator== and operator!= with floating point operands, as the floating numbers might be slightly different due to rounding errors.</li>
+                <li><strong>Warning: </strong>Avoid using operator== and operator!= with floating point operands, as the floating numbers might be slightly different due to rounding errors.</li>
                 <li>For floating point comparison, you are recommended to read the <a href="https://www.learncpp.com/cpp-tutorial/relational-operators-and-floating-point-comparisons/" target="_blank" rel="noopener noreferrer">full tutorial and explanation</a>.</li>
+                <li>Short circuit evaluation</li>
+                    <ul>
+                        <li>Examples of short circuit evaluation</li>
+                            <pre>
+                                <code>
+    if (x == 1 && y ==2 ) &#123;
+        // if x == 1 is false, y == 2 is not evaluated, short circuit evaluation happen
+    }
 
+    if (x > 0 || y > 2) &#123;
+        // if x > 0 is true, y > 2 is not evaluated, short circuit evaluation happen
+    }
+                                </code>
+                            </pre>
+                        <li>Short circuit evaluation is good for optimization purposes, but it will has bad effects when happening on expressions with side effects, for example:</li>
+                        <pre>
+                            <code>
+        if (x == 1 && ++y == 2) // if x == 1 is false, the ++y will not be executed
+                            </code>
+                        </pre>
+                        <li>Hence, avoid using expressions with side effects in conjunction with binary logical operators.</li>
+                    </ul>
+                <li>De Morgan's Law</li>
+                    <ul>
+                        <li>!(x && y) is equivalent to !x || !y</li>
+                        <li>!(x || y) is equivalent to !x && !y</li>
+                    </ul>
+                <li>Logical XOR</li>
+                    <ul>
+                        <li>C++ DOES NOT provide a logical XOR operator. </li>
+                        <li>However, you can easily mimic logical XOR using the inequality operator (!=):</li>
+                            <ul>
+                                <li>if (a != b) ... // a XOR b, assuming a and b are Booleans</li>
+                                <li>if (a != b != c != d) ... // a XOR b XOR c XOR d, assuming a, b, c, and d are Booleans</li>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
