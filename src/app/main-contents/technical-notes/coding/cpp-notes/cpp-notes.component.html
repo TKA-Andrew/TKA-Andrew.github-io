@@ -746,8 +746,89 @@
         <div id="chapter5">
             <h2>Chapter 5: Operators</h2>
             <ul>
-                <li>The operators in C++ have different precedences, refer to <a href="https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" target="_blank" rel="noopener noreferrer">this page</a> for detailed list of operators.</li>
+                <li>Operator's precedence determines which operator to be evaluated first.</li>
+                <li>Operator's associativity determines whether a operator is to be evaluated from left to right or right to left.</li>
+                <li>Precedence level 1 is the highest precedence level, and level 17 is the lowest. Operators with a higher precedence level get evaluated first.</li>
+                <li>The operators in C++ have different precedences and associativity, refer to <a href="https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" target="_blank" rel="noopener noreferrer">this page</a> for detailed list of operators.</li>
                 <li>Best practice: Use parentheses to make it clear how an expression should evaluate, even if they are technically unnecessary.</li>
+                <li>To do exponents in C++, #include the &lt;cmath> header, and use the pow() function:</li>
+                    <pre>
+                        <code>
+    #include &lt;cmath>
+
+    double x&#123; std::pow(2.0, 5.0) }; // 2 to the 5th power
+                        </code>
+                    </pre>
+                <li>Note that the parameters (and return value) of function pow() are of type double. Due to rounding errors in floating point numbers, the results of pow() may not be precise (even if you pass it integers or whole numbers).</li>
+                <li>Hence, to do integer exponentiation, you should use your own function, however, please make sure that your integer exponentiation will not overflow the integral type:</li>
+                    <pre>
+                        <code>
+    #include &lt;cstdint> // for std::int_fast64_t
+    #include &lt;iostream>
+
+    // note: exp must be non-negative
+    std::int_fast64_t powInt(int base, int exp) &#123;
+        std::int_fast64_t result&#123; 1 };
+        while (exp)
+        &#123;
+            if (exp & 1)
+                result *= base;
+            exp >>= 1;
+            base *= base;
+        }
+
+        return result;
+    }
+
+    int main() &#123;
+        std::cout &lt;&lt; powInt(2, 4); // output: 16
+        return 0;
+    }
+                        </code>
+                    </pre>
+                <li><strong>Warning: </strong>C++ does not define the order of evaluation for function arguments or operator operands. 
+                    Hence, don’t use a variable that has a side effect applied to it more than once in a given statement. For example:</li>
+                    <pre>
+                        <code>
+    int add(int x, int y) &#123;
+        return x + y;
+    }
+    
+    int main() &#123;
+        int x&#123; 5 };
+        int value = add(x, ++x); // is this 5 + 6, or 6 + 6?
+        // It depends on what order your compiler evaluates the function arguments in
+    
+        std::cout &lt;&lt; value; // value could be 11 or 12, depending on how the above line evaluates!
+        return 0;
+    }  
+                        </code>
+                    </pre>
+                <li>Best practice: Always parenthesize the conditional part of the <strong>conditional operator (?:)</strong>, and consider parenthesizing the whole thing as well.</li>
+                    <ul>
+                        <li>This is because the ?: operator has a very low precedence</li>
+                        <li>For example: </li>
+                        <pre>
+                            <code>
+    int a&#123; 4 };
+    int b&#123; 2 };
+    std::cout &lt;&lt; ((a > b) ? a : b) &lt;&lt; '\n'; // output: 4
+    std::cout &lt;&lt; (a > b) ? a : b &lt;&lt; '\n'; // output: 1
+                            </code>
+                        </pre>
+                        <li>The second std::cout prints 1 because it was evaluated as (std::cout &lt;&lt; (x > y)) ? x : y;</li>
+                    </ul>
+                <li>Conditional operator can be useful for initializing constant variables:</li>
+                    <pre>
+                        <code>
+    constexpr bool inBigClassroom &#123; false };
+    constexpr int classSize &#123; inBigClassroom ? 30 : 20 };
+                        </code>
+                    </pre>
+                <li>If a high level of precision is required, comparing floating point values using any of the relational operators can be dangerous.</li>
+                <li><storng>Warning: </storng>Avoid using operator== and operator!= with floating point operands, as the floating numbers might be slightly different due to rounding errors.</li>
+                <li>For floating point comparison, you are recommended to read the <a href="https://www.learncpp.com/cpp-tutorial/relational-operators-and-floating-point-comparisons/" target="_blank" rel="noopener noreferrer">full tutorial and explanation</a>.</li>
+
             </ul>
             <mat-divider></mat-divider>
         </div>
