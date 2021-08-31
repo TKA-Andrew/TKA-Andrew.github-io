@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDividerModule } from '@angular/material/divider';
@@ -44,6 +45,7 @@ import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
     MatCardModule,
     MatIconModule,
     MatTableModule,
+    MatTabsModule,
     MatDividerModule,
     FontAwesomeModule
   ]

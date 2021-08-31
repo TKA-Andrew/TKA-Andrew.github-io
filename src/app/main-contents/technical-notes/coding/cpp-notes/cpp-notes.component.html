@@ -13,6 +13,7 @@
                 <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
                 <button mat-button class="listItem" (click)="scrollTo('chapter5')">Chapter 5: Operators</button>
                 <button mat-button class="listItem" (click)="scrollTo('chapterO')">Chapter O: Bit Manipulation</button>
+                <button mat-button class="listItem" (click)="scrollTo('chapter6')">Chapter 6: Scope, Duration, and Linkage</button>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -972,6 +973,143 @@
                                 <li>Add 1 to the bits: 0110 0010</li>
                                 <li>0110 0010 in decimal is 98, hence, the final answer is -98</li>
                             </ul>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter6">
+            <h2>Chapter 6: Scope, Duration, and Linkage</h2>
+            <ul>
+                <li><strong>Best practice: </strong>Keep the nesting level of your functions to 3 or less.</li>
+                <li>Defining your own namespaces</li>
+                    <ul>
+                        <li>C++ allows us to define our own <strong>user-defined namespaces</strong> via the <span style="font-style: italic;">namespace</span> keyword.</li>
+                        <li>Namespace identifiers are typically non-capitalized.</li>
+                        <li>With namespaces, naming collisions can be prevented:</li>
+                            <mat-tab-group style="border: black; padding-left: 10px; padding-right: 10px; border: solid;" [animationDuration]=0 disableRipple="true">
+                                <mat-tab label="foo.h">
+                                    <pre>
+                                        <code>
+        // IN foo.h
+        #ifndef FOO_H
+        #define FOO_H
+    
+        namespace foo &#123;
+            int doSomething(int x, int y);
+        }
+    
+        #endif
+                                        </code>
+                                    </pre>
+                                </mat-tab>
+                                <mat-tab label="foo.cpp">
+                                    <pre>
+                                        <code>
+        // IN foo.cpp
+        #include "foo.h"
+        namespace foo // define a namespace named foo
+        &#123;
+            // This doSomething() belongs to namespace foo
+            int doSomething(int x, int y)
+            &#123;
+                return x + y;
+            }
+        }
+                                        </code>
+                                    </pre>
+                                </mat-tab>
+                                <mat-tab label="goo.h">
+                                    <pre>
+                                        <code>
+        // IN goo.h
+        #ifndef GOO_H
+        #define GOO_H
+    
+        namespace goo &#123;
+            int doSomething(int x, int y);
+        }
+    
+        #endif
+                                        </code>
+                                    </pre>
+                                </mat-tab>
+                                <mat-tab label="goo.cpp">
+                                    <pre>
+                                        <code>
+        // IN goo.cpp
+        #include "goo.h"
+        namespace goo // define a namespace named goo
+        &#123;
+            // This doSomething() belongs to namespace goo
+            int doSomething(int x, int y)
+            &#123;
+                return x - y;
+            }
+        }
+                                        </code>
+                                    </pre>
+                                </mat-tab>
+                                <mat-tab label="chapter6.cpp">
+                                    <pre>
+                                        <code>
+        // IN chapter6.cpp
+        #include &lt;iostream>
+        #include "foo.h"
+        #include "goo.h"
+        
+        int main() &#123;
+            std::cout &lt;&lt; goo::doSomething(4, 3) &lt;&lt; '\n'; // output: 7
+            std::cout &lt;&lt; foo::doSomething(4, 3) &lt;&lt; '\n'; // output: 1
+            return 0;
+        }
+                                        </code>
+                                    </pre>
+                                </mat-tab>
+                              </mat-tab-group>
+                        <li>Nested namespaces</li>
+                            <ul>
+                                <li>Namespaces can be nested inside other namespaces. For example:</li>
+                                    <pre>
+                                        <code>
+    namespace foo &#123;
+        namespace goo &#123;
+            int add(int x, int y) &#123;
+                return x + y;
+            }
+        }
+    }                                            
+                                        </code>
+                                    </pre>
+                            </ul>
+                        <li>You also can create <strong>namespace alliases</strong>. For example:</li>
+                            <pre>
+                                <code>
+                                    
+int main() &#123;
+    namespace active = foo::goo; // active now refers to foo::goo
+    std::cout &lt;&lt; active::add(1, 2) &lt;&lt; '\n'; // This is really foo::goo::add()
+    return 0;
+}
+                                </code>
+                            </pre>
+                    </ul>
+                <li>Local variables</li>
+                    <ul>
+                        <li>Local variables have <strong>block scope</strong></li>
+                        <li>Local variables have <strong>automatic storage duration</strong>, which means they are created at the point of definition and destroyed at the end of the block they are defined in.</li>
+                        <li>Local variables have <strong>no linkage</strong>, which means that each declaration refers to a unique object.</li>
+                        <li>Scope & Linkage</li>
+                            <ul>
+                                <li><strong>Scope</strong> defines where a single declaration can be seen and used</li>
+                                <li><strong>Linkage</strong> defines whether multiple declarations refer to the same object or not.</li>
+                            </ul>
+                    </ul>
+                <li>Global variables</li>
+                    <ul>
+                        <li><strong>Best practice: </strong>Consider using a “g” or “g_” prefix for global variables to help differentiate them from local variables.</li>
+                        <li>Global variables have <strong>file scope</strong> (also called global scope). They are visible from the point of declaration until the end of the file in which they are declared.</li>
+                        <li>Global variables are created when the program starts, and destroyed when it ends. This is called <strong>static duration</strong>.</li>
+                        <li>Unlike local variables, which are uninitialized by default, static variables are zero-initialized by default, except const variables.</li>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
