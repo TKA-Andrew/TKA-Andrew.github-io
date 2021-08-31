@@ -12,6 +12,7 @@
                 <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
                 <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
                 <button mat-button class="listItem" (click)="scrollTo('chapter5')">Chapter 5: Operators</button>
+                <button mat-button class="listItem" (click)="scrollTo('chapterO')">Chapter O: Bit Manipulation</button>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -196,11 +197,11 @@
                     </ul>
                 <li>Header files</li>
                     <ul>
-                        <li>Best practice: Use a .h suffix when naming your header files.</li>
-                        <li>Best practice: When including a header file from the standard library, use the version without the .h extension if it exists.</li>
-                        <li>Best practice: DO NOT put any function definition in header files.</li>
-                        <li>Best practice: If a header file is paired with a code file (e.g. add.h with add.cpp), they should both have the same base name (add).</li>
-                        <li>Best practice: Code files should #include their paired header file (if one exists).</li>
+                        <li><strong>Best practicce</strong>: Use a .h suffix when naming your header files.</li>
+                        <li><strong>Best practicce</strong>: When including a header file from the standard library, use the version without the .h extension if it exists.</li>
+                        <li><strong>Best practicce</strong>: DO NOT put any function definition in header files.</li>
+                        <li><strong>Best practicce</strong>: If a header file is paired with a code file (e.g. add.h with add.cpp), they should both have the same base name (add).</li>
+                        <li><strong>Best practicce</strong>: Code files should #include their paired header file (if one exists).</li>
                         <pre>
                             <code>
     // IN add.h
@@ -245,8 +246,8 @@
                                 <li>iostream.h is for the support of older programs</li>
                                 <li>Hence, when including a header file from the standard library, use the version without the .h extension if it exists.</li>
                             </ul>
-                        <li>Best practice: Each file should explicitly #include all the header files needed for its compilation. DO NOT rely on headers included in other some other header files.</li>
-                        <li>Best practice: Order your #includes as follows and sort each section alphabetically:
+                        <li><strong>Best practicce</strong>: Each file should explicitly #include all the header files needed for its compilation. DO NOT rely on headers included in other some other header files.</li>
+                        <li><strong>Best practicce</strong>: Order your #includes as follows and sort each section alphabetically:
                             <ul>
                                 <li>your own user-defined headers</li>
                                 <li>3rd party library headers</li>
@@ -288,7 +289,7 @@
                             <ul>
                                 <li><span style="background-color: whitesmoke; font-style: italic;">#pragma once</span> is an alternative type of header guards</li>
                                 <li>However, <span style="background-color: whitesmoke; font-style: italic;">#pragma once</span> is NOT an official part of the C++ language, and not all compilers support it (although most modern compilers do).</li>
-                                <li>Best practice: For compatibility purposes, stick to traditional header guards.</li>
+                                <li><strong>Best practicce</strong>: For compatibility purposes, stick to traditional header guards.</li>
                             </ul>
                     </ul>
             </ul>
@@ -394,7 +395,7 @@
                                     <td class="tdQuarter"></td>
                                 </tr>
                             </table>
-                        <li>Best practice: For maximum compatibility, you shouldn’t assume that variables are larger than the specified minimum size.</li>
+                        <li><strong>Best practicce</strong>: For maximum compatibility, you shouldn’t assume that variables are larger than the specified minimum size.</li>
                         <li>The <strong>sizeof operator</strong> can be used to get the size in bytes of a date type or variable.</li>
                     </ul>
                 <li>integers</li>
@@ -459,7 +460,7 @@
                             </code>
                         </pre>
                         <li>These fast and least types are guaranteed to be defined, and are safe to use.</li>
-                        <li>Best practice: Favor the std::int_fast#_t and std::int_least#_t integers when you need an integer guaranteed to be at least a certain minimum size.</li>
+                        <li><strong>Best practicce</strong>: Favor the std::int_fast#_t and std::int_least#_t integers when you need an integer guaranteed to be at least a certain minimum size.</li>
                     </ul>
                     <li><strong>Warning: </strong>std::int8_t and std::uint8_t may behave like chars instead of integers</li>
                         <ul>
@@ -472,7 +473,7 @@
                             </pre>
                             <li><strong>Warning: </strong>Avoid the 8-bit fixed-width integer types. If you do use them, note that they are often treated like chars.</li>
                         </ul>
-                    <li>Integer best practices</li>
+                    <li><strong>Integer best practices</strong></li>
                         <ul>
                             <li>Use int when the size of the integer doesn’t matter (numbers always fit within the range of -65535 to 65535)</li>           
                             <li>For guaranteed size and better performance, use std::int_fast#_t.</li>
@@ -499,7 +500,7 @@
                             <li>When using floating point literals, always include at least one decimal place (even if the decimal is 0). 
                                 This helps the compiler understand that the number is a floating point number and not an integer.</li>
                             <li>By default, floating point literals default to type double. An f suffix is used to denote a literal of type float.</li>
-                            <li>Best Practice: Always make sure the type of your literals match the type of the variables they’re being assigned to or used to initialize. Otherwise an unnecessary conversion will result, possibly with a loss of precision.</li>
+                            <li>Best practice: Always make sure the type of your literals match the type of the variables they’re being assigned to or used to initialize. Otherwise an unnecessary conversion will result, possibly with a loss of precision.</li>
                             <pre>
                                 <code>
     int v&#123; 5.0 }; // will have conversion error
@@ -524,7 +525,7 @@
                                     <li>Double values have between 15 and 18 digits of precision.</li>
                                     <li>Long double has a minimum precision of 15, 18, or 33 significant digits</li>
                                 </ul>
-                            <li>Best practice: Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.</li>
+                            <li><strong>Best practicce</strong>: Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.</li>
                             <pre>
                                 <code>
     #include &lt;iomanip>
@@ -572,7 +573,7 @@
     std::cout &lt;&lt; nan &lt;&lt; '\n'; // output: -nan(ind)
                                 </code>
                             </pre>
-                        <li>Best practice: Avoid division by 0 altogether, even if your compiler supports it.</li>
+                        <li><strong>Best practicce</strong>: Avoid division by 0 altogether, even if your compiler supports it.</li>
                     </ul>
                 <li>Boolean values</li>
                     <ul>
@@ -614,6 +615,17 @@
                             <ul>
                                 <li>Stand-alone chars are always put in single quotes</li>
                                 <li>Text put between double quotes (e.g. “Hello, world!”) is called a <strong>string</strong></li>
+                                <li><strong>Warning: </strong>Remember not use single quotes for string:</li>
+                                    <pre>
+                                        <code>
+    std::int16_t x&#123; 6 };
+    std::int16_t y&#123; 12 };
+    std::cout &lt;&lt; 'x: ' &lt;&lt; x &lt;&lt; '\n'; // output: 78792006
+    std::cout &lt;&lt; 'y: ' &lt;&lt; y &lt;&lt; '\n'; // output: 794473612
+    std::cout &lt;&lt; "x: " &lt;&lt; x &lt;&lt; '\n'; // output: x: 6
+    std::cout &lt;&lt; "y: " &lt;&lt; y &lt;&lt; '\n'; // output: y: 12
+                                        </code>
+                                    </pre>
                             </ul>
                         <li>wchar_t, char8_t, char16_t, and char32_t</li>
                             <ul>
@@ -627,7 +639,7 @@
                     <ul>
                         <li>In C++, strings aren’t a fundamental type. Hence, to use strings in C++, we first need to #include the &lt;string> header to bring in the declarations for std::string.</li>
                         <li><strong>Warning: </strong>Don't use std::cin to read strings, use std::getline instead.</li>
-                        <li>Best practice: If using std::getline to read strings, use the <strong>std::ws</strong> input manipulator to ignore leading whitespace. For detailed reason, 
+                        <li><strong>Best practicce</strong>: If using std::getline to read strings, use the <strong>std::ws</strong> input manipulator to ignore leading whitespace. For detailed reason, 
                         refer to <a href="https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdstring/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
                         <pre>
                             <code>
@@ -736,9 +748,9 @@
     }
                                 </code>
                             </pre>
-                        <li>Best practice: If the constant value is known before running the program, use <strong>constexpr</strong> to declare. Else, use <strong>const</strong>.</li>
+                        <li><strong>Best practicce</strong>: If the constant value is known before running the program, use <strong>constexpr</strong> to declare. Else, use <strong>const</strong>.</li>
                         <li><strong>Warning: </strong>Avoid using #define to create symbolic constants macros.</li>
-                        <li>Best practice: Use constexpr variables to provide a name and context for your magic numbers.</li>
+                        <li><strong>Best practicce</strong>: Use constexpr variables to provide a name and context for your magic numbers.</li>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
@@ -750,7 +762,7 @@
                 <li>Operator's associativity determines whether a operator is to be evaluated from left to right or right to left.</li>
                 <li>Precedence level 1 is the highest precedence level, and level 17 is the lowest. Operators with a higher precedence level get evaluated first.</li>
                 <li>The operators in C++ have different precedences and associativity, refer to <a href="https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" target="_blank" rel="noopener noreferrer">this page</a> for detailed list of operators.</li>
-                <li>Best practice: Use parentheses to make it clear how an expression should evaluate, even if they are technically unnecessary.</li>
+                <li><strong>Best practicce</strong>: Use parentheses to make it clear how an expression should evaluate, even if they are technically unnecessary.</li>
                 <li>To do exponents in C++, #include the &lt;cmath> header, and use the pow() function:</li>
                     <pre>
                         <code>
@@ -804,7 +816,7 @@
     }  
                         </code>
                     </pre>
-                <li>Best practice: Always parenthesize the conditional part of the <strong>conditional operator (?:)</strong>, and consider parenthesizing the whole thing as well.</li>
+                <li><strong>Best practicce</strong>: Always parenthesize the conditional part of the <strong>conditional operator (?:)</strong>, and consider parenthesizing the whole thing as well.</li>
                     <ul>
                         <li>This is because the ?: operator has a very low precedence</li>
                         <li>For example: </li>
@@ -862,6 +874,103 @@
                             <ul>
                                 <li>if (a != b) ... // a XOR b, assuming a and b are Booleans</li>
                                 <li>if (a != b != c != d) ... // a XOR b XOR c XOR d, assuming a, b, c, and d are Booleans</li>
+                            </ul>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapterO">
+            <h2>Chapter O: Bit Manipulation</h2>
+            <ul>
+                <li>Bit position is counted from right to left, starting from zero.
+                    For example, given a bit sequence 00000101, we can say that the bits in position 0 and 2 have value 1.</li>
+                <li>std::bitset provides 4 key functions that are useful for doing bit manipulation: </li>
+                    <ul>
+                        <li>test() allows us to query whether a bit is a 0 or 1</li>
+                        <li>set() allows us to turn a bit on (this will do nothing if the bit is already on)</li>
+                        <li>reset() allows us to turn a bit off (this will do nothing if the bit is already off)</li>
+                        <li>flip() allows us to flip a bit value from a 0 to a 1 or vice versa</li>
+                    </ul>
+                <li><strong>Best practice: </strong>Use unsigned integer or std::bitset for bit manipulation, avoid using signed integer.</li>
+                    <pre>
+                        <code>
+    #include &lt;bitset>
+    #include &lt;iostream>
+    
+    int main() &#123;
+        // bitset functions
+        std::bitset&lt;8> bits&#123; 0b0000'0101u }; // we need 8 bits, start with bit pattern 0000 0101
+        bits.set(3); // set bit position 3 to 1 (now we have 0000 1101)
+        bits.flip(4); // flip bit 4 (now we have 0001 1101)
+        bits.reset(4); // set bit 4 back to 0 (now we have 0000 1101)
+        std::cout &lt;&lt; "All the bits: " &lt;&lt; bits &lt;&lt; '\n';  // output: 0000 1101
+        std::cout &lt;&lt; "Bit 3 has value: " &lt;&lt; bits.test(3) &lt;&lt; '\n'; // output: 1
+        std::cout &lt;&lt; "Bit 4 has value: " &lt;&lt; bits.test(4) &lt;&lt; '\n'; // output: 0
+        
+        // Bitwise Operators
+        std::bitset&lt;8> x&#123; 0b0000'0110u };
+        std::bitset&lt;8> y&#123; 0b0001'0100u };
+        std::cout &lt;&lt; x &lt;&lt; '\n';         // output: 00000110
+        std::cout &lt;&lt; y &lt;&lt; '\n';         // output: 00010100
+        std::cout &lt;&lt; (x &lt;&lt; 1) &lt;&lt; '\n';  // output: 00001100
+        std::cout &lt;&lt; (y >> 2) &lt;&lt; '\n';  // output: 00000101
+        std::cout &lt;&lt; (x | y) &lt;&lt; '\n';   // output: 00010110
+        std::cout &lt;&lt; (x & y) &lt;&lt; '\n';   // output: 00000100
+        std::cout &lt;&lt; (x ^ y) &lt;&lt; '\n';   // output: 00010010
+        std::cout &lt;&lt; ~x &lt;&lt; '\n';        // output: 11111001
+    
+        return 0;
+    }
+                        </code>
+                    </pre>
+                <li>C++ also provides bitwise assignment operators. For example, you can write x >>= 2, instead of x = x >> 2</li>
+                <li>Bit masks</li>
+                    <ul>
+                        <li>A bit mask is a predefined set of bits that is used to select which specific bits will be modified by subsequent operations.</li>
+                            <pre>
+                                <code>
+    constexpr std::uint_fast8_t mask0&#123; 0b0000'0001 }; // represents bit 0
+    constexpr std::uint_fast8_t mask1&#123; 0b0000'0010 }; // represents bit 1
+    constexpr std::uint_fast8_t mask2&#123; 0b0000'0100 }; // represents bit 2
+    constexpr std::uint_fast8_t mask3&#123; 0b0000'1000 }; // represents bit 3
+    constexpr std::uint_fast8_t mask4&#123; 0b0001'0000 }; // represents bit 4
+    constexpr std::uint_fast8_t mask5&#123; 0b0010'0000 }; // represents bit 5
+    constexpr std::uint_fast8_t mask6&#123; 0b0100'0000 }; // represents bit 6
+    constexpr std::uint_fast8_t mask7&#123; 0b1000'0000 }; // represents bit 7
+    std::uint_fast8_t switches&#123; 0b0000'1010 }; // assuming each bit control 1 switch
+    std::cout &lt;&lt; "switch 1 is " &lt;&lt; ((switches & mask1) ? "on\n" : "off\n"); // check switch1 status
+    switches |= mask7; // turn on switch 7
+    std::cout &lt;&lt; std::bitset&lt;8> &#123;switches} &lt;&lt; '\n'; // output: 10001010
+    switches &= ~mask1; // turn off switch 1
+    std::cout &lt;&lt; std::bitset&lt;8> &#123;switches} &lt;&lt; '\n'; // output: 10001000
+    switches ^= mask2; // toggle switch 2
+    std::cout &lt;&lt; std::bitset&lt;8> &#123;switches} &lt;&lt; '\n'; // output: 10001100
+    switches |= (mask5 | mask6); // bit masks involving multiple bits
+    std::cout &lt;&lt; std::bitset&lt;8> &#123;switches} &lt;&lt; '\n'; // output: 11101100
+                                </code>
+                            </pre>
+                    </ul>
+                <li>Signed numbers and two's complement</li>
+                    <ul>
+                        <li>Signed integers are typically stored using a method known as <strong>two’s complement</strong>.</li>
+                        <li>In two’s complement, the leftmost (most significant) bit is used as the sign bit.</li>
+                        <li>A 0 sign bit means the number is positive, and a 1 sign bit means the number is negative.</li>
+                        <li>Positive signed numbers are represented in binary just like positive unsigned numbers</li>
+                        <li>Negative signed numbers are represented in binary as the bitwise inverse of the positive number, plus 1.</li>
+                        <li>Converting decimal to binary (two’s complement)</li>
+                            <ul>
+                                <li>For example: representing -5 in binary two's complement</li>
+                                <li>5 is 0000 0101</li>
+                                <li>Invert the bits: 1111 1010</li>
+                                <li>Add 1 to the bits: 1111 1011 // final answer</li>
+                            </ul>
+                        <li>Converting binary (two's complement) to decimal</li>
+                            <ul>
+                                <li>For example: converting 1001 1110 from two’s complement into a decimal number</li>
+                                <li>The signed bit value is 1, so cannot straight away convert to decimal.</li>
+                                <li>Invert the bits: 0110 0001</li>
+                                <li>Add 1 to the bits: 0110 0010</li>
+                                <li>0110 0010 in decimal is 98, hence, the final answer is -98</li>
                             </ul>
                     </ul>
             </ul>
