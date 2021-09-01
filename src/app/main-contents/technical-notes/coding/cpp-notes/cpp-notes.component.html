@@ -1,22 +1,20 @@
-<div class="flexContainer" id="container">
-    <div id="contentList">
-        <mat-accordion displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
-            <mat-expansion-panel style="margin-top: 5px;">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        C++
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
-                <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
-                <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
-                <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
-                <button mat-button class="listItem" (click)="scrollTo('chapter5')">Chapter 5: Operators</button>
-                <button mat-button class="listItem" (click)="scrollTo('chapterO')">Chapter O: Bit Manipulation</button>
-                <button mat-button class="listItem" (click)="scrollTo('chapter6')">Chapter 6: Scope, Duration, and Linkage</button>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
+<div class="flexContainer">
+    <mat-accordion id="contentList" displayMode="flat" style="padding-left: 5px; padding-right: 5px;">
+        <mat-expansion-panel style="margin-top: 5px;">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    C++
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('chapter1')">Chapter 1: C++ Basics</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter2')">Chapter 2: Functions and Files</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter3')">Chapter 3: Debugging C++ Programs</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter4')">Chapter 4: Fundamental Data Types</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter5')">Chapter 5: Operators</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapterO')">Chapter O: Bit Manipulation</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter6')">Chapter 6: Scope, Duration, and Linkage</button>
+        </mat-expansion-panel>
+    </mat-accordion>
     <div fxLayout="column" fxLayout="column">
         <div>
             <h1>C++</h1>
