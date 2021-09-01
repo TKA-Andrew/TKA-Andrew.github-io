@@ -1111,6 +1111,63 @@ int main() &#123;
                         <li>Global variables are created when the program starts, and destroyed when it ends. This is called <strong>static duration</strong>.</li>
                         <li>Unlike local variables, which are uninitialized by default, static variables are zero-initialized by default, except const variables.</li>
                     </ul>
+                <li>Internal linkage & External linkage</li>
+                    <ul>
+                        <li>Internal Linkage</li>
+                            <ul>
+                                <li>An identifier with <strong>internal linkage</strong> can be seen and used within a single file, but it is not accessible from other files (that is, it is not exposed to the linker).</li>
+                                <li>Global variables with internal linkage are sometimes called <strong>internal variables</strong>.</li>
+                                <li>Non-constant global variables have external linkage by default.</li>
+                                <li>const and constexpr global variables have internal linkage by default.</li>
+                                <li>To make a non-constant global variable internal, we use the <strong>static</strong> keyword.</li>
+                                <li>Functions are also default to external linkage, but can be set to internal linkage via the static keyword:</li>
+                            </ul>
+                        <li>External linkage</li>
+                            <ul>
+                                <li>An identifier with <strong>external linkage</strong> can be seen and used both from the file in which it is defined, and from other code files (via a forward declaration).</li>
+                                <li>Global variables with external linkage are sometimes called <strong>external variables</strong>.</li>
+                                <li>To make a global variable external (and thus accessible by other files), we can use the <strong>extern</strong> keyword to do so:</li>
+                                <li><strong>Warning: </strong>If you want to define an uninitialized non-const global variable, do not use the extern keyword, otherwise C++ will think you’re trying to make a forward declaration for the variable.</li>
+                                <li><strong>Warning: </strong>Although constexpr variables can be given external linkage via the extern keyword, they can not be forward declared, so there is no value in giving them external linkage.</li>
+                            </ul>
+                        <pre>
+                            <code>
+    // IN abc.cpp
+    extern const int g_w&#123; 3 }; // this extern gives g_w external linkage
+
+    int minus(int x, int y) &#123;
+        return (x - y);
+    }
+                            </code>
+                        </pre>
+                        <pre>
+                            <code>
+    // IN chapter6.cpp
+    #include &lt;iostream>
+        
+    int g_s; // non-constant global variables have external linkage by default
+    static int g_x; // the static keyword is used to make a non-constant global have internal linkage
+    const int g_y&#123; 4 }; // const global variables have internal linkage by default
+    constexpr int g_z&#123; 5 }; // constexpr global variables have internal linkage by default
+    static int add(int x, int y); // set this function to internal linkage
+    
+    // Forward Declarations
+    int minus(int x, int y); // functions are external linkage by default
+    extern const int g_w; // this extern is a forward declaration of a variable named g_w that is defined in the abc.cpp
+    
+    int add(int x, int y) &#123;
+        return (x + y);
+    }
+    
+    int main() &#123;
+        std::cout &lt;&lt; add(g_y, g_z) &lt;&lt; '\n'; // output: 9
+        std::cout &lt;&lt; minus(g_z, g_y) &lt;&lt; '\n'; // output: 1
+        std::cout &lt;&lt; add(g_y, g_w) &lt;&lt; '\n'; // output: 7
+        return 0;
+    }
+                            </code>
+                        </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
