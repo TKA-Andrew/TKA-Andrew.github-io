@@ -1108,6 +1108,7 @@ int main() &#123;
                         <li>Global variables have <strong>file scope</strong> (also called global scope). They are visible from the point of declaration until the end of the file in which they are declared.</li>
                         <li>Global variables are created when the program starts, and destroyed when it ends. This is called <strong>static duration</strong>.</li>
                         <li>Unlike local variables, which are uninitialized by default, static variables are zero-initialized by default, except const variables.</li>
+                        <li><strong>Best practice: </strong>Use local variables instead of global variables whenever possible.</li>
                     </ul>
                 <li>Internal linkage & External linkage</li>
                     <ul>
@@ -1214,7 +1215,13 @@ int main() &#123;
                                 </pre>
                             </mat-tab>
                         </mat-tab-group>
+                        <li><strong>Best practice: </strong>Avoid static local variables unless the variable NEVER needs to be reset.</li>
                     </ul>
+                <li>Static Local Constants</li>
+                    <ul>
+                        <li>If you have a function that has a const value, you should make it static so that it only be initialized once.</li>
+                    </ul>
+                <li><a href="https://www.learncpp.com/cpp-tutorial/scope-duration-and-linkage-summary/" target="_blank" rel="noopener noreferrer">A great summary of Chapter 6.</a></li>
             </ul>
             <mat-divider></mat-divider>
         </div>
