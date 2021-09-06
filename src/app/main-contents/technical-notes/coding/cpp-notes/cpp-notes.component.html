@@ -13,6 +13,7 @@
             <button mat-button class="listItem" (click)="scrollTo('chapter5')">Chapter 5: Operators</button>
             <button mat-button class="listItem" (click)="scrollTo('chapterO')">Chapter O: Bit Manipulation</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter6')">Chapter 6: Scope, Duration, and Linkage</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter7')">Chapter 7: Control Flow and Error Handling</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -1222,6 +1223,117 @@ int main() &#123;
                         <li>If you have a function that has a const value, you should make it static so that it only be initialized once.</li>
                     </ul>
                 <li><a href="https://www.learncpp.com/cpp-tutorial/scope-duration-and-linkage-summary/" target="_blank" rel="noopener noreferrer">A great summary of Chapter 6.</a></li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter7">
+            <h2>Chapter 7: Control Flow and Error Handling</h2>
+            <p>This chapter might have less notes for control flow as they are basics and common in all programming languages.
+                They are very similar with C programming as well.</p>
+            <ul>
+                <li>Control Flow</li>
+                    <ul>
+                        <li>Categories of flow control statements</li>
+                            <table style="margin: 10px; overflow: auto; width: 100%;">
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Meaning</th>
+                                    <th>Examples</th>
+                                </tr>
+                                <tr >
+                                    <td>Conditional statements</td>
+                                    <td>Execute a sequence of code if only some condition is met.</td>
+                                    <td>if else, switch</td>
+                                </tr>
+                                <tr>
+                                    <td>Jumps</td>
+                                    <td>Jumps tell the CPU to start executing the statements at some other location.</td>
+                                    <td>goto, break, continue</td>
+                                </tr>
+                                <tr>
+                                    <td>Function calls</td>
+                                    <td>Function calls are jumps to some other location and back.</td>
+                                    <td>function calls, return</td>
+                                </tr>
+                                <tr>
+                                    <td>Loops</td>
+                                    <td>Execute a sequence of code repeatedly until some condition is met.</td>
+                                    <td>while, do-while, for, ranged-for</td>
+                                </tr>
+                                <tr>
+                                    <td>Exceptions</td>
+                                    <td>Designed for error handling.</td>
+                                    <td>try, throw, catch</td>
+                                </tr>
+                            </table>
+                        <li><strong>Best practice: </strong>Avoid <strong>goto statements</strong> because this creates <span style="font-style: italic;">spaghetti code</span>.</li>
+                        <li><strong>Best practice: </strong>Favor while loops over do-while when given an equal choice.</li>
+                        <li>As of C++11, there are two different kinds of for loops. The newer range-based for statement will be covered in Chapter 10.</li>
+                        <li>It is possible to do for loops with multiple counters</li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+
+    int main() &#123;
+        for (int x&#123; 0 }, y&#123; 9 }; x &lt; 10 ; ++x, --y)
+            std::cout &lt;&lt; x &lt;&lt; ' ' &lt;&lt; y &lt;&lt; '\n';
+    
+        return 0;
+    }
+                                </code>
+                            </pre>
+                        <li>break VS return</li>
+                            <ul>
+                                <li>A <strong>break statement</strong> terminates a switch or loop.</li>
+                                <li>A <strong>return statement</strong> terminates the entire function</li>
+                            </ul>
+                        <li>A <strong>halt</strong> is a flow control statement that terminates the program. In C++, halts are implemented as functions.</li>
+                        <li>When the main() function returns:</li>
+                            <ul>
+                                <li>First, because we’re leaving the function, all local variables and function parameters are destroyed </li>
+                                <li>Next, a special function called std::exit() is called, with the return value from main() (the status code) passed in as an argument.</li>
+                            </ul>
+                        <li>std::exit()</li>
+                            <ul>
+                                <li>std::exit() is a function that causes the program to terminate normally. </li>
+                                <li>Normal termination means the program has exited in an expected way.</li>
+                                <li>std::exit() performs a number of cleanup function</li>
+                                    <ul>
+                                        <li>First, objects with static storage duration are destroyed.</li>
+                                        <li>Then some other miscellaneous file cleanup is done if any files were used.</li>
+                                        <li>Finally, control is returned back to the OS, with the argument passed to std::exit() used as the status code.</li>
+                                    </ul>
+                                <li>We can #include &lt;cstdlib> (maybe not needed in C++14) to call the std::exit() explicitly, but please take note that it does not clean up local variables in the current function or up the call stack.</li>
+                                <li>We can register a function to be called when the std::exit is called by using the <strong>std::atexit()</strong> function</li>
+                                <pre>
+                                    <code>
+    #include &lt;iostream>
+    void cleanup();
+    
+    void cleanup() &#123;
+        // code here to do any kind of cleanup required
+        std::cout &lt;&lt; "The program is being terminated!\n";
+    }
+    
+    int main() &#123;
+        // register cleanup() to be called automatically when std::exit() is called
+        std::atexit(cleanup); // note: we use cleanup rather than cleanup()
+        std::cout &lt;&lt; 1 &lt;&lt; '\n';
+        std::exit(0); // terminate and return status code 0 to operating system
+        std::cout &lt;&lt; 2 &lt;&lt; '\n';
+        return 0;
+    }
+                                    </code>
+                                </pre>
+                                <li>Take notes about std::atexit()</li>
+                                    <ul>
+                                        <li>The function being registered must take no parameters and have no return value.</li>
+                                        <li>You can register multiple cleanup functions using std::atexit() if you want</li>
+                                        <li>The registered functions will be called in reverse order (the last one registered will be called first).</li>
+                                    </ul>
+                            </ul>
+                        <li><strong>Best practice: </strong>Only use a halt if there is no safe way to return normally from the main function.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
