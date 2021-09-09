@@ -1334,6 +1334,56 @@ int main() &#123;
                             </ul>
                         <li><strong>Best practice: </strong>Only use a halt if there is no safe way to return normally from the main function.</li>
                     </ul>
+                <li>std::cin, buffers, and extraction</li>
+                    <ul>
+                        <li>When the user enters input in response to an extraction operation (std::cin>>), that data is placed in a buffer inside of std::cin.</li>
+                        <li>A <strong>buffer</strong> is simply a piece of memory set aside for storing data temporarily while it’s moved from one place to another.</li>
+                        <li>In this case, the buffer is used to hold user input while it’s waiting to be extracted to variables.</li>
+                        <li>When the extraction operator is used:</li>
+                            <ul>
+                                <li>If there is data already in the input buffer, that data is used for extraction.</li>
+                                <li>If the input buffer contains no data, the user is asked to input data for extraction.</li>
+                                <li>When the user hits enter, a ‘\n’ character will be placed in the input buffer.</li>
+                                <li>operator>> extracts as much data from the input buffer as it can into the variable(ignoring any leading whitespace characters, such as spaces, tabs, or ‘\n’).</li>
+                                <li>Any data that can not be extracted is left in the input buffer for the next extraction.</li>
+                            </ul>
+                        <li>For example, for the code snippet below:</li>
+                            <pre>
+                                <code>
+        int a&#123;};
+        char b&#123;};
+        std::cin >> a;
+        std::cin >> b;
+        std::cout &lt;&lt; a &lt;&lt; '\n';
+        std::cout &lt;&lt; b &lt;&lt; '\n';
+                                </code>
+                            </pre>
+                            <ul>
+                                <li>If user inputs '5b' and presses enter:</li>
+                                    <ul>
+                                        <li>5 will be extracted, converted to an integer, and assigned to variable a</li>
+                                        <li>b is left in input buffer as it cannot be extracted to an integer variable</li>
+                                        <li>the second std::cin will be skipped as the input buffer still have the 'b'</li>
+                                        <li>the output will be printing '5' and 'b' in 2 separate lines</li>
+                                    </ul>
+                                <li>If user inputs '55' and presses enter:</li>
+                                <ul>
+                                    <li>55 will be extracted, converted to an integer, and assigned to variable a</li>
+                                    <li>when comes to the second std::cin, the input buffer contains no data, so user will be asked to input data again</li>
+                                </ul>
+                            </ul>
+                    </ul>
+                <li>Handling invalid input</li>
+                    <ul>
+                        <li>For each point of text input, consider:</li>
+                            <ul>
+                                <li>Use something like switch case to check whether the input is meaningful.</li>
+                                <li>Use std::cin.ignore(std::numeric_limits&lt;std::streamsize>::max(), '\n'); to ignore extraneous input</li>
+                                <li>Use std::cin.fail() to check whether extraction fails, if yes std::cin.clear() and ignore</li>
+                                <li>For overflow case, std::cin goes immediately into “failure mode”, we can handle it like how we handle failed extractions</li>
+                            </ul>
+                        <li>For detailed examples and case studies, refer to the <a href="https://www.learncpp.com/cpp-tutorial/stdcin-and-handling-invalid-input/" target="_blank" rel="noopener noreferrer">full article</a></li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
