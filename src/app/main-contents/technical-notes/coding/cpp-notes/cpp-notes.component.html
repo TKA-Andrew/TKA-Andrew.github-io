@@ -14,6 +14,7 @@
             <button mat-button class="listItem" (click)="scrollTo('chapterO')">Chapter O: Bit Manipulation</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter6')">Chapter 6: Scope, Duration, and Linkage</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter7')">Chapter 7: Control Flow and Error Handling</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter8')">Chapter 8: Type Conversion And Function Overloading</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -1391,6 +1392,86 @@ int main() &#123;
                         <li>static_assert is checked at compile-time. so there will be compile error if the conditional expression evaluates to false.</li>
                         <li>For more details, refer to the detailed explanation and examples in this <a href="https://www.learncpp.com/cpp-tutorial/assert-and-static_assert/" target="_blank" rel="noopener noreferrer">tutorial</a></li>
                     </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter8">
+            <h2>Chapter 8: Type Conversion And Function Overloading</h2>
+            <ul>
+                <li>Implicit Type Conversion</li>
+                    <ul>
+                        <li><strong>Implicit type conversion</strong> (also called automatic type conversion or <strong>coercion</strong>) is performed automatically by the compiler when one data type is required, but a different data type is supplied.</li>
+                        <li>For example:</li>
+                            <pre>
+                                <code>
+    double d&#123; 3 }; // int value 3 implicitly converted to type double
+    float doSomething() &#123;
+        return 3.0; // double value 3.0 implicitly converted to type float
+    }
+    double division&#123; 4.0 / 3 }; // int value 3 implicitly converted to type double
+                                </code>
+                            </pre>
+                        <li>If the compiler can't find an acceptable conversion, then the compile will fail with a compile error.</li>
+                        <li>C++ has <strong>standard conversions</strong> that can be divided to 4 categories:</li>
+                            <ul>
+                                <li>Numeric promotions (Floating-point and integral promotion)</li>
+                                <li>Numeric conversions (Numeric conversions)</li>
+                                <li>Arithmetic conversions (Arithmetic conversions)</li>
+                                <li>Other conversions (which includes various pointer and reference conversions)</li>
+                            </ul>
+                        <li>Floating-point and integral promotion</li>   
+                            <ul>
+                                <li>Numeric promotion</li>
+                                    <ul>
+                                        <li> A <strong>numeric promotion</strong> is the type conversion of a narrower numeric type (such as a char) to a wider numeric type (typically int or double) that can be processed efficiently and is less likely to have a result that overflows.</li>
+                                        <li>All numeric promotions are value-preserving, which means that all values in the original type are representable without loss of data or precision in the new type.</li>
+                                        <li>Numeric promotion have 2 subcategories:</li>
+                                            <ul>
+                                                <li>Floating point promotion</li>
+                                                    <ul>
+                                                        <li>a value of type float can be converted to a value of type double</li>
+                                                    </ul>
+                                                <li>Integral promotion</li>
+                                                    <ul>
+                                                        <li>signed char or signed short can be converted to int</li>
+                                                        <li>unsigned char, char8_t, and unsigned short can be converted to int if int can hold the entire range of the type, or unsigned int otherwise.</li>
+                                                        <li>char can be converted to int (if char is signed by default) or unsigned int (if char is unsigned by default)</li>
+                                                        <li>bool can be converted to int, with false becoming 0 and true becoming 1</li>
+                                                    </ul>
+                                                <li>Example:</li>
+                                                    <pre>
+                                                        <code>
+    #include &lt;iostream>
+
+    void printDouble(double d) &#123;
+        std::cout &lt;&lt; d &lt;&lt; '\n';
+    }
+    
+    void printInt(int x) &#123;
+        std::cout &lt;&lt; x &lt;&lt; '\n';
+    }
+    
+    int main() &#123;
+        printDouble(5.0); // no conversion necessary
+        printDouble(4.0f); // numeric promotion of float to double
+        printInt(2); // no conversion necessary
+        short s&#123; 3 }; // there is no short literal suffix, so we'll use a variable for this one
+        printInt(s); // numeric promotion of short to int
+        printInt('a'); // numeric promotion of char to int
+        printInt(true); // numeric promotion of bool to int
+        return 0;
+    }                                                                
+                                                        </code>
+                                                    </pre>
+                                            </ul>
+                                    </ul>
+                                <li>Numeric Conversion</li>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                            </ul>
+                    </ul>
+                <li>Explicit Type Conversion</li>
             </ul>
             <mat-divider></mat-divider>
         </div>
