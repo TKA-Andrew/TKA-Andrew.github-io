@@ -33,7 +33,7 @@
                 <li>In C++, the type of a variable must be known at compile-time (when the program is compiled), and that type can not be changed without recompiling the program.</li>
                 <li>4 ways to initialize variables in C++</li>
                     <ul>
-                        <li>int a; // Uninitalizaed (ERROR)</li>
+                        <li>int a; // Uninitialized</li>
                         <li>int b = 5; // Copy Initialization (NOT RECOMMENDED)</li>
                         <li>int c(6); // Direct Initialization (NOT RECOMMENDED)</li>
                         <li>int d&#123;7}; // List Initilization or Uniform Initilization (RECOMMENDED)</li>
@@ -198,11 +198,11 @@
                     </ul>
                 <li>Header files</li>
                     <ul>
-                        <li><strong>Best practicce</strong>: Use a .h suffix when naming your header files.</li>
-                        <li><strong>Best practicce</strong>: When including a header file from the standard library, use the version without the .h extension if it exists.</li>
-                        <li><strong>Best practicce</strong>: DO NOT put any function definition in header files.</li>
-                        <li><strong>Best practicce</strong>: If a header file is paired with a code file (e.g. add.h with add.cpp), they should both have the same base name (add).</li>
-                        <li><strong>Best practicce</strong>: Code files should #include their paired header file (if one exists).</li>
+                        <li><strong>Best practice</strong>: Use a .h suffix when naming your header files.</li>
+                        <li><strong>Best practice</strong>: When including a header file from the standard library, use the version without the .h extension if it exists.</li>
+                        <li><strong>Best practice</strong>: DO NOT put any function definition in header files.</li>
+                        <li><strong>Best practice</strong>: If a header file is paired with a code file (e.g. add.h with add.cpp), they should both have the same base name (add).</li>
+                        <li><strong>Best practice</strong>: Code files should #include their paired header file (if one exists).</li>
                         <pre>
                             <code>
     // IN add.h
@@ -247,8 +247,8 @@
                                 <li>iostream.h is for the support of older programs</li>
                                 <li>Hence, when including a header file from the standard library, use the version without the .h extension if it exists.</li>
                             </ul>
-                        <li><strong>Best practicce</strong>: Each file should explicitly #include all the header files needed for its compilation. DO NOT rely on headers included in other some other header files.</li>
-                        <li><strong>Best practicce</strong>: Order your #includes as follows and sort each section alphabetically:
+                        <li><strong>Best practice</strong>: Each file should explicitly #include all the header files needed for its compilation. DO NOT rely on headers included in other some other header files.</li>
+                        <li><strong>Best practice</strong>: Order your #includes as follows and sort each section alphabetically:
                             <ul>
                                 <li>your own user-defined headers</li>
                                 <li>3rd party library headers</li>
@@ -290,7 +290,7 @@
                             <ul>
                                 <li><span style="background-color: whitesmoke; font-style: italic;">#pragma once</span> is an alternative type of header guards</li>
                                 <li>However, <span style="background-color: whitesmoke; font-style: italic;">#pragma once</span> is NOT an official part of the C++ language, and not all compilers support it (although most modern compilers do).</li>
-                                <li><strong>Best practicce</strong>: For compatibility purposes, stick to traditional header guards.</li>
+                                <li><strong>Best practice</strong>: For compatibility purposes, stick to traditional header guards.</li>
                             </ul>
                     </ul>
             </ul>
@@ -396,7 +396,7 @@
                                     <td class="tdQuarter"></td>
                                 </tr>
                             </table>
-                        <li><strong>Best practicce</strong>: For maximum compatibility, you shouldn’t assume that variables are larger than the specified minimum size.</li>
+                        <li><strong>Best practice</strong>: For maximum compatibility, you shouldn’t assume that variables are larger than the specified minimum size.</li>
                         <li>The <strong>sizeof operator</strong> can be used to get the size in bytes of a date type or variable.</li>
                     </ul>
                 <li>integers</li>
@@ -461,7 +461,7 @@
                             </code>
                         </pre>
                         <li>These fast and least types are guaranteed to be defined, and are safe to use.</li>
-                        <li><strong>Best practicce</strong>: Favor the std::int_fast#_t and std::int_least#_t integers when you need an integer guaranteed to be at least a certain minimum size.</li>
+                        <li><strong>Best practice</strong>: Favor the std::int_fast#_t and std::int_least#_t integers when you need an integer guaranteed to be at least a certain minimum size.</li>
                     </ul>
                     <li><strong>Warning: </strong>std::int8_t and std::uint8_t may behave like chars instead of integers</li>
                         <ul>
@@ -526,7 +526,7 @@
                                     <li>Double values have between 15 and 18 digits of precision.</li>
                                     <li>Long double has a minimum precision of 15, 18, or 33 significant digits</li>
                                 </ul>
-                            <li><strong>Best practicce</strong>: Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.</li>
+                            <li><strong>Best practice</strong>: Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.</li>
                             <pre>
                                 <code>
     #include &lt;iomanip>
@@ -574,7 +574,7 @@
     std::cout &lt;&lt; nan &lt;&lt; '\n'; // output: -nan(ind)
                                 </code>
                             </pre>
-                        <li><strong>Best practicce</strong>: Avoid division by 0 altogether, even if your compiler supports it.</li>
+                        <li><strong>Best practice</strong>: Avoid division by 0 altogether, even if your compiler supports it.</li>
                     </ul>
                 <li>Boolean values</li>
                     <ul>
@@ -640,7 +640,7 @@
                     <ul>
                         <li>In C++, strings aren’t a fundamental type. Hence, to use strings in C++, we first need to #include the &lt;string> header to bring in the declarations for std::string.</li>
                         <li><strong>Warning: </strong>Don't use std::cin to read strings, use std::getline instead.</li>
-                        <li><strong>Best practicce</strong>: If using std::getline to read strings, use the <strong>std::ws</strong> input manipulator to ignore leading whitespace. For detailed reason, 
+                        <li><strong>Best practice</strong>: If using std::getline to read strings, use the <strong>std::ws</strong> input manipulator to ignore leading whitespace. For detailed reason, 
                         refer to <a href="https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdstring/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
                         <pre>
                             <code>
@@ -749,9 +749,9 @@
     }
                                 </code>
                             </pre>
-                        <li><strong>Best practicce</strong>: If the constant value is known before running the program, use <strong>constexpr</strong> to declare. Else, use <strong>const</strong>.</li>
+                        <li><strong>Best practice</strong>: If the constant value is known before running the program, use <strong>constexpr</strong> to declare. Else, use <strong>const</strong>.</li>
                         <li><strong>Warning: </strong>Avoid using #define to create symbolic constants macros.</li>
-                        <li><strong>Best practicce</strong>: Use constexpr variables to provide a name and context for your magic numbers.</li>
+                        <li><strong>Best practice</strong>: Use constexpr variables to provide a name and context for your magic numbers.</li>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
@@ -763,7 +763,7 @@
                 <li>Operator's associativity determines whether a operator is to be evaluated from left to right or right to left.</li>
                 <li>Precedence level 1 is the highest precedence level, and level 17 is the lowest. Operators with a higher precedence level get evaluated first.</li>
                 <li>The operators in C++ have different precedences and associativity, refer to <a href="https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" target="_blank" rel="noopener noreferrer">this page</a> for detailed list of operators.</li>
-                <li><strong>Best practicce</strong>: Use parentheses to make it clear how an expression should evaluate, even if they are technically unnecessary.</li>
+                <li><strong>Best practice</strong>: Use parentheses to make it clear how an expression should evaluate, even if they are technically unnecessary.</li>
                 <li>To do exponents in C++, #include the &lt;cmath> header, and use the pow() function:</li>
                     <pre>
                         <code>
@@ -817,7 +817,7 @@
     }  
                         </code>
                     </pre>
-                <li><strong>Best practicce</strong>: Always parenthesize the conditional part of the <strong>conditional operator (?:)</strong>, and consider parenthesizing the whole thing as well.</li>
+                <li><strong>Best practice</strong>: Always parenthesize the conditional part of the <strong>conditional operator (?:)</strong>, and consider parenthesizing the whole thing as well.</li>
                     <ul>
                         <li>This is because the ?: operator has a very low precedence</li>
                         <li>For example: </li>
@@ -1419,26 +1419,7 @@ int main() &#123;
                                 <li>Arithmetic conversions (Arithmetic conversions)</li>
                                 <li>Other conversions (which includes various pointer and reference conversions)</li>
                             </ul>
-                        <li>Floating-point and integral promotion</li>   
-                            <ul>
-                                <li>Numeric promotion</li>
-                                    <ul>
-                                        <li> A <strong>numeric promotion</strong> is the type conversion of a narrower numeric type (such as a char) to a wider numeric type (typically int or double) that can be processed efficiently and is less likely to have a result that overflows.</li>
-                                        <li>All numeric promotions are value-preserving, which means that all values in the original type are representable without loss of data or precision in the new type.</li>
-                                        <li>Numeric promotion have 2 subcategories:</li>
-                                            <ul>
-                                                <li>Floating point promotion</li>
-                                                    <ul>
-                                                        <li>a value of type float can be converted to a value of type double</li>
-                                                    </ul>
-                                                <li>Integral promotion</li>
-                                                    <ul>
-                                                        <li>signed char or signed short can be converted to int</li>
-                                                        <li>unsigned char, char8_t, and unsigned short can be converted to int if int can hold the entire range of the type, or unsigned int otherwise.</li>
-                                                        <li>char can be converted to int (if char is signed by default) or unsigned int (if char is unsigned by default)</li>
-                                                        <li>bool can be converted to int, with false becoming 0 and true becoming 1</li>
-                                                    </ul>
-                                                <li>Example:</li>
+                        <li>Numeric promotion & Numeric conversion</li>
                                                     <pre>
                                                         <code>
     #include &lt;iostream>
@@ -1452,6 +1433,7 @@ int main() &#123;
     }
     
     int main() &#123;
+        // numeric promotions
         printDouble(5.0); // no conversion necessary
         printDouble(4.0f); // numeric promotion of float to double
         printInt(2); // no conversion necessary
@@ -1459,19 +1441,75 @@ int main() &#123;
         printInt(s); // numeric promotion of short to int
         printInt('a'); // numeric promotion of char to int
         printInt(true); // numeric promotion of bool to int
+
+        // numeric conversions
+        short s = 3; // convert int to short
+        long l = 3; // convert int to long
+        char ch = s; // convert short to char
+        float f = 3.0; // convert double to float
+        long double ld = 3.0; // convert double to long double
+        int i = 3.5; // convert double to int
+        double d = 3; // convert int to double
+        bool b1 = 3; // convert int to bool
+        bool b2 = 3.0; // convert double to bool
         return 0;
     }                                                                
                                                         </code>
                                                     </pre>
-                                            </ul>
-                                    </ul>
-                                <li>Numeric Conversion</li>
+                        <li>Arithmetic conversion</li>
+                            <ul>
+                                <li>In C++, the following operators quire operands of the same type</li>
                                     <ul>
-                                        <li></li>
+                                        <li>The binary arithmetic operators: +, -, *, /, %</li>
+                                        <li>The binary relational operators: &lt;, >, &lt;=, >=, ==, !=</li>
+                                        <li>The binary bitwise arithmetic operators: &, ^, |</li>
+                                        <li>The conditional operator ?: (excluding the condition, which is expected to be of type bool)</li>
                                     </ul>
+                                <li>If one or both the operands are not of the same type, they will be implicitly converted according to the following <strong>usual arithmetic conversion rules</strong> that define the priorities. </li>
+                                    <ul>
+                                        <li>long double (highest)</li>
+                                        <li>double</li>
+                                        <li>float</li>
+                                        <li>unsigned long long</li>
+                                        <li>long long</li>
+                                        <li>unsigned long</li>
+                                        <li>long</li>
+                                        <li>unsigned int</li>
+                                        <li>int (lowest)</li>
+                                    </ul>
+                                <li>The usual arithmetic conversion rules explain why doing float divided by int will get integer.</li>
+                                <li>Note that unsigned has higher priority than signed, and you need to be extra careful of this. 
+                                    For example, in the following example, the variable z will be converted to 4294967294 when it is converted to unsigned int, and hence producing the wrong answer.</li>
+                                    <pre>
+                                        <code>
+    unsigned int y&#123; 3 };
+    signed int z&#123; -2 };
+    std::cout &lt;&lt; std::boolalpha &lt;&lt; (z &lt; y); // output: false
+                                        </code>
+                                    </pre>
                             </ul>
                     </ul>
                 <li>Explicit Type Conversion</li>
+                    <ul>
+                        <li>C++ supports 5 different types of casts: </li>
+                            <ul>
+                                <li>C-style casts</li>
+                                <li>static casts</li>
+                                <li>const casts</li>
+                                <li>dynamic casts</li>
+                                <li>reinterpret casts</li>
+                            </ul>
+                        <li><strong>Warning: </strong>Avoid C-style casts, const casts and reinterpret casts unless you have a very good reason to use them.</li>
+                        <li>C-style casts</li>
+                            <ul>
+                                <li>Example: double d &#123; double(x) / y }; // convert x to a double so we get floating point division</li>
+                            </ul>
+                        <li>static_cast</li>
+                            <ul>
+                                <li>Example: double d &#123; static_cast&lt;double>(x) / y };</li>
+                            </ul>
+                        <li><strong>Best practice: </strong>Favor static_cast when you need to convert a value from one type to another type.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
