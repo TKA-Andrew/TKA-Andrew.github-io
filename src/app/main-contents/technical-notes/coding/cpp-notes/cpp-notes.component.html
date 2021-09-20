@@ -1510,6 +1510,79 @@ int main() &#123;
                             </ul>
                         <li><strong>Best practice: </strong>Favor static_cast when you need to convert a value from one type to another type.</li>
                     </ul>
+                <li>Typedefs and type aliases</li>
+                    <ul>
+                        <li>Type aliases</li>
+                            <ul>
+                                <li>In C++, <strong>using</strong> is a keyword that creates an alias for an existing data type.</li>
+                                <li>For example: using distance_t = double; // define distance_t as an alias for type double</li>
+                                <li>An alias does not actually define a new type -- it just introduces a new identifier for an existing type.</li>
+                            </ul>
+                        <li>Typedef</li>
+                            <ul>
+                                <li><strong>typedef</strong> is a keyword with the same semantics as “using”, but reversed syntax.</li>
+                                <li>For example: typedef double distance_t;</li>
+                            </ul>
+                        <li><strong>Best practice: </strong>When creating aliased types, prefer the type alias syntax over the typedef syntax.</li>
+                        <li>Use case examples</li>
+                            <ul>
+                                <li>Using type aliases for platform independent coding</li>
+                                    <pre>
+                                        <code>
+    #ifdef INT_2_BYTES
+    using int8_t = char;
+    using int16_t = int;
+    using int32_t = long;
+    #else
+    using int8_t = char;
+    using int16_t = short;
+    using int32_t = int;
+    #endif
+                                        </code>
+                                    </pre>
+                                <li>Using type aliases to make complex types simple</li>
+                                    <pre>
+                                        <code>
+    using pairlist_t = std::vector&lt;std::pair&lt;std::string, int> >; // make pairlist_t an alias for this crazy type
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+                <li>Type deduction for objects using the <strong>auto</strong> keyword</li>
+                    <ul>
+                        <li>For example, we say "double d&#123; 5.0 };" is an redundant variable definition because 5.0 itself is a double-typed literal.</li>
+                        <li>Hence, we can use the <strong>auto</strong> keyword to let compiler deduces the type of an object from the object's initializer.</li>
+                            <pre>
+                                <code>
+    int add(int x, int y) &#123;
+        return x + y;
+    }
+    
+    int main() &#123;
+        auto d&#123; 5.0 };         // 5.0 is a double literal, so d will be type double
+        auto i&#123; 1 + 2 };       // 1 + 2 evaluates to an int, so i will be type int
+        auto x &#123; i };          // i is an int, so x will be type int too
+        auto sum&#123; add(5, 6) }; // add() returns an int, so sum's type will be deduced to int
+        return 0;
+    }
+                                </code>
+                            </pre>
+                    </ul>
+                <li>Type deduction for functions</li>
+                    <ul>
+                        <li>Type deduction can work on functions, but SHOULD BE AVOIDED.</li>
+                        <li>One exceptional use case is <strong>trailing return syntax</strong>. In this case the <span style="background-color: whitesmoke;">auto</span> does not perform type deduction,
+                        it is just part of the trailing return syntax.</li>
+                            <pre>
+                                <code>
+    auto add(int x, int y) -> int; // declaration
+    auto add(int x, int y) -> int &#123; //definition
+        return (x + y);
+    }
+                                </code>
+                            </pre>
+                        <li>Type deduction can’t be used for function parameter types.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
