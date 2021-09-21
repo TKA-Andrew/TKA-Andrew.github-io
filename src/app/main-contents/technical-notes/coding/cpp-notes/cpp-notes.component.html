@@ -1512,13 +1512,13 @@ int main() &#123;
                     </ul>
                 <li>Typedefs and type aliases</li>
                     <ul>
-                        <li>Type aliases</li>
+                        <li>Type aliases (preferred)</li>
                             <ul>
                                 <li>In C++, <strong>using</strong> is a keyword that creates an alias for an existing data type.</li>
                                 <li>For example: using distance_t = double; // define distance_t as an alias for type double</li>
                                 <li>An alias does not actually define a new type -- it just introduces a new identifier for an existing type.</li>
                             </ul>
-                        <li>Typedef</li>
+                        <li>Typedef (not preferred)</li>
                             <ul>
                                 <li><strong>typedef</strong> is a keyword with the same semantics as “using”, but reversed syntax.</li>
                                 <li>For example: typedef double distance_t;</li>
@@ -1582,6 +1582,100 @@ int main() &#123;
                                 </code>
                             </pre>
                         <li>Type deduction can’t be used for function parameter types.</li>
+                    </ul>
+                <li>Function Overloading</li>
+                    <ul>
+                        <li><strong>Function overloading</strong> allows us to create multiple functions with the same name, so long as each identically named function has different parameters</li>
+                        <li>For example:</li>
+                            <pre>
+                                <code>
+    int add(int x, int y) // integer version
+    &#123;
+        return x + y;
+    }
+
+    double add(double x, double y) // floating point version
+    &#123;
+        return x + y;
+    }
+                                    </code>
+                            </pre>
+                        <li><strong>Best practice: </strong>Use function overloading to make your program simpler.</li>
+                        <li>Overloaded functions are differentiated by: </li>
+                            <ul>
+                                <li>Number of parameters</li>
+                                <li>Type of parameters // excludes typedefs, type aliases</li>
+                            </ul>
+                        <li>Take notet that return type of a function is NOT considered for differentiation</li>
+                        <li>There is a detailed explanation about how function overload resolution happen in this <a href="https://www.learncpp.com/cpp-tutorial/function-overload-resolution-and-ambiguous-matches/" target="_blank" rel="noopener noreferrer">tutorial</a>
+                        but it will not be covered in this short note.</li>
+                    </ul>
+                <li>C++ Templates</li>
+                    <ul>
+                        <li>Just like a normal definition, a <strong>template</strong> describes what a function or class looks like.</li>
+                        <li>Unlike a normal definition, in a template we can use one or more placeholder types. 
+                            A placeholder type represents some type that is not known at the time the template is written, but that will be provided later.</li>
+                    </ul>
+                <li>Function Templates</li>
+                    <ul>
+                        <li>2 things to do to create a function template</li>
+                            <ul>
+                                <li>replace our specific types with template types</li>
+                                <li>declare the template parameter</li>
+                                <pre>
+                                    <code>
+    template &lt;typename T> // this is the template parameter declaration
+    T max(T x, T y) // this is the function template definition for max&lt;T>
+    &#123;
+        return (x > y) ? x : y;
+    }
+                                    </code>
+                                </pre>
+                            </ul>
+                        <li>To instantiate or use the function template above: </li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+
+    template &lt;typename T>
+    T max(T x, T y) &#123;
+        return (x > y) ? x : y;
+    }
+    
+    int main() &#123;
+        std::cout &lt;&lt; max&lt;int>(1, 2) &lt;&lt; '\n'; // output: 2
+        std::cout &lt;&lt; max&lt;double>(3.5, 2.8) &lt;&lt; '\n'; // output: 3.5
+        return 0;
+    }
+                                </code>
+                            </pre>
+                        <li>We can also use <strong>template argument deduction</strong> to let the compiler deduce the actual type that should be used:</li>
+                            <pre>
+                                <code>
+    std::cout &lt;&lt; max&lt;>(1, 2) &lt;&lt; '\n';  // compiler will deduce the actual type
+    std::cout &lt;&lt; max(1, 2) &lt;&lt; '\n';  // your function template should have multiple template type parameters, else max(1, 2.4) will have error 
+                                </code>
+                            </pre>
+                        <li>You can also have function templates with non-template parameters</li>
+                            <pre>
+                                <code>
+    template &lt;typename T>
+    int someFcn (T x, double y) &#123; // y here is non-template parameter
+        return 5;
+    }
+                                </code>
+                            </pre>
+                        <li>You can also create function templates with multiple template type parameters</li>
+                            <pre>
+                                <code>
+    template &lt;typename T, typename U> // We're using two template type parameters named T and U
+    auto max(T x, U y) // auto here is to let compiler deduce what type should be returned
+    &#123;
+        return (x > y) ? x : y; // with auto return type, the compiler will deduce what the return type should be
+    }
+                                </code>
+                            </pre>
+                        <li>Programming with templates is sometimes called <strong>generic programming</strong></li>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
