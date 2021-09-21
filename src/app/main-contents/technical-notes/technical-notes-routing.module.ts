@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
+import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
 import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
@@ -22,6 +23,10 @@ const routes: Routes = [{
     {
       path: 'coding/cpp',
       component: CppNotesComponent
+    },
+    {
+      path: 'coding/cpp-part2',
+      component: CppNotesPart2Component
     },
     {
       path: 'coding/javaScript',

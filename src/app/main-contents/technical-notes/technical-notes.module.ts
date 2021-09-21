@@ -22,6 +22,7 @@ import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-n
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
 import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
+import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
     JavascriptNotesComponent,
     WebDevelopmentGeneralComponent,
     NpmNotesComponent,
-    CppNotesComponent],
+    CppNotesComponent,
+    CppNotesPart2Component],
   imports: [
     CommonModule,
     FlexLayoutModule,
