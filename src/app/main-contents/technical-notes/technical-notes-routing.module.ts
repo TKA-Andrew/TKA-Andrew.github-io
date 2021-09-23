@@ -9,6 +9,7 @@ import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-n
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
 import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { TechnicalNotesComponent } from './technical-notes.component';
+import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
 
@@ -51,6 +52,10 @@ const routes: Routes = [{
     {
       path: 'webDevelopment/sequelize',
       component: SequelizeNotesComponent
+    },
+    {
+      path: 'webDevelopment/postgresql',
+      component: PostgresqlNotesComponent
     },
     {
       path: 'miscellaneuos/npm',

@@ -23,6 +23,7 @@ import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
 import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
+import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2
     WebDevelopmentGeneralComponent,
     NpmNotesComponent,
     CppNotesComponent,
-    CppNotesPart2Component],
+    CppNotesPart2Component,
+    PostgresqlNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

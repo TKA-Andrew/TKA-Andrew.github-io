@@ -1,0 +1,151 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>PostgreSQL Notes</h1>
+        <div>
+            <h2>Introduction</h2>
+            <p>This page documents the example query strings for different use cases.</p>
+        </div>
+        <div>
+            <h3>NOTE: Always enclose your table name with " "</h3>
+            <p>This is to handle the cases where the table names that have characters in between.</p>
+            <pre>
+                <code>
+        // example
+        SELECT * FROM "12.0.215.45";
+        SELECT * FROM "0123f523-fe45-4976-8996-1c2090dc1494";
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To list the active connections on a database</h3>
+            <pre>
+                <code>
+        // example
+        SELECT * FROM pg_stat_activity;
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To duplicate a table</h3>
+            <pre>
+                <code>
+        // example
+        CREATE TABLE "new_table" AS (SELECT * FROM "old_table");
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To delete a table</h3>
+            <pre>
+                <code>
+        // example
+        DROP TABLE IF EXISTS "old_table";
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To query the distinct years and months in a database table</h3>
+            <pre>
+                <code>
+        // example
+        SELECT DISTINCT EXTRACT (YEAR FROM "date_time") AS YEAR, EXTRACT (MONTH FROM "date_time") AS MONTH FROM "table123"
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To query data between specific timestamp range</h3>
+            <pre>
+                <code>
+        // example
+        SELECT * FROM "new_table" WHERE "date_time" BETWEEN '2020-6-30 16:0:0+00' AND '2020-7-31 15:59:59+00'
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To query data between specific timestamp range at specific time zone</h3>
+            <P>To handle time zone problem, the common practice is to store UTC time into database.</P>
+            <p>However, users might want to query the data for a specifc time range at specific time zone. To do so, we can make use of the 'AT TIME ZONE' keyword</p>
+            <pre>
+                <code>
+        // example
+        SELECT * FROM "old_table" WHERE "date_time" BETWEEN ('2020-7-01' at time zone 'asia/kuala_lumpur') AND ('2020-7-31' at time zone 'asia/kuala_lumpur');
+        SELECT * FROM "old_table" WHERE "date_time" BETWEEN ('2020-7-01' at time zone '+8') AND ('2020-7-31' at time zone '+8');
+                </code>
+            </pre>
+            <p>To list out the supported time zones in postgreSQL:  SELECT * FROM pg_timezone_names;</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>NOTE: Avoid using 'AT TIME ZONE' if possible</h3>
+            <p>This depends on how the data extraction is performed.</p>
+                <ul>
+                    <li>If the postgreSQL converts the time provided in the queryString, this should be ok.</li>
+                    <li>However, if the postgreSQL converts all the data in a database table, then the execution time will be very long.</li>
+                </ul>
+            <p>Hence, best practice is we manually convert the time to the desired time zone and then pass it to queryString.</p>
+            <p>The following is an example written in Node.js:</p>
+            <pre>
+                <code>
+        // example
+        const getUTCDateString = function (date, requestedTimeZone) &#123;
+            date.setUTCMinutes(date.getUTCMinutes() - (Number(requestedTimeZone) * 60)); // adjust the UTC time according to requestedTimeZone
+            return `'$&#123;date.getUTCFullYear()}-$&#123;date.getUTCMonth() + 1}-$&#123;date.getUTCDate()} $&#123;date.getUTCHours()}:$&#123;date.getUTCMinutes()}:$&#123;date.getUTCSeconds()}+00'`; // + 1 because getUTCMonth is zero indexed
+        };
+        const yearStart = 2020;
+        const yearEnd = 2020;
+        const monthStart = 1;
+        const monthEnd = 5;
+        const requestedTimeZone = 8;
+        const dateStartString = getUTCDateString(new Date(yearStart, monthStart - 1, 1), requestedTimeZone);
+        const dateEndString = getUTCDateString(new Date(yearEnd, monthEnd, 0, 23, 59, 59), requestedTimeZone);
+        const queryString = `select * from "table_name" where "date_time_column" between $&#123;dateStartString} AND $&#123;dateEndString}`;
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To insert multiple rows of data into a database table, and update the row if the primary key is duplicated</h3>
+            <P>Imagine we have one array for each column of data, then we need to use PostgreSQL UNNEST() function to unnest the array.</P>
+            <p>To update the rows if primary key is repeated, we will use 'ON CONFLICT DO UPDATE SET' syntax</p>
+            <p>The following is an example written in Node.js: </p>
+            <pre>
+                <code>
+        // example
+        const sampleData = &#123;
+            date_time : ['2020-07-13T15:00:00+00','2020-07-13T16:00:00+00','2020-07-13T17:00:00+00'],
+            item_id: [1082, 5212,4231],
+            item_price: [30, 21, 2]
+        }
+        const insertDataQuery = `INSERT INTO "sales_record" ("date_time", "item_id", "item_price") VALUES 
+        (UNNEST(ARRAY[$&#123;sampleData.date_time}]::timestamp with time zone[]),
+            UNNEST(ARRAY[$&#123;sampleData.item_id}]),
+            UNNEST(ARRAY[$&#123;sampleData.item_price}]),
+            ON CONFLICT ("date_time") DO UPDATE SET
+                item_id = excluded.item_id,
+                item_price = excluded.item_price,
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To get number of data for each date / To inspect whether there are missing data</h3>
+            <p>This is useful if you have a database table that collects daily or even hourly data, and you would like to check whether there are missing data.</p>
+            <p>It is ridiculous to look at the data one by one, the more efficient way would be getting the number of data for each data,
+            and observe whether there is huge difference in number of data.</p>
+            <pre>
+                <code>
+        // example
+        SELECT DISTINCT date_time::date AS date, count(*) AS number_of_rows FROM "old_table" WHERE item_id = '26'
+            AND "date_time" BETWEEN '2021-6-30 16:0:0+00' AND '2021-7-31 15:59:59+00' GROUP BY DATE ORDER BY DATE ASC
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
