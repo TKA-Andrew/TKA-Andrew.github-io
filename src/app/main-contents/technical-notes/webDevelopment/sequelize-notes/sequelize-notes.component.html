@@ -22,6 +22,62 @@
             <mat-divider></mat-divider>
         </div>
         <div>
+            <h3>Adding indexes to your model</h3>
+            <p>Sometimes there are some columns which we frequenly query although they are not primary keys. For such cases, 
+              it is recommended to add indexes to these columns to improve the query performance.</p>
+            <p>Take note that you should not add indexes to all columns, only add them to columns that are frequently referred.</p>
+            <pre>
+                <code>
+      // example
+      sequelize.define('supplierModel', &#123;
+        supplier_uuid: &#123;
+          type: DataTypes.UUID,
+          defaultValue: Sequelize.UUIDV4, // to automatically generate UUID
+          primaryKey: true
+        },
+        supplier_name: DataTypes.TEXT,
+        item_ids: &#123;
+            type: DataTypes.ARRAY(DataTypes.TEXT),
+            defaultValue: []
+        },                
+      },
+      &#123;
+        tableName: 'itemSupplier',
+        createdAt: false,
+        updatedAt: false,
+        indexes: [
+          &#123;
+            unique: false,
+            fields: ['item_ids']
+          }
+        ]
+      })
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Declaring Postgres JSONB column type in model declaration</h3>
+            <p>Take note that PostgreSQL supporting JSONB column type doesn't mean it is a NOSQL database. If you interested to understand their differences, 
+            refer to this <a href="https://blog.couchbase.com/postgres-jsonb-and-nosql/" target="_blank" rel="noopener noreferrer">blog post</a>.</p>
+            <p>Declaring a JSONB column is simply by using DataTypes.JSONB. The CRUD operation for JSONB column also has no difference with other column types.</p>
+            <pre>
+                <code>
+    // example
+    sequelize.define('itemModel', &#123;
+    item_uuid: &#123;
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4, // to automatically generate UUID
+        primaryKey: true
+    },
+        item_name: DataTypes.TEXT,
+        item_details: DataTypes.JSONB
+    }
+                </code>
+            </pre>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
             <h3>Finding data according to length of array of a specific column</h3>
             <pre>
                 <code>
