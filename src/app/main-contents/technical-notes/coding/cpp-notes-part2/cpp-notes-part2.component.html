@@ -6,6 +6,7 @@
                     C++
                 </mat-panel-title>
             </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('chapter9')">Chapter 9: Compound Types</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter10')">Chapter 10: Arrays, Strings, Pointers, and References</button>
         </mat-expansion-panel>
     </mat-accordion>
@@ -14,6 +15,86 @@
             <h1>C++ Part2</h1>
             <h2>Introduction</h2>
             <p>The following are mainly the notes summarized from <a href="https://www.learncpp.com/" target="_blank" rel="noopener noreferrer">learncpp.com</a>.</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter9">
+            <h2>Chapter 9: Compound Types</h2>
+            <ul>
+                <li>Enumerated types</li>
+                    <ul>
+                        <li>An <strong>enumerated type</strong> (also called an <strong>enumeration</strong> or <strong>enum</strong>) is a data type where every possible value is defined as a symbolic constant (called an enumerator).</li>
+                        <li>The following is an example of enum. By default, the enumerators are automatically assigned with integers starting from 0.</li>
+                            <pre>
+                                <code>
+    enum TrafficLightColor &#123;
+        green,  // automatically assigned 0
+        yellow, // automatically assigned 1
+        red     // automatically assigned 2
+    };
+                                </code>
+                            </pre>
+                        <li>Enum is NOT type safe because the enumerators are not scoped. The following code will have redefinition error.</li>
+                            <pre>
+                                <code>
+    std::string green = "green"; // let's say we declare a variable called "green"
+    enum TrafficLightColor &#123;
+        green,  // will have redefinition error
+        yellow, 
+        red    
+    };
+                                </code>
+                            </pre>
+                        <li>Hence, C++ 11 introduces <strong>enum class</strong> concept. To make an enum class, simply add the <strong>class</strong> keyword after the enum keyword.</li>
+                            <pre>
+                                <code>
+    enum class TrafficLightColor &#123;
+        green,
+        yellow, 
+        red    
+    };
+                                </code>
+                            </pre>
+                        <li>Use case example of enum class</li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+    #include &lt;string>
+    
+    enum class TrafficLightColor &#123;
+        green,  // assigned 0
+        yellow, // assigned 1
+        red     // assigned 2
+    };
+    
+    // instead of "int getTrafficLightStatus()"
+    TrafficLightColor getTrafficLightStatus() &#123;
+        return TrafficLightColor::green;
+    }
+    
+    // instead of "void displayLight(int color)"
+    void displayLight(TrafficLightColor color) &#123;
+        if (color == TrafficLightColor::green) &#123;
+            std::cout &lt;&lt; "green" &lt;&lt; '\n';
+        }
+        else if (color == TrafficLightColor::yellow) &#123;
+            std::cout &lt;&lt; "yellow" &lt;&lt; '\n';
+        }
+        else if (color == TrafficLightColor::red) &#123;
+            std::cout &lt;&lt; "red" &lt;&lt; '\n';
+        }
+    }
+
+    int main() &#123;
+        displayLight(getTrafficLightStatus());                       // output: "green"
+        TrafficLightColor nextColor&#123; TrafficLightColor::yellow };    // variable declaration example
+        std::cout &lt;&lt; static_cast&lt;int>(nextColor) &lt;&lt; '\n';            // output : 1
+        displayLight(nextColor);                                     // output: "yellow"
+        return 0;
+    }
+                                </code>
+                            </pre>
+                    </ul>
+            </ul>
             <mat-divider></mat-divider>
         </div>
         <div id="chapter10">
