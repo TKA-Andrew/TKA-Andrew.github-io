@@ -179,35 +179,35 @@
             <h2>Chapter 10: Arrays, Strings, Pointers, and References</h2>
             <ul>
                 <li>Arrays</li>
-                <ul>
-                    <li>Assuming you already have the basic understanding of arrays, so they are not covered here.</li>
-                    <li>Arrays can be made from structs.</li>
-                        <pre>
-                            <code>
+                    <ul>
+                        <li>Assuming you already have the basic understanding of arrays, so they are not covered here.</li>
+                        <li>Arrays can be made from structs.</li>
+                            <pre>
+                                <code>
     struct Rectangle &#123;
         int length&#123;};
         int width&#123;};
     };
     Rectangle rects[5]&#123;}; // declare an array of 5 Rectangle
     std::cout &lt;&lt; rects[0].length &lt;&lt; '\n';
-                            </code>
-                        </pre>
-                    <li>When declaring a fixed array, the length of the array must be a compile-time constant. For "array" with dynamic size, 
-                        refer to C++ <a href="https://www.cplusplus.com/reference/vector/vector/" target="_blank" rel="noopener noreferrer">vector</a>.</li>
-                    <li>To initlize the elements of a fixed array, we can use initializer list. 
-                        If there are less initializers than the size of array, the rest of of the elements are initialized to zero.
-                        If you didnt declare the length of an array, the compiler will set the length of array based on length of initializer list. 
-                    </li>
-                        <pre>
-                            <code>
+                                </code>
+                            </pre>
+                        <li>When declaring a fixed array, the length of the array must be a compile-time constant. For "array" with dynamic size, 
+                            refer to C++ <a href="https://www.cplusplus.com/reference/vector/vector/" target="_blank" rel="noopener noreferrer">vector</a>.</li>
+                        <li>To initlize the elements of a fixed array, we can use initializer list. 
+                            If there are less initializers than the size of array, the rest of of the elements are initialized to zero.
+                            If you didnt declare the length of an array, the compiler will set the length of array based on length of initializer list. 
+                        </li>
+                            <pre>
+                                <code>
     int prime[5]&#123; 2, 3, 5, 7, 11 }; // use initializer list to initialize the fixed array
     int arrayA[10]&#123; 1, 2, 3}; // the rest of the elments are initilized to zero
     int arrayB[]&#123;0, 1, 2, 3, 4, 5} // let the initializer list set length of the array
-                            </code>
-                        </pre>
-                    <li>Use a enum inside of a namespace, and then use it to map the elements of array.</li>
-                        <pre>
-                            <code>
+                                </code>
+                            </pre>
+                        <li>Use a enum inside of a namespace, and then use it to map the elements of array.</li>
+                            <pre>
+                                <code>
     namespace StudentNames &#123;
         enum StudentNames &#123;
             kenny, // 0
@@ -224,22 +224,22 @@
         testScores[StudentNames::stan] = 76;
         return 0;
     }
-                            </code>
-                        </pre>
-                    <li>Passing arrays to functions</li>
-                        <ul>
-                            <li>When a normal variable is passed by value, C++ copies the value of the argument into the function parameter.
-                                Hence, modifying the value of the parameter will not affect the original argument.</li>
-                            <li>HOWEVER, <strong>when an array is passed into a function, the actual array is passed.</strong>.
-                                Hence, modifying the elements of array inside the function will also affect the original argument which is
-                                out of the function.</li>
-                        </ul>
-                    <li>To swap values of two variables, we can use the std::swap() function from C++ standard library. 
-                        This function can be used for swapping elements of array as well.</li>
-                    <li>To sort elements of array, we can use some algorithms such as bubble sort, selection sort and insertion sort.
-                        But C++ standard library has a sorting function named std::sort() as well.</li>
-                        <pre>
-                            <code>
+                                </code>
+                            </pre>
+                        <li>Passing arrays to functions</li>
+                            <ul>
+                                <li>When a normal variable is passed by value, C++ copies the value of the argument into the function parameter.
+                                    Hence, modifying the value of the parameter will not affect the original argument.</li>
+                                <li>HOWEVER, <strong>when an array is passed into a function, the actual array is passed.</strong>.
+                                    Hence, modifying the elements of array inside the function will also affect the original argument which is
+                                    out of the function.</li>
+                            </ul>
+                        <li>To swap values of two variables, we can use the std::swap() function from C++ standard library. 
+                            This function can be used for swapping elements of array as well.</li>
+                        <li>To sort elements of array, we can use some algorithms such as bubble sort, selection sort and insertion sort.
+                            But C++ standard library has a sorting function named std::sort() as well.</li>
+                            <pre>
+                                <code>
     #include &lt;iostream>
     #include &lt;iterator> // for std::size
     #include &lt;algorithm> // for std::sort
@@ -253,9 +253,17 @@
         }
         return 0;
     }
-                            </code>
-                        </pre>
-                </ul>
+                                </code>
+                            </pre>
+                    </ul>
+                <li>C-style Strings</li>
+                    <ul>
+                        <li>Other than std::string, C++ does support C-style Strings.</li>
+                        <li>C-style string is an array of characters that uses a null terminator.</li>
+                        <li><strong>Best practice: </strong>Use std::string instead of C-style strings.</li>
+                        <li>Since C-style Strings are not preferred, they are not covered here.</li>
+                    </ul>
+                <li></li>
             </ul>
             <mat-divider></mat-divider>
         </div>
