@@ -94,6 +94,84 @@
                                 </code>
                             </pre>
                     </ul>
+                <li>struct</li>
+                    <ul>
+                        <li>A <strong>struct</strong> allows us to group variables of mixed types together into a single unit.</li>
+                        <li>The variables that are part of the struct are called <strong>members</strong>.</li>
+                        <li>An example of struct:</li>
+                            <pre>
+                                <code>
+    struct Employee &#123;
+        int id&#123;};
+        int age&#123;};
+        bool isPermanent&#123;};
+        double wage&#123;};
+    };
+
+    Employee john; 
+    john.id = 1234;
+    john.age = 32;
+    john.wage = 24;
+    john.isPermanent = false;
+    Employee jack&#123; 1122, 20, 18, false };
+                                </code>
+                            </pre>
+                        <li>We can set default value for the non-static struct members:</li>
+                            <pre>
+                                <code>
+    struct Rectangle &#123;
+        double length&#123; 1.0 };
+        double width&#123; 1.0 };
+    };
+    Rectangle rectangleA&#123;}; // length = 1.0, width = 1.0
+    Rectangle rectangleB&#123; 1.2 }; // length = 1.2, width = 1.0
+                                </code>
+                            </pre>
+                        <li>We can also pass the entire struct as argument to a function.</li>
+                            <pre>
+                                <code>
+    void printInformation(Employee employee) &#123;
+        std::cout &lt;&lt; "ID:   " &lt;&lt; employee.id &lt;&lt; '\n';
+        std::cout &lt;&lt; "Age:  " &lt;&lt; employee.age &lt;&lt; '\n';
+        std::cout &lt;&lt; "Wage: " &lt;&lt; employee.wage &lt;&lt; '\n';
+    }
+                                </code>
+                            </pre>
+                        <li>A struct can be used as return type of function as well.</li>
+                            <pre>
+                                <code>
+    struct Point3d &#123;
+        double x&#123;};
+        double y&#123;};
+        double z&#123;};
+    };
+
+    Point3d getZeroPoint() &#123;
+        // We can create a variable and return the variable.
+        Point3d temp &#123; 0.0, 0.0, 0.0 };
+        return temp;
+    }
+                                </code>
+                            </pre>
+                        <li>Nested structs are also possible.</li>
+                            <pre>
+                                <code>
+    struct Employee &#123;
+        int id&#123;};
+        int age&#123;};
+        double wage&#123;};
+    };
+
+    struct Company &#123;
+        Employee CEO&#123;}; // Employee is a struct within the Company struct
+        int numberOfEmployees&#123;};
+    };
+
+    Company companyA&#123;&#123;0001, 52, 999}, 1000};
+    std::cout &lt;&lt; companyA.CEO.wage &lt;&lt; '\n';
+                                </code>
+                            </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
