@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-algo-expert-fundamental',
-  templateUrl: './algo-expert-fundamental.component.html',
-  styleUrls: ['./algo-expert-fundamental.component.scss']
+  selector: 'app-data-structures',
+  templateUrl: './data-structures.component.html',
+  styleUrls: ['./data-structures.component.scss']
 })
-export class AlgoExpertFundamentalComponent {
+export class DataStructuresComponent {
 
   constructor(
     private router: Router

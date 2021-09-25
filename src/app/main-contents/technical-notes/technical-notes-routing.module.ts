@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
 import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
+import { DataStructuresComponent } from './coding/data-structures/data-structures.component';
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
 import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component';
-import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { TechnicalNotesComponent } from './technical-notes.component';
 import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
@@ -20,6 +19,10 @@ const routes: Routes = [{
     {
       path: 'coding/general',
       component: CodingGeneralComponent
+    },
+    {
+      path: 'coding/dataStructures',
+      component: DataStructuresComponent
     },
     {
       path: 'coding/cpp',
@@ -36,14 +39,6 @@ const routes: Routes = [{
     {
       path:'coding/resources',
       component: CodingResourcesComponent
-    },
-    {
-      path: 'algoExpert/fundamental',
-      component: AlgoExpertFundamentalComponent
-    },
-    {
-      path: 'systemExpert/fundamental',
-      component: SystemExpertFundamentalComponent
     },
     {
       path: 'webDevelopment/general',

@@ -13,8 +13,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDividerModule } from '@angular/material/divider';
-import { AlgoExpertFundamentalComponent } from './algoExpertNotes/algo-expert-fundamental/algo-expert-fundamental.component';
-import { SystemExpertFundamentalComponent } from './systemExpertNotes/system-expert-fundamental/system-expert-fundamental.component';
 import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
@@ -24,12 +22,11 @@ import { NpmNotesComponent } from './miscellaneous/npm-notes/npm-notes.component
 import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
 import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
+import { DataStructuresComponent } from './coding/data-structures/data-structures.component';
 
 @NgModule({
   declarations: [
     TechnicalNotesComponent,
-    AlgoExpertFundamentalComponent,
-    SystemExpertFundamentalComponent,
     CodingResourcesComponent,
     CodingGeneralComponent,
     SequelizeNotesComponent,
@@ -38,7 +35,8 @@ import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/post
     NpmNotesComponent,
     CppNotesComponent,
     CppNotesPart2Component,
-    PostgresqlNotesComponent],
+    PostgresqlNotesComponent,
+    DataStructuresComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
