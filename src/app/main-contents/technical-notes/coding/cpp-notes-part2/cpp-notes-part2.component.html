@@ -290,6 +290,66 @@
                         <li><strong>Best practice: </strong>Use nullptr to initialize your pointers to a null value if you’re not giving them another value.</li>
                         <li>C++ 11 also introduces a new type called std::nullptr_t (in header &lt;cstddef>), and it can only hold one value: nullptr.</li>
                     </ul>
+                <li>Pointers and arrays</li>
+                    <ul>
+                        <li>In C++, when a fixed array is used in an expression, the fixed array will decay (be implicitly converted) into a pointer that points to the first element of the array.</li>
+                            <pre>
+                                <code>
+    int array[5]&#123; 9, 7, 5, 3, 1 };
+
+    // print address of the array's first element
+    std::cout &lt;&lt; "Element 0 has address: " &lt;&lt; &array[0] &lt;&lt; '\n'; // example output: 0000008D7995FC54
+
+    // print the value of the pointer the array decays to
+    std::cout &lt;&lt; "The array decays to a pointer holding address: " &lt;&lt; array &lt;&lt; '\n'; // example output: 0000008D7995FC54
+                                </code>
+                            </pre>
+                        <li>Hence, the following 2 function declarations are identical:</li>
+                            <pre>
+                                <code>
+    void printSize(int array[]);
+    void printSize(int* array); // this is lightly recommended as it makes clear that the parameter is being treated as a pointer
+                                </code>
+                            </pre>
+                        <li>A side note is arrays in structs and classes don’t decay. This yields a useful way to prevent decay if desired, and will be valuable later when we write classes that utilize arrays.</li>
+                    </ul>
+                <li>Pointer arithmetic and array indexing</li>
+                    <ul>
+                        <li>If we have a pointer called 'ptr', then ptr + 1 then will return the memory address of the next object of the type that ptr points to.</li>
+                            <pre>
+                                <code>
+    short value&#123; 7 }; // short is 2 bytes
+    short* ptr&#123; &value };
+    std::cout &lt;&lt; ptr &lt;&lt; '\n'; // If this points to 00000039785AF98A
+    std::cout &lt;&lt; ptr+1 &lt;&lt; '\n'; // then this one will point to 2 bytes after ptr, which is 00000039785AF98C
+                                </code>
+                            </pre>
+                        <li>Arrays are laid out sequentially in memory, and that is why we can use iterator to traverse through an array easily.</li>
+                        <li>array[n] is equivalent to *(array + n), where n is an integer. The (array + n) points to the nth element of an array,
+                            and hence deferencing it with * will get the value of nth element in that array.</li>
+                        <li>Side Note: the algorithms library offers std::count_if, which counts elements that fulfill a condition.
+                            We can also make use of std::begin to point to the first element of array, and then use std::end to point to the object AFTER the last element.</li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+    #include &lt;algorithm> // for std::count_if
+    #include &lt;iterator> // for std::begin and std::end
+    
+    bool isO(char ch) &#123;
+        switch (ch) &#123;
+            case 'O':
+            case 'o':
+                return true;
+            default:
+                return false;
+        }
+    }
+    char sampleText[]&#123; "hello world" };
+    auto numOfO&#123; std::count_if(std::begin(sampleText), std::end(sampleText), isO) };
+    std::cout &lt;&lt; numOfO &lt;&lt; '\n';
+                                </code>
+                            </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
