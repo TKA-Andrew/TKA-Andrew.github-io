@@ -263,7 +263,23 @@
                         <li><strong>Best practice: </strong>Use std::string instead of C-style strings.</li>
                         <li>Since C-style Strings are not preferred, they are not covered here.</li>
                     </ul>
-                <li></li>
+                <li>Pointers</li>
+                    <ul>
+                        <li>The <strong>address-of operator (&)</strong> allows us to see what memory address is assigned to a variable.</li>
+                        <li>The <strong>indirection operator (*)</strong> (also called <strong>dereference operator</strong>) allows us to access the value at a particular address:</li>
+                        <li>A <strong>pointer</strong> is a variable that holds a memory address as its value.</li>
+                        <pre>
+                            <code>
+    int x&#123; 5 };
+    int* ptrX&#123;&x}; // initialize ptrX with address of vqriable x
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // print the value of variable x
+    std::cout &lt;&lt; &x &lt;&lt; '\n'; // print the memory address of variable x
+    std::cout &lt;&lt; ptrX &lt;&lt; '\n'; // print the address that ptrX is holding
+    std::cout &lt;&lt; *(&x) &lt;&lt; '\n'; /// print the value at the memory address of variable x (parenthesis is optional)                            
+                            </code>
+                        </pre>
+                        <li>Pointers are useful in many cases, but they will be covered in future chapters.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
