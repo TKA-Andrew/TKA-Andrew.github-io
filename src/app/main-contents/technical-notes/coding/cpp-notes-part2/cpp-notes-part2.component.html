@@ -344,7 +344,7 @@
                 return false;
         }
     }
-    char sampleText[]&#123; "hello world" };
+    char sampleText[]&#123; "hello world" }; // using std::string sampleText{ "hello world" } is also the same
     auto numOfO&#123; std::count_if(std::begin(sampleText), std::end(sampleText), isO) };
     std::cout &lt;&lt; numOfO &lt;&lt; '\n';
                                 </code>
