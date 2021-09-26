@@ -280,6 +280,16 @@
                         </pre>
                         <li>Pointers are useful in many cases, but they will be covered in future chapters.</li>
                     </ul>
+                <li>Null pointer</li>
+                    <ul>
+                        <li>A pointer holding a null value is called a <strong>null pointer</strong>.</li>
+                        <li>In C++ 11, we can assign a pointer a null value by using the <strong>nullptr</strong> keyword:</li>
+                            <ul>
+                                <li>Example: float* ptr &#123; nullptr };  // ptr is now a null pointer</li>
+                            </ul>
+                        <li><strong>Best practice: </strong>Use nullptr to initialize your pointers to a null value if you’re not giving them another value.</li>
+                        <li>C++ 11 also introduces a new type called std::nullptr_t (in header &lt;cstddef>), and it can only hold one value: nullptr.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
