@@ -1203,9 +1203,9 @@ int main() &#123;
 
     void incrementAndPrint() &#123;
         static int s_value&#123; 1 }; // static duration via static keyword.  This initializer is only executed once.
-        ++value;
-        std::cout &lt;&lt; value &lt;&lt; '\n';
-    } // value is destroyed here
+        ++s_value;
+        std::cout &lt;&lt; s_value &lt;&lt; '\n';
+    } // s_value is not destroyed here, but becomes inaccessible because it goes out of scope
     
     int main() &#123;
         incrementAndPrint(); // output: 2
