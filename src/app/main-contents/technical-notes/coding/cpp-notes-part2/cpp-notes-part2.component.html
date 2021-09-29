@@ -430,6 +430,21 @@
                                 <li>The solution for memory leaks would be deleting or freeing the pointer before it is out of scope or before assigning new value to it.</li>
                             </ul>
                     </ul>
+                <li>Pointers and const</li>
+                    <ul>
+                        <li>A non-const pointer can be redirected to point to other addresses.</li>
+                        <li>A const pointer always points to the same address, and this address can not be changed.</li>
+                        <li>A pointer to a non-const value can change the value it is pointing to. These can not point to a const value.</li>
+                        <li>A pointer to a const value treats the value as const (even if it is not), and thus can not change the value it is pointing to.</li>
+                        <pre>
+                            <code>
+    int value&#123; 5 };
+    const int* ptr1&#123; &value }; // ptr1 points to a "const int", so this is a pointer to a const value.
+    int* const ptr2&#123; &value }; // ptr2 points to an "int", so this is a const pointer to a non-const value.
+    const int* const ptr3&#123; &value }; // ptr3 points to a "const int", so this is a const pointer to a const value.
+                            </code>
+                        </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
