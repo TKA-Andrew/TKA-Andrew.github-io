@@ -445,6 +445,44 @@
                             </code>
                         </pre>
                     </ul>
+                <li>Reference variables</li>
+                    <ul>
+                        <li>Other than normal variables and pointers, C++ also supports another type of variables - references.</li>
+                        <li>A <strong>reference</strong> is a C++ variable that acts as an alias to another object or value, 
+                            and it acts identically to the value it is referencing.</li>
+                            <pre>
+                                <code>
+    int value&#123; 5 }; // normal integer
+    int& y&#123; x }; // y is a reference to variable x
+    int& z&#123; y }; // z is also a reference to variable x
+                                </code>
+                            </pre>
+                        <li>In the above snippet, setting or getting the value of x, y, or z will all do the same thing (set or get the value of x).
+                            The address of the references also same with the variable that they are referencing.
+                        </li>
+                            <pre>
+                                <code>
+    int x&#123; 5 }; // normal integer
+    int& y&#123; x }; // y is a reference to variable m
+    int& z&#123; y }; // z is also a reference to variable m
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // output: 5
+    std::cout &lt;&lt; y &lt;&lt; '\n'; // output: 5
+    std::cout &lt;&lt; z &lt;&lt; '\n'; // output: 5
+    x = 6;
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // output: 6
+    std::cout &lt;&lt; y &lt;&lt; '\n'; // output: 6
+    std::cout &lt;&lt; z &lt;&lt; '\n'; // output: 6
+    ++z;
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // output: 7
+    std::cout &lt;&lt; y &lt;&lt; '\n'; // output: 7
+    std::cout &lt;&lt; z &lt;&lt; '\n'; // output: 7
+
+    std::cout &lt;&lt; &x &lt;&lt; '\n'; // output: 000000614ABDF5A4
+    std::cout &lt;&lt; &y &lt;&lt; '\n'; // output: 000000614ABDF5A4
+    std::cout &lt;&lt; &z &lt;&lt; '\n'; // output: 000000614ABDF5A4
+                                </code>
+                            </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
