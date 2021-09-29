@@ -397,6 +397,38 @@
     ptr = nullptr; // set ptr to be a null pointer
                                 </code>
                             </pre>
+                        <li>Memory leaks</li>
+                            <ul>
+                                <li>Dynamically allocated memory stays allocated until it is explicitly deallocated or until the program ends.</li>
+                                <li>However, the pointers used to hold dynamically allocated memory addresses follow the normal scoping rules for local variables.</li>
+                                <li>Consider the following:</li>
+                                    <pre>
+                                        <code>
+    void doSomething() &#123;
+        int* ptr&#123; new int&#123;} };
+    }
+                                        </code>
+                                    </pre>
+                                <li>Because pointers variables are just normal variables, when the function ends, ptr will go out of scope.</li>
+                                <li>Then, ptr is destroyed there are no more references to the dynamically allocated memory.</li>
+                                <li>Now, the memory address is allocated but now we dont have any reference to that memory address, and hence we can't free the memory address.</li>
+                                <li>This is called a <strong>memory leak</strong>, which means your program loses the address of some bit of dynamically allocated memory before giving it back to the operating system. </li>
+                                <li>Memory leaks will eat up your free memory while the program is running.</li>
+                                <li>The following 2 cases will also result in memory leaks:</li>
+                                    <pre>
+                                        <code>
+    // CASE 1 - a pointer is assigned another value
+    int value = 5;
+    int* ptr&#123; new int&#123;} }; // allocate memory
+    ptr = &amp;value; // old address lost, memory leak results
+
+    // CASE 2 - double-allocation
+    int* ptr&#123; new int&#123;} };
+    ptr = new int&#123;}; // old address lost, memory leak results
+                                        </code>
+                                    </pre>
+                                <li>The solution for memory leaks would be deleting or freeing the pointer before it is out of scope or before assigning new value to it.</li>
+                            </ul>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
