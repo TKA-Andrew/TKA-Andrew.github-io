@@ -505,7 +505,8 @@
                                         </code>
                                     </pre>
                             </ul>
-                        <li><strong>Best practice: </strong>Pass arguments by non-const reference (rather than by pointer) when the argument needs to be modified by the function.</li>
+                        <li><strong>Best practice: </strong>Pass arguments by non-const reference (rather than by pointer) when the argument needs to be modified by the function, 
+                        applicable for variables that are not pointers or non-fundamental data types (such as structs). Fundametal data types such as int, double etc should be passed by value.</li>
                         <li>References vs pointers</li>
                             <ul>
                                 <li>References and pointers have an interesting relationship -- a reference acts like a pointer that implicitly performs indirection through it when accessed</li>
@@ -523,6 +524,37 @@
     refD = 7;
     std::cout &lt;&lt; *ptrC &lt;&lt; '\n'; // output: 7
     std::cout &lt;&lt; refD &lt;&lt; '\n';  // output: 7
+                                    </code>
+                                </pre>
+                            </ul>
+                        <li>References and const</li>
+                            <ul>
+                                <li>Much like a pointer to a const value, a reference to a const value can reference a non-const variable. When accessed through a reference to a const value, 
+                                    the value is considered const even if the original variable is not:</li>
+                                    <pre>
+                                        <code>
+    int apple&#123; 5 };
+    const int& refApple&#123; apple }; // apple is not const, but refApple is still "a reference to const value"
+    apple = 6;
+    std::cout &lt;&lt; apple &lt;&lt; '\n'; //ouput: 6
+    std::cout &lt;&lt; refApple &lt;&lt; '\n'; // output: 6
+    // refApple = 7; // illegal -- refApple is const
+    const int orange&#123; 3 };
+    const int& refOrange&#123; orange }; // refOrange is also "a reference to const value"
+    const int& refGrapes&#123; 8 }; //refGrapse is also "a reference to const value"                                        
+                                        </code>
+                                    </pre>
+                                <li></li>
+                            </ul>
+                        <li>References used as function parameters can also be const.</li>
+                            <ul>
+                                <li>This allows us to access the argument without making a copy of it, while guaranteeing that the function will not change the value being referenced.</li>
+                                <pre>
+                                    <code>
+    void printIt(const int& ref) &#123; // to guarantee the function will not change the value being referenced
+        // ref = 6; // illegal -- ref is const
+        std::cout &lt;&lt; ref;
+    }
                                     </code>
                                 </pre>
                             </ul>
