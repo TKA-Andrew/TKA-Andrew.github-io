@@ -482,6 +482,50 @@
     std::cout &lt;&lt; &z &lt;&lt; '\n'; // output: 000000614ABDF5A4
                                 </code>
                             </pre>
+                        <li>Referencces must be initialized to a variable value, there is NO such thing as a null reference.</li>
+                        <li>Once initialized, a reference can not be changed to reference another variable. </li>
+                        <li>References are most often used as function parameters.</li>
+                            <ul>
+                                <li>In this context, the reference parameter acts as an alias for the argument, and no copy of the argument is made into the parameter.</li>
+                                <li>This can lead to better performance if the argument is large or expensive to copy.</li>
+                                <li>Example:</li>
+                                    <pre>
+                                        <code>
+    // ref is a reference to the argument passed in, not a copy
+    void setNumTo6(int& ref) &#123;
+        ref = 6;
+    }
+
+    int main () &#123;
+        int num&#123; 5 };
+        setNumTo6(num);
+        std::cout &lt;&lt; num &lt;&lt; '\n'; // output: 6
+        return 0;
+    }               
+                                        </code>
+                                    </pre>
+                            </ul>
+                        <li><strong>Best practice: </strong>Pass arguments by non-const reference (rather than by pointer) when the argument needs to be modified by the function.</li>
+                        <li>References vs pointers</li>
+                            <ul>
+                                <li>References and pointers have an interesting relationship -- a reference acts like a pointer that implicitly performs indirection through it when accessed</li>
+                                <li>Hence *ptr and ref are identical.</li>
+                                <pre>
+                                    <code>
+    int valueB&#123; 5 };
+    int* const ptrC&#123; &valueB };
+    int& refD&#123; valueB };
+    std::cout &lt;&lt; *ptrC &lt;&lt; '\n'; // output: 5
+    std::cout &lt;&lt; refD &lt;&lt; '\n'; // output: 5
+    *ptrC = 6;
+    std::cout &lt;&lt; *ptrC &lt;&lt; '\n'; // output: 6
+    std::cout &lt;&lt; refD &lt;&lt; '\n';  // output: 6
+    refD = 7;
+    std::cout &lt;&lt; *ptrC &lt;&lt; '\n'; // output: 7
+    std::cout &lt;&lt; refD &lt;&lt; '\n';  // output: 7
+                                    </code>
+                                </pre>
+                            </ul>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
