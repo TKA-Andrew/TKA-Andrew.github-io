@@ -559,6 +559,31 @@
                                 </pre>
                             </ul>
                     </ul>
+                <li>for-each loops</li>
+                    <ul>
+                        <li>The following is an example of for-each loop statement:</li>
+                            <pre>
+                                <code>
+    constexpr int fibonacci[]&#123; 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+    for (int number : fibonacci) // iterate over array fibonacci
+    &#123;
+       std::cout &lt;&lt; number &lt;&lt; ' ';
+    }
+                                </code>
+                            </pre>
+                        <li>Since elements of the array should have the same type, it is suitable to use auto keyword to let compiler deduce the type.</li>
+                        <li>Moreover, we can make use of reference to avoid copying array elements.</li>
+                        <li>And if we are not going to modify the array elements, it's a good idea to make the reference const.</li>
+                        <pre>
+                            <code>
+    std::string array[]&#123; "peter", "likes", "frozen", "yogurt" };
+    for (const auto& element: array) // element is a const reference to the currently iterated array element
+    &#123;
+        std::cout &lt;&lt; element &lt;&lt; ' ';
+    }
+                            </code>
+                        </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
