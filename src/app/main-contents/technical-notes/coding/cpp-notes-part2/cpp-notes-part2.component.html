@@ -594,6 +594,89 @@
                         <li>It is recommended to avoid using pointers to pointers unless no other options are available,
                              because they're complicated to use and potentially dangerous. Hence, it is not covered here also.</li>
                     </ul>
+                <li>std::array</li>
+                    <ul>
+                        <li>Unlike fixed arrays which decay into pointers, std::array provides fixed array functionality that won’t decay when passed into a function.</li>
+                        <li>std::array is defined in the &lt;array> header, inside the std namespace.</li>
+                            <pre>
+                                <code>
+    #include &lt;array>
+    std::array&lt;int, 3> myArray; // declare an integer array with length 3
+                                </code>
+                            </pre>
+                        <li>size() function can be used to retrieve length</li>
+                        <table>
+                            <tr class="trFlex">
+                                <th class="thHalf">built-in fixed array</th>
+                                <th class="thHalf">std::array</th>
+                            </tr>
+                            <tr class="trFlex">
+                                <td class="tdHalf">int myArray1[5] &#123; 9, 7, 5, 3, 1 };</td>
+                                <td class="tdHalf">std::array&lt;int, 5> myArray2 &#123; 9, 7, 5, 3, 1 };</td>
+                            </tr>
+                            <tr class="trFlex">
+                                <td class="tdHalf">decay into pointers</td>
+                                <td class="tdHalf">DOES NOT decay into pointers</td>
+                            </tr>
+                            <tr class="trFlex">
+                                <td class="tdHalf">can omit array length when providing an initializer</td>
+                                <td class="tdHalf">CANNOT omit array length when providing an initializer</td>
+                            </tr>
+                            <tr class="trFlex">
+                                <td class="tdHalf">decay into pointers</td>
+                                <td class="tdHalf">do not decay into pointers</td>
+                            </tr>
+                            <tr class="trFlex">
+                                <td class="tdHalf">use .length to get length of array</td>
+                                <td class="tdHalf">use .size() to get length of array</td>
+                            </tr>
+                            <tr class="trFlex">
+                                <td class="tdHalf">does not have .begin() and .end() function<br>std::sort(std::begin(array), std::end(array));</td>
+                                <td class="tdHalf">has .begin() and .end() function<br>std::sort(myArray.begin(), myArray.end());</td>
+                            </tr>
+                        </table>
+                        <li>Passing std::array of different lengths to a function</li>
+                            <ul>
+                                <li>When we use a std::array as a function parameter, we have to specify the element type and array length,
+                                     because they are part of the std::array element</li>
+                                    <pre>
+                                        <code>
+    void printArray(const std::array&lt;int, 5>& myArray) &#123;
+        for (auto element : myArray)
+            std::cout &lt;&lt; element &lt;&lt; ' ';
+        std::cout &lt;&lt; '\n';
+    }
+                                        </code>
+                                    </pre>
+                                <li>The downside of this is our function can only handle arrays of specific type and length.s</li>
+                                <li>The solution of this problem is by making use of C++ function templates:</li>
+                                    <pre>
+                                        <code>
+    #include &lt;array>
+    #include &lt;cstddef>
+    #include &lt;iostream>
+    
+    // printArray is a template function
+    template &lt;typename T, std::size_t size> // parameterize the element type and size
+    void printArray(const std::array&lt;T, size>& myArray) &#123;
+        for (auto element : myArray)
+            std::cout &lt;&lt; element &lt;&lt; ' ';
+        std::cout &lt;&lt; '\n';
+    }
+    
+    int main() &#123;
+        std::array myArray5&#123; 9.0, 7.2, 5.4, 3.6, 1.8 };
+        printArray(myArray5);
+    
+        std::array myArray7&#123; 9.0, 7.2, 5.4, 3.6, 1.8, 1.2, 0.7 };
+        printArray(myArray7);
+    
+        return 0;
+    }
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
