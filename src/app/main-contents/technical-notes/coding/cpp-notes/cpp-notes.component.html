@@ -1653,7 +1653,7 @@ int main() &#123;
                             <pre>
                                 <code>
     std::cout &lt;&lt; max&lt;>(1, 2) &lt;&lt; '\n';  // compiler will deduce the actual type
-    std::cout &lt;&lt; max(1, 2) &lt;&lt; '\n';  // your function template should have multiple template type parameters, else max(1, 2.4) will have error 
+    std::cout &lt;&lt; max(1, 2) &lt;&lt; '\n';  // if the template type parameters defined in your funtion template are of same type, then max(1, 2.4) will have error 
                                 </code>
                             </pre>
                         <li>You can also have function templates with non-template parameters</li>
