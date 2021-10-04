@@ -11,6 +11,7 @@ import { TechnicalNotesComponent } from './technical-notes.component';
 import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
+import { GitlabNotesComponent } from './miscellaneous/gitlab-notes/gitlab-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -55,6 +56,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/npm',
       component: NpmNotesComponent
+    },
+    {
+      path: 'miscellaneuos/gitLabNotes',
+      component: GitlabNotesComponent
     }
   ]
 }];
