@@ -675,7 +675,102 @@
     }
                                         </code>
                                     </pre>
+                                <li>Another downside of std::array is, the size() function and array index parameter to operator[] use a type called <span class="highlightInGrey">size_type</span>, 
+                                    which is defined by the C++ standard as an <span style="font-style:italic;">unsigned</span> integral type. 
+                                    Hence, the following code snippet will cause a deadloop since we used the <span class="highlightInGrey">auto</span> keyword to declare the variable i,
+                                    and unsigned integer will wrap around when it reachs its limit. </li>
+                                    <pre>
+                                        <code>
+    std::array&lt;int,5> myArrayABC &#123; 7, 3, 1, 9, 5 };
+    std::cout &lt;&lt; typeid(myArrayABC.size()).name() &lt;&lt; '\n'; // output: unsigned __int64
+
+    // this for-loop can work, but actually there is a hidden signed/unsigned mismatch in this code
+    for (int i&#123; 0 }; i &lt; myArrayABC.size(); ++i) &#123;
+        std::cout &lt;&lt; myArrayABC[i] &lt;&lt; ' ';
+    }
+
+    // this for-loop will reveal the problem
+    for (auto i&#123; myArrayABC.size() - 1}; i >= 0; --i) &#123;
+        std::cout &lt;&lt; myArrayABC[i] &lt;&lt; ' ';
+    }
+                                        </code>
+                                    </pre>
+                                <li>To avoid signed/unsinged missmatch problem, we can use the std::size_t type to declare the index variable:</li>
+                                    <pre>
+                                        <code>
+    #include &lt;cstddef> // std::size_t
+    for (std::size_t i&#123; 0 }; i &lt; myArrayABC.size(); ++i) &#123;
+        std::cout &lt;&lt; myArrayABC[i] &lt;&lt; ' ';
+        std::cout &lt;&lt; typeid(i).name() &lt;&lt; '\n'; // output: unsigned __int64
+    }
+                                        </code>
+                                    </pre>
+                                <li>A better solution is avoid manual indexing of std::aray, use range-based for-loops if possible, or use a int variable to store the length of array.</li>
+                                    <pre>
+                                        <code>
+    // using range-based for-loop
+    for (auto num : myArrayABC) &#123;
+        std::cout &lt;*&lt; num &lt;*&lt; '\n';
+    }
+
+    // store the length of array in an int variable, and use it in loop
+    int length&#123; myArrayABC.size() };
+    std::cout &lt;*&lt; typeid(length).name() &lt;*&lt; '\n'; // output: int
+    for (int i&#123; length - 1 }; i >= 0; --i) &#123;
+        std::cout &lt;*&lt; myArrayABC[i] &lt;*&lt; ' ';
+    }
+                                        </code>
+                                    </pre>
                             </ul>
+                        <li>std::array supports a second form of array element access (the at() function) that does bounds checking, and hence will be slower than operator[]</li>
+                            <pre>
+                                <code>
+    std::array myArray &#123; 9, 7, 5, 3, 1 };
+    myArray.at(1) = 6; // array element 1 is valid, sets array element 1 to value 6
+    myArray.at(9) = 10; // array element 9 is invalid, will throw a runtime error
+                                </code>
+                            </pre>
+                    </ul>
+                <li>std::vector</li>
+                    <ul>
+                        <li>The C++ standard library provides std::vector (lives in the &lt;vector> header) that makes working with dynamic arrays safer and easier.</li>
+                        <li>std::vector provides dynamic array functionality that handles its own memory management.</li>
+                        <li>This means you can create arrays that have their length set at run-time,
+                             without having to explicitly allocate and deallocate memory using <span class="highlightInGrey">new</span> and <span class="highlightInGrey">delete</span>.
+                             This is because std::vector will dynamically allocate memory for its contents as requested.</li>
+                            <pre>
+                                <code>
+    std::vector&lt;int> arrayC; // no need to specify length at the declaration
+    std::vector&lt;int> arrayD(5); // using direct initialization, we can create a vector with specific number of elements,
+    std::vector&lt;int> arrayD = &#123; 9, 7, 5, 3, 1 }; // use initializer list to initialize array (Before C++11)
+    std::vector&lt;int> arrayE&#123; 9, 7, 5, 3, 1 }; // use uniform initialization to initialize array
+                                </code>
+                            </pre>
+                        <li>std::vector supports both <span class="highlightInGrey">[]</span> and <span class="highlightInGrey">at()</span> function</li>
+                        <li>As of C++11, you can also assign values to a std::vector using an initializer-list, and then the vector will self-resize to match the number of elements provided.</li>
+                            <pre>
+                                <code>
+    array = &#123; 0, 1, 2, 3, 4 }; // okay, array length is now 5
+    array = &#123; 9, 8, 7 }; // okay, array length is now 3
+                                </code>
+                            </pre>
+                        <li>The memory of std::vector variables will be deallocated as soon as the varibale goes out of scope. 
+                            This helps prevent memory leaks, and make std::vector much safer to use.</li>
+                        <li>To get the length of a vector, use .size() function</li>
+                        <li>The .size() of std::vector is similar to .size() of std::array, which returns a nested type of <span class="highlightInGrey">size_type</span></li>
+                        <li>A vector can be resized using the <span class="highlightInGrey">resize()</span> function</li>
+                            <pre>
+                                <code>
+                                    std::vector&lt;int> arrayF&#123; 4, 5, 3, 6, 8 };
+                                    arrayF.resize(3);
+                                    for (auto i : arrayF)
+                                        std::cout &lt;&lt; i &lt;&lt; ' '; // output: 4 5 3
+                                    std::cout &lt;&lt; '\n';
+                                    arrayF.resize(6);
+                                    for (auto i : arrayF)
+                                        std::cout &lt;&lt; i &lt;&lt; ' '; // output: 4 5 3 0 0 0
+                                </code>
+                            </pre>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
