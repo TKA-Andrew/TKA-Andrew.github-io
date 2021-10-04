@@ -688,14 +688,20 @@
     for (int i&#123; 0 }; i &lt; myArrayABC.size(); ++i) &#123;
         std::cout &lt;&lt; myArrayABC[i] &lt;&lt; ' ';
     }
-
-    // this for-loop will reveal the problem
+                                        </code>
+                                    </pre>
+                                <li>You must be aware that the .size() function returns a <span class="highlightInGrey">size_t</span> type which is unsigned integral type,
+                                     and the following example will have error because the iterator can never be less than zero.</li>
+                                    <pre>
+                                        <code>
+    // this will have error
     for (auto i&#123; myArrayABC.size() - 1}; i >= 0; --i) &#123;
         std::cout &lt;&lt; myArrayABC[i] &lt;&lt; ' ';
     }
                                         </code>
                                     </pre>
-                                <li>To avoid signed/unsinged missmatch problem, we can use the std::size_t type to declare the index variable:</li>
+
+                                <li>To avoid signed/unsigned missmatch problem, we can use the std::size_t type to declare the index variable:</li>
                                     <pre>
                                         <code>
     #include &lt;cstddef> // std::size_t
@@ -705,19 +711,12 @@
     }
                                         </code>
                                     </pre>
-                                <li>A better solution is avoid manual indexing of std::aray, use range-based for-loops if possible, or use a int variable to store the length of array.</li>
+                                <li>A better solution is avoid manual indexing of std::aray, use range-based for-loops if possible.</li>
                                     <pre>
                                         <code>
     // using range-based for-loop
     for (auto num : myArrayABC) &#123;
         std::cout &lt;*&lt; num &lt;*&lt; '\n';
-    }
-
-    // store the length of array in an int variable, and use it in loop
-    int length&#123; myArrayABC.size() };
-    std::cout &lt;*&lt; typeid(length).name() &lt;*&lt; '\n'; // output: int
-    for (int i&#123; length - 1 }; i >= 0; --i) &#123;
-        std::cout &lt;*&lt; myArrayABC[i] &lt;*&lt; ' ';
     }
                                         </code>
                                     </pre>
