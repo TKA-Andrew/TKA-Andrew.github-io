@@ -760,17 +760,76 @@
                         <li>A vector can be resized using the <span class="highlightInGrey">resize()</span> function</li>
                             <pre>
                                 <code>
-                                    std::vector&lt;int> arrayF&#123; 4, 5, 3, 6, 8 };
-                                    arrayF.resize(3);
-                                    for (auto i : arrayF)
-                                        std::cout &lt;&lt; i &lt;&lt; ' '; // output: 4 5 3
-                                    std::cout &lt;&lt; '\n';
-                                    arrayF.resize(6);
-                                    for (auto i : arrayF)
-                                        std::cout &lt;&lt; i &lt;&lt; ' '; // output: 4 5 3 0 0 0
+    std::vector&lt;int> arrayF&#123; 4, 5, 3, 6, 8 };
+    arrayF.resize(3);
+    for (auto i : arrayF)
+        std::cout &lt;&lt; i &lt;&lt; ' '; // output: 4 5 3
+    std::cout &lt;&lt; '\n';
+    arrayF.resize(6);
+    for (auto i : arrayF)
+        std::cout &lt;&lt; i &lt;&lt; ' '; // output: 4 5 3 0 0 0
                                 </code>
                             </pre>
                     </ul>
+                <li>Iterators</li>
+                <ul>
+                    <li>An iterator is an object designed to traverse through a container (e.g. the values in an array, or the characters in a string), providing access to each element along the way.</li>
+                    <li>Pointers as an iterator</li>
+                        <ul>
+                            <li>The simplest kind of iterator is a pointer.</li>
+                                <pre>
+                                    <code>
+    #include &lt;array>
+    #include &lt;iostream>
+    
+    int main() &#123;
+        std::array &lt;int,7> data&#123; 0, 1, 2, 3, 4, 5, 6 };
+    
+        auto begin&#123; &data[0] };
+        // note that this points to one spot beyond the last element
+        auto end&#123; begin + std::size(data) };
+    
+        // for-loop with pointer
+        for (auto ptr&#123; begin }; ptr != end; ++ptr) // ++ to move to next element
+        &#123;
+            std::cout &lt;&lt; *ptr &lt;&lt; ' '; // Indirection to get value of current element
+        }
+        std::cout &lt;&lt; '\n';
+        return 0;
+    }
+                                    </code>
+                                </pre>
+                        </ul>
+                    <li>Standard library iterators</li>
+                        <ul>
+                            <li>Instead of manually calculating our own begin and end points (like what is done in previous code snippet), 
+                                we can use the .begin() and .end() functions provided by most of the standard library containers.
+                            </li>
+                                <pre>
+                                    <code>
+    std::array &lt;int,3> array2&#123; 1, 2, 3 };
+
+    for (auto p&#123; array2.begin() }; p != array2.end(); ++p) // ++ to move to next element.
+    &#123;
+        std::cout &lt;&lt; *p &lt;&lt; ' '; // Indirection to get value of current element.
+    }
+    std::cout &lt;&lt; '\n';
+
+    return 0;
+                                    </code>
+                                </pre>
+                        </ul>
+                    <li>All types that have <span class="highlightInGrey">begin</span> and <span class="highlightInGrey">end</span> member functions 
+                        or can be used with <span class="highlightInGrey">std::begin</span> and <span class="highlightInGrey">std::end</span> are usable in range-based for-loops.</li>
+                    <li>Iterator invalidation</li>
+                        <ul>
+                            <li>Some operations that modify containers (such as adding an element to a <span class="highlightInGrey">std::vector</span>) can have the side effect of 
+                                causing the elements in the container to change addresses.</li>
+                            <li>When this happens, the iterator initialized previously might no longer be valid.</li>
+                            <li>Please beware that accessing an invalidated iterator produces undefined behavior.</li>
+                        </ul>
+
+                </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
