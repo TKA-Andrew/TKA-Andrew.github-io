@@ -772,13 +772,13 @@
                             </pre>
                     </ul>
                 <li>Iterators</li>
-                <ul>
-                    <li>An iterator is an object designed to traverse through a container (e.g. the values in an array, or the characters in a string), providing access to each element along the way.</li>
-                    <li>Pointers as an iterator</li>
-                        <ul>
-                            <li>The simplest kind of iterator is a pointer.</li>
-                                <pre>
-                                    <code>
+                    <ul>
+                        <li>An iterator is an object designed to traverse through a container (e.g. the values in an array, or the characters in a string), providing access to each element along the way.</li>
+                        <li>Pointers as an iterator</li>
+                            <ul>
+                                <li>The simplest kind of iterator is a pointer.</li>
+                                    <pre>
+                                        <code>
     #include &lt;array>
     #include &lt;iostream>
     
@@ -797,16 +797,16 @@
         std::cout &lt;&lt; '\n';
         return 0;
     }
-                                    </code>
-                                </pre>
-                        </ul>
-                    <li>Standard library iterators</li>
-                        <ul>
-                            <li>Instead of manually calculating our own begin and end points (like what is done in previous code snippet), 
-                                we can use the .begin() and .end() functions provided by most of the standard library containers.
-                            </li>
-                                <pre>
-                                    <code>
+                                        </code>
+                                    </pre>
+                            </ul>
+                        <li>Standard library iterators</li>
+                            <ul>
+                                <li>Instead of manually calculating our own begin and end points (like what is done in previous code snippet), 
+                                    we can use the .begin() and .end() functions provided by most of the standard library containers.
+                                </li>
+                                    <pre>
+                                        <code>
     std::array &lt;int,3> array2&#123; 1, 2, 3 };
 
     for (auto p&#123; array2.begin() }; p != array2.end(); ++p) // ++ to move to next element.
@@ -816,20 +816,40 @@
     std::cout &lt;&lt; '\n';
 
     return 0;
-                                    </code>
-                                </pre>
-                        </ul>
-                    <li>All types that have <span class="highlightInGrey">begin</span> and <span class="highlightInGrey">end</span> member functions 
-                        or can be used with <span class="highlightInGrey">std::begin</span> and <span class="highlightInGrey">std::end</span> are usable in range-based for-loops.</li>
-                    <li>Iterator invalidation</li>
-                        <ul>
-                            <li>Some operations that modify containers (such as adding an element to a <span class="highlightInGrey">std::vector</span>) can have the side effect of 
-                                causing the elements in the container to change addresses.</li>
-                            <li>When this happens, the iterator initialized previously might no longer be valid.</li>
-                            <li>Please beware that accessing an invalidated iterator produces undefined behavior.</li>
-                        </ul>
+                                        </code>
+                                    </pre>
+                            </ul>
+                        <li>All types that have <span class="highlightInGrey">begin</span> and <span class="highlightInGrey">end</span> member functions 
+                            or can be used with <span class="highlightInGrey">std::begin</span> and <span class="highlightInGrey">std::end</span> are usable in range-based for-loops.</li>
+                        <li>Iterator invalidation</li>
+                            <ul>
+                                <li>Some operations that modify containers (such as adding an element to a <span class="highlightInGrey">std::vector</span>) can have the side effect of 
+                                    causing the elements in the container to change addresses.</li>
+                                <li>When this happens, the iterator initialized previously might no longer be valid.</li>
+                                <li>Please beware that accessing an invalidated iterator produces undefined behavior.</li>
+                            </ul>
 
-                </ul>
+                    </ul>
+                <li>Standard Library Algorithms</li>
+                    <ul>
+                        <li>The algorithms library has 3 categories of functionality</li>
+                            <ul>
+                                <li><strong>Inspectors</strong> -- Used to view (but not modify) data in a container. Examples include searching and counting.</li>
+                                <li><strong>Mutators</strong> -- Used to modify data in a container. Examples include sorting and shuffling.</li>
+                                <li><strong>Facilitators</strong> -- Used to generate a result based on values of the data members. Examples include objects that multiply values, or objects that determine what order pairs of elements should be sorted in.</li>
+                            </ul>
+                        <li>Here are some examples of functions</li>
+                            <ul>
+                                <li>std::find</li>
+                                <li>std::find_if</li>
+                                <li>std::count</li>
+                                <li>std::count_if</li>
+                                <li>std::sort</li>
+                                <li></li>
+                                <li>std::for_each</li>
+                            </ul>
+                        <li>For examples and references, refer to the <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-standard-library-algorithms/" target="_blank" rel="noopener noreferrer">tutorial</a>.</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
