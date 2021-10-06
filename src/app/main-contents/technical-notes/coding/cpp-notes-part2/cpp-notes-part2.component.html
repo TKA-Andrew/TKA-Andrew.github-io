@@ -869,7 +869,38 @@
                                 <li>When passing structs or classes (including std::array, std::vector, and std::string).</li>
                             </ul>
                     </ul>
-                
+                <li>Passing arguments by reference</li>
+                    <ul>
+                        <li>When an argument is passed by reference, a reference is created to the actual argument (which takes minimal time) and no copying of values takes place. 
+                            This allows us to pass large structs and classes with a minimum performance penalty.</li>
+                        <li>Take note that: Non-const references cannot bind to r-values. A function with a non-const reference parameter cannot be called with literals or temporaries.</li>
+                            <pre>
+                                <code>
+    #include &lt;string>
+
+    void foo(std::string& text) &#123;}
+    
+    int main() &#123;
+        std::string text&#123; "hello" };
+    
+        foo(text); // ok
+        foo(text + " world"); // illegal, non-const references can't bind to r-values.
+    
+        return 0;
+                                        }
+                                </code>
+                            </pre>
+                        <li>When to use pass by reference:</li>
+                            <ul>
+                                <li>When passing structs or classes (use const if read-only).</li>
+                                <li>When you need the function to modify an argument.</li>
+                                <li>When you need access to the type information of a fixed array.</li>
+                            </ul>
+                        <li>When not to use pass by reference:</li>
+                            <ul>
+                                <li>When passing fundamental types that don’t need to be modified (use pass by value).</li>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
