@@ -8,6 +8,7 @@
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('chapter9')">Chapter 9: Compound Types</button>
             <button mat-button class="listItem" (click)="scrollTo('chapter10')">Chapter 10: Arrays, Strings, Pointers, and References</button>
+            <button mat-button class="listItem" (click)="scrollTo('chapter11')">Chapter 11: Functions</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column" fxLayout="column">
@@ -850,6 +851,25 @@
                             </ul>
                         <li>For examples and references, refer to the <a href="https://www.learncpp.com/cpp-tutorial/introduction-to-standard-library-algorithms/" target="_blank" rel="noopener noreferrer">tutorial</a>.</li>
                     </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div id="chapter11">
+            <h2>Chapter 11: Functions</h2>
+            <ul>
+                <li>Passing arguments by value</li>
+                    <ul>
+                        <li>When an argument is passed by value, the argument’s value is copied into the value of the corresponding function parameter.</li>
+                        <li>When to use pass by value:</li>
+                            <ul>
+                                <li>When passing fundamental data types and enumerators, and the function does not need to change the argument.</li>
+                            </ul>
+                        <li>When not to use pass by value:</li>
+                            <ul>
+                                <li>When passing structs or classes (including std::array, std::vector, and std::string).</li>
+                            </ul>
+                    </ul>
+                
             </ul>
             <mat-divider></mat-divider>
         </div>
