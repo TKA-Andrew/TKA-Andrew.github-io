@@ -901,6 +901,83 @@
                                 <li>When passing fundamental types that don’t need to be modified (use pass by value).</li>
                             </ul>
                     </ul>
+                <li>Passing arguments by address</li>
+                    <ul>
+                        <li>Because the argument is an address, the function parameter must be a pointer.
+                             The function can then dereference the pointer to access or change the value being pointed to.</li>
+                        <li>Example:</li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+
+    void foo(int* ptr) &#123;
+        *ptr = 6;
+    }
+    
+    int main() &#123;
+        int value&#123; 5 };
+    
+        std::cout &lt;&lt; "value = " &lt;&lt; value &lt;&lt; '\n';
+        foo(&value);
+        std::cout &lt;&lt; "value = " &lt;&lt; value &lt;&lt; '\n';
+        return 0;
+    }
+                                </code>
+                            </pre>
+                        <li>It is always a good idea to ensure parameters passed by address are not null pointers before dereferencing them, because it might cause the program to crash.</li>
+                            <pre>
+                                <code>
+    void printArray(int* array, int length) &#123;
+        // if user passed in a null pointer for array, bail out early!
+        if (!array)
+            return;
+
+        for (int index&#123; 0 }; index &lt; length; ++index)
+            std::cout &lt;&lt; array[index] &lt;&lt; ' ';
+    }
+                                </code>
+                            </pre>
+                        <li>When you pass a pointer to a function, the pointer’s value (the address it points to) is copied from the argument to the function’s parameter. 
+                            Hence, you can simply set the ptr to null in the function and it won't affect the original pointer argument. 
+                            However, if you deference the address and then change it's value, the value stored at the original value will be changed also.
+                            Moreover, if you pass the address by reference, then the original pointer can be modified in the function.
+                        </li>
+                            <pre>
+                                <code>
+    #include &lt;iostream>
+    void setToNull(int* tempPtr) &#123;
+        // we're making tempPtr point at something else, not changing the value that tempPtr points to.
+        tempPtr = nullptr; // use 0 instead if not C++11
+    }
+    void setToNullByReference(int*& tempPtr) &#123;
+        // tempPtr is now a reference to a pointer, so any changes made to tempPtr will change the argument as well!
+        tempPtr = nullptr; // use 0 instead if not C++11
+    }
+    void setToSix(int* tempPtr) &#123;
+        *tempPtr = 6; // we're changing the value that tempPtr (and ptr) points to
+    }
+
+    int main() &#123;
+        int five&#123; 5 };
+        int* ptr&#123; &five };
+        setToNull(ptr); // tempPtr will receive a copy of ptr
+        std::cout &lt;&lt; *ptr &lt;&lt; '\n'; // output: 5
+        setToSix(ptr);
+        std::cout &lt;&lt; *ptr &lt;&lt; '\n'; // output: 6
+        setToNullByReference(ptr);
+        // ptr has now been changed to nullptr!
+        if (ptr)
+            std::cout &lt;&lt; *ptr;
+        else
+            std::cout &lt;&lt; "ptr is null"; // output: ptr is null 
+        return 0;
+    }
+                                </code>
+                            </pre>
+                        <li>From the code snippet above, we can say that "pass by address" is actually just passing an address by value</li>
+                        <li><strong>Best practice: </strong>Prefer pass by reference to pass by address whenever applicable.</li>
+                    </ul>
+
             </ul>
             <mat-divider></mat-divider>
         </div>
