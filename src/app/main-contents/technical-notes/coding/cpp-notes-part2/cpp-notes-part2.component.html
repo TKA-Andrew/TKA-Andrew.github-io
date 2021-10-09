@@ -605,6 +605,18 @@
     std::array&lt;int, 3> myArray; // declare an integer array with length 3
                                 </code>
                             </pre>
+                        <li>Take note that the length of array must be known during compile-time, means we can not pass a variable for the length, unless it is a const variable</li>
+                            <pre>
+                                <code>
+    int n = 5;
+    const int x&#123; 6 };
+    // std::array&lt;int, n> testA&#123; 1, 2, 3 }; // will have error
+    std::array&lt;int, x> testB&#123; 1, 2, 3 }; // same as std::array&lt;int, 6> since x is const
+    for (const auto num : testB) &#123;
+        std::cout &lt;&lt; num &lt;&lt; ' '; // output: 1 2 3 0 0
+    }
+                                </code>
+                            </pre>
                         <li>size() function can be used to retrieve length</li>
                         <table>
                             <tr class="trFlex">
@@ -742,8 +754,13 @@
                                 <code>
     std::vector&lt;int> arrayC; // no need to specify length at the declaration
     std::vector&lt;int> arrayD(5); // using direct initialization, we can create a vector with specific number of elements,
-    std::vector&lt;int> arrayD = &#123; 9, 7, 5, 3, 1 }; // use initializer list to initialize array (Before C++11)
-    std::vector&lt;int> arrayE&#123; 9, 7, 5, 3, 1 }; // use uniform initialization to initialize array
+    std::vector&lt;int> arrayE = &#123; 9, 7, 5, 3, 1 }; // use initializer list to initialize array (Before C++11)
+    std::vector&lt;int> arrayF&#123; 9, 7, 5, 3, 1 }; // use uniform initialization to initialize array
+    int n = 5;
+    std::vector&lt;int> testV(n, -1); // direct initialization with run-time length, and initialize all the elements to -1
+    for (const auto num : testV) &#123;
+        std::cout &lt;&lt; num &lt;&lt; ' '; // output: -1 -1 -1 -1 -1
+    }
                                 </code>
                             </pre>
                         <li>std::vector supports both <span class="highlightInGrey">[]</span> and <span class="highlightInGrey">at()</span> function</li>
