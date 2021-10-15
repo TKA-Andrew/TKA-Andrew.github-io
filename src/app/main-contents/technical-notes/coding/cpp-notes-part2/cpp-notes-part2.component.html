@@ -994,7 +994,111 @@
                         <li>From the code snippet above, we can say that "pass by address" is actually just passing an address by value</li>
                         <li><strong>Best practice: </strong>Prefer pass by reference to pass by address whenever applicable.</li>
                     </ul>
+                <li>Returning values by value, reference, and address</li>
+                    <ul>
+                        <li>Return by address was often used to return dynamically allocated memory to the caller:</li>
+                            <pre>
+                                <code>
+    int* allocateArray(int size)
+    &#123;
+        return new int[size];
+    }
 
+                                </code>
+                            </pre>
+                        <li>Return by reference is typically used to return arguments passed by reference to the function back to the caller.</li>
+                            <pre>
+                                <code>
+    // Returns a reference to the index element of array
+    int& getElement(std::array&lt;int, 25>& array, int index)
+    &#123;
+        // we know that array[index] will not be destroyed when we return to the caller (since the caller passed in the array in the first place!)
+        // so it's okay to return it by reference
+        return array[index];
+    }
+                                </code>
+                            </pre>
+                        <li>Returning multiple values</li>
+                            <ul>
+                                <li>using a data-only struct:</li>
+                                    <ul>
+                                        <li>Example</li>
+                                            <pre>
+                                                <code>
+    #include &lt;iostream>
+
+    struct S
+    &#123;
+        int m_x;
+        double m_y;
+    };
+    
+    S returnStruct()
+    &#123;
+        S s;
+        s.m_x = 5;
+        s.m_y = 6.7;
+        return s;
+    }
+    
+    int main()
+    &#123;
+        S s&#123; returnStruct() };
+        std::cout &lt;&lt; s.m_x &lt;&lt; ' ' &lt;&lt; s.m_y &lt;&lt; '\n';
+    
+        return 0;
+    }
+                                                </code>
+                                            </pre>
+                                    </ul>
+                                <li>use std::tuple</li>
+                                    <ul>
+                                        <li>A tuple is a sequence of elements that may be different types, where the type of each element must be explicitly specified.</li>
+                                        <li>Example:</li>
+                                            <pre>
+                                                <code>
+    #include &lt;tuple>
+    #include &lt;iostream>
+
+    std::tuple&lt;int, double> returnTuple() // return a tuple that contains an int and a double
+    &#123;
+        return &#123; 5, 6.7 };
+    }
+
+    int main()
+    &#123;
+        std::tuple s&#123; returnTuple() }; // get our tuple
+        std::cout &lt;&lt; std::get&lt;0>(s) &lt;&lt; ' ' &lt;&lt; std::get&lt;1>(s) &lt;&lt; '\n'; // use std::get&lt;n> to get the nth element of the tuple (counting from 0)
+
+        return 0;
+    }
+                                                </code>
+                                            </pre>
+                                        <li>You can also use std::tie to unpack the tuple into predefined variables, like so:</li>
+                                            <pre>
+                                                <code>
+    #include &lt;tuple>
+    #include &lt;iostream>
+
+    std::tuple&lt;int, double> returnTuple() // return a tuple that contains an int and a double
+    &#123;
+        return &#123; 5, 6.7 };
+    }
+
+    int main()
+    &#123;
+        int a;
+        double b;
+        std::tie(a, b) = returnTuple(); // put elements of tuple in variables a and b
+        std::cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; b &lt;&lt; '\n';
+
+        return 0;
+    }
+                                                </code>
+                                            </pre>
+                                    </ul>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
