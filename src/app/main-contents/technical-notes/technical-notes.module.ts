@@ -23,7 +23,6 @@ import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
 import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
 import { DataStructuresComponent } from './coding/data-structures/data-structures.component';
-import { GitlabNotesComponent } from './miscellaneous/gitlab-notes/gitlab-notes.component';
 import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/gitlab-ci-cd-notes.component';
 import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component';
 
@@ -40,7 +39,6 @@ import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component
     CppNotesPart2Component,
     PostgresqlNotesComponent,
     DataStructuresComponent,
-    GitlabNotesComponent,
     GitlabCiCdNotesComponent,
     GitNotesComponent],
   imports: [

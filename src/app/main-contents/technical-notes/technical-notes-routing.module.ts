@@ -11,7 +11,6 @@ import { TechnicalNotesComponent } from './technical-notes.component';
 import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/postgresql-notes.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
-import { GitlabNotesComponent } from './miscellaneous/gitlab-notes/gitlab-notes.component';
 import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/gitlab-ci-cd-notes.component';
 import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component';
 
