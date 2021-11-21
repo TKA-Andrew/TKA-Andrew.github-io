@@ -1,0 +1,313 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <h1>GitLab CI/CD</h1>
+
+        <h2>Introduction</h2>
+        <p>GitLab CI/CD is a tool for software development using the continuous methodologies:</p>
+            <ul>
+                <li>Continuous Integration (CI)</li>
+                <li>Continuous Delivery (CD)</li>
+                <li>Continuous Deployment (CD)</li>
+            </ul>
+        <p>Declaration: Most of the contents are summarized or originated by https://docs.gitlab.com/</p>
+    <mat-divider></mat-divider>
+
+        <h2>CI/CD concepts</h2>
+        <p>With the continuous method of software development, you continuously build, test, and deploy iterative code changes.</p>
+        <h3>Continuous Integration</h3>
+            <ul>
+                <li>Continuous Integration is a methodology of having an automated build and testing process before merging the main repository with new changes.</li>
+                <li>Build -> Unit/Integration Testing -> Merge</li>
+            </ul>
+        <h3>Continuous Delivery</h3>
+            <ul>
+                <li>Continuous Delivery is a step beyond Continuous Integration, it deploys all code chagnes to a testing or production environment after merging the source code.</li>
+                <li>For example, everytime when I update V-One Energy Plugin frontend and backend for dev-energy.v-one.ai, the pipeline builds and pushes the docker image to V-One's Docker registry. 
+                    Then, I need to manually redeploy the workload.
+                </li>
+                <li>There could be an additional test process after merging as well.</li>
+                <li>Build -> Unit/Integration Testing -> Merge -> Acceptance Testing -> Release to deployment platform -> Deployment (Manual)</li>
+            </ul>
+        <h3>Continuous Deployment</h3>
+            <ul>
+                <li>Continuous Deployment is similar to Continuous Delivery, except that the deployment is automated. </li>
+                <li>Build -> Unit/Integration Testing -> Merge -> Acceptance Testing -> Release to deployment platform -> Deployment (Automated)</li>
+            </ul>
+    <mat-divider></mat-divider>
+
+        <h2>GitLab CI/CD workflow</h2>
+        <img style="width: 100%;" src="https://docs.gitlab.com/ee/ci/introduction/img/gitlab_workflow_example_11_9.png">
+    <mat-divider></mat-divider>
+
+        <h2>Make use of GitLab features in CI/CD Workflow</h2>
+        <ul>
+            <li>There are many <a href="https://docs.gitlab.com/ee/ci/#gitlab-cicd-features" target="_blank" ref="noopener noreferrer">GitLab features</a> 
+                that can be used to further enhance the CI/CD workflow</li>
+            <img style="width: 100%;" src="https://docs.gitlab.com/ee/ci/introduction/img/gitlab_workflow_example_extended_v12_3.png">
+        </ul>
+    <mat-divider></mat-divider>
+
+        <h2>Quick Notes</h2>
+        <ul>
+            <li>To use GitLab CI/CD, you need:
+                <ul>
+                    <li>A GitLab Runner ready to run jobs</li>
+                    <li>A valid .gitlab-ci.yml file present at the root directory of your project.</li>
+                </ul>
+            </li>
+        </ul>
+        <h3>GitLab Runner</h3>
+        <ul>
+            <li>What are GitLab Runners?</li>
+                <ul>
+                    <li>Runners are processes that pick up and execute CI/CD jobs for GitLab.</li>
+                </ul>
+            <li>Check whether you have a runner for your project</li>
+                <ul>
+                    <li>Go to Your project >> Settings >> CI/CD >> Runner</li>
+                    <li>If you already have a runner for your project, you may skip the following 2 sections.</li>
+                    <li>Don't worry, if the runners not assigned properly, you will know when your pipeline failed to run.</li>
+                </ul>
+            <li>Installing GitLab Runner</li>
+                <ul>
+                    <li><a href="https://docs.gitlab.com/runner/install/index.html" target="_blank" rel="noopener noreferrer">Main Reference</a></li>
+                    <li>Refer to the link above to install a GitLab Runner according to the platform that you wants the GitLab Runner to run on.</li>
+                    <li>Take note that it is more appropriate for a runner to run on server, so that the Runner is always available. If you only need a temporary runner, you may install it on your local Docker or Windows.</li>
+                </ul>
+            <li>Registring GitLab Runner</li>
+                <ul>
+                    <li>After installing the GitLab Runner, you need to register it.</li>
+                    <li>Refer to the respective guide for Runner Registration according to the runner environment. For example:</li>
+                        <ul>
+                            <li>If you <a href="https://docs.gitlab.com/runner/install/windows.html" target="_blank" rel="noopener noreferrer">installed GitLab Runner On Windows</a>,
+                                refer to <a href="https://docs.gitlab.com/runner/register/index.html#windows" target="_blank" rel="noopener noreferrer">this section</a></li>
+                            <li> (RECOMMENDED) If you <a href="https://docs.gitlab.com/runner/install/docker.html" target="_blank" rel="noopener noreferrer">installed GitLab Runner as a Docker Service</a>,
+                                refer to <a href="https://docs.gitlab.com/runner/register/index.html#docker" target="_blank" rel="noopener noreferrer">this section</a>.</li>
+                        </ul>
+                    <li>When you register a runner, you must choose an executor.</li>
+                        <ul>
+                            <li>For example:</li>
+                                <ul>
+                                    <li>If you want your CI/CD job to run PowerShell commands, you might install GitLab Runner on a Windows server and then register a runner that uses the shell executor.</li>
+                                    <li>If you want your CI/CD job to run commands in a custom Docker container, you might install GitLab Runner on a Linux server and register a runner that uses the Docker executor.</li>
+                                </ul>
+                        </ul>
+                    <li>Here is <a href="https://docs.gitlab.com/runner/executors/index.html" target="_blank" rel="noopener noreferrer">a list of executors.</a></li>
+                    <li>Remember to allow your runner to run untagged jobs, else you need to define the tags in .gitlab-ci.yml later.</li>
+                </ul>
+        </ul>
+        <h3>.gitlab-ci.yml</h3>
+        <ul>
+            <li><a href="https://docs.gitlab.com/ee/ci/yaml/gitlab_ci_yaml.html" target="_blank" rel="noopener noreferrer">Main Reference</a></li>
+            <li>The most common terms to get familiar with</li>
+                <ul>
+                    <li>Pipeline</li>
+                        <ul>
+                            <li>Is the top-level component of continuous integration, delivery, and deployment.</li>
+                            <li>Comprises of Stages & Jobs</li>
+                            <li>If any job fails, the pipeline is marked as failed and jobs in later stages do not start. Jobs in the current stage are not stopped and continue to run.</li>
+                        </ul>
+                    <li>Stages</li>
+                        <ul>
+                            <li>Stages are groups of indenpendent jobs.</li>
+                            <li>Stages are executed sequentially</li>
+                        </ul>
+                    <li>Jobs</li>
+                        <ul>
+                            <li>Jobs are picked up by runners and executed in the environment of the runner</li>
+                            <li>If a job is not assigned to a stage, the test stage is used by default.</li>
+                            <li>Multiple jobs in the same stage are executed in parallel (if there are enough concurrent runners)</li>
+                        </ul>
+                </ul>
+            <li><a href="https://docs.gitlab.com/ee/ci/yaml/" target="_blank" rel="noopener noreferrer">Keyword reference for the .gitlab-ci.yml file</a></li>
+                <ul>
+                    <li>There are 4 types of Global Keywords</li>
+                        <ul>
+                            <li>default</li>
+                                <ul>
+                                    <li>For you to set global defaults for job keywords such as image, before_script, cache.</li>
+                                </ul>
+                            <li>stages</li>
+                                <ul>
+                                    <li>For you to define the stages sequence of the pipelin</li>
+                                    <li>If stages is not defined in the .gitlab-ci.yml file, the default pipeline stages are:</li>
+                                        <ul>
+                                            <li>.pre</li>
+                                            <li>build</li>
+                                            <li>test</li>
+                                            <li>deploy</li>
+                                            <li>.post</li>
+                                        </ul>
+                                </ul>
+                            <li>workflow</li>
+                                <ul>
+                                    <li>For you to control the pipeline behaviour such as modifying a variable when a condition is met</li>
+                                </ul>
+                            <li>include</li>
+                                <ul>
+                                    <li>For you to include external YAML files in your CI/CD configuration</li>
+                                </ul>
+                        </ul>
+                    <li>Before proceeding with job keywords, let's have a look at a simple example first: </li>
+                        <pre>
+                            <code>
+    default: 
+        image: trion/ng-cli
+
+    stages:
+        - dependencies
+        - build
+        - test
+        - deploy
+
+    install_dependencies:
+        stage: dependencies
+        script:
+          - echo "Current stage -> dependencies"
+          - npm ci
+        only:
+          changes:
+            - package-lock.json
+            - package.json
+
+    build_project:
+        stage: build
+        artifacts:
+            paths:
+                - dist
+            expire_in: 1 hour
+        before_script:
+            - npm install -g @angular/cli@11.2.14
+            - npm link @angular/cli
+        only:
+            refs:
+              - master
+        script: 
+            - echo "Current stage -> build"
+            - ng build --prod
+
+    test1:
+        stage: test
+        script: 
+            - echo "Current stage -> test"
+            - echo "Running test1"
+
+    test2:
+        stage: test
+        script: 
+            - echo "Current stage -> test"
+            - echo "Running test2"
+
+    deploy_project:
+        stage: deploy
+        script:
+            - echo "Current stage -> deploy"
+            - firebase deploy --token $FIREBASE_TOKEN
+                            </code>
+                        </pre>
+                    <li>Let's categorize the keywords above:</li>
+                        <ul>
+                            <li>The following are <span style="color: blue;">global keywords</span></li>
+                                <ul>
+                                    <li>default</li>
+                                    <li>stages</li>
+                                </ul>
+                            <li>The following are <span style="color: red;">job keywords</span></li>
+                                <ul>
+                                    <li>stage</li>
+                                    <li>artifacts</li>
+                                    <li>before_script</li>
+                                    <li>only</li>
+                                    <li>script</li>
+                                </ul>
+                            <li>The following are simply the names of the jobs</li>
+                                <ul>
+                                    <li>build_project</li>
+                                    <li>tes1</li>
+                                    <li>test2</li>
+                                    <li>deploy_project</li>
+                                </ul>
+                        </ul>
+                    <li>The example above shows that:</li>
+                        <ul>
+                            <li>The docker image used for the jobs is "trion/ng-cli".</li>
+                            <li>There are 3 stages in this pipeline, which are <span style="font-style: italic; color: blueviolet;">build</span>,
+                             <span style="font-style: italic; color: blueviolet;">test</span> and <span style="font-style: italic; color: blueviolet;">deploy</span></li>
+                            <li>The <span style="font-style: italic; color: orange;">install_dependencies</span> job only runs when there are changes in package.json file or .package-lock.json file.</li>
+                            <li>Side Note: According to this <a href="https://javascript-conference.com/blog/build-test-deployment-angular-gitlab-ci/" target="_blank" rel="noopener noreferrer">blog post</a>,
+                                it is better to use <span style="font-style: italic;">npm ci</span> instead of <span style="font-style: italic;">npm install</span> so that an exactly reproducible version resolution takes place </li> 
+                            <li>The <span style="font-style: italic; color: orange;">build_project</span> is a job, which
+                                <ul>
+                                    <li>runs in <span style="font-style: italic; color: blueviolet;">build</span> stage</li>
+                                    <li>stores the artifacts of the job in /dist directory, for 1 hour only</li>
+                                    <li>will run "npm install -g @angular/cli@11.2.14" and "npm link @angular/cli" before running the main script</li>
+                                    <li>is executed only if the branch is master branch</li>
+                                    <li>the main script of this job is "ng build --prod"</li>
+                                </ul>
+                            </li>
+                            <li>The <span style="font-style: italic; color: orange;">test1</span> and <span style="font-style: italic; color: orange;">test2</span> jobs
+                                will run in parallel as they are under same stage.</li>
+                            <li>The <span style="font-style: italic; color: orange;">deploy_project</span> job's script is making use of variable $FIREBASE_TOKEN</li>
+                            <li>Since the $FIREBASE_TOKEN is not defined in this .gitlab-ci.yml file, it is most probably defined through GitLab CICD Settings</li>
+                        </ul>
+                    
+                </ul>
+            <li>Take note that: Improper indentation in the .gitlab-ci.yml file will lead to errors.</li>
+        </ul>
+    <mat-divider></mat-divider>
+    <h2>Environments and deployments</h2>
+    <ul>
+        <li>Environments describe where code is deployed.</li>
+        <li>Each time GitLab CI/CD deploys a version of code to an environment, a deployment is created.</li>
+        <li>Gitlab:</li>
+            <ul>
+                <li>Provides a full history of deployments to each environment.</li>
+                <li>Tracks your deployments, so you always know what is deployed on your servers.</li>
+            </ul>
+        <li>If you have a deployment service like Kubernetes associated with your project, 
+            utilize <a href="https://docs.gitlab.com/ee/user/project/clusters/index.html" target="_blank" rel="noopener noreferrer">GitLab-Kubernates</a></li>
+        <li>There are two types of environments:</li>
+            <ul>
+                <li>Static environments have static names, like staging or production.</li>
+                <li>Dynamic environments have dynamic names. Dynamic environments are a fundamental part of <a href="https://docs.gitlab.com/ee/ci/review_apps/index.html" target="_blank" rel="noopener noreferrer">Review apps</a>.</li>
+            </ul>
+        <li>To create a static environment:</li>
+            <ul>
+                <li>In your .gitlab-ci.yml file, specify a name for the environment and optionally, a URL, which determines the deployment URL. For example:</li>
+                    <pre>
+                        <code>
+deploy_staging:
+    stage: deploy
+    script:
+        - echo "Deploy to staging server"
+    environment:
+        name: staging
+        url: https://staging.example.com
+                        </code>
+                    </pre>
+                <li>OR, you can add new environment through UI</li>
+                    <ol>
+                        <li>Go to your project >> Deployments >> Environments</li>
+                        <li>Select New environment</li>
+                        <li>Enter a name and external URL.</li>
+                        <li>Save</li>
+                    </ol>
+            </ul>
+        <li>You can create a job that requires someone to manually start the deployment. For example:</li>
+            <pre>
+                <code>
+deploy_prod:
+    stage: deploy
+    script:
+        - echo "Deploy to production server"
+    environment:
+        name: production
+        url: https://example.com
+    when: manual
+    rules:
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH         
+                </code>
+            </pre>
+        <li>For more details, refer to the <a href="https://docs.gitlab.com/ee/ci/environments/#" target="_blank" rel="noopener noreferrer">full documentation</a></li>
+    </ul>
+    <mat-divider></mat-divider>
+</div>

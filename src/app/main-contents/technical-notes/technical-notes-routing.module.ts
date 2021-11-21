@@ -12,6 +12,7 @@ import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/post
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
 import { GitlabNotesComponent } from './miscellaneous/gitlab-notes/gitlab-notes.component';
+import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/gitlab-ci-cd-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -58,8 +59,12 @@ const routes: Routes = [{
       component: NpmNotesComponent
     },
     {
+      path: 'miscellaneuos/GitLabCICD',
+        component: GitlabCiCdNotesComponent
+    },
+    {
       path: 'miscellaneuos/gitLabNotes',
-      component: GitlabNotesComponent
+        component: GitlabNotesComponent
     }
   ]
 }];
