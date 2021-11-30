@@ -13,6 +13,7 @@ import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequel
 import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development-general/web-development-general.component';
 import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/gitlab-ci-cd-notes.component';
 import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component';
+import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -41,6 +42,10 @@ const routes: Routes = [{
     {
       path:'coding/resources',
       component: CodingResourcesComponent
+    },
+    {
+      path:'robotics/ROS',
+      component: RosNotesComponent
     },
     {
       path: 'webDevelopment/general',

@@ -1,0 +1,110 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>ROS Notes</h1>
+        <div>
+            <h2>Introduction</h2>
+            <p>This page documents some ROS notes of mine.</p>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Some helpful Visual Studio Code extensions</h3>
+            <ul>
+                <li>ROS (by Microsoft)</li>
+                <li>ROS Snippets (by Liews Wuttipat)</li>
+                <li>XML (by Red Hat)</li>
+                <li>XML Tools (by Josh Johnson)</li>
+                <li>vscode-icons (by VSCode Icons Team)</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To check whether a ROS package is installed</h3>
+            <ul>
+                <li><span class="CLI-font">rospack find [package-name]</span></li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Working with multiple catkin workspaces</h3>
+            <ul>
+                <li>There is no best practice of saying whether you should only have one or multiple catkin workspaces.</li>
+                <li>My personal opinion is use a same workspace for your personal development and testing, 
+                    and create a new workspace if only you are working on something that needs to be delivered to others</li>
+                <li>Important Note: You can't run multiple catkin workspaces on the same session. The last to be sourced is the one to be activated.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>To start or shutdown a launch file in script</h3>
+            <ul>
+                <li><a href="https://answers.ros.org/question/263862/if-it-possible-to-launch-a-launch-file-from-python/
+                    http://wiki.ros.org/roslaunch/API%20Usage" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                <li>Code Snippet Example:</li>
+                <pre>
+                    <code>
+    #!/usr/bin/env python
+    import rospy
+    import roslaunch
+    import rospkg
+    
+    class roslaunchAPI():
+        def __init__(self):
+            rospy.init_node('roslaunchAPI', anonymous=True)
+            rospy.on_shutdown(self.shutdownHook)
+            uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+            roslaunch.configure_logging(uuid)
+    
+            # get an instance of RosPack with the default search paths
+            rospack = rospkg.RosPack()
+    
+            # get the directory of the package
+            packagePath = rospack.get_path('beginner_tutorials')
+            
+            #TAKE NOTE: provide absolute path instead of relative path 
+            roslaunchControl = roslaunch.parent.ROSLaunchParent(uuid,[packagePath+"/launch/turtlemimic.launch"])
+    
+            roslaunchControl.start()
+            rospy.sleep(3)
+            roslaunchControl.shutdown()
+            rospy.signal_shutdown("Process completed.")
+    
+        def shutdownHook(self):
+            rospy.loginfo("Shutting down ...")
+    
+    if __name__ == "__main__":
+        try:
+            roslaunchApiObject = roslaunchAPI()
+            rospy.spin()
+    
+        except Exception as e:
+            rospy.logerr(e)
+                    </code>
+                </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h3>Editing map generated</h3>
+            <ul>
+                <li>Sometimes the map generated might not be perfect and need some touch-ups. For this, we can use image editor such as GIMP to edit the map.</li>
+                <li>Some simple guidelines:</li>
+                    <ol>
+                        <li>Install GIMP</li>
+                        <li>To get the colour of the background of the map, use the Color Pickup Tool
+                            in the Toolbox, then set PickMode as Set foreground color, and click on the
+                            background</li>
+                        <li>To draw straight lines, click on the image with paintbrush tool, then hold the [Shift] key and move your mouse around.</li>
+                        <li>Export the file as .pgm format</li>
+                        <li>Go to the directory where you saved your map, you should see a file with the same name as your .pgm image, but in .yaml format.</li>
+                        <li>Modify the value of 'image' key and replace with absolute path of your pgm file, for example:</li>
+                            <pre>
+                                <code>
+    image: /home/andrew/catkin_ws/src/help_me_carry_2017/src/maps/HMC2017map.pgm
+                                </code>
+                            </pre>
+                    </ol>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>

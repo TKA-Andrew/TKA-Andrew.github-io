@@ -25,6 +25,7 @@ import { PostgresqlNotesComponent } from './webDevelopment/postgresql-notes/post
 import { DataStructuresComponent } from './coding/data-structures/data-structures.component';
 import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/gitlab-ci-cd-notes.component';
 import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component';
+import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component
     PostgresqlNotesComponent,
     DataStructuresComponent,
     GitlabCiCdNotesComponent,
-    GitNotesComponent],
+    GitNotesComponent,
+    RosNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
