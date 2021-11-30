@@ -1,0 +1,161 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <h1>CMake Notes</h1>
+
+    <h2>Introduction (Make & CMake)</h2>
+    <ul>
+        <li><b>Make</b> is a <span style="font-style: italic; font-weight: bold;">cross platform build system</span> originally <span style="font-style: italic; font-weight: bold;">for Unix like systems</span></li>
+        <li><b>CMake</b> is a <span style="font-style: italic; font-weight: bold;">cross-platform free and open-source software</span> for build automation, testing, packaging and installation of software by using a compiler-independent method</li>
+        <li>CMake is not a build system, but rather it generates system build files for IDEs/build tools such as Visual Studio, XCode, Unix Make, Eclipse CDT etc.</li>
+        <li>CMake <b>does not</b> compile (i.e. build) the sources</li>
+        <li>You do not need to learn how to write Makefile if you know how to use CMake</li>
+    </ul>
+    <mat-divider></mat-divider>
+
+    <h3>Installing CMake</h3>
+    <ul>
+        <li>The installers or CMake binaries can be downloaded from <a href="https://cmake.org/download/" target="_blank" rel="noopener noreferrer">here</a></li>
+    </ul>
+    <mat-divider></mat-divider>
+
+    <h3>Installing make, gcc, g++</h3>
+    <ul>
+        <li>Follow the instructions <a href="https://www.msys2.org/" target="_blank" rel="noopener noreferrer">here</a></li>
+        <li>After the installation, you should add <span style="font-style: italic;">C:\msys64\mingw64\bin</span> and <span style="font-style: italic;">C:\msys64\usr\bin</span> into your environment variables.</li>
+    </ul>
+    <mat-divider></mat-divider>
+
+    <h3>The C++ Build Process</h3>
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <img src="http://faculty.cs.niu.edu/~mcmahon/CS241/Notes/Images/build.png" style="max-height: 600px;">
+        <span style="font-style: italic;">Source of image: http://faculty.cs.niu.edu/~mcmahon/CS241/Notes/build.html</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <h3>Without Make</h3>
+    <ul>
+        <li>Let's say we have the following files</li>
+        <pre>
+            <code>
+    // main.cpp
+    #include "myfunctions.h"
+    
+    int main() &#123;
+        print_hello();
+        return 0;
+    }
+            </code>
+        </pre>
+        <pre>
+            <code>
+    // myfunctions.h
+    #if !defined( EXAMPLE_H )
+    #define EXAMPLE_H
+    void print_hello();
+    #endif
+            </code>
+        </pre>
+        <pre>
+            <code>
+    // hello.cpp
+    #include &lt;iostream>
+
+    #include "myfunctions.h"
+    
+    void print_hello() &#123;
+        std::cout &lt;&lt; "Hello World!";
+    }
+            </code>
+        </pre>
+        <li>To compile these files and get an executable, we can make use of <b>gcc</b> or <b>g++</b> compilers</li>
+        <ul>
+            <li><span class="CLI-font">gcc main.cpp hello.cpp -lstdc++ -o hello</span></li>
+            <li>OR <span class="CLI-font">g++ -Wall -Wextra -Werror main.cpp hello.cpp -o hello</span></li>
+            <li><span style="font-style: italic;">Side Note: The <span class="CLI-font">-lstdc++</span> is needed for gcc since it doesn't automatically link the std C++ libraries</span></li>
+            <li><span style="font-style: italic;">Side Note: The <span class="CLI-font">-Wall -Wextra -Werror</span> are just optional options for displaying warning and error messages</span></li>
+            <li>For more differences between gcc and g++, refer to <a href="https://www.geeksforgeeks.org/difference-between-gcc-and-g/" target="_blank" rel="noopener noreferrer">this</a></li>
+        </ul>
+        <li>The above actions will be troublesome when we want to manage a large project with lots of files. It is very tedious to type all the files one by one.</li>
+    </ul>
+    <mat-divider></mat-divider>
+    <h3>With Make</h3>
+    <ul>
+        <li>Now, we can write a Makefile (filename is Makefile also) to solve the problem above</li>
+        <li>The following is an example of Makefile for the files above:</li>
+        <pre>
+            <code>
+    CC = g++
+
+    hello: main.o hello.o
+        $(CC) main.o hello.o -o hello
+
+    main.o: main.cpp myfunctions.h
+        $(CC) -c main.cpp
+
+    hello.o: hello.cpp myfunctions.h
+        $(CC) -c hello.cpp
+
+    clean:
+        -rm -rf *.o *.exe
+            </code>
+        </pre>
+        <li>Now the directory tree looks like this</li>
+            <ul>
+                <li>hello.cpp</li>
+                <li>main.cpp</li>
+                <li>myfunctions.h</li>
+                <li>Makefile</li>
+            </ul>
+        <li>When you run <span class="CLI-font">make</span> only, the first <span style="font-style: italic;">rule</span> will be run.</li>
+        <li>If you run <span class="CLI-font">make hello.o</span>, it will execute <span class="CLI-font">g++ -c hello.cpp</span> and then generate hello.o</li>
+        <li>If you run <span class="CLI-font">make clean</span>, all the .exe and .o files will be removed</li>
+        <li>This is just an example of how Makefile solved the problem of having to retype the commands everytime when you want to compile the source files.
+            Basically you only need to run <span class="CLI-font">make</span> if you want to recompile your source files, instead of typing <span class="CLI-font">g++ main.cpp hello.cpp -o hello</span>
+            again and again.</li>
+    </ul>
+    <mat-divider></mat-divider>
+    <h3>Why CMake is needed?</h3>
+    <ul>
+        <li>There are several different build systems out there, such as Make, Ninja, Visual Studio etc, and also different compilers such as g++, gcc, clang etc. </li>
+        <li>It became hard to maintain if users want to support different platforms, compilers and scenarios etc.</li>
+        <li>Hence, people started to introduce meta build system (such as CMake) to generate configuration files for other existing build systems.</li>
+        <li>With CMake, there is no need to write Makefiles, configure Visual Studio projects, create custom Bash or batch files etc.</li>
+        <li>For more reasons why CMake is awesome, have a look at <a href="https://kubasejdak.com/19-reasons-why-cmake-is-actually-awesome#1-cmake-is-cross-platform" target="_blank" rel="noreferrer noopener">this</a>.</li>
+        <li>For CMake tutorial, refer to the <a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html" target="_blank" rel="noreferrer noopener">Official Tutorial</a>.</li>
+    </ul>
+    <mat-divider></mat-divider>
+    <h3>A basic example of using CMakeLists.txt</h3>
+    <ol>
+        <li>Add a CMakeLists.txt file and copy paste the following content:</li>
+        <pre>
+            <code>
+    cmake_minimum_required(VERSION 3.10)
+
+    # set the project name
+    project(CMakeTutorial VERSION 1.0)
+
+    # add the executable
+    add_executable(hello main.cpp hello.cpp)
+            </code>
+        </pre>
+        <li>Create a folder called 'build'. This is where we gonna keep the generated files. 
+            And this practice is called "out-of-source build", where we separate the generated files of the binary tree from the source files of the source tree</li>
+        <li>Change directory to the build folder: <span class="CLI-font">cd build</span></li>
+        <li>cmake the parent directory: <span class="CLI-font">cmake ..</span></li>
+        <li><span style="font-style:italic">Side Note: I run <span class="CLI-font">cmake .. -G "Visual Studio 12 2013"</span> to specify the generator that I want to use, 
+            as my default generator is Visual Studio 14 2015, which is not properly installed.</span></li>
+        <li>Now there should be some files in the build folder.</li>
+        <li>Just now we only generated the build files, but we haven't compiled yet.</li>
+        <li>For my case, my generated build files are specifically for Visual Studio 12 2013.</li>
+        <li>Now, we can run <span class="CLI-font">cmake --build .</span> to build(compile) it.</li>
+        <li>Then you will see a hello.exe file in Debug folder. You can try to run it.</li>
+        <li>Let's try to generate build files for Unix Make, before that you need to delete the build folder first. (PS: this shows how useful out-of-source build is)</li>
+        <li>Now create an empty build folder again, and cd into it.</li>
+        <li>This time let's generate build files for Unix Make using <span class="CLI-font">cmake .. -G "Unix Makefiles"</span></li>
+        <li><span style="font-style:italic">Side Note: You can use <span class="CLI-font">cmake --help</span> to check the available list of generators</span></li>
+        <li>This time you will see some different files are generated (more specifically, Makefiles are generated instead of .vsproj)</li>
+        <li>Now, let's compile it using Make: <span class="CLI-font">make</span></li>
+        <li>You will notice that hello.exe is generated as well.</li>
+        <li>SUMMARY: This small tutorial demonstrates how CMakeLists.txt is useful to easily generate build files for different platforms.</li>
+    </ol>
+    <mat-divider></mat-divider>
+</div>

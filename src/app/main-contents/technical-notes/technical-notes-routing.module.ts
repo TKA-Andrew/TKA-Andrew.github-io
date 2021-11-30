@@ -14,6 +14,7 @@ import { WebDevelopmentGeneralComponent } from './webDevelopment/web-development
 import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/gitlab-ci-cd-notes.component';
 import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component';
 import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
+import { CmakeNotesComponent } from './miscellaneous/cmake-notes/cmake-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -70,6 +71,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/GitLabCICD',
       component: GitlabCiCdNotesComponent
+    },
+    {
+      path: 'miscellaneuos/CMakeNotes',
+      component: CmakeNotesComponent
     }
   ]
 }];
