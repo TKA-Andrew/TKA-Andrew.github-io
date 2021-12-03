@@ -14,12 +14,19 @@ import { HomeComponent } from './home/home.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BackgroundImageLoadedDirective } from '../directives/backgroundImageLoaded.directive';
+import { BusyConfig, NgBusyModule } from 'ng-busy';
+import { AppBusyComponent } from '../element/app-busy.component';
+import { BusyService } from '../services/busy,service';
+import { ShareFacadeService } from '../services/shareFacade.service';
 
 @NgModule({
   declarations: [
     MainContentsComponent,
     TopbarComponent,
     HomeComponent,
+    BackgroundImageLoadedDirective
   ],
   imports: [
     CommonModule,
@@ -32,7 +39,17 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTooltipModule,
     MatSidenavModule,
     MatMenuModule,
-    FontAwesomeModule
+    MatProgressBarModule,
+    FontAwesomeModule,
+    NgBusyModule.forRoot(new BusyConfig({
+      template: AppBusyComponent,
+      wrapperClass: 'app-busy',
+      disableAnimation: true,
+    }))
+  ],
+  providers: [
+    ShareFacadeService,
+    BusyService
   ]
 })
 export class MainContentsModule { }

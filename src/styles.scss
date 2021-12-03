@@ -70,3 +70,14 @@ li {
   font-family: 'Courier New', monospace;
   font-style: italic;
 }
+
+.app-busy {
+  position: absolute;
+  background: #fff;
+  opacity: 0.8;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
