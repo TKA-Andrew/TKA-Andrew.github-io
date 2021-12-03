@@ -12,12 +12,16 @@ export class MainContentsComponent implements OnInit {
   @ViewChild('sidenav') public sidenav: MatDrawer | undefined
   public showMenu = false
   public faBars = faBars
-  public busy: Promise<boolean> | undefined;
+  public busy: Promise<boolean>;
   private globalResolve: any;
 
   constructor(
     private shareFacadeService: ShareFacadeService
-  ) { }
+  ) { 
+    this.busy = new Promise((resolve, reject) => {
+      this.globalResolve = resolve;
+    });
+  }
 
   ngOnInit(): void {
     this.shareFacadeService.spinnerBS.subscribe(
@@ -25,7 +29,6 @@ export class MainContentsComponent implements OnInit {
         if (spin === true) {
           this.getBusy();
         } else {
-          console.log('Ignore the "this.globalResolve is not a function" error message below')
           this.globalResolve();
         }
       }

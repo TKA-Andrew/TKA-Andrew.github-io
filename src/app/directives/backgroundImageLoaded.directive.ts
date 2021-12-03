@@ -1,14 +1,14 @@
-import { Directive, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Directive, Output, EventEmitter, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appBackgroundImageLoaded]'
 })
-export class BackgroundImageLoadedDirective {
+export class BackgroundImageLoadedDirective implements OnInit {
   @Output() imageLoaded: EventEmitter<boolean> = new EventEmitter<boolean>(true);
 
   constructor(private el: ElementRef) { }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     const img = new Image();
     const bgStyle = getComputedStyle(this.el.nativeElement).backgroundImage
     const src = bgStyle.replace(/(^url\()|(\)$|[\"\'])/g, '');
