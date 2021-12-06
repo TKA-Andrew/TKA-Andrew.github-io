@@ -28,6 +28,7 @@ import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component
 import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
 import { CmakeNotesComponent } from './miscellaneous/cmake-notes/cmake-notes.component';
 import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2-notes.component';
+import { UsefulResourcesComponent } from './robotics/useful-resources/useful-resources.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2
     GitNotesComponent,
     RosNotesComponent,
     CmakeNotesComponent,
-    Turtlebot2NotesComponent],
+    Turtlebot2NotesComponent,
+    UsefulResourcesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

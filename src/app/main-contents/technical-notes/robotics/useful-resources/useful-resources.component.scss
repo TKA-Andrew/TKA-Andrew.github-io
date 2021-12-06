@@ -1,0 +1,17 @@
+@use '../../technical-notes-content.scss';
+
+tr {
+    width: 100%;
+    display: flex;
+}
+
+th {
+    width: 50%;
+}
+
+td {
+    width: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
