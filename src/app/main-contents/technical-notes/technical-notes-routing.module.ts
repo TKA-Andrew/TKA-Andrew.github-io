@@ -15,6 +15,7 @@ import { GitlabCiCdNotesComponent } from './miscellaneous/gitlab-ci-cd-notes/git
 import { GitNotesComponent } from './miscellaneous/git-notes/git-notes.component';
 import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
 import { CmakeNotesComponent } from './miscellaneous/cmake-notes/cmake-notes.component';
+import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -47,6 +48,10 @@ const routes: Routes = [{
     {
       path:'robotics/ROS',
       component: RosNotesComponent
+    },
+    {
+      path:'robotics/TurtleBot2',
+      component: Turtlebot2NotesComponent
     },
     {
       path: 'webDevelopment/general',
