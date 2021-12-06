@@ -106,5 +106,45 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+        <div>
+            <h3>URDF</h3>
+            <ul>
+                <li>If you installed the ROS extension on Visual Studio Code, you can make use of one of the feature called "Preview URDF". 
+                    Press <span class="CLI-font">Ctrl + Shift + P</span> to open the command pallete of VS Code and then type "Preview URDF" to look for that.</li>
+                <li>RVIZ and Gazebo can only use .urdf file, cannot use .xacro file</li>
+                <li>To generate urdf file from .xacro file</li>
+                    <ul>
+                        <li><span class="CLI-font">rosrun xacro xacro xacroFileName > newUrdfName</span></li>
+                        <li>For example: <span class="CLI-font">rosrun xacro explorer_bot.urdf.xacro > explorer_bot.urdf</span></li>
+                    </ul>
+                <li>To check whether a urdf file is valid</li>
+                    <ul>
+                        <li><span class="CLI-font">check_urdf urdfFileName</span></li>
+                        <li>If check_urdf command not found, then you need to install: <span class="CLI-font">sudo apt install liburdfdom-tools</span></li>
+                    </ul>
+                <li>If you want to use xacro in launch file for robot_description, can refer to the following example:</li>
+                    <pre>
+                        <code>
+    &lt;arg name="robotXacro" default="$(find explorer_bot)/urdf/explorer_bot.urdf.xacro"/>
+    &lt;param name="robot_description" command="$(find xacro)/xacro $(arg robotXacro)"/>
+                        </code>
+                    </pre>
+                <li>The normal material color in urdf will not work in Gazebo, to add color to your links for Gazebo, refer to the following example:</li>
+                    <pre>
+                        <code>
+    &lt;gazebo reference="base_link">
+        &lt;material>Gazebo/Red&lt;/material>
+    &lt;/gazebo>
+                        </code>
+                    </pre>
+                <li>The moment of inertia for cuboid shown in <a href="https://en.wikipedia.org/wiki/List_of_moments_of_inertia" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+                     is a little bit confusing, recommended to refer to the following image instead:</li>
+                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="https://roymech.org/images/in_box.gif">
+                        <span style="font-style: italic;">Source of image: https://roymech.org/Useful_Tables/Form/Dynamics_inertia.html</span>
+                    </div>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
