@@ -1,5 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { MatTabGroup } from '@angular/material/tabs';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faArrowAltCircleUp } from '@fortawesome/free-regular-svg-icons';
 
@@ -10,9 +9,7 @@ import { faArrowAltCircleUp } from '@fortawesome/free-regular-svg-icons';
 })
 export class CppNotesPart2Component {
 
-  @ViewChildren('childTabs') childTabs: QueryList<MatTabGroup> | undefined;
   public faArrowAltCircleUp = faArrowAltCircleUp
-  activeIndex: any;
 
   constructor(
     private router: Router
@@ -25,14 +22,4 @@ export class CppNotesPart2Component {
     });
   }
 
-
-  onTabChange(event: any){
-    this.activeIndex = event.index;
-    if (this.childTabs) {
-      this.childTabs.forEach(childTab => {
-         childTab.realignInkBar();
-      });
-    }
-
-  }
 }
