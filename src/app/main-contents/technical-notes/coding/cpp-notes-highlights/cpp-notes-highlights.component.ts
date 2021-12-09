@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { faArrowAltCircleUp } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
-  selector: 'app-cpp-notes',
-  templateUrl: './cpp-notes.component.html',
-  styleUrls: ['./cpp-notes.component.scss']
+  selector: 'app-cpp-notes-highlights',
+  templateUrl: './cpp-notes-highlights.component.html',
+  styleUrls: ['./cpp-notes-highlights.component.scss']
 })
-export class CppNotesComponent {
+export class CppNotesHighlightsComponent {
+
   public faArrowAltCircleUp = faArrowAltCircleUp
 
   constructor(
@@ -20,5 +21,4 @@ export class CppNotesComponent {
       if (element != undefined) element.scrollIntoView();
     });
   }
-
 }

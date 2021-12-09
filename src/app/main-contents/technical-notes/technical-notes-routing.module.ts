@@ -17,6 +17,7 @@ import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
 import { CmakeNotesComponent } from './miscellaneous/cmake-notes/cmake-notes.component';
 import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2-notes.component';
 import { UsefulResourcesComponent } from './robotics/useful-resources/useful-resources.component';
+import { CppNotesHighlightsComponent } from './coding/cpp-notes-highlights/cpp-notes-highlights.component';
 
 const routes: Routes = [{
   path:'',
@@ -37,6 +38,10 @@ const routes: Routes = [{
     {
       path: 'coding/cpp-part2',
       component: CppNotesPart2Component
+    },
+    {
+      path: 'coding/cpp-highlights',
+      component: CppNotesHighlightsComponent
     },
     {
       path: 'coding/javaScript',
