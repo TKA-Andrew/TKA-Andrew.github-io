@@ -30,6 +30,7 @@ import { CmakeNotesComponent } from './miscellaneous/cmake-notes/cmake-notes.com
 import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2-notes.component';
 import { UsefulResourcesComponent } from './robotics/useful-resources/useful-resources.component';
 import { CppNotesHighlightsComponent } from './coding/cpp-notes-highlights/cpp-notes-highlights.component';
+import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CppNotesHighlightsComponent } from './coding/cpp-notes-highlights/cpp-n
     CmakeNotesComponent,
     Turtlebot2NotesComponent,
     UsefulResourcesComponent,
-    CppNotesHighlightsComponent],
+    CppNotesHighlightsComponent,
+    CppBasicsComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
