@@ -71,6 +71,18 @@ li {
   font-style: italic;
 }
 
+.script-font {
+  font-family: 'Brush Script MT', cursive;
+  font-size: larger;
+  font-style: italic;
+}
+
+.highlight-font {
+  font-family: 'Brush Script MT', monospace;
+  font-style: italic;
+  background-color:#ddd;
+}
+
 .app-busy {
   position: absolute;
   background: #fff;
