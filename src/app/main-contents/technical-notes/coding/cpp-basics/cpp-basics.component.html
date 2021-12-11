@@ -4,6 +4,7 @@
             <h1>C++ Basics</h1>
             <h2>Introduction</h2>
             <p>The following are mainly the notes summarized from <a href="https://www.learncpp.com/" target="_blank" rel="noopener noreferrer">learncpp.com</a>.</p>
+            <p>Some additional info are from Stack Overflow.</p>
             <p>Some uncommonly used notes are not included here.</p>
             <mat-divider></mat-divider>
         </div>
@@ -30,6 +31,7 @@
                         <li>'+' is <strong>operator</strong></li>
                         <li>'2 + 3' is <strong>expression</strong></li>
                     </ul>
+                <li>Each memory address holds 1 byte of data (1 byte = 8 sequential bits)</li>
                 
             </ul>
         </div>
@@ -58,6 +60,50 @@
         <div>
             <h3>Header Files: angled brackets &lt;> vs double quotes ""</h3>
             <ul>
+                <li><b>Best practice</b>: Use a .h suffix for C/C++ compatible headers, use a .hpp suffix for C++ headers.</li>
+                <li><b>Best practice</b>: When including a header file from the standard library, use the version without the .h extension if it exists (e.g. iostream). </li>
+                <li>Angled brackets vs double quotes</li>
+                    <ul>
+                        <li>When we use <b>angled brackets</b>, we’re telling the preprocessor that this is a header file we didn’t write ourselves.</li>
+                        <ul>
+                            <li>The compiler will search for the header ONLY in the <span class="highlight-font">include directories</span>.</li>
+                            <li>The <span class="highlight-font">include directories</span> are configured as part of your project/IDE settings/compiler settings, 
+                                and typically default to the directories containing the header files that come with your compiler and/or OS.</li>
+                            <li>The compiler WILL NOT search for the header file in your project’s source code directory.</li>
+                        </ul>
+                        <li>When we use <b>double-quotes</b>, we’re telling the preprocessor that this is a header file that we wrote.</li>
+                        <ul>
+                            <li>The compiler will first search for the header file in the current directory.</li>
+                            <li>If it can’t find a matching header there, it WILL then search the <span class="highlight-font">include directories</span>.</li>
+                        </ul>
+                    </ul>
+                <li><b>Best practice</b>: Each file should explicitly #include all the header files needed for its compilation. DO NOT rely on headers included in other some other header files.</li>
+                <li><b>Best practice</b>: Order your #includes as follows and sort each section alphabetically:
+                    <ul>
+                        <li>your own user-defined headers</li>
+                        <li>3rd party library headers</li>
+                        <li>standard library headers</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Header-only libraries</h3>
+            <ul>
+                <li>Header-only libraries are libraries where the entire library is implemented using header files only (no .lib and .dll files will be provided)</li>
+                <li>What are the advantages?</li>
+                    <ul>
+                        <li>Header-only library is the only choice when dealing with C++ templates, because the compiler needs to know the full definition of the templates in order to instantiate.</li>
+                        <li>We do not need to build the library, and user doesn't need to compile our library before using it</li>
+                    </ul>
+                <li>What are the disadvantages?</li>
+                    <ul>
+                        <li>Most probably will have increased compilation time</li>
+                        <li>if you change anything about the code in the header, then you’ll need to recompile every file that includes that header</li>
+                        <li>Source code implementation is visible to user as it is written in the header file</li>
+                    </ul>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -65,17 +111,133 @@
         <div>
             <h3>Header Guards & #pragma once</h3>
             <ul>
+                <li>As header files may include other headers, it is possible that we include a same header multiple times, and this will lead to compilation error due to duplicate definition.</li>
+                <li>Hence, we need <strong>Header Guards</strong>, which are the conditional compilation directives.</li>
+                <li>Example:</li>
+                    <pre>
+                        <code>
+    // IN add.h
+    #ifndef ADD_H
+    #define ADD_H
+    int add(int x, int y);
+    ##endif
+                        </code>
+                    </pre>
+                <li>According to <a href="https://www.learncpp.com/cpp-tutorial/header-guards/" target="_blank" rel="noopener noreferrer">learncpp.com</a></li>
+                    <ul>
+                        <li><span class="script-font">#pragma once</span> serves the same purpose as header guards, and has the added benefit of being shorter and less error-prone.</li>
+                        <li>HOWEVER, <span class="script-font">#pragma once</span> is not an official part of the C++ language, and not all compilers support it (although most modern compilers do)</li>
+                        <li>For compatibility purposes, it is RECOMMENDED sticking to traditional header guards.</li>
+                    </ul>
             </ul>
         </div>
         <mat-divider></mat-divider>
 
         <div>
-            <h3>Data Types: Best practices & important notes</h3>
+            <h3>Data Types: Best practices & Notes</h3>
             <ul>
+                <li>The size of a given data type is dependent on the compiler and/or the computer architecture.</li>
+                <li>C++ only guarantees that each fundamental data types will have a minimum size.</li>
+                <li>Refer to this <a href="https://www.learncpp.com/cpp-tutorial/object-sizes-and-the-sizeof-operator/" target="_blank" rel="noopener noreferrer">tutorial</a>
+                    for minimum size of different data types.</li>
+                <li><strong>Integer best practices</strong></li>
+                    <ul>
+                        <li>Use int when the size of the integer doesn’t matter (numbers always fit within the range of -65535 to 65535)</li>           
+                        <li>For guaranteed size and better performance, use std::int_fast#_t.</li>
+                        <li>For guaranteed size and better memory conservation, use std::int_least#_t.</li>
+                        <li>Avoid unsigned types unless really needed.</li>
+                        <li>Avoid 8-bit fixed-width integer types.</li>
+                        <li>Avoid compiler-specific fixed-width integers, for example, Visual Studio defines __int8, __int16, etc</li>
+                    </ul>
+                    <li><strong>Warning: </strong>When doing division with two integers (called integer division), C++ always produces an integer result. 
+                        Since integers can’t hold fractional values, any fractional portion is simply dropped (not rounded!).</li>
+                    <li><b>Best practice</b>: Always make sure the type of your literals match the type of the variables they’re being assigned to or used to initialize. Otherwise an unnecessary conversion will result, possibly with a loss of precision.</li>
+                        <pre>
+                            <code>
+int v&#123; 5.0 }; // will have conversion error
+double x&#123; 5 }; // avoid using integer literals for floating point variables
+double y&#123; 5.0 }; // no suffix means double type by default
+float z&#123; 5.0f }; // f suffix means float type
+std::cout &lt;&lt; x &lt;&lt; "\n"; // output: 5
+std::cout &lt;&lt; y &lt;&lt; "\n"; // output: 5
+std::cout &lt;&lt; z &lt;&lt; "\n"; // output: 5
+std::cout &lt;&lt; 5.0 &lt;&lt; '\n'; // output: 5
+std::cout &lt;&lt; 6.7f &lt;&lt; '\n'; // output: 6.7
+std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
+                            </code>
+                        </pre>
+                    <li><strong>Best practice</strong>: Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.</li>
+                        <pre>
+                            <code>
+    #include &lt;iomanip> // for output manipulator std::setprecision()
+    #include &lt;iostream>
+
+    int main() &#123;
+        std::cout &lt;&lt; std::setprecision(16); // show 16 digits of precision
+        std::cout &lt;&lt; 3.33333333333333333333333333333333333333f &lt;&lt; '\n'; // output: 3.333333253860474 (float has lower precision, hence more errors)
+        std::cout &lt;&lt; 3.33333333333333333333333333333333333333 &lt;&lt; '\n'; // output: 3.333333333333333
+        float f&#123; 123456789.0f };
+        std::cout &lt;&lt; std::setprecision(9); // to show 9 digits in f
+        std::cout &lt;&lt; f &lt;&lt; '\n';
+        // output: 123456792 // float only has 7 digits of precision, hence it is only precise to 7 significant figures
+
+        return 0;
+    }
+                            </code>
+                        </pre>
+                    <li><strong>Warning: </strong>Never assume your floating point numbers are exact.</li>
+                        <pre>
+                            <code>
+    double d1&#123; 1.0 };
+    std::cout &lt;&lt; d1 &lt;&lt; '\n'; // output: 1
+    double d2&#123; 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1}; // should be equal to 1.0
+    std::cout &lt;&lt; std::setprecision(17);
+    std::cout &lt;&lt; d2 &lt;&lt; '\n'; // output: 0.99999999999999989
+                            </code>
+                        </pre>
+                    <li>In C++, std::cout prints 0 for false, and 1 for true:</li>
+                    <li>If you want std::cout to print “true” or “false” instead of 0 or 1, you can use std::boolalpha.</li>
+                    <li>Single Quotes vs Double Quotes</li>
+                        <ul>
+                            <li>Stand-alone chars are always put in single quotes</li>
+                            <li>Text put between double quotes (e.g. “Hello, world!”) is called a <strong>string</strong></li>
+                            <li><strong>Warning: </strong>Remember not use single quotes for string:</li>
+                        </ul>
+                    <li><strong>Best practice</strong>: If the constant value is known before running the program, use <strong>constexpr</strong> to declare. Else, use <strong>const</strong>.</li>
+                    <li><strong>Warning: </strong>Avoid using #define to create symbolic constants macros.</li>
+                    <li><strong>Best practice</strong>: Use constexpr variables to provide a name and context for your magic numbers.</li>
+                    <li>De Morgan's Law</li>
+                        <ul>
+                            <li>!(x && y) is equivalent to !x || !y</li>
+                            <li>!(x || y) is equivalent to !x && !y</li>
+                        </ul>
+                    <li>Logical XOR</li>
+                        <ul>
+                            <li>C++ DOES NOT provide a logical XOR operator. </li>
+                            <li>However, you can easily mimic logical XOR using the inequality operator (!=):</li>
+                                <ul>
+                                    <li>if (a != b) ... // a XOR b, assuming a and b are Booleans</li>
+                                    <li>if (a != b != c != d) ... // a XOR b XOR c XOR d, assuming a, b, c, and d are Booleans</li>
+                                </ul>
+                        </ul>
             </ul>
         </div>
         <mat-divider></mat-divider>
         
+        <div>
+            <h3>Operators</h3>
+            <ul>
+                <li>The operators in C++ have different precedences and associativity, refer to <a href="https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/" target="_blank" rel="noopener noreferrer">this page</a> for detailed list of operators.</li>
+                <li>Note that the parameters (and return value) of function pow() are of type double. Due to rounding errors in floating point numbers, the results of pow() may not be precise (even if you pass it integers or whole numbers).</li>
+                <li>Hence, for integer exponentiation, you may try to write your own exponential function base on this 
+                    <a href="https://www.learncpp.com/cpp-tutorial/5-3-modulus-and-exponentiation/" target="_blank" rel="noopener noreferrer">tutorial</a>.</li>
+                <li><strong>Warning: </strong>Avoid using operator== and operator!= with floating point operands, as the floating numbers might be slightly different due to rounding errors.</li>
+                <li>For floating point comparison, you are recommended to read the <a href="https://www.learncpp.com/cpp-tutorial/relational-operators-and-floating-point-comparisons/" target="_blank" rel="noopener noreferrer">full tutorial and explanation</a>.</li>
+
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
         <div>
             <h3>static & extern || Internal Linkage & External Linkage</h3>
             <ul>
