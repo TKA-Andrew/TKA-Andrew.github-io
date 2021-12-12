@@ -14,6 +14,7 @@
     <h3>Installing CMake</h3>
     <ul>
         <li>The installers or CMake binaries can be downloaded from <a href="https://cmake.org/download/" target="_blank" rel="noopener noreferrer">here</a></li>
+        <li>For Ubuntu: sudo apt-get -y install cmake</li>
     </ul>
     <mat-divider></mat-divider>
 
@@ -21,6 +22,7 @@
     <ul>
         <li>Follow the instructions <a href="https://www.msys2.org/" target="_blank" rel="noopener noreferrer">here</a></li>
         <li>After the installation, you should add <span style="font-style: italic;">C:\msys64\mingw64\bin</span> and <span style="font-style: italic;">C:\msys64\usr\bin</span> into your environment variables.</li>
+        <li>For Ubuntu: sudo apt install build-essential</li>
     </ul>
     <mat-divider></mat-divider>
 
@@ -77,6 +79,7 @@
         <li>The above actions will be troublesome when we want to manage a large project with lots of files. It is very tedious to type all the files one by one.</li>
     </ul>
     <mat-divider></mat-divider>
+
     <h3>With Make</h3>
     <ul>
         <li>Now, we can write a Makefile (filename is Makefile also) to solve the problem above</li>
@@ -113,6 +116,7 @@
             again and again.</li>
     </ul>
     <mat-divider></mat-divider>
+
     <h3>Why CMake is needed?</h3>
     <ul>
         <li>There are several different build systems out there, such as Make, Ninja, Visual Studio etc, and also different compilers such as g++, gcc, clang etc. </li>
@@ -123,6 +127,7 @@
         <li>For CMake tutorial, refer to the <a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html" target="_blank" rel="noreferrer noopener">Official Tutorial</a>.</li>
     </ul>
     <mat-divider></mat-divider>
+
     <h3>A basic example of using CMakeLists.txt</h3>
     <ol>
         <li>Add a CMakeLists.txt file and copy paste the following content:</li>
@@ -158,4 +163,24 @@
         <li>SUMMARY: This small tutorial demonstrates how CMakeLists.txt is useful to easily generate build files for different platforms.</li>
     </ol>
     <mat-divider></mat-divider>
+
+    <h3>References for learning CMake</h3>
+    <table>
+        <tr>
+            <th>Reference</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html" target="_blank" rel="noopener noreferrer">
+                CMake Official Tutorial</a></td>
+            <td>Involved some complex usage, not beginner-friendly</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4" target="_blank" rel="noopener noreferrer">
+                A Youtube playlist</a></td>
+            <td>Beginner-friendly, and with step-by-step demonstration</td>
+        </tr>
+    </table>
+    <mat-divider></mat-divider>
+
 </div>
