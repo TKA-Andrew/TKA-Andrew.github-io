@@ -241,6 +241,56 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>static & extern || Internal Linkage & External Linkage</h3>
             <ul>
+                <li>Internal Linkage</li>
+                <ul>
+                    <li>An identifier with <strong>internal linkage</strong> can be seen and used within a single file, but it is not accessible from other files (that is, it is not exposed to the linker).</li>
+                    <li>To make a non-constant global variable internal, we use the <strong>static</strong> keyword.</li>
+                    <li>const and constexpr global variables have internal linkage by default, so the static keyword has no effect to them.</li>
+                    <li>Functions are also default to external linkage, but can be set to internal linkage via the static keyword:</li>
+                </ul>
+                <li>External linkage</li>
+                    <ul>
+                        <li>An identifier with <strong>external linkage</strong> can be seen and used both from the file in which it is defined, and from other code files (via a forward declaration).</li>
+                        <li>To make a global variable external (and thus accessible by other files), we can use the <strong>extern</strong> keyword to do so:</li>
+                    </ul>
+                <li>Example</li>
+                    <pre>
+                        <code>
+    // IN abc.cpp
+    extern const int g_w&#123; 3 }; // this extern gives g_w external linkage
+    
+    int minus(int x, int y) &#123;
+        return (x - y);
+    }
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+    // IN chapter6.cpp
+    #include &lt;iostream>
+    
+    int g_s;                        // non-constant global variables have external linkage by default
+    static int g_x;                 // the static keyword is used to make a non-constant global have internal linkage
+    const int g_y&#123; 4 };            // const global variables have internal linkage by default
+    constexpr int g_z&#123; 5 };        // constexpr global variables have internal linkage by default
+    static int add(int x, int y);   // set this function to internal linkage
+    
+    // Forward Declarations
+    int minus(int x, int y);    // functions are external linkage by default
+    extern const int g_w;       // this extern is a forward declaration of a variable named g_w that is defined in the abc.cpp
+    
+    int add(int x, int y) &#123;
+        return (x + y);
+    }
+    
+    int main() &#123;
+        std::cout &lt;&lt; add(g_y, g_z) &lt;&lt; '\n'; // output: 9
+        std::cout &lt;&lt; minus(g_z, g_y) &lt;&lt; '\n'; // output: 1
+        std::cout &lt;&lt; add(g_y, g_w) &lt;&lt; '\n'; // output: 7
+        return 0;
+    }
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -248,6 +298,29 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>Static Local Variables</h3>
             <ul>
+                <li>Local variables have <b>automatic duration</b> by default, which means they are created at the point of definition, and destroyed when the block is exited.</li>
+                <li>Using the <b>static</b> keyword on a local variable changes its duration from <b>automatic duration</b> to <b>static duration</b>.</li>
+                <li>This means the variable is now <b>created at the start of the program</b>, and <b>destroyed at the end of the program</b> (just like a global variable).</li>
+                <li><b>Static local variables are only initialized the first time the code is executed</b>, not on subsequent calls. So don't worry that they will be re-initialized multiple times. For example:</li>
+                <pre>
+                    <code>
+    #include &lt;iostream>
+
+    int generateID() &#123;
+        static int s_itemID&#123; 0 }; // this only initialized at the first time
+        return s_itemID++; // makes copy of s_itemID, increments the real s_itemID, then returns the value in the copy
+    }
+    
+    int main() &#123;
+        std::cout&lt;&lt;"OUTPUT:";
+        for (int i&#123;0}; i&lt;10; i++) &#123;
+            std::cout&lt;&lt;' '&lt;&lt;generateID();
+        }
+        // OUTPUT: 0 1 2 3 4 5 6 7 8 9
+        return 0;
+    }
+                    </code>
+                </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -255,6 +328,8 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>break vs return</h3>
             <ul>
+                <li>A <strong>break statement</strong> terminates a switch or loop.</li>
+                <li>A <strong>return statement</strong> terminates the entire function</li>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -262,13 +337,128 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>typedef & type aliases</h3>
             <ul>
+                <li>Type aliases (preferred)</li>
+                    <ul>
+                        <li>In C++, <strong>using</strong> is a keyword that creates an alias for an existing data type.</li>
+                        <li>For example: using distance_t = double; // define distance_t as an alias for type double</li>
+                        <li>An alias does not actually define a new type -- it just introduces a new identifier for an existing type.</li>
+                    </ul>
+                <li>Typedef (not preferred)</li>
+                    <ul>
+                        <li><strong>typedef</strong> is a keyword with the same semantics as “using”, but reversed syntax.</li>
+                        <li>For example: typedef double distance_t;</li>
+                    </ul>
+                <li><strong>Best practice: </strong>When creating aliased types, prefer the type alias syntax over the typedef syntax.</li>
+                <li>Use case examples</li>
+                    <ul>
+                        <li>Using type aliases for platform independent coding</li>
+                            <pre>
+                                <code>
+    #ifdef INT_2_BYTES
+    using int8_t = char;
+    using int16_t = int;
+    using int32_t = long;
+    #else
+    using int8_t = char;
+    using int16_t = short;
+    using int32_t = int;
+    #endif
+                                </code>
+                            </pre>
+                        <li>Using type aliases to make complex types simple</li>
+                            <pre>
+                                <code>
+    using pairlist_t = std::vector&lt;std::pair&lt;std::string, int> >; // make pairlist_t an alias for this crazy type
+                                </code>
+                            </pre>
+                    </ul>
             </ul>
         </div>
         <mat-divider></mat-divider>
         
         <div>
-            <h3>Function Overloading & Extern "C"</h3>
+            <h3>Function Overloading</h3>
             <ul>
+                <li><strong>Function overloading</strong> allows us to create multiple functions with the same name, so long as each identically named function has different parameters</li>
+                <li>For example:</li>
+                    <pre>
+                        <code>
+    int add(int x, int y) // integer version
+    &#123;
+        return x + y;
+    }
+
+    double add(double x, double y) // floating point version
+    &#123;
+        return x + y;
+    }
+                            </code>
+                    </pre>
+                <li><strong>Best practice: </strong>Use function overloading to make your program simpler.</li>
+                <li>Overloaded functions are differentiated by: </li>
+                    <ul>
+                        <li>Number of parameters</li>
+                        <li>Type of parameters // excludes typedefs, type aliases</li>
+                    </ul>
+                <li>Take note that return type of a function is NOT considered for differentiation</li>
+                <li>There is a detailed explanation about how function overload resolution happen in this <a href="https://www.learncpp.com/cpp-tutorial/function-overload-resolution-and-ambiguous-matches/" target="_blank" rel="noopener noreferrer">tutorial</a>
+                but it will not be covered in this short note.</li>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>String</h3>
+            <ul>
+                
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Enum</h3>
+            <ul>
+                
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Struct</h3>
+            <ul>
+                
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Array</h3>
+            <ul>
+                
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Vector</h3>
+            <ul>
+                
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Pointer</h3>
+            <ul>
+                
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+        
+        <div>
+            <h3>New & Delete</h3>
+            <ul>
+                
             </ul>
         </div>
         <mat-divider></mat-divider>
