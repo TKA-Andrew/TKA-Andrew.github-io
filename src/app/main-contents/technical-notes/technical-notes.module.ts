@@ -13,7 +13,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDividerModule } from '@angular/material/divider';
-import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
 import { SequelizeNotesComponent } from './webDevelopment/sequelize-notes/sequelize-notes.component';
 import { JavascriptNotesComponent } from './coding/javascript-notes/javascript-notes.component';
@@ -35,7 +34,6 @@ import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermed
 @NgModule({
   declarations: [
     TechnicalNotesComponent,
-    CodingResourcesComponent,
     CodingGeneralComponent,
     SequelizeNotesComponent,
     JavascriptNotesComponent,

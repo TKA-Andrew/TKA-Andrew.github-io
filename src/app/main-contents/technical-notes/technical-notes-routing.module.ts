@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CodingGeneralComponent } from './coding/coding-general/coding-general.component';
-import { CodingResourcesComponent } from './coding/coding-resources/coding-resources.component';
 import { CppNotesPart2Component } from './coding/cpp-notes-part2/cpp-notes-part2.component';
 import { CppNotesComponent } from './coding/cpp-notes/cpp-notes.component';
 import { DataStructuresComponent } from './coding/data-structures/data-structures.component';
@@ -51,10 +50,6 @@ const routes: Routes = [{
     {
       path: 'coding/javaScript',
       component: JavascriptNotesComponent
-    },
-    {
-      path:'coding/resources',
-      component: CodingResourcesComponent
     },
     {
       path:'robotics/ROS',
