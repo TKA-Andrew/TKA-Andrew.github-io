@@ -29,7 +29,6 @@ import { RosNotesComponent } from './robotics/ros-notes/ros-notes.component';
 import { CmakeNotesComponent } from './miscellaneous/cmake-notes/cmake-notes.component';
 import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2-notes.component';
 import { UsefulResourcesComponent } from './robotics/useful-resources/useful-resources.component';
-import { CppNotesHighlightsComponent } from './coding/cpp-notes-highlights/cpp-notes-highlights.component';
 import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
 
@@ -52,7 +51,6 @@ import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermed
     CmakeNotesComponent,
     Turtlebot2NotesComponent,
     UsefulResourcesComponent,
-    CppNotesHighlightsComponent,
     CppBasicsComponent,
     CppIntermediateComponent],
   imports: [
