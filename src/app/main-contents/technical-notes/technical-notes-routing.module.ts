@@ -19,6 +19,7 @@ import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2
 import { UsefulResourcesComponent } from './robotics/useful-resources/useful-resources.component';
 import { CppNotesHighlightsComponent } from './coding/cpp-notes-highlights/cpp-notes-highlights.component';
 import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
+import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
 
 const routes: Routes = [{
   path:'',
@@ -47,6 +48,10 @@ const routes: Routes = [{
     {
       path: 'coding/cpp-basics',
       component: CppBasicsComponent
+    },
+    {
+      path: 'coding/cpp-intermediate',
+      component: CppIntermediateComponent
     },
     {
       path: 'coding/javaScript',
