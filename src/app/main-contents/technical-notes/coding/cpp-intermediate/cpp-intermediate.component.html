@@ -518,10 +518,18 @@
                 <li>There are different types of Smart Pointers:</li>
                     <ul>
                         <li>unique_ptr</li>
+                            <ul>
+                                <li>Used when you want to make sure there is no second pointer pointing to the same resource</li>
+                            </ul>
                         <li>shared_ptr</li>
+                            <ul>
+                                <li>Used when you want to have multiple pointers pointing to same resource</li>
+                                <li>shared_ptr has a use_count() function that can be used to get the number of references to a resource</li>
+                            </ul>
                         <li>weak_ptr</li>
                     </ul>
-                <li>Refer to the reference link for more details.</li>
+                <li>These pointers are declared in the &lt;memory> header file.</li>
+                <li>For detailed explanations, refer to <a href="https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
             </ul>
         </div>
         <mat-divider></mat-divider>
