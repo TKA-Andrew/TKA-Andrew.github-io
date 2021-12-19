@@ -25,6 +25,16 @@
             <mat-divider></mat-divider>
         </div>
         <div>
+            <h3>Possible reason of why your "rospy.sleep" is not working</h3>
+            <ul>
+                <li><a href="https://answers.ros.org/question/11761/rospysleep-doesnt-get-awaken/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                <li>This might be due to your /use_sim_time parameter was set to true, and it might be due to you opened gazebo recently.</li>
+                <li>When /use_sim_time is set and no time provider is running, all ROS sleep methods will just block infinitely.</li>
+                <li>To set it back to false: <span class="CLI-font">rosparam set use_sim_time false</span></li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
             <h3>Working with multiple catkin workspaces</h3>
             <ul>
                 <li>There is no best practice of saying whether you should only have one or multiple catkin workspaces.</li>
