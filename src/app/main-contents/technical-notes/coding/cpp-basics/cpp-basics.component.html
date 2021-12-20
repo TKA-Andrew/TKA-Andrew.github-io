@@ -412,7 +412,23 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>String</h3>
             <ul>
-                
+                <li><strong>Warning: </strong>Don't use std::cin to read strings, use std::getline instead.</li>
+                <li><strong>Best practice</strong>: If using std::getline to read strings, use the <strong>std::ws</strong> input manipulator to ignore leading whitespace. For detailed reason, 
+                refer to <a href="https://www.learncpp.com/cpp-tutorial/an-introduction-to-stdstring/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
+                <pre>
+                    <code>
+#include &lt;string>
+#include &lt;iostream>
+
+int main() &#123;
+std::cout &lt;&lt; "Now enter your name: ";
+std::string name&#123;};
+std::getline(std::cin >> std::ws, name); // note: added std::ws here
+std::cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; '\n';
+return 0;
+}
+                    </code>
+                </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -420,7 +436,76 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>Enum</h3>
             <ul>
-                
+                <li>The following is an example of enum. By default, the enumerators are automatically assigned with integers starting from 0.</li>
+                <pre>
+                    <code>
+    enum TrafficLightColor &#123;
+        green,  // automatically assigned 0
+        yellow, // automatically assigned 1
+        red     // automatically assigned 2
+    };
+                    </code>
+                </pre>
+                <li>Enum is NOT type safe because the enumerators are not scoped. The following code will have redefinition error.</li>
+                    <pre>
+                        <code>
+    std::string green = "green"; // let's say we declare a variable called "green"
+    enum TrafficLightColor &#123;
+        green,  // will have redefinition error
+        yellow, 
+        red    
+    };
+                    </code>
+                </pre>
+                <li>Hence, C++ 11 introduces <strong>enum class</strong> concept. To make an enum class, simply add the <strong>class</strong> keyword after the enum keyword.</li>
+                    <pre>
+                        <code>
+    enum class TrafficLightColor &#123;
+        green,
+        yellow, 
+        red    
+    };
+                        </code>
+                    </pre>
+                <li>Use case example of enum class</li>
+                    <pre>
+                        <code>
+    #include &lt;iostream>
+    #include &lt;string>
+    
+    enum class TrafficLightColor &#123;
+        green,  // assigned 0
+        yellow, // assigned 1
+        red     // assigned 2
+    };
+    
+    // instead of "int getTrafficLightStatus()"
+    TrafficLightColor getTrafficLightStatus() &#123;
+        return TrafficLightColor::green;
+    }
+    
+    // instead of "void displayLight(int color)"
+    void displayLight(TrafficLightColor color) &#123;
+        if (color == TrafficLightColor::green) &#123;
+            std::cout &lt;&lt; "green" &lt;&lt; '\n';
+        }
+        else if (color == TrafficLightColor::yellow) &#123;
+            std::cout &lt;&lt; "yellow" &lt;&lt; '\n';
+        }
+        else if (color == TrafficLightColor::red) &#123;
+            std::cout &lt;&lt; "red" &lt;&lt; '\n';
+        }
+    }
+
+    int main() &#123;
+        displayLight(getTrafficLightStatus());                       // output: "green"
+        TrafficLightColor nextColor&#123; TrafficLightColor::yellow };    // variable declaration example
+        std::cout &lt;&lt; static_cast&lt;int>(nextColor) &lt;&lt; '\n';            // output : 1
+        displayLight(nextColor);                                     // output: "yellow"
+        return 0;
+    }
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -428,7 +513,81 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <div>
             <h3>Struct</h3>
             <ul>
-                
+                <li>A <strong>struct</strong> allows us to group variables of mixed types together into a single unit.</li>
+                <li>The variables that are part of the struct are called <strong>members</strong>.</li>
+                <li>An example of struct:</li>
+                    <pre>
+                        <code>
+    struct Employee &#123;
+        int id&#123;};
+        int age&#123;};
+        bool isPermanent&#123;};
+        double wage&#123;};
+    };
+
+    Employee john; 
+    john.id = 1234;
+    john.age = 32;
+    john.wage = 24;
+    john.isPermanent = false;
+    Employee jack&#123; 1122, 20, 18, false };
+                        </code>
+                    </pre>
+                <li>We can set default value for the non-static struct members:</li>
+                    <pre>
+                        <code>
+    struct Rectangle &#123;
+        double length&#123; 1.0 };
+        double width&#123; 1.0 };
+    };
+    Rectangle rectangleA&#123;}; // length = 1.0, width = 1.0
+    Rectangle rectangleB&#123; 1.2 }; // length = 1.2, width = 1.0
+                        </code>
+                    </pre>
+                <li>We can also pass the entire struct as argument to a function.</li>
+                    <pre>
+                        <code>
+    void printInformation(Employee employee) &#123;
+        std::cout &lt;&lt; "ID:   " &lt;&lt; employee.id &lt;&lt; '\n';
+        std::cout &lt;&lt; "Age:  " &lt;&lt; employee.age &lt;&lt; '\n';
+        std::cout &lt;&lt; "Wage: " &lt;&lt; employee.wage &lt;&lt; '\n';
+    }
+                        </code>
+                    </pre>
+                <li>A struct can be used as return type of function as well.</li>
+                    <pre>
+                        <code>
+    struct Point3d &#123;
+        double x&#123;};
+        double y&#123;};
+        double z&#123;};
+    };
+
+    Point3d getZeroPoint() &#123;
+        // We can create a variable and return the variable.
+        Point3d temp &#123; 0.0, 0.0, 0.0 };
+        return temp;
+    }
+                        </code>
+                    </pre>
+                <li>Nested structs are also possible.</li>
+                    <pre>
+                        <code>
+    struct Employee &#123;
+        int id&#123;};
+        int age&#123;};
+        double wage&#123;};
+    };
+
+    struct Company &#123;
+        Employee CEO&#123;}; // Employee is a struct within the Company struct
+        int numberOfEmployees&#123;};
+    };
+
+    Company companyA&#123;&#123;0001, 52, 999}, 1000};
+    std::cout &lt;&lt; companyA.CEO.wage &lt;&lt; '\n';
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
