@@ -595,7 +595,32 @@ return 0;
         <div>
             <h3>Array</h3>
             <ul>
-                
+                <li>When declaring a fixed array, the length of the array must be a compile-time constant. For "array" with dynamic size, 
+                    refer to C++ <a href="https://www.cplusplus.com/reference/vector/vector/" target="_blank" rel="noopener noreferrer">vector</a>.</li>
+                <li>Examples of declaring arrays:</li>
+                    <pre>
+                        <code>
+    int prime[5]&#123; 2, 3, 5, 7, 11 }; // use initializer list to initialize the fixed array
+    int arrayA[10]&#123; 1, 2, 3}; // the rest of the elments are initilized to zero
+    int arrayB[]&#123;0, 1, 2, 3, 4, 5} // let the initializer list set length of the array
+                        </code>
+                    </pre>
+                <li>Passing arrays to functions</li>
+                    <ul>
+                        <li>When a normal variable is passed by value, C++ copies the value of the argument into the function parameter.
+                            Hence, modifying the value of the parameter will not affect the original argument.</li>
+                        <li>HOWEVER, <strong>when an array is passed into a function, the actual array is passed.</strong>.
+                            Hence, modifying the elements of array inside the function will also affect the original argument which is
+                            out of the function.</li>
+                    </ul>
+                <li>The std::swap() function from C++ standard librar can be used for swapping elements of array as well.</li>
+                <li>To sort elements of array, we can use the std::sort() function in &lt;alogrithm> library.</li>
+                    <pre>
+                        <code>
+    int array[]&#123; 10, 1, 22, 31, 5, 8, 3, 21 };
+    std::sort(std::begin(array), std::end(array));
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -603,7 +628,24 @@ return 0;
         <div>
             <h3>Vector</h3>
             <ul>
-                
+                <li>std::vector provides dynamic array functionality that handles its own memory management.</li>
+                        <li>This means you can create arrays that have their length set at run-time,
+                             without having to explicitly allocate and deallocate memory using <span class="highlightInGrey">new</span> and <span class="highlightInGrey">delete</span>.
+                             This is because std::vector will dynamically allocate memory for its contents as requested.</li>
+                <li>Vector declaration example:</li>
+                    <pre>
+                        <code>
+    std::vector&lt;int> arrayC; // no need to specify length at the declaration
+    std::vector&lt;int> arrayD(5); // using direct initialization, we can create a vector with specific number of elements,
+    std::vector&lt;int> arrayE = &#123; 9, 7, 5, 3, 1 }; // use initializer list to initialize array (Before C++11)
+    std::vector&lt;int> arrayF&#123; 9, 7, 5, 3, 1 }; // use uniform initialization to initialize array
+    int n = 5;
+    std::vector&lt;int> testV(n, -1); // direct initialization with run-time length, and initialize all the elements to -1
+    for (const auto num : testV) &#123;
+        std::cout &lt;&lt; num &lt;&lt; ' '; // output: -1 -1 -1 -1 -1
+    }
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -611,7 +653,19 @@ return 0;
         <div>
             <h3>Pointer</h3>
             <ul>
-                
+                <li>The <strong>address-of operator (&)</strong> allows us to see what memory address is assigned to a variable.</li>
+                <li>The <strong>indirection operator (*)</strong> (also called <strong>dereference operator</strong>) allows us to access the value at a particular address:</li>
+                <li>A <strong>pointer</strong> is a variable that holds a memory address as its value.</li>
+                    <pre>
+                        <code>
+    int x&#123; 5 };
+    int* ptrX&#123;&x}; // initialize ptrX with address of vqriable x
+    std::cout &lt;&lt; x &lt;&lt; '\n'; // print the value of variable x
+    std::cout &lt;&lt; &x &lt;&lt; '\n'; // print the memory address of variable x
+    std::cout &lt;&lt; ptrX &lt;&lt; '\n'; // print the address that ptrX is holding
+    std::cout &lt;&lt; *(&x) &lt;&lt; '\n'; /// print the value at the memory address of variable x (parenthesis is optional)                            
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
@@ -619,7 +673,86 @@ return 0;
         <div>
             <h3>New & Delete</h3>
             <ul>
-                
+                <li>C++ supports 3 basic types of memory allocation</li>
+                <ul>
+                    <li><strong>Static memory allocation</strong> happens for static and global variables.
+                        Memory for these types of variables is allocated once when your program is run and persists throughout the life of your program.</li>
+                    <li><strong>Automatic memory allocation</strong> happens for function parameters and local variables.
+                        Memory for these types of variables is allocated when the relevant block is entered, and freed when the block is exited, as many times as necessary.</li>
+                    <li><strong>Dynamic memory allocation</strong> is a way for running programs to request memory from the operating system when needed. 
+                        This memory does not come from the program’s limited stack memory -- instead, it is allocated from a much larger pool of memory managed by the operating system called the <strong>heap</strong>. 
+                        On modern machines, the heap can be gigabytes in size.</li>
+                </ul>
+            <li>Both static and automatic allocation have two things in common:</li>
+                <ul>
+                    <li>The size of the variable / array must be known at compile time.</li>
+                    <li>Memory allocation and deallocation happens automatically (when the variable is instantiated / destroyed).</li>
+                </ul>
+            <li>Dynamically allocating single variables</li>
+                <ul>
+                    <li>To allocate a single variable dynamically, we use the scalar (non-array) form of the new operator. The new operator creates the object using that memory, and then returns a pointer containing the address of the memory that has been allocated.</li>
+                        <pre>
+                            <code>
+int* ptr&#123; new int }; // dynamically allocate an integer and assign the address to ptr so we can access it later
+*ptr = 7; // assign value of 7 to allocated memory
+
+int* ptr2&#123; new int &#123; 6 } }; // use uniform initialization
+                            </code>
+                        </pre>
+                </ul>
+            <li>When you dynamically allocate memory,</li>
+                <ul>
+                    <li>You’re asking the operating system to reserve some memory for your program’s use.</li>
+                    <li>If it can fulfill this request, it will return the address of that memory to your application.</li>
+                    <li>From that point forward, your application can use this memory as it wishes. </li>
+                    <li>When your application is done with the memory, it can return the memory back to the operating system to be given to another program.</li>
+                </ul>
+            <li>You may free a memory for reuse by using the <strong>delete</strong> operator.
+                 Note that the delete operator doesn't actually delete anything, it simply returns the memory being pointed to back to the operating system.
+                However, after freeing the memory, remember to set the pointer to nullptr.</li>
+                <pre>
+                    <code>
+// assume ptr has previously been allocated with operator new
+delete ptr; // return the memory pointed to by ptr to the operating system
+ptr = nullptr; // set ptr to be a null pointer
+                    </code>
+                </pre>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Memory Leaks</h3>
+            <ul>
+                <li>Dynamically allocated memory stays allocated until it is explicitly deallocated or until the program ends.</li>
+                <li>However, the pointers used to hold dynamically allocated memory addresses follow the normal scoping rules for local variables.</li>
+                <li>Consider the following:</li>
+                    <pre>
+                        <code>
+    void doSomething() &#123;
+        int* ptr&#123; new int&#123;} };
+    }
+                        </code>
+                    </pre>
+                <li>Because pointers variables are just normal variables, when the function ends, ptr will go out of scope.</li>
+                <li>Then, ptr is destroyed there are no more references to the dynamically allocated memory.</li>
+                <li>Now, the memory address is allocated but now we dont have any reference to that memory address, and hence we can't free the memory address.</li>
+                <li>This is called a <strong>memory leak</strong>, which means your program loses the address of some bit of dynamically allocated memory before giving it back to the operating system. </li>
+                <li>Memory leaks will eat up your free memory while the program is running.</li>
+                <li>The following 2 cases will also result in memory leaks:</li>
+                    <pre>
+                        <code>
+    // CASE 1 - a pointer is assigned another value
+    int value = 5;
+    int* ptr&#123; new int&#123;} }; // allocate memory
+    ptr = &amp;value; // old address lost, memory leak results
+
+    // CASE 2 - double-allocation
+    int* ptr&#123; new int&#123;} };
+    ptr = new int&#123;}; // old address lost, memory leak results
+                            </code>
+                        </pre>
+                <li>The solution for memory leaks would be deleting or freeing the pointer before it is out of scope or before assigning new value to it.</li>
             </ul>
         </div>
         <mat-divider></mat-divider>
