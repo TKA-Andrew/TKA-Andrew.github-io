@@ -46,5 +46,53 @@
             </ol>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h2>Getting position and orientation of robot</h2>
+            <ol>
+                <li>Run the following commands in your terminal:</li>
+                    <ul>
+                        <li><span class="CLI-font">roslaunch turtlebot_bringup minimal.launch</span></li>
+                        <li><span class="CLI-font">roslaunch turtlebot_navigation amcl_demo.launch
+                            map_ file:=/DIRECTORY/YOUR_FILE_NAME.yaml</span></li>
+                        <li><span class="CLI-font">roslaunch turtlebot_rviz_launchers view_navigation.launch</span></li>
+                    </ul>
+                <li>Your map will come up on the screen, you should calibrate the current position of
+                    Turtlebot by selecting 2D pose estimate on the upper tab.</li>
+                <li>Using keyboard_teleop, you can freely navigate your turtlebot around the map to any
+                    position in the map. This will furher make the position and orientation more accurate.</li>
+                <li>Navigate your turtlebot to your desired spot, and run the command below to obtain your
+                    Turtlebot’s current pose information.</li>
+                    <ul>
+                        <li><span class="CLI-font">rostopic echo /amcl_pose</span></li>
+                    </ul>
+                <li>Then you will see something like this:</li>
+                    <pre>
+    header:
+      seq: 81
+        stamp:
+      secs: 1839
+      nsecs: 212000000
+      frame_id: map
+
+    pose:
+      pose:
+      position:
+        x: -7.76006046064
+        y: -1.15741912051
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.841545398193
+        w: 0.540186396331
+      covariance: [0.0026612296465486907, -0.0006793180004436294, 0.0, 0.0, 0.0, 0.0,
+        -0.0006793180004454058, 0.003341409476325552, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0012125460173182706]
+                    </pre>
+                <li>Take note of the position: x, y, z and the orientation x, y, z, w information.</li>
+            </ol>
+        </div>
     </div>
 </div>
