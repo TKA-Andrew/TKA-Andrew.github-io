@@ -48,7 +48,7 @@
         </div>
 
         <div>
-            <h2>Getting position and orientation of robot</h2>
+            <h2>Getting position and orientation of robot/destination</h2>
             <ol>
                 <li>Run the following commands in your terminal:</li>
                     <ul>
@@ -91,8 +91,22 @@
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
         0.0012125460173182706]
                     </pre>
-                <li>Take note of the position: x, y, z and the orientation x, y, z, w information.</li>
+                <li>Take note of the position: x, y, z and the orientation x, y, z, w information.
+                    They can be used to define the coordinates (including the direction that you want the robot to face at) of some destinations for your robot to navigate to.
+                </li>
+                <li>For example,in your program, you can do something like this:</li>
+                    <pre>
+                        <code>
+    self.locations=dict()
+    self.locations['entrance'] = Pose(Point(9.80078141749, 10.1593017222, 0.00), Quaternion(0.0, 0.0, -0.947977094188, 0.31833854447))
+    self.locations['diningRoom'] = Pose(Point(9.08485224219, 6.66043600217, 0.00), Quaternion(0.0, 0.0, -0.522699385045, 0.852517068963))
+    self.locations['livingRoom'] = Pose(Point(5.70034961596, 4.2081211737, 0.00), Quaternion(0.0, 0.0, -0.244048159012, 0.969763113385))
+                        </code>
+                    </pre>
+                <li>Simply replace the values of Point() with position x, y, z and the values of Quaternion() coordinates with orientation x, y, z, w.</li>
+                <li>Refer to the section below to</li>
             </ol>
+            <mat-divider></mat-divider>
         </div>
 
         <div>
@@ -113,7 +127,37 @@
                 <li>To set the value of initial_pose_a, refer to the section “How to get initial_pose_a from
                     quaternion” below</li>
             </ol>
+            <mat-divider></mat-divider>
         </div>
         
+        <div>
+            <h2>How to get initial pose_a from quaternion</h2>
+            <ol>
+                <li>References:</li>
+                    <ul>
+                        <li><a href="http://wiki.ros.org/amcl" target="_blank" rel="noopener noreferrer">http://wiki.ros.org/amcl</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles</a></li>
+                    </ul>
+                <li>According to the first link, the initial pose_a is actually yaw(rotation about z-axis in unit
+                    radian).</li>
+                <li>Note that roll, pitch, yaw are the elements of Euler Angles whereas the “orientation” we
+                    get from /amcl_pose rostopic is actually Quaternion.</li>
+                <li>In the second reference link, the wikipedia declare component w of Quaternion as q0, x
+                    as q1, y as q2 and z as q3</li>
+                    <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_01.png">
+                <li>In the section “Euler Angles to Quaternion Conversion”</li>
+                    <img style="width: 70%;" src="assets/images/Turtlebot2/turtlebot2_02.png">
+                <li>Therefore, according to number 4 and 5, the first element of the matrix is Qw, followed
+                    by Qx, Qy and Qz.</li>
+                <li>The following explains what the symbols in number 5 represent. Actually, the bank is
+                    roll, attitude is pitch and heading is yaw</li>
+                    <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_03.png">
+                <li>For our case, our roll and pitch will be zero because our robot doesnt robot about x and y
+                    axis. Therefore, we only concern on the yaw, which is our initial_pose_a value.
+                    According to number 5, we can get the value of yaw if we know Qz or Qw. But after a
+                    few trials, we noticed that Qz is more accurate compared to Qw, dont know why.</li>
+            </ol>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
