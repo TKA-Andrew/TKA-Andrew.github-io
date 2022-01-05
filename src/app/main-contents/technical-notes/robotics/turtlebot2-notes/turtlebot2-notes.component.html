@@ -170,6 +170,36 @@
                 <li>The robot will be able to perform autonomous navigation within the gray area, although the area is not scanned.</li>
                 <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_04.png">
             </ol>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h2>How to edit the size of map before building the map</h2>
+            <ol>
+                <li>This is for those building map with SLAM only. If you are using SLAM in this tutorial to
+                    build map, the package that you use will be turtlebot_navigation and the launch file that you use
+                    will be gmapping_demo.launch. And if you are using kincct to build map, the file that controls
+                    all the settings of the map will be kinect_gmapping.launch.xml</li>
+                <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_05.png">
+                    
+                <li>According to the directory above, find out the kinect_gmapping.launch.xml file and open
+                    it with gedit. Then you will see that the default map size as below:</li>
+                    <pre>
+    &lt;param name="xmin" value="-1.0"/>
+    &lt;param name="ymin" value="-1.0"/>
+    &lt;param name="xmax" value="1.0"/>
+    &lt;param name="ymax" value="1.0"/>
+                    </pre>
+                <li>You may try to increase the map size:</li>
+                    <pre>
+    &lt;param name="xmin" value="-50.0"/>
+    &lt;param name="ymin" value="-50.0"/>
+    &lt;param name="xmax" value="50.0"/>
+    &lt;param name="ymax" value="50.0"/>
+                    </pre>
+                <li>&lt;param name="delta" value="0.04"/> the value for delta is better is less than 0.05,
+                    recommended 0.04.</li>
+            </ol>
         </div>
     </div>
 </div>
