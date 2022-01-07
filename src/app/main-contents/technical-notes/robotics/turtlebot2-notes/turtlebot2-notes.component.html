@@ -234,5 +234,31 @@
             </ol>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h2>How to set priority if there are more than one velocity
+                publishers that publish to different topic</h2>
+            <ol>
+                <li>It is important especially when you want to use emergency button. When emergency
+                    button is pressed, the node should publish a zero velocity to the highest priority topic to stop the
+                    movement.</li>
+                <li>Open gedit with sudo</li>
+                    <ul>
+                        <li><span class="CLI-font">sudo gedit</span></li>
+                    </ul>
+                <li>Open this document with the gedit</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_10.png">
+                <li>The following are the default ones</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_11.png">
+                <li>Now you know there are different topics with different priorities for the velocity topic. So don't
+                    simply copy and paste the topic when you doing a velocity publisher. The higher the number, the
+                    higher the priority.</li>
+                <li>The following are the changes that I made:</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_12.png">                
+                <li>The following are the examples of velocity publishers that make use of the concept of priority:</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_13.png">                
+            </ol>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
