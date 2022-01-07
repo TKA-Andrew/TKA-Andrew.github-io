@@ -200,6 +200,39 @@
                 <li>&lt;param name="delta" value="0.04"/> the value for delta is better is less than 0.05,
                     recommended 0.04.</li>
             </ol>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h2>How to identify different kinects when more than one kinect is used</h2>
+            <ol>
+                <li>To use two kinects, you need to have two launch files for two respective kinect.</li>
+                <li>For example, I write a HMC_basicNodes.launch that launch all basic things necessary. In
+                    this basicNodes.launch, i included the following launch files that launch the 2 different
+                    3dsensor.launch</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_06.png">
+                <li>Note that I define the argument “camera” as “camera2” to let the system to differentiate
+                    it. Regarding other settings, you need to discover by yourselves. You need to copy the
+                    default 3dsensor.launch and modify it.</li>
+                <li>For each 3dsensor.launch, you need to have a folder for it, and the folder i mean is the
+                    following:</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_07.png">
+                    <p>Therefore, for 3dsensor_move_base and 3dsensor_follower, you need to copy the folder
+                        above and rename it as well.</p>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_08.png">
+                <li>Inside the 3dsensor folder, there is a document called kinect.launch.xml, open it and edit
+                    the device id:</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_09.png">
+                <li>If you don't know the device id of the kinect, just simply connect the kinect to your
+                    laptop and launch 3dsensor bringup</li>
+                    <ul>
+                        <li><span class="CLI-font">roslaunch turtlebot_bringup 3dsensor.launch</span></li>
+                    </ul>
+                <li>Then you might see something like this and you will know the device id of the sensor:
+                    ERROR: 1. device on bus 002:08 is a SensorKinect (2ae) from PrimeSense (45e) with serial id
+                    'A00364911499111A'</li>
+            </ol>
+            <mat-divider></mat-divider>
         </div>
     </div>
 </div>
