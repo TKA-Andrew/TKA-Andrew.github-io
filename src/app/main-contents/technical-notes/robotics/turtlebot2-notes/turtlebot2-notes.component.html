@@ -241,7 +241,7 @@ map can be loaded.</mat-divider>
                     <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_08.png">
                 <li>Inside the 3dsensor folder, there is a document called kinect.launch.xml, open it and edit
                     the device id:</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_09.png">
+                    <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_09.png">
                 <li>If you don't know the device id of the kinect, just simply connect the kinect to your
                     laptop and launch 3dsensor bringup</li>
                     <ul>
@@ -276,6 +276,54 @@ map can be loaded.</mat-divider>
                     <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_12.png">                
                 <li>The following are the examples of velocity publishers that make use of the concept of priority:</li>
                     <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_13.png">                
+            </ol>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h2>How to implement emergency button on Turtlebot2</h2>
+            <ol>
+                <li>According to <a href="http://kobuki.yujinrobot.com/wiki/online-user-guide/" target="_blank" rel="noopener noreferrer">
+                    Kobuki online user guide</a>, the following are the pinouts of Kobuki's expansion port:</li>
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_15.png">                
+                        <span style="font-style: italic;">Source of image: http://kobuki.yujinrobot.com/wiki/online-user-guide/</span>
+                    </div>
+                <li>The following is the active low circuit for the emergency button, the resistor we used is 10k
+                    ohm. The emergency button is just like normal push button, you need to find out which 2
+                    legs are connected and which 2 legs are not connected:</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_16.png">                
+                <li>The following is code snippet that you might need:</li>
+                    <pre>
+                        <code>
+    #publisher for emergency button, you need to have the velocity topic in your mux.yaml
+    self.emergency_vel_pub = rospy.Publisher('cmd_vel_mux/input/emergency_button', Twist, queue_size=10)
+
+    #to subscribe to digital input of turtlebot
+    rospy.Subscriber('/mobile_base/events/digital_input', DigitalInputEvent, self.DigitalInputEventCallback)
+
+    self.emergency_stop=0
+
+    #running function
+    def run(self):
+        while not rospy.is_shutdown():
+            if self.emergency_stop==1:
+                empty_msg = Twist()
+                self.emergency_vel_pub.publish(empty_msg) #to stop the robot with higher priority
+    
+    #callback function for digital input
+    def DigitalInputEventCallback(self, data):
+        digital_in = data.values
+        print(digital_in[0])
+        if digital_in[0] == True: # emergency button pressed, input is DI0
+            #although the circuit is active low, but emergency button is different from normal push button, so it is still active high
+            self.emergency_stop=1
+            rospy.loginfo("EMERGENCY BUTTON pressed !!!")
+        elif digital_in[0] == False: # emergency button not pressed
+            self.emergency_stop=0
+                        </code>
+                    </pre>
+                    
             </ol>
             <mat-divider></mat-divider>
         </div>
