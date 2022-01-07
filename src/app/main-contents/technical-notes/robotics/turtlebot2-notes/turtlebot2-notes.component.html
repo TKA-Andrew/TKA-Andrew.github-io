@@ -204,6 +204,25 @@
         </div>
 
         <div>
+            <h2>How to add map server into launch file</h2>
+            <ol>
+                <li>If you write your own launch file, you need to add this to your launch file also, so that the
+                    map can be loaded.</li>
+                <li>By refering to the amcl_demo.launch in opt/ros/indigo/share/turtlebot_navigation/launch,
+                    you will see the mapserver part. Simply copy the whole map server part into your own
+                    launch file.</li>
+                <li>And you will see this line:</li>
+                    <pre>
+    &lt;arg name="map_file" default="$(env TURTLEBOT_MAP_FILE)"/>
+                    </pre>
+                <li>If you want to use a default map file, you may declare it in your .bashrc. The following is an example:</li>
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_14.png">
+            </ol>
+            <mat-divider>If you write your own launch file, you need to add this to your launch file also, so that the
+map can be loaded.</mat-divider>
+        </div>
+
+        <div>
             <h2>How to identify different kinects when more than one kinect is used</h2>
             <ol>
                 <li>To use two kinects, you need to have two launch files for two respective kinect.</li>
