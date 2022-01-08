@@ -30,6 +30,7 @@ import { Turtlebot2NotesComponent } from './robotics/turtlebot2-notes/turtlebot2
 import { UsefulResourcesComponent } from './robotics/useful-resources/useful-resources.component';
 import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
+import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermed
     Turtlebot2NotesComponent,
     UsefulResourcesComponent,
     CppBasicsComponent,
-    CppIntermediateComponent],
+    CppIntermediateComponent,
+    DockerNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

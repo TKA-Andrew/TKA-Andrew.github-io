@@ -1,0 +1,141 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <h1>Docker notes</h1>
+
+    <div>
+        <h2>Introduction</h2>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>Setup Docker Image for Python Projects</h2>
+        <h3>Introduction</h3>
+        <ul>
+            <li>When dealing with python projects, there are always dependencies problem where some of the packages require
+                some specific version of other packages. This will be a problem if you have multiple projects on your machine.
+            </li>
+            <li>The common way of dealing with this problem is by using Python virtualenv. However, a Python virtualenv only 
+                encapsulates Python dependencies, you will be still stuck with your host OS.
+            </li>
+            <li>With Docker, you can encapsulate the entire OS.</li>
+        </ul>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Before proceeding to the case studies, here are some notes that you need to know.</li>
+            <li><a href="http://wiki.ros.org/docker/Tutorials/GUI" target="_blank" rel="noopener noreferrer">This tutorial</a>
+                documented a few ways to use GUIs with Docker, but we will be mainly using the mix of 2nd option and 3rd option, which is 
+                demonstrated by <a href="https://jerin-electronics.medium.com/docker-now-ep1-python-opencv-in-docker-1dda564672c3" target="_blank" rel="noopener noreferrer">this reference</a>.</li>
+            <li>We will either use python docker image or ubuntu docker image as the base image.</li>
+            <li>To use GUI (for matplotlib and opencv) on docker, we need python3-tk.</li>
+            <li>We will use the <span class="CLI-font">--volume</span> option of <span class="CLI-font">docker run</span>
+                to make our project directory available inside the container. With this, the changes made on our host system will
+                be implemented on the docker container immediately as well. </li>
+            <li>When we mount your project directory, make sure to add "" to handle the case if the name of your project folder has spaces in between.</li>
+            <li>We will use the <span class="CLI-font">--volume</span> option of <span class="CLI-font">docker run</span>
+                to clean-up the container when the container exits..</li>
+            <li>We will use <span class="CLI-font">-net=host</span>, to share our host network.
+                This will allow us to access the URLs used by docker container through the web browsers of host system.</li>
+                <ul>
+                    <li>For example, if we run <span class="CLI-font">jupyter notebook --allow-root</span> on docker container,
+                        we can use Google Chrome or Mozilla Firefox to access the Jupyter Notebook on our host system.</li>
+                </ul>
+            <li>It is also possible to run Firefox on the docker container, and then we use VNC Viewer to access it.</li>
+            <li>One main difference between using python docker image and Ubuntu docker image is, </li>
+        </ul>
+
+        <h3>DockerFile Setup for OpenCV Project with the base image python:3.6.9-slim</h3>
+        <ol>
+            <li>The main reference of the content here is <a href="https://jerin-electronics.medium.com/docker-now-ep1-python-opencv-in-docker-1dda564672c3"
+                 target="_blank" rel="noopener noreferrer">this</a></li>
+            <li>In your development directory, create a Dockerfile</li>
+                <pre>
+                    <code>
+    FROM python:3.6.9-slim
+
+    # Install system packages
+    RUN apt-get update && apt-get install -y --no-install-recommends \
+            bzip2 \
+            g++ \
+            git \
+            graphviz \
+            libgl1-mesa-glx \
+            libhdf5-dev \
+            openmpi-bin \
+            wget \
+            python3-tk && \
+        rm -rf /var/lib/apt/lists/*
+        
+    # Setting up working directory 
+    RUN mkdir /src
+    WORKDIR /src
+    COPY requirements.txt .
+
+    RUN pip install --upgrade pip
+    RUN pip install --no-cache-dir -r requirements.txt
+    
+    # Minimize image size 
+    RUN apt-get autoremove -y
+    RUN apt-get autoclean -y
+            
+    ENV QT_X11_NO_MITSHM=1
+    
+    CMD ["bash"] 
+                    </code>
+                </pre>
+            <li>Create a python file called "show.py"</li>
+                <pre>
+                    <code>
+    import cv2
+    img = cv2.imread('test.png',1)
+    cv2.imshow('img',img)
+    cv2.waitKey(1000)
+                    </code>
+                </pre>
+            <li>Add a test.png into the same directory.</li>
+            <li>Add a requirements.txt</li>
+                <pre>
+                    <code>
+    opencv-python==4.0.0.21
+                    </code>
+                </pre>
+            <li>Add a runDocker.sh</li>
+                <pre>
+                    <code>
+    xhost +local:docker
+    XSOCK=/tmp/.X11-unix
+    XAUTH=/tmp/.docker.xauth
+    xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+    docker run -m 8GB -it --rm -e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH -v "$&#123;PWD}:/src"  -it yourname/opencv_projects:latest
+    xhost -local:docker
+                    </code>
+                </pre>
+            <li>Docker build</li>
+                <ul>
+                    <li><span class="CLI-font">docker build -t yourname/opencv_projects:1atest .</span></li>
+                </ul>
+            <li>Execute the runDocker.sh</li>
+                <ul>
+                    <li><span class="CLI-font">sh runDocker.sh</span></li>
+                </ul>
+            <li>Then you will see something like this:</li>
+                <img style="width: 90%;" src="assets/images/DockerNotes/dockernotes_01.png">
+            <li>Simply run the following command to test whether it works</li>
+                <ul>
+                    <li><span class="CLI-font">python3 show.py</span></li>
+                </ul>
+            <li>If you run "ls", you will see all the files in your project directory can be accessed at there.</li>
+            <li>Try modifying the show.py, and execute it again, you will see the changes being implemented.</li>
+        </ol>
+
+        <!-- <h3>DockerFile Setup for OpenCV Project with the base image ubuntu:20.04</h3>
+        <ol>
+            <li>This is modified from previous section, and </li>
+            <li>The main reference of the content here is <a href="https://jerin-electronics.medium.com/docker-now-ep1-python-opencv-in-docker-1dda564672c3"
+                 target="_blank" rel="noopener noreferrer">this</a></li>
+        </ol> -->
+
+        <mat-divider></mat-divider>
+    </div>
+
+
+</div>
