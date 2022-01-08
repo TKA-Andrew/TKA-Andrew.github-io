@@ -17,6 +17,7 @@
                 encapsulates Python dependencies, you will be still stuck with your host OS.
             </li>
             <li>With Docker, you can encapsulate the entire OS.</li>
+            <li>The notes here are mainly tested on Ubuntu host system only.</li>
         </ul>
 
         <h3>Notes</h3>
@@ -39,8 +40,12 @@
                     <li>For example, if we run <span class="CLI-font">jupyter notebook --allow-root</span> on docker container,
                         we can use Google Chrome or Mozilla Firefox to access the Jupyter Notebook on our host system.</li>
                 </ul>
-            <li>It is also possible to run Firefox on the docker container, and then we use VNC Viewer to access it.</li>
-            <li>One main difference between using python docker image and Ubuntu docker image is, </li>
+            <li>It is also possible to run Firefox on the docker container, and then we can use VNC Viewer to access it.</li>
+            <li>Installing python3-tk , or tzdata etc on Ubuntu will need these extra variables to be defined:</li>
+                <ul>
+                    <li>ENV DEBIAN_FRONTEND=noninteractive</li>
+                    <li>ENV TZ=Etc/UTC</li> 
+                </ul>
         </ul>
 
         <h3>DockerFile Setup for OpenCV Project with the base image python:3.6.9-slim</h3>
@@ -127,12 +132,62 @@
             <li>Try modifying the show.py, and execute it again, you will see the changes being implemented.</li>
         </ol>
 
-        <!-- <h3>DockerFile Setup for OpenCV Project with the base image ubuntu:20.04</h3>
+        <h3>DockerFile Setup for OpenCV Project with the base image ubuntu:20.04</h3>
         <ol>
-            <li>This is modified from previous section, and </li>
-            <li>The main reference of the content here is <a href="https://jerin-electronics.medium.com/docker-now-ep1-python-opencv-in-docker-1dda564672c3"
-                 target="_blank" rel="noopener noreferrer">this</a></li>
-        </ol> -->
+            <li>Only Dockerfile and requirements.txt will be modified, the rest of the files and steps will be the same as the ones in the previous section.</li>
+            <li>Dockerfile</li>
+                <pre>
+                    <code>
+    FROM ubuntu:20.04
+
+    # Install system packages
+    ENV QT_X11_NO_MITSHM=1
+    ENV DEBIAN_FRONTEND=noninteractive 
+    ENV TZ=Etc/UTC
+    RUN apt-get update && apt-get install -y --no-install-recommends \
+            bzip2 \
+            g++ \
+            git \
+            graphviz \
+            libgl1-mesa-glx \
+            libhdf5-dev \
+            openmpi-bin \
+            wget \
+            pip  \
+            python3.7 \
+            python3-tk && \
+        rm -rf /var/lib/apt/lists/*
+    
+    # Setting up working directory 
+    RUN mkdir /src
+    WORKDIR /src
+    COPY requirements.txt .
+    
+    RUN pip install --upgrade pip
+    RUN pip install --no-cache-dir -r requirements.txt
+    
+    # Minimize image size 
+    RUN apt-get autoremove -y
+    RUN apt-get autoclean -y
+                    </code>
+                </pre>
+            <li>Create a python file called "show.py"</li>
+                <pre>
+                    <code>
+    import cv2
+    img = cv2.imread('test.png',1)
+    cv2.imshow('img',img)
+    cv2.waitKey(1000)
+                    </code>
+                </pre>
+            <li>requirements.txt (take note that we dont specify the version here)</li>
+                <pre>
+                    <code>
+    opencv-python
+                    </code>
+                </pre>
+            <li>For the rest of the files and steps, please refer to previous section.</li>
+        </ol>
 
         <mat-divider></mat-divider>
     </div>
