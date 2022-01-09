@@ -179,9 +179,47 @@
                 </pre>
             <li>For the rest of the files and steps, please refer to previous section.</li>
         </ol>
-
         <mat-divider></mat-divider>
     </div>
 
+    <div>
+        <h2>To access Mozilla Firefox of a docker container</h2>
+        <ol>
+            <li>You will need to include these packages in your Dockerfile</li>
+                <pre>
+                    <code>
+    RUN apt-get update && apt-get install -y --no-install-recommends \
+        x11vnc \
+        xvfb \
+        firefox 
+                    </code>
+                </pre>
+            <li>You also need these lines to execute firefox and vncserver</li>
+                <pre>
+                    <code>
+    RUN echo "exec firefox" > ~/.xinitrc && chmod +x ~/.xinitrc
+    CMD ["x11vnc", "-create", "-forever"]
+                    </code>
+                </pre>
+            <li>You may use the same runDocker.sh as shown in previous section.</li>
+                <ul>
+                    <li><span class="CLI-font">sh runDocker.sh</span></li>
+                </ul>
+            <li>Now, you can see that the output of the terminal saying "<span class="CLI-font">PORT=5900</span>" </li>
+            <li>Since in the runDocker.sh we used net=host, then you can access it on VNC Viewer using localhost:5900. Then, you will see a 
+                Mozilla Firefox browser is up.
+            </li>
+            <li>If in case you didnt use net=host, then you need to check the container id:</li>
+                <ul>
+                    <li><span class="CLI-font">sudo docker container ls</span></li>
+                </ul>
+            <li>Then, inspect the container to get its ip address</li>
+                <ul>
+                    <li><span class="CLI-font">sudo docker inspect &lt;yourContainerID></span></li>
+                </ul>
+            <li>After that, you can use VNC Viewer to access it using &lt;theIpAddressOfTheContainer>:5900</li>
+            <mat-divider></mat-divider>
+        </ol>
+    </div>
 
 </div>
