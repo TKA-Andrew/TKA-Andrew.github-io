@@ -3,6 +3,70 @@
 
     <div>
         <h2>Introduction</h2>
+        <p>Main References: </p>
+            <ul>
+                <li>https://www.simplilearn.com/tutorials/docker-tutorial/getting-started-with-docker?source=sl_frs_nav_playlist_video_clicked</li>
+                <li>https://www.youtube.com/watch?v=3c-iBn73dDE</li>
+            </ul>
+        <h3>What is Docker?</h3>
+        <ul>
+            <li>Docker is an OS-level virtualization software platform that enables users to create, deploy and run applications in a Docker Container.</li>
+            <li>A Docker Container is a light-weight software package that includes all the dependencies(framework, libraries, etc) required to execute an applicaiton.</li>
+            <li>Docker is so popular today that “Docker” and “containers” are used interchangeably.</li>
+        </ul>
+        <h3>What is a Container?</h3>
+        <ul>
+            <li>A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.</li>
+        </ul>
+
+        <h3>Container vs Virtual Machines</h3>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://cloudblogs.microsoft.com/uploads/prod/sites/37/2019/07/Demystifying-containers_image1.png" width="80%">
+            <span style="font-style: italic;">Source of image: https://cloudblogs.microsoft.com/opensource/2019/07/15/how-to-get-started-containers-docker-kubernetes/</span>
+        </div>
+        <table style="margin-top: 20px;">
+            <tr>
+                <th>VM</th>
+                <th>Container</th>
+            </tr>
+            <tr>
+                <td colspan="2" style="width: 100%;">application isolation</td>
+            </tr>
+            <tr>
+                <td>sizes are measured in gigabytes</td>
+                <td>sizes are measured in megabytes</td>
+            </tr>
+            <tr>
+                <td>high memory usage</td>
+                <td>low memory usage</td>
+            </tr>
+            <tr>
+                <td>poor performance</td>
+                <td>better performance</td>
+            </tr>
+            <tr>
+                <td>high memory usage</td>
+                <td>low memory usage</td>
+            </tr>
+            <tr>
+                <td>longer boot-up time</td>
+                <td>shorter boot-up time</td>
+            </tr>
+            <tr>
+                <td>terrible for portability</td>
+                <td>designed for portability</td>
+            </tr>
+            <tr>
+                <td>host OS independent</td>
+                <td>host OS dependent (need to check system requirement)</td>
+            </tr>
+        </table>
+
+        <h3>Docker Commands Cheat Sheet</h3>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://phoenixnap.com/kb/wp-content/uploads/2021/04/Docker-commands-cheat-sheet-by-PhoenixNAP-scaled.jpg" width="100%">
+            <span style="font-style: italic;">Source of image: https://phoenixnap.com/kb/list-of-docker-commands-cheat-sheet#ftoc-heading-7</span>
+        </div>
         <mat-divider></mat-divider>
     </div>
 
