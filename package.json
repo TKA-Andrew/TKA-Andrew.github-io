@@ -27,7 +27,6 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "angular-svg-icon": "^12.0.0",
-    "angular-timeline": "^1.7.0",
     "font-awesome": "^4.7.0",
     "ng-busy": "^12.0.2",
     "rxjs": "~6.6.0",
