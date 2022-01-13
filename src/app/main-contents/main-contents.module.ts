@@ -20,13 +20,17 @@ import { BusyConfig, NgBusyModule } from 'ng-busy';
 import { AppBusyComponent } from '../element/app-busy.component';
 import { BusyService } from '../services/busy,service';
 import { ShareFacadeService } from '../services/shareFacade.service';
+import { AchievementsComponent } from './achievements/achievements.component';
+import { SwiperModule } from "swiper/angular";
+import { MglTimelineModule } from 'angular-mgl-timeline';
 
 @NgModule({
   declarations: [
     MainContentsComponent,
     TopbarComponent,
     HomeComponent,
-    BackgroundImageLoadedDirective
+    BackgroundImageLoadedDirective,
+    AchievementsComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { ShareFacadeService } from '../services/shareFacade.service';
     MatMenuModule,
     MatProgressBarModule,
     FontAwesomeModule,
+    SwiperModule,
+    MglTimelineModule,
     NgBusyModule.forRoot(new BusyConfig({
       template: AppBusyComponent,
       wrapperClass: 'app-busy',

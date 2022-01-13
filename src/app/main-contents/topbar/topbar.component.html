@@ -5,14 +5,13 @@
     </div>
     <span class="app-spacer"></span>
 
-
     <div fxShow="true" fxHide.lt-lg="true" fxFlexAlign="start center" fxLayoutGap="10px">
         <button mat-button class="topbarButtons" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
         <span>|</span>
         <button mat-button class="topbarButtons">About</button> <!--resume-->
         <!--self introduction, skills, work experience, education, -->
         <span>|</span>
-        <button mat-button class="topbarButtons">Achievements</button> <!--Robocup, TGL, NI ARC-->
+        <button mat-button class="topbarButtons" [routerLink]="['achievements']" routerLinkActive="lightThemeRouterLinkActive">Achievements</button> <!--Robocup, TGL, NI ARC-->
         <span>|</span>
         <button mat-button class="topbarButtons">Projects</button> <!--Github projects-->
         <span>|</span>

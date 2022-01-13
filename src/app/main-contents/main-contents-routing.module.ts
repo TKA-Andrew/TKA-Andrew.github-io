@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AchievementsComponent } from './achievements/achievements.component';
 import { HomeComponent } from './home/home.component';
 import { MainContentsComponent } from './main-contents.component';
 
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'achievements',
+        component: AchievementsComponent
       },
       {
         path: 'technicalNotes',
