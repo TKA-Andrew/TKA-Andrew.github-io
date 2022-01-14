@@ -33,11 +33,13 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-//   height: 100%;
   object-fit: cover;
 }
 
 .imageInGallery {
-    // width: 20%;
     height: 500px;
+}
+
+mgl-timeline-entry-header {
+  cursor: pointer;
 }
