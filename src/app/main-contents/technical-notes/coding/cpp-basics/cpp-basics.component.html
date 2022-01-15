@@ -757,6 +757,41 @@ ptr = nullptr; // set ptr to be a null pointer
         </div>
         <mat-divider></mat-divider>
 
+        <div>
+            <h3>Homogeneous & Heterogeneous Containers</h3>
+            <ul>
+                <li>A container is an object holding instances of another object.</li>
+                <li>A container that contains or holds objects of a single type is said to be <b>homogenous</b>.</li>
+                <li>A container that contains objects (derived from a common base class) of a variety of types is termed <b>heterogeneous</b></li>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>Returning multiple values from a function</h3>
+            <ul>
+                <li>C++ does not have an official way to return multiple values from a function.</li>
+                <li>However, we can make use of std::pair, std::tuple or struct to return multiple values.</li>
+                <li>For example,</li>
+                <pre>
+                    <code>
+    #include &lt;tuple>
+
+    tuple&lt;int, float, string> sampleFunc()
+    &#123;
+        return &#123;123, 3.142, "Hello World"};
+    }
+
+    int main() 
+    &#123;
+        auto [value1, value2, value3] = sampleFunc(); // C++ 17 needed
+        return 0;
+    }
+                    </code>
+                </pre>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
 
     </div>
 </div>
