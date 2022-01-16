@@ -26,6 +26,96 @@
         </div>
         <mat-divider></mat-divider>
 
+        <div id="typesOfContainers">
+            <h3>Types of C++ Containers</h3>
+            <ul>
+                <li>Sequential Container</li>
+                    <ul>
+                        <li>Represents a linear data structure such as arrays, vectors, and linked lists</li>
+                    </ul>
+                <li>Associative containers</li>
+                    <ul>
+                        <li>Represents a nonlinear data structure with the capability to quickly locate elements stored in the container.</li>
+                        <li>Stores values as key-value pairs.</li>
+                        <li>Examples: map, multimap, set, etc</li>
+                    </ul>
+                <li>Container Adapter</li>
+                    <ul>
+                        <li>Containers with some constraints in the storage and retrieval process of the elements</li>
+                        <li>It does not support iterators.</li>
+                        <li>Adapter container classes provide functions like <span style="font-style: italic;">push</span> and <span style="font-style: italic;">pop</span> that insert and retrieve an element into the storage</li>
+                        <li>Examples: stack, queue, priority_queue</li>
+                    </ul>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div id="priorityQueueAndMinHeap">
+            <h3>Priority Queue, Max Heap & Min Heap</h3>
+            <ul>
+                <li>C++ STL has a container adapter called <a href="https://en.cppreference.com/w/cpp/container/priority_queue" target="_blank" rel="noopener noreferrer">priority queue</a>,
+                    which by default representing a Max Heap</li>
+                <li>The output of the following code will be "10 5 1"</li>
+                    <pre>
+                        <code>
+    #include &lt;queue>
+    #include &lt;iostream>
+    
+    int main ()
+    &#123;
+        std::priority_queue &lt;int> pq;
+        pq.push(5);
+        pq.push(1);
+        pq.push(10);
+        
+        while (!pq.empty())
+        &#123;
+            std::cout &lt;&lt; pq.top() &lt;&lt; " ";
+            pq.pop();
+        }
+        
+        return 0;
+    }
+                        </code>
+                    </pre>
+                <li>The following is the default template of priority_queue:</li>
+                    <pre>
+                        <code>
+    template&lt;
+        class T,
+        class Container = std::vector&lt;T>,
+        class Compare = std::less&lt;typename Container::value_type>
+    > class priority_queue;
+                        </code>
+                    </pre>
+                <li>The default Compare is std::less function. Hence, if we change it to std::greater, we will get a Min Heap.</li>
+                <li>Now, the following code will output "1 5 10"</li>
+                    <pre>
+                        <code>
+    #include &lt;queue>
+    #include &lt;iostream>
+    
+    int main ()
+    &#123;
+        std::priority_queue &lt;int, std::vector&lt;int>, std::greater&lt;int>> pq;
+        pq.push(5);
+        pq.push(1);
+        pq.push(10);
+        
+        while (!pq.empty())
+        &#123;
+            std::cout &lt;&lt; pq.top() &lt;&lt; " ";
+            pq.pop();
+        }
+        
+        return 0;
+    }
+                        </code>
+                    </pre>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
         <div id="oopFundamentals">
             <h3>C++ OOP Fundamentals</h3>
             <ul>
