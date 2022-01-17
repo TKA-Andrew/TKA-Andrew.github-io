@@ -19,6 +19,7 @@ import { UsefulResourcesComponent } from './robotics/useful-resources/useful-res
 import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
 import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.component';
+import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijsktra-algorithm.component';
 
 const routes: Routes = [{
   path:'',
@@ -51,6 +52,10 @@ const routes: Routes = [{
     {
       path: 'coding/javaScript',
       component: JavascriptNotesComponent
+    },
+    {
+      path: 'algorithms/dijsktra',
+      component: DijsktraAlgorithmComponent
     },
     {
       path:'robotics/ROS',
