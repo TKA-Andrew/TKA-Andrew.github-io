@@ -93,47 +93,6 @@
                             <pre>
                                 <code>
     typedef std::priority_queue &lt;std::pair&lt;int, int>, std::vector&lt;std::pair&lt;int, int>>, std::greater&lt;std::pair&lt;int, int>>> MinHeap;
-                                    
-    std::pair&lt;std::vector&lt;int>, std::vector&lt;int>> dijkstra(Graph& graph, int source, int n) &#123;
-        
-        MinHeap minHeap;
-        
-        // VARIABLLE DECLARATION
-        std::vector&lt;int> minTravelCost(n, INT_MAX);
-        std::vector&lt;int> prev(n, -1);
-        std::vector&lt;bool> visited(n, false);
-
-        // BASE CASE
-        minTravelCost[source] = 0;
-        
-        minHeap.push(&#123;0, source});
-        
-        while (!minHeap.empty()) &#123;
-            auto [curTravelCost, curVertex] = minHeap.top();
-            minHeap.pop();
-            if (visited[curVertex]) &#123;
-                continue;
-            }
-            visited[curVertex] = true;
-            for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
-                int newTravelCost = curTravelCost + nextTravelCost;
-                if (!visited[nextVertex] && newTravelCost&lt;minTravelCost[nextVertex]) &#123;
-                    minTravelCost[nextVertex] = newTravelCost;
-                    prev[nextVertex] = curVertex;
-                    minHeap.push(&#123;newTravelCost, nextVertex});
-                }
-            }
-            
-        }
-        return &#123;minTravelCost, prev};
-        
-    }
-                                </code>
-                            </pre>
-                        <li><b>Another variant</b> (with only starting point defined)</li>
-                            <pre>
-                                <code>
-    typedef std::priority_queue &lt;std::pair&lt;int, int>, std::vector&lt;std::pair&lt;int, int>>, std::greater&lt;std::pair&lt;int, int>>> MinHeap;
 
     std::pair&lt;int, std::vector&lt;int>> dijkstraSingleTarget(Graph& graph, int source, int target, int n) &#123;
     
@@ -170,6 +129,47 @@
             
         }
         return &#123;minTravelCost[target], prev};
+        
+    }
+                                </code>
+                            </pre>
+                        <li><b>Another variant</b> (with only starting point defined)</li>
+                            <pre>
+                                <code>
+    typedef std::priority_queue &lt;std::pair&lt;int, int>, std::vector&lt;std::pair&lt;int, int>>, std::greater&lt;std::pair&lt;int, int>>> MinHeap;
+    
+    std::pair&lt;std::vector&lt;int>, std::vector&lt;int>> dijkstra(Graph& graph, int source, int n) &#123;
+        
+        MinHeap minHeap;
+        
+        // VARIABLLE DECLARATION
+        std::vector&lt;int> minTravelCost(n, INT_MAX);
+        std::vector&lt;int> prev(n, -1);
+        std::vector&lt;bool> visited(n, false);
+
+        // BASE CASE
+        minTravelCost[source] = 0;
+        
+        minHeap.push(&#123;0, source});
+        
+        while (!minHeap.empty()) &#123;
+            auto [curTravelCost, curVertex] = minHeap.top();
+            minHeap.pop();
+            if (visited[curVertex]) &#123;
+                continue;
+            }
+            visited[curVertex] = true;
+            for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
+                int newTravelCost = curTravelCost + nextTravelCost;
+                if (!visited[nextVertex] && newTravelCost&lt;minTravelCost[nextVertex]) &#123;
+                    minTravelCost[nextVertex] = newTravelCost;
+                    prev[nextVertex] = curVertex;
+                    minHeap.push(&#123;newTravelCost, nextVertex});
+                }
+            }
+            
+        }
+        return &#123;minTravelCost, prev};
         
     }
                                 </code>
