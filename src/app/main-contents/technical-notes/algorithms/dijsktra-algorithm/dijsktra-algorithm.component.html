@@ -231,7 +231,7 @@
             while (visited.size() != n) &#123;
     
                 // FIND UNVISITED VERTEX WITH MINIMUM TRAVEL COST
-                auto [curretnVertex, currentMinTravelCost] = getVertexWithMinTravelCost(minTravelCost, visited);
+                auto [currentVertex, currentMinTravelCost] = getVertexWithMinTravelCost(minTravelCost, visited);
     
                 // ENDING CONDITION
                 if (currentMinTravelCost == INT_MAX) &#123;
@@ -239,10 +239,10 @@
                 }
     
                 // UPDATE VISITED VERTICES
-                visited.insert(curretnVertex);
+                visited.insert(currentVertex);
     
                 // SCAN THROUGH NEIGHBOURING VERTICES
-                for (auto edgeInfo: graph[curretnVertex]) &#123;
+                for (auto edgeInfo: graph[currentVertex]) &#123;
                     int vertexIdx = edgeInfo.first;
                     if (visited.find(vertexIdx) != visited.end()) &#123;
                         continue;
@@ -361,19 +361,135 @@
             </ul>
         </div>
 
-        <!-- <div>
+        <div>
             <h3>LeetCode 1514. Path with Maximum Probability</h3>
             <ul>
                 <li>The question is a typical original variant Dijsktra's Alogrithm question, except that it finds maximum instead of 
                     instead of minimum.
                 </li>
-                <li>The following is the straight forward solution, but with "Time Limit Exceeded" issue when submitted on LeetCode.</li>
+                <li>Hence, the Dijsktra's Algorithm can be slightly modified to solve this question.</li>
                     <pre>
                         <code>
-                            
+    #include &lt;vector>
+    #include &lt;queue>
+    #include &lt;unordered_map>
+    
+    typedef std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, double>>> Graph;
+    typedef std::priority_queue&lt;std::pair&lt;double, int>> MaxHeap;
+    
+    class Solution &#123;
+    public:
+        double maxProbability(int n, std::vector&lt;std::vector&lt;int>>& edges, std::vector&lt;double>& succProb, int start, int end) &#123;
+            
+            // GRAPH CONSTRUCTION
+            std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, double>>> graph;
+            for(int i=0; i&lt;edges.size(); i++)&#123;
+                graph[edges[i][0]].push_back(&#123;edges[i][1],succProb[i]});
+                graph[edges[i][1]].push_back(&#123;edges[i][0],succProb[i]});
+            }
+    
+            return dijkstraSingleTarget(graph, start, end, n);
+        }
+        
+        double dijkstraSingleTarget(Graph& graph, int source, int target, int n) &#123;
+            
+            // VARIABLLE DECLARATION
+            std::vector&lt;double> maxTravelCost(n, 0);
+            std::vector&lt;bool> visited(n, false);
+    
+            // BASE CASE
+            maxTravelCost[source] = 1;
+            
+            MaxHeap maxHeap;
+            maxHeap.push(&#123;1, source});
+            
+            while (!maxHeap.empty()) &#123;
+                auto [curTravelCost, curVertex] = maxHeap.top();
+                maxHeap.pop();
+                if (curVertex == target || curTravelCost == 0) &#123;
+                    break;
+                }
+                visited[curVertex] = true;
+                for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
+                    double newTravelCost = curTravelCost * nextTravelCost;
+                    if (!visited[nextVertex] && newTravelCost>maxTravelCost[nextVertex]) &#123;
+                        maxTravelCost[nextVertex] = newTravelCost;
+                        maxHeap.push(&#123;newTravelCost, nextVertex});
+                    }
+                }
+                
+            }
+            return maxTravelCost[target];
+            
+        }
+        
+    };
                         </code>
                     </pre>
             </ul>
-        </div> -->
+        </div>
+
+        <div>
+            <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
+            <ul>
+                <li>This question is slightly different, as it has a constraint that we need to fulfill.</li>
+                <li>This question we don't need to keep track of visited vertices, as we need to consider the path as long as it is within k stops.</li>
+                <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=vWgoPTvQ3Rw&t=1s" target="_blank" ref="noopener noreferrer">video</a>.</li>
+                <pre>
+                    <code>
+    #include &lt;queue>
+    #include &lt;vector>
+    #include &lt;unordered_map>
+    #include &lt;climits>
+    
+    typedef std::priority_queue&lt;std::tuple&lt;int, int, int>, std::vector&lt;std::tuple&lt;int, int, int>>, std::greater&lt;std::tuple&lt;int, int, int>>> MinHeap;
+    typedef std::unordered_map&lt;int, std::vector&lt;std::pair&lt;int, int>>> Graph;
+    
+    class Solution &#123;
+    public:
+        int findCheapestPrice(int n, std::vector&lt;std::vector&lt;int>>& flights, int src, int dst, int k) &#123;
+            Graph graph;
+            for (int i=0; i&lt;flights.size(); i++) &#123;
+                graph[flights[i][0]].push_back(&#123;flights[i][1],flights[i][2]});
+            }
+            return dijsktraSingleTarget(graph, src, dst, n, k);
+        }
+        
+        int dijsktraSingleTarget(Graph graph, int source, int target, int n, int k) &#123;
+            
+            std::vector&lt;int> minTravelCost(n, INT_MAX);
+            std::vector&lt;int> stops(n, INT_MAX);
+            minTravelCost[source] = 0;
+            stops[source] = 0;
+            
+            MinHeap minHeap;
+            minHeap.push(&#123;0, source, 0});
+            
+            while(!minHeap.empty()) &#123;
+                auto[curTravelCost, curVertex, curStop] = minHeap.top();
+                minHeap.pop();
+                if (curVertex == target) break;
+                if (curStop == k+1) continue;
+                for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
+                    int newTravelCost = curTravelCost+nextTravelCost;
+                    int newStop = curStop + 1;
+                    if (newTravelCost&lt;minTravelCost[nextVertex]) &#123;
+                        minTravelCost[nextVertex] = newTravelCost;
+                        stops[nextVertex] = newStop;    
+                        minHeap.push(&#123;newTravelCost, nextVertex, newStop});  
+                    } else if (newStop &lt; stops[nextVertex]) &#123;
+                        stops[nextVertex] = newStop;    
+                        minHeap.push(&#123;newTravelCost, nextVertex, newStop});  
+                    }
+                }
+                
+            }
+            return minTravelCost[target] == INT_MAX ? -1 : minTravelCost[target];
+        }
+    };
+                    </code>
+                </pre>
+            </ul>
+        </div>
     </div>
 </div>
