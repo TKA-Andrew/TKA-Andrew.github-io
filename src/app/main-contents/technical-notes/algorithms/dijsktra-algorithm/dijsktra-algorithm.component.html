@@ -491,5 +491,78 @@
                 </pre>
             </ul>
         </div>
+
+        <div>
+            <h3>LeetCode 1631. Path With Minimum Effort</h3>
+            <ul>
+                <li>This question demonstrates how Dijsktra's Algorithm can be implemented on a 2D vector.</li>
+                <pre>
+                    <code>
+    #include &lt;queue>
+    #include &lt;vector>
+    #include &lt;climits>
+    #include &lt;math.h>
+    
+    typedef std::priority_queue&lt;std::vector&lt;int>, std::vector&lt;std::vector&lt;int>>, std::greater&lt;std::vector&lt;int>>> MinHeap;
+    
+    class Solution &#123;
+    public:
+        int minimumEffortPath(std::vector&lt;std::vector&lt;int>>& heights) &#123;
+            int row = heights.size();
+            int col = heights[0].size();
+            int targetR = row - 1;
+            int targetC = col - 1;
+            
+            std::vector&lt;std::vector&lt;int>> minTravelCost(row, std::vector&lt;int> (col, INT_MAX));
+            minTravelCost[0][0] = 0;
+            
+            int moves[4][4] = &#123; &#123;-1,0},&#123;1,0},&#123;0,-1},&#123;0,1}};
+            
+            MinHeap minHeap;
+            minHeap.push(&#123;0, 0, 0}); // &#123;effort, r, c}
+            
+            while (!minHeap.empty()) &#123;
+                auto topEle = minHeap.top();
+                int curEffort = topEle[0];
+                int curR = topEle[1];
+                int curC = topEle[2];
+                minHeap.pop();
+                
+                if (curR == targetR && curC == targetC) &#123;
+                    return curEffort;
+                }
+                
+                if (curEffort>minTravelCost[curR][curC]) &#123;
+                    continue;
+                }
+                
+                for (auto move:moves) &#123;
+                    int newR = curR + move[0];
+                    int newC = curC + move[1];
+                    if (newR &lt; 0 || newR >= row || newC &lt; 0 || newC >= col) &#123;
+                        continue;
+                    } else &#123;
+                        int newEffort = abs(heights[newR][newC] - heights[curR][curC]);
+                        int minEffort = newEffort;
+                        if (curEffort != INT_MAX) &#123;
+                            // If previous effort is higher, than minEffort is equal to previous effort
+                            minEffort = std::max(newEffort, curEffort);
+                        }
+                        if (minEffort &lt; minTravelCost[newR][newC]) &#123;
+                            minTravelCost[newR][newC] = minEffort;
+                            minHeap.push(&#123;minEffort, newR, newC});
+                        }
+                        
+                    }
+                }
+            }
+            
+            return minTravelCost[targetR][targetC];
+        }
+    };
+                    </code>
+                </pre>
+            </ul>
+        </div>
     </div>
 </div>
