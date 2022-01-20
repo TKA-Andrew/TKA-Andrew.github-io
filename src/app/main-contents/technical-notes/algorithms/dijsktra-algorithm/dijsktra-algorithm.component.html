@@ -564,5 +564,68 @@
                 </pre>
             </ul>
         </div>
+
+        <div>
+            <h3>LeetCode 778. Swim in Rising Water</h3>
+            <ul>
+                <li>This question is a little bit unique, it doesn't need MinTravelCost vector to keep track travel cost,
+                    as the element of the grid itself is the travel cost, and the new travel cost doesnt relate to previous travel cost.
+                </li>
+                <pre>
+                    <code>
+    #include &lt;queue>
+    #include &lt;vector>
+    #include &lt;climits>
+    
+    typedef std::priority_queue&lt;std::vector&lt;int>, std::vector&lt;std::vector&lt;int>>, std::greater&lt;std::vector&lt;int>>> MinHeap;
+    
+    class Solution &#123;
+    public:
+        int swimInWater(std::vector&lt;std::vector&lt;int>>& grid) &#123;
+            int row = grid.size();
+            int col = grid[0].size();
+            int targetR = row - 1;
+            int targetC = col - 1;
+            
+            std::vector&lt;std::vector&lt;bool>> visited(row, std::vector&lt;bool> (col, false));
+            int moves[4][4] = &#123; &#123;-1,0},&#123;1,0},&#123;0,-1},&#123;0,1}};
+            
+            MinHeap minHeap;
+            minHeap.push(&#123;grid[0][0], 0, 0}); // &#123;timeNeeded, r, c}
+            
+            while (!minHeap.empty()) &#123;
+                auto topEle = minHeap.top();
+                int curTimeNeeded = topEle[0];
+                int curR = topEle[1];
+                int curC = topEle[2];
+                minHeap.pop();
+                
+                if (curR == targetR && curC == targetC) &#123;
+                    return curTimeNeeded;
+                }
+                
+                if (visited[curR][curC]) continue;
+                visited[curR][curC] = true;
+                
+                for (auto move:moves) &#123;
+                    int newR = curR + move[0];
+                    int newC = curC + move[1];
+                    if (newR &lt; 0 || newR >= row || newC &lt; 0 || newC >= col) &#123;
+                        continue;
+                    } else &#123;
+                        if (!visited[newR][newC]) &#123;
+                            int newTimeNeeded = std::max(grid[newR][newC], curTimeNeeded);
+                            minHeap.push(&#123;newTimeNeeded, newR, newC});
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+    };
+                    </code>
+                </pre>
+            </ul>
+        </div>
     </div>
 </div>
