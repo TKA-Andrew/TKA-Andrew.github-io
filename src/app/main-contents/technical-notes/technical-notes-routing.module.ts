@@ -20,6 +20,7 @@ import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
 import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.component';
 import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijsktra-algorithm.component';
+import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
 
 const routes: Routes = [{
   path:'',
@@ -56,6 +57,10 @@ const routes: Routes = [{
     {
       path: 'algorithms/dijsktra',
       component: DijsktraAlgorithmComponent
+    },
+    {
+      path: 'algorithms/bellman-ford',
+      component: BellmanFordAlgorithmComponent
     },
     {
       path:'robotics/ROS',

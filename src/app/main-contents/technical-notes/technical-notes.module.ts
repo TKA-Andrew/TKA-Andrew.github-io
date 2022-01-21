@@ -32,6 +32,7 @@ import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
 import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.component';
 import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijsktra-algorithm.component';
+import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijs
     CppBasicsComponent,
     CppIntermediateComponent,
     DockerNotesComponent,
-    DijsktraAlgorithmComponent],
+    DijsktraAlgorithmComponent,
+    BellmanFordAlgorithmComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
