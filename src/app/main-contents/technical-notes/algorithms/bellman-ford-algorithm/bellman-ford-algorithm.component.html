@@ -88,48 +88,15 @@
                     [medium] 787. Cheapest Flights Within K Stops</a></li>
                 <li>PS: Basically every question related to Dijsktra's Algorithm can be solved using Bellman-Ford Algorithm.</li>
             </ul>
-        </div>
 
-        <div>
             <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
             <ul>
                 <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>.</li>
-                <pre>
-                    <code>
-    #include &lt;vector>
-    #include &lt;climits>
-    
-    class Solution &#123;
-    public:
-        int findCheapestPrice(int n, std::vector&lt;std::vector&lt;int>>& flights, int src, int dst, int k) &#123;
-            
-            std::vector&lt;int> minTravelCost(n, INT_MAX);
-            minTravelCost[src] = 0;
-            
-            int maxNumOfTrials = k+1;
-            
-            for (int i=0; i&lt;maxNumOfTrials; i++) &#123;
-                std::vector&lt;int> temp(minTravelCost);
-                for (auto flight : flights) &#123;
-                    int u = flight[0];
-                    int v = flight[1];
-                    int travelCost = flight[2];
-                    if (minTravelCost[u] == INT_MAX) &#123;
-                        continue;
-                    }
-                    if ((minTravelCost[u]+travelCost &lt; temp[v])) &#123;
-                        temp[v] = minTravelCost[u] + travelCost;
-                    }
-                }
-                minTravelCost = temp;
-            }
-            return (minTravelCost[dst] == INT_MAX) ? -1 : minTravelCost[dst];
-        }
-        
-    };
-                    </code>
-                </pre>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode787.CheapestFlightWithinKStops_Bellman-Ford.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
             </ul>
+
+            <mat-divider></mat-divider>
         </div>
+
     </div>
 </div>

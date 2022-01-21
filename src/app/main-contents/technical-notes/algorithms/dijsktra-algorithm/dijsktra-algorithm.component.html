@@ -195,437 +195,47 @@
                 <!-- <li><a href="https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/" target="_blank" rel="noopener noreferrer">
                     [medium] 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance</a></li> -->
             </ul>
-        </div>
-
-        <div>
+            
             <h3>LeetCode 743. Network Delay Time</h3>
             <ul>
-                <li>The following is the simple solution which is not yet optimized using priority queue, but sufficient for 
-                    demonstrating Dijsktra's Algorithm.
-                </li>
-                    <pre>
-                        <code>
-    #include &lt;vector>
-    #include &lt;set>
-    #include &lt;unordered_map>
-    #include &lt;climits>
-    
-    class Solution &#123;
-    public:
-        int networkDelayTime(std::vector&lt;std::vector&lt;int>>& times, int n, int k) &#123;
-    
-            // VARIABLLE DECLARATION
-            std::vector&lt;int> minTravelCost(n, INT_MAX);
-            std::set&lt;int> visited;
-    
-            // BASE CASE
-            minTravelCost[k-1] = 0;
-            
-            // GRAPH CONSTRUCTION
-            std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, int>>> graph;
-            for(int i=0; i&lt;times.size(); i++)&#123;
-                graph[times[i][0]].push_back(&#123;times[i][1],times[i][2]});
-            }
-            
-            // LOOP UNTIL ALL VERTICES ARE VISITED
-            while (visited.size() != n) &#123;
-    
-                // FIND UNVISITED VERTEX WITH MINIMUM TRAVEL COST
-                auto [currentVertex, currentMinTravelCost] = getVertexWithMinTravelCost(minTravelCost, visited);
-    
-                // ENDING CONDITION
-                if (currentMinTravelCost == INT_MAX) &#123;
-                    return -1;
-                }
-    
-                // UPDATE VISITED VERTICES
-                visited.insert(currentVertex);
-    
-                // SCAN THROUGH NEIGHBOURING VERTICES
-                for (auto edgeInfo: graph[currentVertex]) &#123;
-                    int vertexIdx = edgeInfo.first;
-                    if (visited.find(vertexIdx) != visited.end()) &#123;
-                        continue;
-                    }
-                    
-                    // FORMULATE newTravelCost
-                    int newTravelCost = currentMinTravelCost + edgeInfo.second;
-    
-                    // UPDATE minTravelCost
-                    if (newTravelCost&lt;minTravelCost[vertexIdx-1]) &#123;
-                        minTravelCost[vertexIdx-1] = newTravelCost;                
-                    }
-                }
-            }
-    
-            int maxTime = -1;
-            for (auto time:minTravelCost) &#123;
-                maxTime=std::max(maxTime, time);
-            }
-    
-            return maxTime;
-        }
-        
-        std::tuple&lt;int, int> getVertexWithMinTravelCost(const std::vector&lt;int>& minTravelCost, const std::set&lt;int>& visited)
-        &#123;
-            int currentMinTravelCost = INT_MAX;
-            int vertex = -1;
-            for (int vertexIdx = 1; vertexIdx&lt;minTravelCost.size()+1; vertexIdx++) &#123;
-                int time = minTravelCost[vertexIdx-1];
-                if (visited.find(vertexIdx) != visited.end()) &#123;
-                    continue;
-                }
-                if (time &lt; currentMinTravelCost) &#123;
-                    currentMinTravelCost = time;
-                    vertex = vertexIdx;
-                }
-            }
-            return &#123;vertex, currentMinTravelCost};
-        }
-    };
-                        </code>
-                    </pre>
-                <li>The following is the optimized solution with the help of MinHeap:</li>
-                    <pre>
-                        <code>
-    #include &lt;vector>
-    #include &lt;queue>
-    #include &lt;unordered_map>
-    #include &lt;climits>
-
-    typedef std::priority_queue &lt;std::pair&lt;int, int>, std::vector&lt;std::pair&lt;int, int>>, std::greater&lt;std::pair&lt;int, int>>> MinHeap;
-
-    typedef std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, int>>> Graph;
-
-    class Solution &#123;
-    public:
-        
-        std::vector&lt;int> dijkstra(Graph& graph, int source, int n) &#123;
-            MinHeap minHeap;
-            
-            // VARIABLLE DECLARATION
-            std::vector&lt;int> minTravelCost(n, INT_MAX);
-            std::vector&lt;bool> visited(n, false);
-
-            // BASE CASE
-            minTravelCost[source] = 0;
-            
-            minHeap.push(&#123;0, source});
-            
-            while (!minHeap.empty()) &#123;
-                auto [curTravelCost, curVertex] = minHeap.top();
-                minHeap.pop();
-                if (visited[curVertex]) &#123;
-                    continue;
-                }
-                visited[curVertex] = true;
-                for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
-                    int newTravelCost = curTravelCost + nextTravelCost;
-                    if (!visited[nextVertex] && newTravelCost&lt;minTravelCost[nextVertex]) &#123;
-                        minTravelCost[nextVertex] = newTravelCost;
-                        minHeap.push(&#123;newTravelCost, nextVertex});
-                    }
-                }
-                
-            }
-            return minTravelCost;
-            
-        }
-        
-        int networkDelayTime(std::vector&lt;std::vector&lt;int>>& times, int n, int k) &#123;
-            
-            // GRAPH CONSTRUCTION
-            Graph graph;
-            for(int i=0; i&lt;times.size(); i++)&#123;
-                graph[times[i][0]-1].push_back(&#123;times[i][1]-1,times[i][2]});
-            }
-            
-            auto minTravelCost = dijkstra(graph, k-1, n);
-            
-            int maxTime = -1;
-            for (auto time:minTravelCost) &#123;
-                if (time == INT_MAX) &#123;
-                    return -1;
-                }
-                if (time > maxTime) &#123;
-                    maxTime = time;
-                }
-            }
-            
-            return maxTime;
-        }
-        
-    };
-                        </code>
-                    </pre>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode743.NetworkDelayTime_Dijsktra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">This</a> is the simple solution which is not yet optimized using priority queue, 
+                    but sufficient for demonstrating Dijsktra's Algorithm.
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode743.NetworkDelayTime_Dijsktra'sAlgorithm02.cpp" target="_blank" rel="noopener noreferrer">This</a> is the optimized solution with the help of MinHeap:</li>
             </ul>
-        </div>
 
-        <div>
             <h3>LeetCode 1514. Path with Maximum Probability</h3>
             <ul>
                 <li>The question is a typical original variant Dijsktra's Alogrithm question, except that it finds maximum instead of 
                     instead of minimum.
                 </li>
                 <li>Hence, the Dijsktra's Algorithm can be slightly modified to solve this question.</li>
-                    <pre>
-                        <code>
-    #include &lt;vector>
-    #include &lt;queue>
-    #include &lt;unordered_map>
-    
-    typedef std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, double>>> Graph;
-    typedef std::priority_queue&lt;std::pair&lt;double, int>> MaxHeap;
-    
-    class Solution &#123;
-    public:
-        double maxProbability(int n, std::vector&lt;std::vector&lt;int>>& edges, std::vector&lt;double>& succProb, int start, int end) &#123;
-            
-            // GRAPH CONSTRUCTION
-            std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, double>>> graph;
-            for(int i=0; i&lt;edges.size(); i++)&#123;
-                graph[edges[i][0]].push_back(&#123;edges[i][1],succProb[i]});
-                graph[edges[i][1]].push_back(&#123;edges[i][0],succProb[i]});
-            }
-    
-            return dijkstraSingleTarget(graph, start, end, n);
-        }
-        
-        double dijkstraSingleTarget(Graph& graph, int source, int target, int n) &#123;
-            
-            // VARIABLLE DECLARATION
-            std::vector&lt;double> maxTravelCost(n, 0);
-            std::vector&lt;bool> visited(n, false);
-    
-            // BASE CASE
-            maxTravelCost[source] = 1;
-            
-            MaxHeap maxHeap;
-            maxHeap.push(&#123;1, source});
-            
-            while (!maxHeap.empty()) &#123;
-                auto [curTravelCost, curVertex] = maxHeap.top();
-                maxHeap.pop();
-                if (curVertex == target || curTravelCost == 0) &#123;
-                    break;
-                }
-                visited[curVertex] = true;
-                for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
-                    double newTravelCost = curTravelCost * nextTravelCost;
-                    if (!visited[nextVertex] && newTravelCost>maxTravelCost[nextVertex]) &#123;
-                        maxTravelCost[nextVertex] = newTravelCost;
-                        maxHeap.push(&#123;newTravelCost, nextVertex});
-                    }
-                }
-                
-            }
-            return maxTravelCost[target];
-            
-        }
-        
-    };
-                        </code>
-                    </pre>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijsktra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
             </ul>
-        </div>
 
-        <div>
             <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
             <ul>
                 <li>This question is slightly different, as it has a constraint that we need to fulfill.</li>
                 <li>This question we don't need to keep track of visited vertices, as we need to consider the path as long as it is within k stops.</li>
                 <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=vWgoPTvQ3Rw&t=1s" target="_blank" ref="noopener noreferrer">video</a>.</li>
-                <pre>
-                    <code>
-    #include &lt;queue>
-    #include &lt;vector>
-    #include &lt;unordered_map>
-    #include &lt;climits>
-    
-    typedef std::priority_queue&lt;std::tuple&lt;int, int, int>, std::vector&lt;std::tuple&lt;int, int, int>>, std::greater&lt;std::tuple&lt;int, int, int>>> MinHeap;
-    typedef std::unordered_map&lt;int, std::vector&lt;std::pair&lt;int, int>>> Graph;
-    
-    class Solution &#123;
-    public:
-        int findCheapestPrice(int n, std::vector&lt;std::vector&lt;int>>& flights, int src, int dst, int k) &#123;
-            Graph graph;
-            for (int i=0; i&lt;flights.size(); i++) &#123;
-                graph[flights[i][0]].push_back(&#123;flights[i][1],flights[i][2]});
-            }
-            return dijsktraSingleTarget(graph, src, dst, n, k);
-        }
-        
-        int dijsktraSingleTarget(Graph graph, int source, int target, int n, int k) &#123;
-            
-            std::vector&lt;int> minTravelCost(n, INT_MAX);
-            std::vector&lt;int> stops(n, INT_MAX);
-            minTravelCost[source] = 0;
-            stops[source] = 0;
-            
-            MinHeap minHeap;
-            minHeap.push(&#123;0, source, 0});
-            
-            while(!minHeap.empty()) &#123;
-                auto[curTravelCost, curVertex, curStop] = minHeap.top();
-                minHeap.pop();
-                if (curVertex == target) break;
-                if (curStop == k+1) continue;
-                for (const auto& [nextVertex, nextTravelCost]: graph[curVertex]) &#123;
-                    int newTravelCost = curTravelCost+nextTravelCost;
-                    int newStop = curStop + 1;
-                    if (newTravelCost&lt;minTravelCost[nextVertex]) &#123;
-                        minTravelCost[nextVertex] = newTravelCost;
-                        stops[nextVertex] = newStop;    
-                        minHeap.push(&#123;newTravelCost, nextVertex, newStop});  
-                    } else if (newStop &lt; stops[nextVertex]) &#123;
-                        stops[nextVertex] = newStop;    
-                        minHeap.push(&#123;newTravelCost, nextVertex, newStop});  
-                    }
-                }
-                
-            }
-            return minTravelCost[target] == INT_MAX ? -1 : minTravelCost[target];
-        }
-    };
-                    </code>
-                </pre>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode787.CheapestFlightWithinKStops_Dijsktra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
             </ul>
-        </div>
 
-        <div>
             <h3>LeetCode 1631. Path With Minimum Effort</h3>
             <ul>
                 <li>This question demonstrates how Dijsktra's Algorithm can be implemented on a 2D vector.</li>
-                <pre>
-                    <code>
-    #include &lt;queue>
-    #include &lt;vector>
-    #include &lt;climits>
-    #include &lt;math.h>
-    
-    typedef std::priority_queue&lt;std::vector&lt;int>, std::vector&lt;std::vector&lt;int>>, std::greater&lt;std::vector&lt;int>>> MinHeap;
-    
-    class Solution &#123;
-    public:
-        int minimumEffortPath(std::vector&lt;std::vector&lt;int>>& heights) &#123;
-            int row = heights.size();
-            int col = heights[0].size();
-            int targetR = row - 1;
-            int targetC = col - 1;
-            
-            std::vector&lt;std::vector&lt;int>> minTravelCost(row, std::vector&lt;int> (col, INT_MAX));
-            minTravelCost[0][0] = 0;
-            
-            int moves[4][4] = &#123; &#123;-1,0},&#123;1,0},&#123;0,-1},&#123;0,1}};
-            
-            MinHeap minHeap;
-            minHeap.push(&#123;0, 0, 0}); // &#123;effort, r, c}
-            
-            while (!minHeap.empty()) &#123;
-                auto topEle = minHeap.top();
-                int curEffort = topEle[0];
-                int curR = topEle[1];
-                int curC = topEle[2];
-                minHeap.pop();
-                
-                if (curR == targetR && curC == targetC) &#123;
-                    return curEffort;
-                }
-                
-                if (curEffort>minTravelCost[curR][curC]) &#123;
-                    continue;
-                }
-                
-                for (auto move:moves) &#123;
-                    int newR = curR + move[0];
-                    int newC = curC + move[1];
-                    if (newR &lt; 0 || newR >= row || newC &lt; 0 || newC >= col) &#123;
-                        continue;
-                    } else &#123;
-                        int newEffort = abs(heights[newR][newC] - heights[curR][curC]);
-                        int minEffort = newEffort;
-                        if (curEffort != INT_MAX) &#123;
-                            // If previous effort is higher, than minEffort is equal to previous effort
-                            minEffort = std::max(newEffort, curEffort);
-                        }
-                        if (minEffort &lt; minTravelCost[newR][newC]) &#123;
-                            minTravelCost[newR][newC] = minEffort;
-                            minHeap.push(&#123;minEffort, newR, newC});
-                        }
-                        
-                    }
-                }
-            }
-            
-            return minTravelCost[targetR][targetC];
-        }
-    };
-                    </code>
-                </pre>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1631.PathWithMinimumEffort_Dijsktra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
             </ul>
-        </div>
 
-        <div>
             <h3>LeetCode 778. Swim in Rising Water</h3>
             <ul>
                 <li>This question is a little bit unique, it doesn't need MinTravelCost vector to keep track travel cost,
                     as the element of the grid itself is the travel cost, and the new travel cost doesnt relate to previous travel cost.
                 </li>
-                <pre>
-                    <code>
-    #include &lt;queue>
-    #include &lt;vector>
-    #include &lt;climits>
-    
-    typedef std::priority_queue&lt;std::vector&lt;int>, std::vector&lt;std::vector&lt;int>>, std::greater&lt;std::vector&lt;int>>> MinHeap;
-    
-    class Solution &#123;
-    public:
-        int swimInWater(std::vector&lt;std::vector&lt;int>>& grid) &#123;
-            int row = grid.size();
-            int col = grid[0].size();
-            int targetR = row - 1;
-            int targetC = col - 1;
-            
-            std::vector&lt;std::vector&lt;bool>> visited(row, std::vector&lt;bool> (col, false));
-            int moves[4][4] = &#123; &#123;-1,0},&#123;1,0},&#123;0,-1},&#123;0,1}};
-            
-            MinHeap minHeap;
-            minHeap.push(&#123;grid[0][0], 0, 0}); // &#123;timeNeeded, r, c}
-            
-            while (!minHeap.empty()) &#123;
-                auto topEle = minHeap.top();
-                int curTimeNeeded = topEle[0];
-                int curR = topEle[1];
-                int curC = topEle[2];
-                minHeap.pop();
-                
-                if (curR == targetR && curC == targetC) &#123;
-                    return curTimeNeeded;
-                }
-                
-                if (visited[curR][curC]) continue;
-                visited[curR][curC] = true;
-                
-                for (auto move:moves) &#123;
-                    int newR = curR + move[0];
-                    int newC = curC + move[1];
-                    if (newR &lt; 0 || newR >= row || newC &lt; 0 || newC >= col) &#123;
-                        continue;
-                    } else &#123;
-                        if (!visited[newR][newC]) &#123;
-                            int newTimeNeeded = std::max(grid[newR][newC], curTimeNeeded);
-                            minHeap.push(&#123;newTimeNeeded, newR, newC});
-                        }
-                    }
-                }
-            }
-            return 0;
-        }
-    };
-                    </code>
-                </pre>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode778.SwimInRisingWater_Dijsktra'sAlgorihtm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
             </ul>
+
+            <mat-divider></mat-divider>
         </div>
+        
     </div>
 </div>
