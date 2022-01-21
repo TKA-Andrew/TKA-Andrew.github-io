@@ -13,7 +13,123 @@
                 </li>
                 <li>This is a <a href="https://www.youtube.com/watch?v=FtN3BYH2Zes" target="_blank" rel="noopener noreferrer">Youtube video</a>
                     explaining some of the main ideas regarding Bellman-Ford algorithm.</li>
+                <li>From the video above, you might think that we only need one array to keep track the minimum travel cost From
+                    source to all other nodes (like what we did for Dijsktra's Algorithm), as the person in that video is
+                    demonstrating the process from source node to the neighbouring nodes. Well, to know what are the neighbouring nodes,
+                    we need extra unordered_map (or what we called Graph in Dijsktra's Algorithm) to keep track.
+                </li>
+                <li>Refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
+                    to see how we can implement Bellman-Ford algorithm without that unordered_map to keep track neighbouring vertices.</li>
+                <li><b>Bellman-Ford Algorithm</b></li>
+                    <ol>
+                        <li>Construct a vector called <span style="font-style: italic;">minTravelCost</span> with default elements set to INT_MAX</li>
+                            <pre>
+                                <code>
+    std::vector&lt;int> minTravelCost(n, INT_MAX);
+                                </code>
+                            </pre>
+                        <li>Set <span style="font-style: italic;">minTravelCost</span> of starting vertex to 0</li>
+                            <pre>
+                                <code>
+    minTravelCost[startingVertex] = 0;
+                                </code>
+                            </pre>     
+                        <li>Determine the <span style="font-style: italic;">maxNumOfTrials</span> you need.</li>
+                            <ul>
+                                <li>For example, if you are given 5 vertices, 
+                                    the maximum number of edges that you might need to go through
+                                    when finding shortest path will be 4.</li>
+                                <li>If you try LeetCode 787, then your maximum number of trials is limited the input variable k. 
+                                    Refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
+                                    if you would like to understand better.
+                                </li>
+                            </ul>
+                        <li><span class="script-font">for (int i = 0; i &lt; maxNumOfTrials; i++) &#123;</span></li>
+                            <ul>
+                                <li>copy the value of <span style="font-style: italic;">minTravelCost</span> to a <span style="font-style: italic;">temp</span> vector</li>
+                                    <pre>
+                                        <code>
+    std::vector&lt;int> temp(minTravelCost);
+                                        </code>
+                                    </pre>
+                                <li>for each pair of edges</li>
+                                    <pre>
+                                        <code>
+    // assuming edges = &#123;&#123;u, v, travelCost}...}
+    for (auto edge : edges) &#123;
+        int u = edge[0];
+        int v = edge[1];
+        int travelCost = edge[2];
+        if (minTravelCost[u] == INT_MAX) &#123;
+            continue;
+        }
+        if ((minTravelCost[u]+travelCost &lt; temp[v])) &#123;
+            temp[v] = minTravelCost[u] + travelCost;
+        }
+    }
+                                        </code>
+                                    </pre>
+                                <li>Update <span class="script-font">minTravelCost</span></li>
+                                    <pre>
+                                        <code>
+    minTravelCost = temp;
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ol>
             </ul>   
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h2>List of Bellman-Ford LeetCode Questions</h2>
+            <ul>
+                <li><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener noreferrer">
+                    [medium] 787. Cheapest Flights Within K Stops</a></li>
+                <li>PS: Basically every question related to Dijsktra's Algorithm can be solved using Bellman-Ford Algorithm.</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
+            <ul>
+                <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>.</li>
+                <pre>
+                    <code>
+    #include &lt;vector>
+    #include &lt;climits>
+    
+    class Solution &#123;
+    public:
+        int findCheapestPrice(int n, std::vector&lt;std::vector&lt;int>>& flights, int src, int dst, int k) &#123;
+            
+            std::vector&lt;int> minTravelCost(n, INT_MAX);
+            minTravelCost[src] = 0;
+            
+            int maxNumOfTrials = k+1;
+            
+            for (int i=0; i&lt;maxNumOfTrials; i++) &#123;
+                std::vector&lt;int> temp(minTravelCost);
+                for (auto flight : flights) &#123;
+                    int u = flight[0];
+                    int v = flight[1];
+                    int travelCost = flight[2];
+                    if (minTravelCost[u] == INT_MAX) &#123;
+                        continue;
+                    }
+                    if ((minTravelCost[u]+travelCost &lt; temp[v])) &#123;
+                        temp[v] = minTravelCost[u] + travelCost;
+                    }
+                }
+                minTravelCost = temp;
+            }
+            return (minTravelCost[dst] == INT_MAX) ? -1 : minTravelCost[dst];
+        }
+        
+    };
+                    </code>
+                </pre>
+            </ul>
         </div>
     </div>
 </div>
