@@ -21,6 +21,7 @@ import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermed
 import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.component';
 import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijsktra-algorithm.component';
 import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
+import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dynamic-programming.component';
 
 const routes: Routes = [{
   path:'',
@@ -53,6 +54,10 @@ const routes: Routes = [{
     {
       path: 'coding/javaScript',
       component: JavascriptNotesComponent
+    },
+    {
+      path: 'algorithms/dynamic-programming',
+      component: DynamicProgrammingComponent
     },
     {
       path: 'algorithms/dijsktra',

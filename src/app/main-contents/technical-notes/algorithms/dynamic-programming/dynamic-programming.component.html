@@ -1,0 +1,69 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>Dynamic Programming</h1>
+        <div>
+            <h2>Introduction</h2>
+            <ul>
+                <li>If you are able to find a state transition in the problem, most probably you can solve it with DP.</li>
+                <li>What we need in DP solution:</li>
+                    <ul>
+                        <li>base case</li>
+                        <li>state transition</li>
+                        <li>choices for state transition</li>
+                        <li>meaning of "dp" variable (normally is 1D or 2D vector, or even recursive function)</li>
+                    </ul>
+                <li>There is no standard sequence of which of the above items should be determined first,
+                    it all depends on the definition of your "dp" variable.
+                </li>
+                <li>State compression can be done to compress the dp vector (from 2D to 1D, or from 1D to a few variables) if the state transition only relies on neighbor elements</li>
+                <li>Normally problems that relate to finding maximum, minimum, greatest, longest etc are possibly related to DP</li>
+                <li>Questions related to subsequences also possibly related to DP</li>
+                <li>The content here will try to focus on bottom-up approach of DP only, will try to use the same pattern of solution</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h2>List of Dijsktra's LeetCode Questions</h2>
+            <ul>
+                <li><a href="https://leetcode.com/problems/fibonacci-number/" target="_blank" rel="noopener noreferrer">
+                    [easy] 509. Fibonacci Number</a></li>    
+                <li><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener noreferrer">
+                    [easy] 53. Maximum Subarray</a></li>    
+                <li><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener noreferrer">
+                    [easy] 70. Climbing Stairs</a></li>    
+                <li><a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener noreferrer">
+                    [medium] 322. Coin Change</a></li>    
+            </ul>
+
+            <h3>LeetCode 509. Fibonacci Number</h3>
+            <ul>
+                <li>This question is simple and direct, no choices involved</li>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode509.FibonacciNumber_DP.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+            </ul>
+            
+            <h3>LeetCode 509. Fibonacci Number</h3>
+            <ul>
+                <li>There are 2 “CHOICES” in this question:</li>
+                    <ul>
+                        <li>The ith element forms a new subarray</li>
+                        <li>The ith element joins previous subarray to form a longer subarray</li>
+                    </ul>
+                <li>When there are multiple choices, we will need to update dp[i] value based on the choice selected</li>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode53.MaximumSubarray_DP.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+            </ul>
+
+            <h3>LeetCode 70. Climbing Stairs</h3>
+            <ul>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode70.ClimbingStairs_DP.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+            </ul>
+            
+            <h3>LeetCode 322. Coin Change</h3>
+            <ul>
+                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode322.CoinChange_DP.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+            </ul>
+            
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
