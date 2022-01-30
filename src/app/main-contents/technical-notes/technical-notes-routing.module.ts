@@ -22,6 +22,7 @@ import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.
 import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijsktra-algorithm.component';
 import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
 import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dynamic-programming.component';
+import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-cmake.component';
 
 const routes: Routes = [{
   path:'',
@@ -110,6 +111,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/CMakeNotes',
       component: CmakeNotesComponent
+    },
+    {
+      path: 'miscellaneuos/learning_cmake',
+      component: LearningCmakeComponent
     }
   ]
 }];
