@@ -164,6 +164,27 @@
     </ol>
     <mat-divider></mat-divider>
 
+    <h3>CMake Notes</h3>
+    <ul>
+        <li>The better practice would be writing .sh files (.bat for Windows) such as build.sh and configure.sh instead of typing the 
+            commands on terminal everytime.
+        </li>
+        <li>Windows execution will not be able to find the .dll. You can solve this problem by adding this library stored in right next to your executable.
+            [<a href="Windows execution will not be able to find the .dll. You can solve this problem by adding this library stored in right next to your executable." target="_blank" rel="noopener noreferrer">Reference</a>]</li>
+        <li>target_include_directories vs include_directories</li>
+            <ul>
+                <li><span style="font-style:italic">include_directories</span> affects directory scope</li>
+                <li><span style="font-style:italic">target_include_directories</span> affects target scope</li>
+                <li>Normally target_include_directories is preferred</li>
+            </ul>
+        <li>According to the <a href="https://cmake.org/cmake/help/latest/guide/tutorial/Adding%20Usage%20Requirements%20for%20a%20Library.html" target="_blank" rel="noopener noreferrer">
+            Official tutorial</a>, once we have specified the usage requirement of our subpackage (using something like target_include_directories INTERFACE),
+            then we don't need to target_include_directories it in main CMakeLists.txt</li>
+        <li>CMAKE_INSTALL_PREFIX defaults to /usr/local on UNIX and c:/Program Files/$&#123;PROJECT_NAME} on Windows.</li>
+        <li>According to <a href="https://stackoverflow.com/questions/35916703/error1-error-lnk1107-invalid-or-corrupt-file-cannot-read-at-0x2b0/35920570" target="_blank" rel="noopener noreferrer">
+            this post</a>, most likely we need both .lib and .dll files. We need .lib for compilation and .dll for run-time.</li>
+    </ul>
+
     <h3>References for learning CMake</h3>
     <table>
         <tr>
