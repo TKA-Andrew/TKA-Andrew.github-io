@@ -183,6 +183,12 @@
         <li>CMAKE_INSTALL_PREFIX defaults to /usr/local on UNIX and c:/Program Files/$&#123;PROJECT_NAME} on Windows.</li>
         <li>According to <a href="https://stackoverflow.com/questions/35916703/error1-error-lnk1107-invalid-or-corrupt-file-cannot-read-at-0x2b0/35920570" target="_blank" rel="noopener noreferrer">
             this post</a>, most likely we need both .lib and .dll files. We need .lib for compilation and .dll for run-time.</li>
+        <li>According to <a href="https://cmake.org/cmake/help/latest/command/file.html#install" target="_blank" rel="noopener noreferrer">this documentation</a>,
+            the file(INSTALL) and file(COPY) are actually doing the same thing, so beginners can ignore their difference.</li>
+        <li>To copy or install files immediately at configure time, we use file(INSTALL ...) command.</li>
+        <li>To make something being installed only when user typed <span class="CLI-font">cmake --install</span>, use <a href="https://cmake.org/cmake/help/latest/guide/tutorial/Installing%20and%20Testing.html" 
+            target="_blank" rel="noopener noreferrer">install() command</a>. Refer to <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/Install.html" target="_blank" rel="noopener noreferrer">
+            this</a> for complete install() command documentation.</li>
     </ul>
 
     <h3>References for learning CMake</h3>
