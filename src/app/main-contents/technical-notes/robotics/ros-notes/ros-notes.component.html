@@ -190,5 +190,23 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+        <div>
+            <h3>To check the available list of Gazebo plugins</h3>
+            <ul>
+                <li>Go to the lib folder of ROS default installation path (for example: /opt/ros/noetic/lib)</li>
+                <li>All the files with naming of libgazeboXXXX.so are the Gazebo plugins.</li>
+                <li>To include Gazebo plugin in URDF model:</li>
+                    <pre>
+                        <code>
+    &lt;gazebo>
+        &lt;plugin name="unique_name" filename="plugin_name.so">
+            ... plugin parameters ...
+        &lt;/plugin>
+    &lt;/gazebo>
+                        </code>
+                    </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
