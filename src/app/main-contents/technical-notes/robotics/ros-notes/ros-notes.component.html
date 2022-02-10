@@ -208,5 +208,69 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h3>SLAM & Autonomous Navigation notes</h3>
+            <ul>
+                <li>For SLAM and autonomous navigation purpose, a robot needs to get the depth
+                    information of the environment. There are a few types of sensor devices can
+                    be used for this purpose:
+                </li>
+                    <ul>
+                        <li>Lidar sensor</li>
+                            <ul>
+                                <li>High accuracy</li>
+                                <li>Not affected by lighting condition</li>
+                                <li>Less data (as compared to Camera) and more ideal for SLAM</li>
+                                <li>Expensive (RPLidar costs around RM1700)</li>
+                            </ul>
+                        <li>Camera</li>
+                            <ul>
+                                <li>Monocular Camera</li>
+                                    <ul>
+                                        <li>Possible to estimate distance when the robot is moving around</li>
+                                        <li>Complicated to implement</li>
+                                    </ul>
+                                <li>Stereo Camera</li>
+                                    <ul>
+                                        <li>Can estiamted distance in both static and dynamic states</li>
+                                        <li>Not ideal for SLAM because need to process a lot of image data</li>
+                                    </ul>
+                            </ul>
+                        <li>RGB-D Camera</li>
+                            <ul>
+                                <li>Have both RGB image and depth image</li>
+                                <li>Can get depth informatin of every pixel</li>
+                                <li>Lower cost</li>
+                                <li>Examples: Microsoft Kinect, Asus Xtion Pro</li>
+                            </ul>
+                    </ul>
+                <li>The RGB-D camera provides 3D point cloud data, but most of the ROS packages require 2D laserscan data.
+                    To cope with this, ROS provides a package called depthimage_to_laserscan and this can be included in launch file.
+                    For example:
+                </li>
+                    <pre>
+                        <code>
+    &lt;node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
+        &lt;remap from="image" to="/camera/depth/image_raw"/>
+        &lt;remap from="camera_info" to="/camera/depth/camera_info"/>
+        &lt;remap from="scan" to="/scan"/>
+        &lt;remap from="output_frame_id" to="/camera_link"/>
+    &lt;/node>
+                        </code>
+                    </pre>
+                <li>ROS has a rosmsg type called sensor_msgs/LaserScan, which is used to store laserscan data.</li>
+                <li>ROS also has nav_msgs/Odometry which mainly consists of Pose and Twist message type. 
+                    Odometry data is commonly subscribed by ROS navigation packages.
+                </li>
+                <li>Navigation packages are more ideal for differential wheeled robots, and assuming the robots can be 
+                    directly controlled using geometry_msgs/Twist which consists of linear x,y,z and angular x,y,z speed.
+                </li>
+                <li>Navigation packages are developed based on square or circular robot model, hence the navigation
+                    performance for other strange shaped robot might not be ideal.
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
