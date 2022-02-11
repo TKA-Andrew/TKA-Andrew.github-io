@@ -269,7 +269,7 @@
                 <li>Navigation packages are developed based on square or circular robot model, hence the navigation
                     performance for other strange shaped robot might not be ideal.
                 </li>
-                <li>Types of SLAM packages</li>
+                <li>Types of SLAM approaches</li>
                     <ul>
                         <li>gmapping</li>
                             <ul>
@@ -287,7 +287,25 @@
                             <ul>
                                 <li>This package doesn't need Odom data, only need depth data.</li>
                                 <li>Hence, this package can be used for drone or hand-held device.</li>
-                                <li>However, without Odom data, the SLAM performance is slighly worse than gmapping.</li>
+                                <li>However, without Odom data, the SLAM performance is slighly worse than gmapping,
+                                    especially if the robot is moving in higher speed.
+                                </li>
+                                <li>By reducing the moving speed of robot and using a higher accuracy lidar sensor,
+                                    the map generation performance could be improved.
+                                </li>
+                                <li>If RGB-D camera is used instead, the map generation performance would not be great.</li>
+                            </ul>
+                        <li>cartographer</li>
+                            <ul>
+                                <li>This package provides 2D and 3D SLAM across multiple platforms and sensor configurations.</li>
+                                <li>For more details, refer to their <a href="https://google-cartographer-ros.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener noreferrer">Official Documentation</a></li>
+                            </ul>
+                        <li>rtabmap_ros</li>
+                            <ul>
+                                <li>This is a powerful package which can be used to generate a 3D point clouds of the environment 
+                                    and/or to create a 2D occupancy grid map for navigation.</li>
+                                <li>Table 1 of <a href="https://introlab.3it.usherbrooke.ca/mediawiki-introlab/images/7/7a/Labbe18JFR_preprint.pdf" target="">this paper</a>
+                                    summarized different types of SLAM appraoches</li>
                             </ul>
                     </ul>
             </ul>
