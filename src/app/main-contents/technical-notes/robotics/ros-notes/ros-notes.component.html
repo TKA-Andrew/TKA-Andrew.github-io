@@ -269,6 +269,27 @@
                 <li>Navigation packages are developed based on square or circular robot model, hence the navigation
                     performance for other strange shaped robot might not be ideal.
                 </li>
+                <li>Types of SLAM packages</li>
+                    <ul>
+                        <li>gmapping</li>
+                            <ul>
+                                <li>This is the most commonly used SLAM package</li>
+                                <li>There are many parameters can be configured. If you are new to SLAM, you may use the default values.</li>
+                                <li>However, there are 2 parameters that you need to take note:</li>
+                                    <ul>
+                                        <li>the odom_frame must be matched with the robot's frame</li>
+                                        <li>gmapping package is subscribing to "/scan" topic, if your laserScan data is 
+                                            published to different topic, remember to &lt;remap> it in launch file.
+                                        </li>
+                                    </ul>
+                            </ul>
+                        <li>hector_slam</li>
+                            <ul>
+                                <li>This package doesn't need Odom data, only need depth data.</li>
+                                <li>Hence, this package can be used for drone or hand-held device.</li>
+                                <li>However, without Odom data, the SLAM performance is slighly worse than gmapping.</li>
+                            </ul>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
