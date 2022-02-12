@@ -31,7 +31,7 @@ import { UsefulResourcesComponent } from './robotics/useful-resources/useful-res
 import { CppBasicsComponent } from './coding/cpp-basics/cpp-basics.component';
 import { CppIntermediateComponent } from './coding/cpp-intermediate/cpp-intermediate.component';
 import { DockerNotesComponent } from './miscellaneous/docker-notes/docker-notes.component';
-import { DijsktraAlgorithmComponent } from './algorithms/dijsktra-algorithm/dijsktra-algorithm.component';
+import { DijkstraAlgorithmComponent } from './algorithms/dijkstra-algorithm/dijkstra-algorithm.component';
 import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
 import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dynamic-programming.component';
 import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-cmake.component';
@@ -57,7 +57,7 @@ import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-
     CppBasicsComponent,
     CppIntermediateComponent,
     DockerNotesComponent,
-    DijsktraAlgorithmComponent,
+    DijkstraAlgorithmComponent,
     BellmanFordAlgorithmComponent,
     DynamicProgrammingComponent,
     LearningCmakeComponent],
