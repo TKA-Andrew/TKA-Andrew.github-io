@@ -199,6 +199,8 @@
                             </pre>
                         <li>The functions above might not be applicable to certain problems, you might need to modify the data types
                             and some internal parts of the functions, or even simplify them.</li>
+                        <li>The functions above assume the nodes numbering start from 0, if your numbering starts from 1, 
+                            you should modify the function accordingly.</li>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
@@ -234,7 +236,15 @@
                     instead of minimum.
                 </li>
                 <li>Hence, the Dijkstra's Algorithm can be slightly modified to solve this question.</li>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+                <li>Tips, the following are the parts that you need to take note:</li>
+                    <ul>
+                        <li>base case</li>
+                        <li>formula of getting newTravelCost</li>
+                        <li>data type of travelCost</li>
+                        <li>you may solve it either using MinHeap or MaxHeap</li>
+                    </ul>
+                <li>Solution using MaxHeap: <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm_usingMaxHeap.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+                <li>Solution using MinHeap: <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
             </ul>
 
             <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
