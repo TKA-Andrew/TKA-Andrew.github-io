@@ -210,7 +210,7 @@
         </div>
 
         <div>
-            <h3>SLAM & Autonomous Navigation notes</h3>
+            <h3>SLAM notes</h3>
             <ul>
                 <li>For SLAM and autonomous navigation purpose, a robot needs to get the depth
                     information of the environment. There are a few types of sensor devices can
@@ -310,6 +310,45 @@
                     </ul>
             </ul>
             <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>Autonomous Navigation notes</h3>
+            <ul>
+                <li>The key parts of autonomous navigation are localization and path planning. ROS provides
+                    the following 2 packages for both of these:
+                    <ul>
+                        <li>move_base - for path planning</li>
+                        <li>amcl - for 2D map localization</li>
+                    </ul>
+                </li>
+                <li>move_base</li>
+                    <ul>
+                        <li><b>global_planner</b> is responsible for planning the overall path from starting point
+                        to destination.</li>
+                        <li><b>local_planner</b> is responsible for planning sub-path in order to avoid obstacles.</li>
+                    </ul>
+                <li>amcl</li>
+                    <ul>
+                        <li>Since Odometry can also help in robot localization, what is the difference between
+                            odometry and amcl?
+                        </li>
+                            <ul>
+                                <li>Odometry only handles TF transformation between /odom and /base</li>
+                                <li>amcl estimates the localtion of the robot on the map</li>
+                            </ul>
+                    </ul>
+                <li>Costmap Configuration</li>
+                    <ul>
+                        <li>common configuration</li>
+                        <li>global_costmap</li>
+                        <li>local_costmap</li>
+                    </ul>
+                <li>Local Planner Configuration</li>
+                    <ul>
+                        <li></li>
+                    </ul>
+            </ul>
         </div>
     </div>
 </div>
