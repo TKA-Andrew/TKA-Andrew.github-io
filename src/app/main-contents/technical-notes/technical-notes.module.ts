@@ -35,6 +35,7 @@ import { DijkstraAlgorithmComponent } from './algorithms/dijkstra-algorithm/dijk
 import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
 import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dynamic-programming.component';
 import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-cmake.component';
+import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-algorithm.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-
     DijkstraAlgorithmComponent,
     BellmanFordAlgorithmComponent,
     DynamicProgrammingComponent,
-    LearningCmakeComponent],
+    LearningCmakeComponent,
+    AStarAlgorithmComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

@@ -23,6 +23,7 @@ import { DijkstraAlgorithmComponent } from './algorithms/dijkstra-algorithm/dijk
 import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorithm/bellman-ford-algorithm.component';
 import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dynamic-programming.component';
 import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-cmake.component';
+import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-algorithm.component';
 
 const routes: Routes = [{
   path:'',
@@ -67,6 +68,10 @@ const routes: Routes = [{
     {
       path: 'algorithms/bellman-ford',
       component: BellmanFordAlgorithmComponent
+    },
+    {
+      path: 'algorithms/a-star-search',
+      component: AStarAlgorithmComponent
     },
     {
       path:'robotics/ROS',

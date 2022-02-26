@@ -1,0 +1,24 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>A* Search Algorithm</h1>
+        <div>
+            <h2>Introduction</h2>
+            <ul>
+                <li>A* Search Algorithm is another algorithm for finding the shortest path between two nodes in a graph.</li>
+                <li>This algorithm has an formula of <span class="CLI-font">f(n) = g(n) + h(n)</span> , where:</li>
+                    <ul>
+                        <li>f(n) : Travel cost for the node n</li>
+                        <li>g(n) : Distance travelled from starting point to node n</li>
+                        <li>h(n) : Heuristic approximation of the value of the node n</li>
+                    </ul>
+                <li>Hence, when exploring for shortest path, A* Search Algorithm will look at the node with lowest F value first.</li>
+                <li>Min Heap is also commonly used to lower the time complexity for finding the lowest F value among the nodes to be explored.</li>
+                <li>The Heurestic function plays an important role as it determines how fast it finds the path.
+                    The better the Heurestic function, the shorter time it needs to find the path.
+                </li>
+                <li>An example of Heurestic function is finding the distance between current node and destionation node.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
