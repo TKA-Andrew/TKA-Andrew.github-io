@@ -252,13 +252,13 @@
     
     add_executable($&#123;PROJECT_NAME} src/main.cpp)
     
-    # add subdirectory into consideration
+    # add subdirectory which has its own CMakeLists.txt
     add_subdirectory(Adder)
     
-    # link the adder library
+    # link the adder library to target
     target_link_libraries($&#123;PROJECT_NAME} PUBLIC adder)
     
-    # define the include path
+    # define the include path needed by target
     target_include_directories($&#123;PROJECT_NAME} PUBLIC
                                 "$&#123;PROJECT_SOURCE_DIR}/Adder"
     )
@@ -404,10 +404,151 @@
                     <li><b>target_include_directories()</b> has target scope only</li>
                     <li>Generally target_include_directories should be preferred</li>
                 </ul>
-            <li>Now let's look at the build folder</li>
+            <li><b>include_directories()</b> and <b>target_include_directories()</b> are for us to specify
+                the directories that the compiler uses to look for include files (.h files).</li>
+            <li><b>add_subdirectory</b> is for us to specify a subdirectory which has CMakeLists.txt and code files there.
+            </li>
+            <li>If you look at the build folder, you will see there is a "Adder" folder there. This means the
+                "add_subdirectory" make it an independent sub-package.
+             </li>
+            <li>At the end of CMakeLists.txt, we added target_include_directories because our target (main.cpp) 
+                uses <span class="script-font">#include "adder.h"</span>. If we didnt specify where the include_directories
+                are, the target wouldn't be able to find the adder.h IF THE HEADER IS NOT AT THE SAME DIRECTORY AS 
+                WHERE THE TARGET IS.
+            </li>
+            <li>The CMakeLists.txt of Adder doesnt need to have target_include_directories because the adder.h and adder.cpp 
+                are in the same directory. If you open a subfolder called "include" in the Adder folder, and move the adder.h
+                file into it, you will have error ("Cannot open include file: 'adder.h': No such file or
+                directory") when you try to compile the project.</li>
+            <li>If you put the adder.h into a subdirectory called "include" in the Adder folder, you need to
+                modify the CMakeLists.txt:</li>
                 <ul>
-                    <li>You will see there is "Adder" folder, this is because we used the "add_subdirectory"</li>
+                    <li>
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Adder
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+                              <ul>
+                                  <li>
+                                      <mat-accordion>
+                                          <mat-expansion-panel>
+                                            <mat-expansion-panel-header>
+                                              <mat-panel-title>
+                                                  adder.cpp
+                                              </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <pre>
+                                                <code>
+    #include "adder.h"
+
+    float add (float a, float b) &#123;
+        return a+b;
+    }
+                                                </code>
+                                            </pre>
+                                          </mat-expansion-panel>
+                                      </mat-accordion>
+                                  </li>
+                                  <li>
+                                    <mat-accordion>
+                                        <mat-expansion-panel>
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                include
+                                            </mat-panel-title>
+                                          </mat-expansion-panel-header>
+                                          <ul>
+                                              <li>
+                                                  <mat-accordion>
+                                                      <mat-expansion-panel>
+                                                        <mat-expansion-panel-header>
+                                                          <mat-panel-title>
+                                                              adder.h
+                                                          </mat-panel-title>
+                                                        </mat-expansion-panel-header>
+                                                        <pre>
+                                                            <code>
+    #ifndef ADDER_H
+    #define ADDER_H
+
+    float add(float a, float b);
+
+    #endif // ADDER_H
+                                                            </code>
+                                                        </pre>
+                                                      </mat-expansion-panel>
+                                                  </mat-accordion>
+                                              </li>
+                                          </ul>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                  </li>
+                                  <li>
+                                    <mat-accordion>
+                                        <mat-expansion-panel>
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                CMakeLists.txt
+                                            </mat-panel-title>
+                                          </mat-expansion-panel-header>
+                                          <pre>
+                                              <code>
+    add_library(adder adder.cpp)
+    target_include_directories(adder PUBLIC "$&#123;CMAKE_CURRENT_SOURCE_DIR}/include")
+                                              </code>
+                                          </pre>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                  </li>
+                              </ul>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </li>
+                    <li>You will notice actually the "target_include_directories" of the top level CMakeLists.txt
+                        can be removed and it will still work. This is because of the "PUBLIC" keyword (in CMakeLists.txt
+                        of Adder) will populate the include directories to other targets that use this target. If you change the 
+                        Keyword to "PRIVATE", then you will need that target_include_directories in top level CMakeLists.txt 
+                        again.
+                    </li>
+                    <li>The PUBLIC/PRIVATE/INTERFACE keywords are needed for include_directories() and link_libraries(),
+                        here is a quick summary for these 3 keywords:
+                    </li>
+                        <table style="margin-top: 20px;">
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>PUBLIC</td>
+                                <td>All the objects/directories following PUBLIC will be used for the current target and the other 
+                                    targets that have dependencies on the current target.</td>
+                            </tr>
+                            <tr>
+                                <td>PRIVATE</td>
+                                <td>All the objects/directories following PRIVATE will be used for the current target only.</td>
+                            </tr>
+                            <tr>
+                                <td>INTERFACE</td>
+                                <td>All the objects/directories following INTERFACE will NOT be used for the current target 
+                                    but will be accessible for the other targets that have dependencies on the current target.</td>
+                            </tr>
+                        </table>
                 </ul>
+        </ul>
+    </mat-card>
+
+    <mat-card>
+        <h2>03 - Building shared library</h2>
+        <ul>
+        </ul>
+    </mat-card>
+
+    <mat-card>
+        <h2>04 - Install</h2>
+        <ul>
         </ul>
     </mat-card>
 </div>
