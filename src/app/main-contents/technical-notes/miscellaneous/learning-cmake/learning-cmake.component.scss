@@ -1,3 +1,4 @@
+@use '../../technical-notes-content.scss';
 table {
     font-family: arial, sans-serif;
     width: 100%;
@@ -25,6 +26,20 @@ th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+mat-expansion-panel {
+    color: black;
+}
+
+mat-panel-title {
+    line-height: 14px;
+    text-transform: none;
+}
+
+mat-expansion-panel-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .mat-expansion-panel-header {

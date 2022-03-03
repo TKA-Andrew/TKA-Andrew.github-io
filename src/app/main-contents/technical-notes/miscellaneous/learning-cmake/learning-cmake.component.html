@@ -1,82 +1,87 @@
 <div fxLayout="column" fxLayoutGap="10px">
     <h1>Learning CMake</h1>
-    <mat-card>
-        <h2>Introduction</h2>
-        <ul>
-            <li>This tutorial will only cover the common usage of CMakeLists. </li>
-            <li>In this tutorial, we will not make use of Visual Studio. We will only use Visual Studio Code and command prompt to build and run our program.</li>
-        </ul>
-    </mat-card>
-    <mat-card>
-        <h2>Pre-requisites</h2>
-        <h3>Static libraries & Dynamic libraries</h3>
-        <ul>
-            <li>When we want to use built libraries in our package, no matter is static library or dynamic library, we will need to include the respective header files (.h files) as well.</li>
-            <table style="margin-top: 20px;">
-                <tr>
-                    <th>Static libraries</th>
-                    <th>Dynamic libraries</th>
-                </tr>
-                <tr>
-                    <td>.lib (on Windows) & .a (on Linux) files</td>
-                    <td>.dll (on Windows) & .so (on Linux) files</td>
-                </tr>
-                <tr>
-                    <td>locked into program at compile-time</td>
-                    <td>loaded into program at run-time</td>
-                </tr>
-                <tr>
-                    <td>need to recompile if the code implementation changes</td>
-                    <td>only need to recompile when the function declarations change</td>
-                </tr>
-                <tr>
-                    <td>the executable file will be stable and untouched</td>
-                    <td>the executable file will be corrupted if the dynamic library is modified and corrupted</td>
-                </tr>
-                <tr>
-                    <td>faster execution time</td>
-                    <td>slower execution time</td>
-                </tr>
-                <tr>
-                    <td>increases the excutable file's size</td>
-                    <td>doesn't have much impact on the executable file's size</td>
-                </tr>
-            </table>
-        </ul>
 
-        <h3>What are header-only libraries and what are the pros and cons?</h3>
-        <ul>
-            <li>Header-only libraries are libraries where the entire library is implemented using header files only (no .lib and .dll files will be provided)</li>
-            <li>What are the advantages?</li>
-                <ul>
-                    <li>Header-only library is the only choice when dealing with C++ templates, because the compiler needs to know the full definition of the templates in order to instantiate.</li>
-                    <li>We do not need to build the library, and user doesn't need to compile our library before using it</li>
-                </ul>
-            <li>What are the disadvantages?</li>
-                <ul>
-                    <li>Most probably will have increased compilation time</li>
-                    <li>if you change anything about the code in the header, then you’ll need to recompile every file that includes that header</li>
-                    <li>Source code implementation is visible to user as it is written in the header file</li>
-                </ul>
-        </ul>
-    </mat-card>
+    <h2>Introduction</h2>
+    <ul>
+        <li>This tutorial will only cover the common usage of CMakeLists. </li>
+        <li>In this tutorial, we will not make use of Visual Studio. We will only use Visual Studio Code and command
+            prompt to build and run our program.</li>
+    </ul>
+    <mat-divider></mat-divider>
 
-    <mat-card>
-        <h2>01 - Simple CMake</h2>
+    <h2>Pre-requisites</h2>
+    <h3>Static libraries & Dynamic libraries</h3>
+    <ul>
+        <li>When we want to use built libraries in our package, no matter is static library or dynamic library, we will
+            need to include the respective header files (.h files) as well.</li>
+        <table style="margin-top: 20px;">
+            <tr>
+                <th>Static libraries</th>
+                <th>Dynamic libraries</th>
+            </tr>
+            <tr>
+                <td>.lib (on Windows) & .a (on Linux) files</td>
+                <td>.dll (on Windows) & .so (on Linux) files</td>
+            </tr>
+            <tr>
+                <td>locked into program at compile-time</td>
+                <td>loaded into program at run-time</td>
+            </tr>
+            <tr>
+                <td>need to recompile if the code implementation changes</td>
+                <td>only need to recompile when the function declarations change</td>
+            </tr>
+            <tr>
+                <td>the executable file will be stable and untouched</td>
+                <td>the executable file will be corrupted if the dynamic library is modified and corrupted</td>
+            </tr>
+            <tr>
+                <td>faster execution time</td>
+                <td>slower execution time</td>
+            </tr>
+            <tr>
+                <td>increases the excutable file's size</td>
+                <td>doesn't have much impact on the executable file's size</td>
+            </tr>
+        </table>
+    </ul>
+
+    <h3>What are header-only libraries and what are the pros and cons?</h3>
+    <ul>
+        <li>Header-only libraries are libraries where the entire library is implemented using header files only (no .lib
+            and .dll files will be provided)</li>
+        <li>What are the advantages?</li>
         <ul>
-            <li>First of all, open Visual Studio Code and install the C++ extension</li>
-                <img style="width: 80%;" src="assets/images/general/learningCMake/learningCMake01.JPG">
-            <li>Open a folder for this tutorial, and create these files/folders:</li>
-                <ul>
-                    <li>
-                        <mat-accordion>
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    CMakeLists.txt
-                                </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <pre>
+            <li>Header-only library is the only choice when dealing with C++ templates, because the compiler needs to
+                know the full definition of the templates in order to instantiate.</li>
+            <li>We do not need to build the library, and user doesn't need to compile our library before using it</li>
+        </ul>
+        <li>What are the disadvantages?</li>
+        <ul>
+            <li>Most probably will have increased compilation time</li>
+            <li>if you change anything about the code in the header, then you’ll need to recompile every file that
+                includes that header</li>
+            <li>Source code implementation is visible to user as it is written in the header file</li>
+        </ul>
+    </ul>
+    <mat-divider></mat-divider>
+
+
+    <h2>01 - Simple CMake</h2>
+    <ul>
+        <li>First of all, open Visual Studio Code and install the C++ extension</li>
+        <img style="width: 80%;" src="assets/images/LearningCMake/learningCMake01.JPG">
+        <li>Open a folder for this tutorial, and create these files/folders:</li>
+        <ul>
+            <li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CMakeLists.txt
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <pre>
                                   <code>
     cmake_minimum_required(VERSION 3.16.3)
 
@@ -85,45 +90,45 @@
     add_executable($&#123;PROJECT_NAME} src/main.cpp src/adder.cpp)
                                   </code>
                               </pre>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </li>
-                    <li>
-                        <mat-accordion>
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    src
-                                </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <ul>
-                                  <li>
-                                      <mat-accordion>
-                                          <mat-expansion-panel>
-                                            <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                  adder.cpp
-                                              </mat-panel-title>
-                                            </mat-expansion-panel-header>
-                                            <pre>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </li>
+            <li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                src
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                adder.cpp
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                                 <code>
     float add (float a, float b) &#123;
         return a+b;
     }
                                                 </code>
                                             </pre>
-                                          </mat-expansion-panel>
-                                      </mat-accordion>
-                                  </li>
-                                  <li>
-                                      <mat-accordion>
-                                          <mat-expansion-panel>
-                                            <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                  main.cpp
-                                              </mat-panel-title>
-                                            </mat-expansion-panel-header>
-                                            <pre>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                main.cpp
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                                 <code>
     #include &lt;iostream>
     float add(float a, float b);
@@ -136,22 +141,26 @@
     }
                                                 </code>
                                             </pre>
-                                          </mat-expansion-panel>
-                                      </mat-accordion>
-                                  </li>
-                              </ul>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </li>
-                </ul>
-            <li>You will notice that there is an error saying "cannot open source file iostream". This error is because Visual Studio Code doesn't know where to
-                find those libraries. Hence, you need to "Ctrl + Shift + P", and select "C/C++: Edit Configurations(JSON)" or "C/C++: Edit Configurations(UI)"
-                <img style="width: 80%;" src="assets/images/general/learningCMake/learningCMake02.JPG">
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                </mat-accordion>
             </li>
-            <li>Then, we need to edit the c_cpp_properties.json file. If you have Visual Studio installed, supposedly you have the cl.exe compiler, then you need to modify
-                the intelliSenseMode, so that your intelliSenseMode tally with the compiler you used. Other than that, you also need to include the urct libraries and 
-                VC basic libraries.
-                <pre>
+        </ul>
+        <li>You will notice that there is an error saying "cannot open source file iostream". This error is because
+            Visual Studio Code doesn't know where to
+            find those libraries. Hence, you need to "Ctrl + Shift + P", and select "C/C++: Edit Configurations(JSON)"
+            or "C/C++: Edit Configurations(UI)"
+        </li>
+        <img style="width: 80%;" src="assets/images/LearningCMake/learningCMake02.JPG">
+        <li>Then, we need to edit the c_cpp_properties.json file. If you have Visual Studio installed, supposedly you
+            have the cl.exe compiler, then you need to modify
+            the intelliSenseMode, so that your intelliSenseMode tally with the compiler you used. Other than that, you
+            also need to include the urct libraries and
+            VC basic libraries.
+            <pre>
                     <code>
     &#123;
         "configurations": [
@@ -177,74 +186,78 @@
     }
                     </code>
                 </pre>
-            </li>
-            <li>The content of CMakeLists.txt is quite straight forward:</li>
-                <ul>
-                    <li>cmake_minimum_required is to set the minimum required version of cmake for your project.</li>
-                    <li>project() is to set your project name</li>
-                    <li>add_executable() is to define the source files needed for your target executable. In this example, our executable is our project name, 
-                        and the source files needed for that executable are the main.cpp and adder.cpp
-                    </li>
-                </ul>
-            <li>Basically there are only 2 steps in CMake process:</li>
-                <ul>
-                    <li>Generate build files</li>
-                    <li>Use the build files to build our project</li>
-                </ul>
-            <li>Generating build files</li>
-                <ul>
-                    <li>First of all, run <span class="CLI-font">cmake --help</span> on your command prompt terminal, and then look at the "The generators available on this platform".</li>
-                    <li>Which means, you can generate different build files for different build platforms (such as Visual Studio 14, Visual Studio 15, Make, Ninja, etc)</li>
-                    <li>I have Visual Studio 2015 installed, so I will use this Generator in this tutorial.</li>
-                    <li>I will change directory into this repo, and then use run the following commands to generate the build files in the build folder:</li>
-                        <ul>
-                            <li><span class="CLI-font">mkdir build</span></li>
-                            <li><span class="CLI-font">cd build</span></li>
-                            <li><span class="CLI-font">cmake ./.. -G "Visual Studio 14 2015 Win64"</span></li>
-                        </ul>
-                    <li>The "./.." is to define that our CMakeLists.txt is located one path above current path.</li>
-                    <img style="width: 80%;" src="assets/images/general/learningCMake/learningCMake03.JPG">                
-                    <li>Now supposedly you see some files in the "build" folder.</li>
-                    <li>If something wrong with your build, you simply delete the "build" folder and try again.</li>
-                </ul>
-            <li>Build the project</li>
-                <ul>
-                    <li>To build the project, simply <span class="CLI-font">cmake --build [the directory of your build files]</span></li>
-                        <ul>
-                            <li>For example: <span class="CLI-font">cmake --build .</span></li>
-                        </ul>
-                    <li>Then you will see learning_cmake.exe is generate in the Debug folder.
-                        <img style="width: 80%;" src="assets/images/general/learningCMake/learningCMake04.JPG">                
-                    </li>
-                    <li>Note that the name of this exe file is because of the add_executable() in CMakeLists.txt</li>
-                    <li>You might also notice that by default it is built for debug.</li>
-                    <li>To build for release:</li>
-                        <ul>
-                            <li><span class="CLI-font">cmake --build . --config release</span></li>
-                        </ul>
-                    <li>You can go into the folder and try to run the .exe file.
-                        <img style="width: 80%;" src="assets/images/general/learningCMake/learningCMake05.JPG">                
-                    </li>
-                        
-                </ul>
-        </ul>
-    </mat-card>
-
-    <mat-card>
-        <h2>02 - Implementing subpackage (our own library)</h2>
+        </li>
+        <li>The content of CMakeLists.txt is quite straight forward:</li>
         <ul>
-            <li>This section will show how can we compile our library (in this example, Adder) as subpackage, and link it to our main package.</li>
-            <li>Add/Update your files/folders:</li>
-                <ul>
-                    <li>
-                        <mat-accordion>
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    CMakeLists.txt
-                                </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <pre>
+            <li>cmake_minimum_required is to set the minimum required version of cmake for your project.</li>
+            <li>project() is to set your project name</li>
+            <li>add_executable() is to define the source files needed for your target executable. In this example, our
+                executable is our project name,
+                and the source files needed for that executable are the main.cpp and adder.cpp
+            </li>
+        </ul>
+        <li>Basically there are only 2 steps in CMake process:</li>
+        <ul>
+            <li>Generate build files</li>
+            <li>Use the build files to build our project</li>
+        </ul>
+        <li>Generating build files</li>
+        <ul>
+            <li>First of all, run <span class="CLI-font">cmake --help</span> on your command prompt terminal, and then
+                look at the "The generators available on this platform".</li>
+            <li>Which means, you can generate different build files for different build platforms (such as Visual Studio
+                14, Visual Studio 15, Make, Ninja, etc)</li>
+            <li>I have Visual Studio 2015 installed, so I will use this Generator in this tutorial.</li>
+            <li>I will change directory into this repo, and then use run the following commands to generate the build
+                files in the build folder:</li>
+            <ul>
+                <li><span class="CLI-font">mkdir build</span></li>
+                <li><span class="CLI-font">cd build</span></li>
+                <li><span class="CLI-font">cmake ./.. -G "Visual Studio 14 2015 Win64"</span></li>
+            </ul>
+            <li>The "./.." is to define that our CMakeLists.txt is located one path above current path.</li>
+            <img style="width: 80%;" src="assets/images/LearningCMake/learningCMake03.JPG">
+            <li>Now supposedly you see some files in the "build" folder.</li>
+            <li>If something wrong with your build, you simply delete the "build" folder and try again.</li>
+        </ul>
+        <li>Build the project</li>
+        <ul>
+            <li>To build the project, simply <span class="CLI-font">cmake --build [the directory of your build
+                    files]</span></li>
+            <ul>
+                <li>For example: <span class="CLI-font">cmake --build .</span></li>
+            </ul>
+            <li>Then you will see learning_cmake.exe is generate in the Debug folder.</li>
+            <img style="width: 80%;" src="assets/images/LearningCMake/learningCMake04.JPG">
+            <li>Note that the name of this exe file is because of the add_executable() in CMakeLists.txt</li>
+            <li>You might also notice that by default it is built for debug.</li>
+            <li>To build for release:</li>
+            <ul>
+                <li><span class="CLI-font">cmake --build . --config release</span></li>
+            </ul>
+            <li>You can go into the folder and try to run the .exe file.</li>
+            <img style="width: 80%;" src="assets/images/LearningCMake/learningCMake05.JPG">
+
+        </ul>
+    </ul>
+    <mat-divider></mat-divider>
+
+
+    <h2>02 - Implementing subpackage (our own library)</h2>
+    <ul>
+        <li>This section will show how can we compile our library (in this example, Adder) as subpackage, and link it to
+            our main package.</li>
+        <li>Add/Update your files/folders:</li>
+        <ul>
+            <li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CMakeLists.txt
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <pre>
                                   <code>
     cmake_minimum_required(VERSION 3.16.3)
 
@@ -264,27 +277,27 @@
     )
                                   </code>
                               </pre>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </li>
-                    <li>
-                        <mat-accordion>
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    src
-                                </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <ul>
-                                  <li>
-                                      <mat-accordion>
-                                          <mat-expansion-panel>
-                                            <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                  main.cpp
-                                              </mat-panel-title>
-                                            </mat-expansion-panel-header>
-                                            <pre>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </li>
+            <li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                src
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                main.cpp
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                                 <code>
     #include &lt;iostream>
     float add(float a, float b);
@@ -297,31 +310,31 @@
     }
                                                 </code>
                                             </pre>
-                                          </mat-expansion-panel>
-                                      </mat-accordion>
-                                  </li>
-                              </ul>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </li>
-                    <li>
-                        <mat-accordion>
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Adder
-                                </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <ul>
-                                  <li>
-                                      <mat-accordion>
-                                          <mat-expansion-panel>
-                                            <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                  adder.cpp
-                                              </mat-panel-title>
-                                            </mat-expansion-panel-header>
-                                            <pre>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </li>
+            <li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Adder
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                adder.cpp
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                                 <code>
     #include "adder.h"
 
@@ -330,18 +343,18 @@
     }
                                                 </code>
                                             </pre>
-                                          </mat-expansion-panel>
-                                      </mat-accordion>
-                                  </li>
-                                  <li>
-                                    <mat-accordion>
-                                        <mat-expansion-panel>
-                                          <mat-expansion-panel-header>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
                                             <mat-panel-title>
                                                 adder.h
                                             </mat-panel-title>
-                                          </mat-expansion-panel-header>
-                                          <pre>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                               <code>
     #ifndef ADDER_H
     #define ADDER_H
@@ -351,96 +364,103 @@
     #endif // ADDER_H
                                               </code>
                                           </pre>
-                                        </mat-expansion-panel>
-                                    </mat-accordion>
-                                  </li>
-                                  <li>
-                                    <mat-accordion>
-                                        <mat-expansion-panel>
-                                          <mat-expansion-panel-header>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
                                             <mat-panel-title>
                                                 CMakeLists.txt
                                             </mat-panel-title>
-                                          </mat-expansion-panel-header>
-                                          <pre>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                               <code>
     add_library(adder adder.cpp)
                                               </code>
                                           </pre>
-                                        </mat-expansion-panel>
-                                    </mat-accordion>
-                                  </li>
-                              </ul>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </li>
-                </ul>
-            <li>In the CMakeLists.txt of the Adder folder, we only have one line.</li>
-                <ul>
-                    <li>Previously we used "add_executable()" to generate .exe files, now we use "add_library()" to generate libraries.</li>
-                    <li>If you look at the <a href="https://cmake.org/cmake/help/latest/command/add_library.html" target="_blank" rel="noopener noreferrer">
-                        documentation</a>, you will notice that we can further define whether we want to build static library or dynamic library. But we
-                        not going to cover it here.</li>
-                    <li></li>
-                </ul>
-            <li>Let's delete the build folder, generate build files and build the project</li>
-                <ul>
-                    <li><span class="CLI-font">rm -rf build</span></li>
-                    <li><span class="CLI-font">mkdir build</span></li>
-                    <li><span class="CLI-font">cd build</span></li>
-                    <li><span class="CLI-font">cmake ./.. -G "Visual Studio 14 2015 Win64"</span></li>
-                    <li><span class="CLI-font">cmake --build . --config release</span></li>
-                </ul>
-            <li>Before proceeding with further explanation, let's align that a <b>target</b> is referring to an executable or a library built by cmake.</li>
-            <li>In the CMakeLists.txt of the main package:</li>
-                <ul>
-                    <li>We use add_subdirectory() to include the entire Adder directory into our package</li>
-                    <li>We use target_link_libraries() to link the adder library to <b>our target</b></li>
-                    <li>We use target_include_directories() to include the header files into <b>our target</b>. This is why our main.cpp is able to include the adder.h</li>
-                </ul>
-            <li>include_directories vs target_include_directories</li>
-                <ul>
-                    <li><b>include_directories()</b> affects directory scope, which means all subdirectories added after this line also will include the directories mentioned by include_directories</li>
-                    <li><b>target_include_directories()</b> has target scope only</li>
-                    <li>Generally target_include_directories should be preferred</li>
-                </ul>
-            <li><b>include_directories()</b> and <b>target_include_directories()</b> are for us to specify
-                the directories that the compiler uses to look for include files (.h files).</li>
-            <li><b>add_subdirectory</b> is for us to specify a subdirectory which has CMakeLists.txt and code files there.
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                </mat-accordion>
             </li>
-            <li>If you look at the build folder, you will see there is a "Adder" folder there. This means the
-                "add_subdirectory" make it an independent sub-package.
-             </li>
-            <li>At the end of CMakeLists.txt, we added target_include_directories because our target (main.cpp) 
-                uses <span class="script-font">#include "adder.h"</span>. If we didnt specify where the include_directories
-                are, the target wouldn't be able to find the adder.h IF THE HEADER IS NOT AT THE SAME DIRECTORY AS 
-                WHERE THE TARGET IS.
-            </li>
-            <li>The CMakeLists.txt of Adder doesnt need to have target_include_directories because the adder.h and adder.cpp 
-                are in the same directory. If you open a subfolder called "include" in the Adder folder, and move the adder.h
-                file into it, you will have error ("Cannot open include file: 'adder.h': No such file or
-                directory") when you try to compile the project.</li>
-            <li>If you put the adder.h into a subdirectory called "include" in the Adder folder, you need to
-                modify the CMakeLists.txt:</li>
-                <ul>
-                    <li>
-                        <mat-accordion>
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Adder
-                                </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <ul>
-                                  <li>
-                                      <mat-accordion>
-                                          <mat-expansion-panel>
-                                            <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                  adder.cpp
-                                              </mat-panel-title>
-                                            </mat-expansion-panel-header>
-                                            <pre>
+        </ul>
+        <li>In the CMakeLists.txt of the Adder folder, we only have one line.</li>
+        <ul>
+            <li>Previously we used "add_executable()" to generate .exe files, now we use "add_library()" to generate
+                libraries.</li>
+            <li>If you look at the <a href="https://cmake.org/cmake/help/latest/command/add_library.html"
+                    target="_blank" rel="noopener noreferrer">
+                    documentation</a>, you will notice that we can further define whether we want to build static
+                library or dynamic library. But we
+                not going to cover it here.</li>
+            <li></li>
+        </ul>
+        <li>Let's delete the build folder, generate build files and build the project</li>
+        <ul>
+            <li><span class="CLI-font">rm -rf build</span></li>
+            <li><span class="CLI-font">mkdir build</span></li>
+            <li><span class="CLI-font">cd build</span></li>
+            <li><span class="CLI-font">cmake ./.. -G "Visual Studio 14 2015 Win64"</span></li>
+            <li><span class="CLI-font">cmake --build . --config release</span></li>
+        </ul>
+        <li>Before proceeding with further explanation, let's align that a <b>target</b> is referring to an executable
+            or a library built by cmake.</li>
+        <li>In the CMakeLists.txt of the main package:</li>
+        <ul>
+            <li>We use add_subdirectory() to include the entire Adder directory into our package</li>
+            <li>We use target_link_libraries() to link the adder library to <b>our target</b></li>
+            <li>We use target_include_directories() to include the header files into <b>our target</b>. This is why our
+                main.cpp is able to include the adder.h</li>
+        </ul>
+        <li>include_directories vs target_include_directories</li>
+        <ul>
+            <li><b>include_directories()</b> affects directory scope, which means all subdirectories added after this
+                line also will include the directories mentioned by include_directories</li>
+            <li><b>target_include_directories()</b> has target scope only</li>
+            <li>Generally target_include_directories should be preferred</li>
+        </ul>
+        <li><b>include_directories()</b> and <b>target_include_directories()</b> are for us to specify
+            the directories that the compiler uses to look for include files (.h files).</li>
+        <li><b>add_subdirectory</b> is for us to specify a subdirectory which has CMakeLists.txt and code files there.
+        </li>
+        <li>If you look at the build folder, you will see there is a "Adder" folder there. This means the
+            "add_subdirectory" make it an independent sub-package.
+        </li>
+        <li>At the end of CMakeLists.txt, we added target_include_directories because our target (main.cpp)
+            uses <span class="script-font">#include "adder.h"</span>. If we didnt specify where the include_directories
+            are, the target wouldn't be able to find the adder.h IF THE HEADER IS NOT AT THE SAME DIRECTORY AS
+            WHERE THE TARGET IS.
+        </li>
+        <li>The CMakeLists.txt of Adder doesnt need to have target_include_directories because the adder.h and adder.cpp
+            are in the same directory. If you open a subfolder called "include" in the Adder folder, and move the
+            adder.h
+            file into it, you will have error ("Cannot open include file: 'adder.h': No such file or
+            directory") when you try to compile the project.</li>
+        <li>If you put the adder.h into a subdirectory called "include" in the Adder folder, you need to
+            modify the CMakeLists.txt:</li>
+        <ul>
+            <li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Adder
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                adder.cpp
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                                 <code>
     #include "adder.h"
 
@@ -449,25 +469,25 @@
     }
                                                 </code>
                                             </pre>
-                                          </mat-expansion-panel>
-                                      </mat-accordion>
-                                  </li>
-                                  <li>
-                                    <mat-accordion>
-                                        <mat-expansion-panel>
-                                          <mat-expansion-panel-header>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
                                             <mat-panel-title>
                                                 include
                                             </mat-panel-title>
-                                          </mat-expansion-panel-header>
-                                          <ul>
-                                              <li>
-                                                  <mat-accordion>
-                                                      <mat-expansion-panel>
+                                        </mat-expansion-panel-header>
+                                        <ul>
+                                            <li>
+                                                <mat-accordion>
+                                                    <mat-expansion-panel>
                                                         <mat-expansion-panel-header>
-                                                          <mat-panel-title>
-                                                              adder.h
-                                                          </mat-panel-title>
+                                                            <mat-panel-title>
+                                                                adder.h
+                                                            </mat-panel-title>
                                                         </mat-expansion-panel-header>
                                                         <pre>
                                                             <code>
@@ -479,76 +499,76 @@
     #endif // ADDER_H
                                                             </code>
                                                         </pre>
-                                                      </mat-expansion-panel>
-                                                  </mat-accordion>
-                                              </li>
-                                          </ul>
-                                        </mat-expansion-panel>
-                                    </mat-accordion>
-                                  </li>
-                                  <li>
-                                    <mat-accordion>
-                                        <mat-expansion-panel>
-                                          <mat-expansion-panel-header>
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                            </li>
+                                        </ul>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                            <li>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
                                             <mat-panel-title>
                                                 CMakeLists.txt
                                             </mat-panel-title>
-                                          </mat-expansion-panel-header>
-                                          <pre>
+                                        </mat-expansion-panel-header>
+                                        <pre>
                                               <code>
     add_library(adder adder.cpp)
     target_include_directories(adder PUBLIC "$&#123;CMAKE_CURRENT_SOURCE_DIR}/include")
                                               </code>
                                           </pre>
-                                        </mat-expansion-panel>
-                                    </mat-accordion>
-                                  </li>
-                              </ul>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </li>
-                    <li>You will notice actually the "target_include_directories" of the top level CMakeLists.txt
-                        can be removed and it will still work. This is because of the "PUBLIC" keyword (in CMakeLists.txt
-                        of Adder) will populate the include directories to other targets that use this target. If you change the 
-                        Keyword to "PRIVATE", then you will need that target_include_directories in top level CMakeLists.txt 
-                        again.
-                    </li>
-                    <li>The PUBLIC/PRIVATE/INTERFACE keywords are needed for include_directories() and link_libraries(),
-                        here is a quick summary for these 3 keywords:
-                    </li>
-                        <table style="margin-top: 20px;">
-                            <tr>
-                                <th>Keyword</th>
-                                <th>Description</th>
-                            </tr>
-                            <tr>
-                                <td>PUBLIC</td>
-                                <td>All the objects/directories following PUBLIC will be used for the current target and the other 
-                                    targets that have dependencies on the current target.</td>
-                            </tr>
-                            <tr>
-                                <td>PRIVATE</td>
-                                <td>All the objects/directories following PRIVATE will be used for the current target only.</td>
-                            </tr>
-                            <tr>
-                                <td>INTERFACE</td>
-                                <td>All the objects/directories following INTERFACE will NOT be used for the current target 
-                                    but will be accessible for the other targets that have dependencies on the current target.</td>
-                            </tr>
-                        </table>
-                </ul>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </li>
+            <li>You will notice actually the "target_include_directories" of the top level CMakeLists.txt
+                can be removed and it will still work. This is because of the "PUBLIC" keyword (in CMakeLists.txt
+                of Adder) will populate the include directories to other targets that use this target. If you change the
+                Keyword to "PRIVATE", then you will need that target_include_directories in top level CMakeLists.txt
+                again.
+            </li>
+            <li>The PUBLIC/PRIVATE/INTERFACE keywords are needed for include_directories() and link_libraries(),
+                here is a quick summary for these 3 keywords:
+            </li>
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th>Keyword</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>PUBLIC</td>
+                    <td>All the objects/directories following PUBLIC will be used for the current target and the other
+                        targets that have dependencies on the current target.</td>
+                </tr>
+                <tr>
+                    <td>PRIVATE</td>
+                    <td>All the objects/directories following PRIVATE will be used for the current target only.</td>
+                </tr>
+                <tr>
+                    <td>INTERFACE</td>
+                    <td>All the objects/directories following INTERFACE will NOT be used for the current target
+                        but will be accessible for the other targets that have dependencies on the current target.</td>
+                </tr>
+            </table>
         </ul>
-    </mat-card>
+    </ul>
+    <mat-divider></mat-divider>
 
-    <mat-card>
-        <h2>03 - Building shared library</h2>
-        <ul>
-        </ul>
-    </mat-card>
 
-    <mat-card>
-        <h2>04 - Install</h2>
-        <ul>
-        </ul>
-    </mat-card>
+    <h2>03 - Building shared library</h2>
+    <ul>
+    </ul>
+    <mat-divider></mat-divider>
+
+
+    <h2>04 - Install</h2>
+    <ul>
+    </ul>
+    <mat-divider></mat-divider>
 </div>
