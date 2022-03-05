@@ -59,6 +59,37 @@
             <mat-divider></mat-divider>
         </div>
         <div>
+            <h3>ROS Communication Mechanism: Topics vs Services</h3>
+            <li><a href="https://programming.vip/docs/communication-mechanism-of-ros.html">This page</a> documented what happened underlying the Communication Mechanisms.</li>
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th></th>
+                    <th>Topics</th>
+                    <th>Services</th>
+                </tr>
+                <tr>
+                    <td>Synchronization</td>
+                    <td>Asynchronous</td>
+                    <td>Synchronous</td>
+                </tr>
+                <tr>
+                    <td>Communication model</td>
+                    <td>Publish/Subscribe</td>
+                    <td>Server/Client</td>
+                </tr>
+                <tr>
+                    <td>Node relationship</td>
+                    <td>Many to Many</td>
+                    <td>One to Many</td>
+                </tr>
+                <tr>
+                    <td>Use case</td>
+                    <td>Used for continuous data stream</td>
+                    <td>Used for remote procedure calls that terminate quickly</td>
+                </tr>
+            </table>
+        </div>
+        <div>
             <h3>Possible reason of why your "rospy.sleep" is not working</h3>
             <ul>
                 <li><a href="https://answers.ros.org/question/11761/rospysleep-doesnt-get-awaken/" target="_blank" rel="noopener noreferrer">Reference</a></li>
