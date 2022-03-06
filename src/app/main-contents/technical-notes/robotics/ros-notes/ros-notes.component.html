@@ -383,5 +383,40 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h3>Problems that ROS1 faces</h3>
+            <ul>
+                <li>Multi-robot system</li>
+                    <ul>
+                        <li>There is no standard approach for building multi-robot systems. The ones available
+                            right now are considered a hack on top of the single-master structure of ROS.
+                        </li>
+                    </ul>
+                <li>Cross platform</li>
+                    <ul>
+                        <li>ROS1 is mainly based on Linux systems, and the usage of ROS on other platforms
+                            such as Windows, MacOS, RTOS etc is quite limited.
+                        </li>
+                    </ul>
+                <li>Real-time systems</li>
+                    <ul>
+                        <li>ROS1 is not capable to achieve hard real-time which is required in some 
+                            industrial applications.
+                        </li>
+                    </ul>
+                <li>Network connection</li>
+                    <ul>
+                        <li>ROS1 requires very good network condition in order to ensure completeness of 
+                            data transfer. There is also some security issue in catching data published 
+                            or received by the ROS nodes due to network security issues.
+                        </li>
+                    </ul>
+                <li>Production environment</li>
+                    <ul>
+                        <li>The stability of ROS1 is not good, and not perfect for production environment.</li>
+                    </ul>
+            </ul>
+        </div>
     </div>
 </div>
