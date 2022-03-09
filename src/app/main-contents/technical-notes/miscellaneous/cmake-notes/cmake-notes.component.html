@@ -3,25 +3,64 @@
 
     <h2>Introduction (Make & CMake)</h2>
     <ul>
-        <li><b>Make</b> is a <span style="font-style: italic; font-weight: bold;">cross platform build system</span> originally <span style="font-style: italic; font-weight: bold;">for Unix like systems</span></li>
-        <li><b>CMake</b> is a <span style="font-style: italic; font-weight: bold;">cross-platform free and open-source software</span> for build automation, testing, packaging and installation of software by using a compiler-independent method</li>
-        <li>CMake is not a build system, but rather it generates system build files for IDEs/build tools such as Visual Studio, XCode, Unix Make, Eclipse CDT etc.</li>
+        <li><a href="https://cgold.readthedocs.io/en/latest/overview/cmake-can.html" target="_blank" rel="noopener noreferrer">My recommended CMake tutorial</a>, take note that this tutorial is not as 
+        complete as CMake Official tutorial, but it explains some important points.</li>
+        <li><b>Make</b> is a <span style="font-style: italic; font-weight: bold;">native build tool</span> originally <span style="font-style: italic; font-weight: bold;">for Unix like systems</span>.</li>
+        <li><b>CMake</b> is a <span style="font-style: italic; font-weight: bold;">cross-platform free and open-source software</span> for build automation, testing, packaging and installation of software by using a compiler-independent method.</li>
+        <li>CMake is not a build system, but rather it generates system build files for native build tools such as Visual Studio, XCode, Unix Make, Eclipse CDT etc.</li>
         <li>CMake <b>does not</b> compile (i.e. build) the sources</li>
-        <li>You do not need to learn how to write Makefile if you know how to use CMake</li>
+        <li>The image below gives an overview of the role of CMake in cross-platform development:</li>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img src="https://cgold.readthedocs.io/en/latest/_images/generate-native-files.png" width="80%">
+                <span style="font-style: italic;">Source of image: https://cgold.readthedocs.io/en/latest/overview/cmake-can.html</span>
+            </div>
+        <li>CMake is a family of tools which consist of CMake, CTest and CPack. These 3 tools cover the sources for developers, quality control and installers for users.</li>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img src="https://cgold.readthedocs.io/en/latest/_images/cmake-environment.png" width="80%">
+                <span style="font-style: italic;">Source of image: https://cgold.readthedocs.io/en/latest/overview/cmake-can.html</span>
+            </div>
+        <li>As compared to those project files like *.sln files, CMakeLists.txt is more human-readable.</li>
+        <li>Take note that CMake saves the full paths to each of the sources, so it's not possible to generate a project then share it between several developers.
+            When providing an end product to your users, you should generate a user-friendly installers like *.msi instead of providing the project files.
+        </li>
+        <li>Terminologies:</li>
+            <table>
+                <tr>
+                    <th>Terminology</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Build system</td>
+                    <td>The tool that generate different build files according to the generator specified.</td>
+                </tr>
+                <tr>
+                    <td>Native build tools</td>
+                    <td>The tools that help you to orchestrate your build.</td>
+                </tr>
+                <tr>
+                    <td>Compiler</td>
+                    <td>The tool that actually creates the binaries. For example, Ubuntu gcc is the tool that creates binaries from C++ sources.</td>
+                </tr>
+            </table>
     </ul>
     <mat-divider></mat-divider>
 
     <h3>Installing CMake</h3>
     <ul>
-        <li>The installers or CMake binaries can be downloaded from <a href="https://cmake.org/download/" target="_blank" rel="noopener noreferrer">here</a></li>
-        <li>For Ubuntu: sudo apt-get -y install cmake</li>
+        <li><a href="https://cgold.readthedocs.io/en/latest/first-step/installation.html#ubuntu" target="_blank" rel="noopener noreferrer">On Ubuntu</a></li>
+        <li><a href="https://cgold.readthedocs.io/en/latest/first-step/installation.html#os-x" target="_blank" rel="noopener noreferrer">On OS X</a></li>
+        <li><a href="https://cgold.readthedocs.io/en/latest/first-step/installation.html#windows" target="_blank" rel="noopener noreferrer">On Windows</a></li>
     </ul>
     <mat-divider></mat-divider>
 
     <h3>Installing make, gcc, g++</h3>
     <ul>
-        <li>Follow the instructions <a href="https://www.msys2.org/" target="_blank" rel="noopener noreferrer">here</a></li>
-        <li>After the installation, you should add <span style="font-style: italic;">C:\msys64\mingw64\bin</span> and <span style="font-style: italic;">C:\msys64\usr\bin</span> into your environment variables.</li>
+        <li>For Windows:</li>
+            <ul>
+                <li>Follow the instructions <a href="https://www.msys2.org/" target="_blank" rel="noopener noreferrer">here</a></li>
+                <li>After the installation, you should add <span style="font-style: italic;">C:\msys64\mingw64\bin</span> and <span style="font-style: italic;">C:\msys64\usr\bin</span> into your environment variables.</li>
+                <li>Actually Visual Studio has its own compiler (cl.exe) which is installed together with the IDE. The g++ and gcc above are just for demo purpose later.</li>
+            </ul>
         <li>For Ubuntu: sudo apt install build-essential</li>
     </ul>
     <mat-divider></mat-divider>
@@ -119,12 +158,13 @@
 
     <h3>Why CMake is needed?</h3>
     <ul>
-        <li>There are several different build systems out there, such as Make, Ninja, Visual Studio etc, and also different compilers such as g++, gcc, clang etc. </li>
+        <li>There are several different build tools out there, such as Make, Ninja, Visual Studio etc, and also different compilers such as g++, gcc, clang etc. </li>
         <li>It became hard to maintain if users want to support different platforms, compilers and scenarios etc.</li>
         <li>Hence, people started to introduce meta build system (such as CMake) to generate configuration files for other existing build systems.</li>
         <li>With CMake, there is no need to write Makefiles, configure Visual Studio projects, create custom Bash or batch files etc.</li>
         <li>For more reasons why CMake is awesome, have a look at <a href="https://kubasejdak.com/19-reasons-why-cmake-is-actually-awesome#1-cmake-is-cross-platform" target="_blank" rel="noreferrer noopener">this</a>.</li>
-        <li>For CMake tutorial, refer to the <a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html" target="_blank" rel="noreferrer noopener">Official Tutorial</a>.</li>
+        <li>For CMake tutorial, I prefer <a href="https://cgold.readthedocs.io/en/latest/tutorials.html" target="_blank" rel="noopener noreferrer">this tutorial</a> as compared to the
+            <a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html" target="_blank" rel="noreferrer noopener">Official Tutorial</a>.</li>
     </ul>
     <mat-divider></mat-divider>
 
@@ -152,7 +192,17 @@
         <li>Just now we only generated the build files, but we haven't compiled yet.</li>
         <li>For my case, my generated build files are specifically for Visual Studio 12 2013.</li>
         <li>Now, we can run <span class="CLI-font">cmake --build .</span> to build(compile) it.</li>
+        <li>Similary, you may also try to use the msbuild to build it: <span class="CLI-font">msbuild learning_cmake.sln</span></li>
         <li>Then you will see a hello.exe file in Debug folder. You can try to run it.</li>
+        <li>Side notes:</li>
+        <ul>
+            <li>CMake has some predefined settings so it will figure out the following things:</li>
+                <ul>
+                    <li>Files with *.cpp extension will be built with the C++ compiler</li>
+                    <li>on Windows, the resulting binaries will have the suffix .exe</li>
+                    <li>on Unix platforms like OSX or Linux, the resulting binaries will not have any suffix</li>
+                </ul>
+        </ul>
         <li>Let's try to generate build files for Unix Make, before that you need to delete the build folder first. (PS: this shows how useful out-of-source build is)</li>
         <li>Now create an empty build folder again, and cd into it.</li>
         <li>This time let's generate build files for Unix Make using <span class="CLI-font">cmake .. -G "Unix Makefiles"</span></li>
@@ -165,21 +215,109 @@
     <mat-divider></mat-divider>
 
     <h3>CMake Notes</h3>
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/cmake-stages.html" target="_blank" rel="noopener noreferrer">3.1 CMake Stages</a></h4>
+    <ul>
+        <li>Configure Step</li>
+            <ul>
+                <li>In this step CMake will parse the top level CMakeLists.txt of source tree and create a CMakeCache.txt file populated with cache variables.</li>
+                <li>In CMake GUI, this step is triggered through the "Configure" button.</li>
+                <li>In CMake command-line, this step is done together with Generate Step.</li>
+                <li>The end of this step is indicated by the "Configuring done" message from CMake.</li>
+                <li>Basically you only need to run this step once, unless you want to change your platform, generator, settings etc.</li>
+            </ul>
+        <li>Generate Step</li>
+            <ul>
+                <li>In this step CMake will generate native build tool files using information from CMakeLists.txt and variables from CMakeCache.txt.</li>
+                <li>In CMake GUI, this step is triggered through the "Generate" button.</li>
+                <li>In CMake command-line, this step is done together with Configure Step.</li>
+                <li>The end of this step is indicated by the "Generating done" message from CMake.</li>
+                <li>Basically you only need to run this step once, unless you want to change your platform, generator, settings etc.</li>
+            </ul>
+        <li>Build Step</li>
+            <ul>
+                <li>In this step, CMakeLists.txt is not used. The native build tools are involved to orchestrate the build process,
+                    the compilers are involved to compile the sources, and then the executables are created.
+                </li>
+            </ul>
+        <li>Overview</li>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img src="https://cgold.readthedocs.io/en/latest/_images/workflow.png" style="max-height: 600px;">
+                <span style="font-style: italic;">Source of image: https://cgold.readthedocs.io/en/latest/tutorials/workflow.html</span>
+            </div>
+    </ul>
+
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/project.html" target="_blank" rel="noopener noreferrer">3.5 Project Declaration</a></h4>
+    <ul>
+        <li>By default, the project() command will set languages to C and C++. You may set the language explicitly after the name of project.</li>
+        <li>You must have project command in your top-level CMakeLists.txt</li>
+    </ul>
+
+
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/variables.html#" target="_blank" rel="noopener noreferrer">3.6 Variables</a></h4>
+    <ul>
+        <li>Cache variable can be set by -D command line option. Variable that set by -D option take priority over set(... CACHE ...) command.</li>
+        <li>We can write all cache variables in a file (for example, cache.cmake) and then load it using <span class="CLI-font">-C</span> command.
+            <a href="https://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#initial-cache" target="_blank" rel="noopener noreferrer">Example</a>.</li>
+        <li>Environment variable can be read and set in CMake script, <a href="https://cgold.readthedocs.io/en/latest/tutorials/variables/environment.html#environment-variables" target="_blank" rel="noopener noreferrer">for example</a>.</li>
+        <li>However, do not make your CMake code depends on environment variable if that variable may change. This is because you will need to manually reconfigure it
+            if the environment changes.
+        </li>
+    </ul>
+
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/cmake-sources.html#" target="_blank" rel="noopener noreferrer">3.7 CMake listfiles</a></h4>
+    <ul>
+        <li>There are several places where CMake code can live:</li>
+            <ul>
+                <li>CMakeLists.txt listfiles loaded by add_subdirectory command will help you to create source/binary tree. This is a skeleton of your project.</li>
+                <li>*.cmake modules help you to organize/reuse CMake code.</li>
+                <li>CMake scripts can be executed by cmake -P</li>
+            </ul>
+        <li>CMake has a set of <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html" target="_blank" rel="noopener noreferrer">standard modules</a></li>
+        <li>An example of using a standard module called "ProcessorCount":</li>
+            <pre>
+                <code>
+    cmake_minimum_required(VERSION 2.8)
+    project(foo NONE)
+
+    include(ProcessorCount)
+
+    ProcessorCount(N)
+    message("Number of processors: #123;N}")
+                </code>
+            </pre>
+        <li>You can modify a CMAKE_MODULE_PATH variable to add the path with your custom CMake modules. Refer to 
+            <a href="https://cgold.readthedocs.io/en/latest/tutorials/cmake-sources/includes.html" target="_blank" rel="noopener noreferrer">this example</a> for better understanding.</li>
+        <li>CMake can be used as a cross-platform scripting language.</li>
+    </ul>
+
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/executables.html#" target="_blank" rel="noopener noreferrer">3.9 Executables</a></h4>
+    <ul>
+        <li>Targets are global, you can’t declare two targets with the same name even if they are declared in different CMakeLists.txt</li>
+    </ul>
+
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/tests.html" target="_blank" rel="noopener noreferrer">3.10 CTest</a></h4>
+
+    <h4><a href="https://cgold.readthedocs.io/en/latest/tutorials/libraries.html#" target="_blank" rel="noopener noreferrer">3.11 Libraries</a></h4>
+    <ul>
+        <li>Use STATIC/SHARED/MODULE only if library designed to have no other types</li>
+        <li>Use no specifiers if library designed to be used as static or shared. Respect BUILD_SHARED_LIBS variable</li>
+        <li>Install static and shared libraries to separate directories</li>
+    </ul>
+
+    <h4>Miscellaneous Notes</h4>
     <ul>
         <li>The better practice would be writing .sh files (.bat for Windows) such as build.sh and configure.sh instead of typing the 
             commands on terminal everytime.
         </li>
         <li>Windows execution will not be able to find the .dll. You can solve this problem by adding this library stored in right next to your executable.
-            [<a href="Windows execution will not be able to find the .dll. You can solve this problem by adding this library stored in right next to your executable." target="_blank" rel="noopener noreferrer">Reference</a>]</li>
+            Either by using file(COPY) or using install() commands.
+        </li>
         <li>target_include_directories vs include_directories</li>
             <ul>
                 <li><span style="font-style:italic">include_directories</span> affects directory scope</li>
                 <li><span style="font-style:italic">target_include_directories</span> affects target scope</li>
                 <li>Normally target_include_directories is preferred</li>
             </ul>
-        <li>According to the <a href="https://cmake.org/cmake/help/latest/guide/tutorial/Adding%20Usage%20Requirements%20for%20a%20Library.html" target="_blank" rel="noopener noreferrer">
-            Official tutorial</a>, once we have specified the usage requirement of our subpackage (using something like target_include_directories INTERFACE),
-            then we don't need to target_include_directories it in main CMakeLists.txt</li>
         <li>CMAKE_INSTALL_PREFIX defaults to /usr/local on UNIX and c:/Program Files/$&#123;PROJECT_NAME} on Windows.</li>
         <li>According to <a href="https://stackoverflow.com/questions/35916703/error1-error-lnk1107-invalid-or-corrupt-file-cannot-read-at-0x2b0/35920570" target="_blank" rel="noopener noreferrer">
             this post</a>, most likely we need both .lib and .dll files. We need .lib for compilation and .dll for run-time.</li>
@@ -189,6 +327,25 @@
         <li>To make something being installed only when user typed <span class="CLI-font">cmake --install</span>, use <a href="https://cmake.org/cmake/help/latest/guide/tutorial/Installing%20and%20Testing.html" 
             target="_blank" rel="noopener noreferrer">install() command</a>. Refer to <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/Install.html" target="_blank" rel="noopener noreferrer">
             this</a> for complete install() command documentation.</li>
+            <li>When creating a library A you need to provide an API (header/include files) and compiled code (.lib).</li>
+            <li>To use library A in project B, you need to include the header files. You can then compile B. However to create a binary you need to link with the compiled A.</li>
+            <li><b>target_include_directories</b> tells cmake where to find the API header files so you can include them from B.</li>
+            <li><b>target_link_directories</b> and <b>target_link_libraries</b> tell cmake where to find the library's compiled code. <b>If the library is header-only there is no need to link.</b></li>
+            <li>There are <a href="https://stackoverflow.com/questions/32411963/why-is-cmake-file-glob-evil" target="_blank" rel="noopener noreferrer">
+                some concerns about using <span class="script-font">file GLOB</span></a></li>
+            <li>You also need to be aware that there is a list of 
+                <a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7)" target="_blank" rel="noopener noreferrer">cmake-generator-expressions</a></li>
+            <li>You also need to be aware that there is a list of <a
+                href="https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html" target="_blank" rel="noopener noreferrer">cmake variables</a>.</li>
+            <li>To #define preprocessor definitions, you can do it in CMakeLists using the add_compile_definitions feature of CMake. For example, the GenICam Reference Implementation
+                has an option for us to #define GENICAM_NO_AUTO_IMPLIB, instead of hard-coding it in our header files, we should write it in CMakeLists.txt:</li>
+                <pre>
+                    <code>
+add_compile_definitions(GENICAM_NO_AUTO_IMPLIB)
+                    </code>
+                </pre>
+            <li>We can use a <a href="https://stackoverflow.com/questions/36578571/cmake-get-a-so-library-on-windows" target="_blank" rel="noopener norefferer">
+                toolchain to crosscompile</a></li>
     </ul>
 
     <h3>References for learning CMake</h3>
