@@ -13,14 +13,14 @@
                 </li>
                 <li>This is a <a href="https://www.youtube.com/watch?v=FtN3BYH2Zes" target="_blank" rel="noopener noreferrer">Youtube video</a>
                     explaining some of the main ideas regarding Bellman-Ford algorithm.</li>
-                <li>From the video above, you might think that we only need one array to keep track the minimum travel cost From
-                    source to all other nodes (like what we did for Dijkstra's Algorithm), as the person in that video is
-                    demonstrating the process from source node to the neighbouring nodes. Well, to know what are the neighbouring nodes,
-                    we need extra unordered_map (or what we called Graph in Dijkstra's Algorithm) to keep track.
+                <li>From the video above, you will notice actually Bellman-Ford algorithm is about trying all edges for a number of trials
+                    when you are given the list of edges and their respective travel costs. You will see the impact of keeping trying when
+                    the edges are not given in correct order (pay attention to 4:40 of the video above, the travel cost at node5 is updated
+                    first before the travel cost at node 3).
                 </li>
-                <li>Refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
-                    to see how we can implement Bellman-Ford algorithm without that unordered_map to keep track neighbouring vertices.</li>
-                <li><b>Bellman-Ford Algorithm</b></li>
+                <li>This <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
+                    shows how we can implement Bellman-Ford if our problem is limited by number of steps.</li>
+                <li><b>Bellman-Ford Algorithm</b> for the second video</li>
                     <ol>
                         <li>Construct a vector called <span style="font-style: italic;">minTravelCost</span> with default elements set to INT_MAX</li>
                             <pre>
@@ -77,6 +77,7 @@
                                     </pre>
                             </ul>
                     </ol>
+                <li><b>Bellman-Ford Algorithm</b> for the first video basically is the algorithm above without the temp vector only.</li>
             </ul>   
             <mat-divider></mat-divider>
         </div>
