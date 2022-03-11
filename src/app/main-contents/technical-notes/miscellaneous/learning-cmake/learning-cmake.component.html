@@ -561,8 +561,267 @@
     <mat-divider></mat-divider>
 
 
-    <h2>03 - Building shared library</h2>
+    <h2>03 - Building shared library and Cross-Platform Handling</h2>
     <ul>
+        <li>Edit adder.h and its CMakeLists.txt to handle cross platform usage</li>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Adder
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <ul>
+                          <li>
+                            <mat-accordion>
+                                <mat-expansion-panel>
+                                  <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        adder.h
+                                    </mat-panel-title>
+                                  </mat-expansion-panel-header>
+                                  <pre>
+                                      <code>
+#ifndef ADDER_H
+#define ADDER_H
+
+#if defined (_MSC_VER)
+
+#ifdef ADDER_STATIC
+    #define ADDER_API
+#else
+    #ifdef ADDER_EXPORTS
+        #define ADDER_API __declspec(dllexport)
+    #else
+        #define ADDER_API __declspec(dllimport)
+    #endif
+#endif
+
+#else
+#define ADDER_API
+#endif
+
+
+ADDER_API float add(float a, float b);
+
+#endif // ADDER_H
+                                      </code>
+                                  </pre>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                          </li>
+                          <li>
+                            <mat-accordion>
+                                <mat-expansion-panel>
+                                  <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        CMakeLists.txt
+                                    </mat-panel-title>
+                                  </mat-expansion-panel-header>
+                                  <pre>
+                                      <code>
+# reference: https://stackoverflow.com/questions/17511496/how-to-create-a-shared-library-with-cmake
+
+cmake_minimum_required(VERSION 3.16.3)
+
+project(adder VERSION 1.0.1 DESCRIPTION "adder library demo")
+
+# reference: https://cgold.readthedocs.io/en/latest/tutorials/libraries/static-shared.html
+# don't specify STATIC or SHARED if you are going to build both
+add_library($&#123;PROJECT_NAME} adder.cpp)
+
+# good practice
+set_target_properties($&#123;PROJECT_NAME} PROPERTIES VERSION $&#123;PROJECT_VERSION})
+
+# You can also set SOVERSION to a major number of VERSION. So libmylib.so.1 will be a symlink to libmylib.so.1.0.0.
+set_target_properties($&#123;PROJECT_NAME} PROPERTIES SOVERSION 1)
+
+# Declare public API of your library. This API will be installed for the third-party application.
+set_target_properties($&#123;PROJECT_NAME} PROPERTIES PUBLIC_HEADER include/adder.h)
+
+# To install (copy) the target files generated into CMAKE_BINARY_DIR
+# User need to run: cmake --install [DIR] --confing [BUILD_TYPE]
+# The [DIR] is the directory of where cmake_install.cmake is generated
+# The [BUILD_TYPE] is either Debug or Release
+if (BUILD_SHARED_LIBS)
+if (CMAKE_GENERATOR MATCHES "Visual Studio")
+    if (CMAKE_BUILD_TYPE MATCHES Debug)
+        install(TARGETS $&#123;PROJECT_NAME} CONFIGURATIONS Debug DESTINATION $&#123;CMAKE_BINARY_DIR}/Debug)
+    else()
+        install(TARGETS $&#123;PROJECT_NAME} CONFIGURATIONS Release DESTINATION $&#123;CMAKE_BINARY_DIR}/Release)
+    endif()
+else()
+    install(TARGETS $&#123;PROJECT_NAME} DESTINATION $&#123;CMAKE_BINARY_DIR})
+endif()
+endif ()
+
+target_include_directories($&#123;PROJECT_NAME} PUBLIC "$&#123;CMAKE_CURRENT_SOURCE_DIR}/include")
+                                      </code>
+                                  </pre>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                          </li>
+                      </ul>
+                    </mat-expansion-panel>
+                </mat-accordion>
+        <li>You also need to define the preprocessor definitions in your top level CMakeLissts.txt.
+            Take note that I added them before add_subdirectory(Adder), so that the warning generated
+            due to lacking of preprocessor definitiions can be suppressed. I also edited the main.cpp
+            to validate the library that is used.
+        </li>
+            <ul>
+                <li>
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CMakeLists.txt
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <pre>
+                              <code>
+cmake_minimum_required(VERSION 3.16.3)
+
+project(learning_cmake) # PROJECT_NAME
+
+add_executable($&#123;PROJECT_NAME} src/main.cpp)
+
+if (BUILD_SHARED_LIBS)
+    #define preprocessor definition to use adder DLL
+    add_compile_definitions("ADDER_EXPORTS")
+else ()
+    #additional preprocessor definition for static usage
+    add_compile_definitions("ADDER_STATIC")
+endif ()
+
+# add subdirectory which has its own CMakeLists.txt
+add_subdirectory(Adder)
+
+# link the adder library to target
+target_link_libraries($&#123;PROJECT_NAME} PUBLIC adder)
+                              </code>
+                          </pre>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </li>
+                <li>
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                src
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <ul>
+                              <li>
+                                  <mat-accordion>
+                                      <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                          <mat-panel-title>
+                                              main.cpp
+                                          </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <pre>
+                                            <code>
+#include &lt;iostream>
+#include "adder.h"
+
+int main()
+&#123;
+    #ifdef ADDER_STATIC
+        std::cout&lt;&lt;"Using Static Library"&lt;&lt;'\n';
+    #endif
+    #ifdef ADDER_EXPORTS
+        std::cout&lt;&lt;"Using Shared Library"&lt;&lt;'\n';
+    #endif
+    std::cout&lt;&lt;"Hello World!\n";
+    std::cout&lt;&lt;add(1.2f, 2.3f)&lt;&lt;'\n';
+    return 0;
+}
+                                            </code>
+                                        </pre>
+                                      </mat-expansion-panel>
+                                  </mat-accordion>
+                              </li>
+                          </ul>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </li>
+            </ul>
+        <li>Using UnixMakeFiles on Windows Platform</li>
+            <ul>
+                <li>Run for static:
+                    <ul>
+                        <li><span class="CLI-font">cmake .. -B ./static_make -G "Unix Makefiles"</span></li>
+                        <li><span class="CLI-font">cmake --build ./static_make</span></li>
+                        <li><span class="CLI-font">cd static_make</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+                </li>
+                <li>Run for shared:
+                    <ul>
+                        <li><span class="CLI-font">cmake .. -B ./shared_make -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON</span></li>
+                        <li><span class="CLI-font">cmake --build ./shared_make</span></li>
+                        <li><span class="CLI-font">cmake --install ./shared_make</span></li>
+                        <li><span class="CLI-font">cd shared_make</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+                </li>
+            </ul>
+        <li>Using Visual Studio on Windows Platform</li>
+            <ul>
+                <li>Run for static (Debug):
+                    <ul>
+                        <li><span class="CLI-font">cmake .. -B ./static_vs -G "Visual Studio 14 2015 Win64"</span></li>
+                        <li><span class="CLI-font">cmake --build ./static_vs</span></li>
+                        <li><span class="CLI-font">cd static_vs\Debug</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+                </li>
+                <li>Run for shared (Debug):
+                    <ul>
+                        <li><span class="CLI-font">cmake .. -B ./shared_vs -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON</span></li>
+                        <li><span class="CLI-font">cmake --build ./shared_vs --config Debug</span></li>
+                        <li><span class="CLI-font">cmake --install ./shared_vs --config Debug</span></li>
+                        <li><span class="CLI-font">cd shared_vs\Debug</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+                </li>
+                <li>Run for static (Release):
+                    <ul>
+                        <li><span class="CLI-font">cmake .. -B ./static_vs -G "Visual Studio 14 2015 Win64"</span></li>
+                        <li><span class="CLI-font">cmake --build ./static_vs --config Release</span></li>
+                        <li><span class="CLI-font">cd static_vs\Release</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+                </li>
+                <li>Run for shared (Release):
+                    <ul>
+                        <li>Take note that we specify the CMAKE_BUILD_TYPE here because we are using the same directory called shared_vs, which
+                            previously we set the CMAKE_BUILD_TYPE to "Debug". Now if we dont specify it, it will use the value
+                            in the cache which is "Debug".
+                        </li>
+                        <li><span class="CLI-font">cmake .. -B ./shared_vs -G "Visual Studio 14 2015 Win64" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release</span></li>
+                        <li><span class="CLI-font">cmake --build ./shared_vs --config Release</span></li>
+                        <li><span class="CLI-font">cmake --install ./shared_vs --config Release</span></li>
+                        <li><span class="CLI-font">cd shared_vs\Release</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+                </li>
+            </ul>
+        <li>Cross-compile for Linux on Windows</li>
+            <ul>
+                <li>This will generate the libraries in .so format.</li>
+                <li>You need to specify "set(CMAKE_SYSTEM_NAME Linux)" in your top level CMakeLists.txt.</li>
+                <li>Then, run:</li>
+                    <ul>
+                        <li><span class="CLI-font">cmake .. -B ./cross_compile_Linux -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON</span></li>
+                        <li><span class="CLI-font">cmake --build ./cross_compile_Linux</span></li>
+                        <li><span class="CLI-font">cmake --install ./cross_compile_Linux</span></li>
+                        <li><span class="CLI-font">cd cross_compile_Linux</span></li>
+                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                    </ul>
+            </ul>
     </ul>
     <mat-divider></mat-divider>
 
