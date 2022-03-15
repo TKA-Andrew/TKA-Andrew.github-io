@@ -639,21 +639,15 @@ set_target_properties($&#123;PROJECT_NAME} PROPERTIES SOVERSION 1)
 # Declare public API of your library. This API will be installed for the third-party application.
 set_target_properties($&#123;PROJECT_NAME} PROPERTIES PUBLIC_HEADER include/adder.h)
 
-# To install (copy) the target files generated into CMAKE_BINARY_DIR
-# User need to run: cmake --install [DIR] --confing [BUILD_TYPE]
+# To install (copy) the target files generated into install directory
+# User need to run: cmake --install [DIR]
 # The [DIR] is the directory of where cmake_install.cmake is generated
-# The [BUILD_TYPE] is either Debug or Release
-if (BUILD_SHARED_LIBS)
-if (CMAKE_GENERATOR MATCHES "Visual Studio")
-    if (CMAKE_BUILD_TYPE MATCHES Debug)
-        install(TARGETS $&#123;PROJECT_NAME} CONFIGURATIONS Debug DESTINATION $&#123;CMAKE_BINARY_DIR}/Debug)
-    else()
-        install(TARGETS $&#123;PROJECT_NAME} CONFIGURATIONS Release DESTINATION $&#123;CMAKE_BINARY_DIR}/Release)
-    endif()
-else()
-    install(TARGETS $&#123;PROJECT_NAME} DESTINATION $&#123;CMAKE_BINARY_DIR})
-endif()
-endif ()
+# Reference for default dir: https://cmake.org/cmake/help/latest/command/install.html
+install(TARGETS $&#123;PROJECT_NAME} 
+    PUBLIC_HEADER DESTINATION include   # put header files in include directory
+    ARCHIVE DESTINATION lib             # put static library in lib directory
+    LIBRARY DESTINATION lib             # put lib file in lib directory
+    RUNTIME DESTINATION bin)            # put dll in bin directory
 
 target_include_directories($&#123;PROJECT_NAME} PUBLIC "$&#123;CMAKE_CURRENT_SOURCE_DIR}/include")
                                       </code>
@@ -664,10 +658,10 @@ target_include_directories($&#123;PROJECT_NAME} PUBLIC "$&#123;CMAKE_CURRENT_SOU
                       </ul>
                     </mat-expansion-panel>
                 </mat-accordion>
-        <li>You also need to define the preprocessor definitions in your top level CMakeLissts.txt.
+        <li>You also need to define the preprocessor definitions in your top level CMakeLists.txt.
             Take note that I added them before add_subdirectory(Adder), so that the warning generated
-            due to lacking of preprocessor definitiions can be suppressed. I also edited the main.cpp
-            to validate the library that is used.
+            due to lacking of preprocessor definitiions can be suppressed. You also need to install the executable.
+            I also edited the main.cpp to validate the library that is used.
         </li>
             <ul>
                 <li>
@@ -687,11 +681,11 @@ project(learning_cmake) # PROJECT_NAME
 add_executable($&#123;PROJECT_NAME} src/main.cpp)
 
 if (BUILD_SHARED_LIBS)
-    #define preprocessor definition to use adder DLL
-    add_compile_definitions("ADDER_EXPORTS")
+#define preprocessor definition to use adder DLL
+add_compile_definitions("ADDER_EXPORTS")
 else ()
-    #additional preprocessor definition for static usage
-    add_compile_definitions("ADDER_STATIC")
+#additional preprocessor definition for static usage
+add_compile_definitions("ADDER_STATIC")
 endif ()
 
 # add subdirectory which has its own CMakeLists.txt
@@ -699,6 +693,10 @@ add_subdirectory(Adder)
 
 # link the adder library to target
 target_link_libraries($&#123;PROJECT_NAME} PUBLIC adder)
+
+# to install the executable as well
+install(TARGETS $&#123;PROJECT_NAME} DESTINATION bin)
+
                               </code>
                           </pre>
                         </mat-expansion-panel>
@@ -728,15 +726,15 @@ target_link_libraries($&#123;PROJECT_NAME} PUBLIC adder)
 
 int main()
 &#123;
-    #ifdef ADDER_STATIC
-        std::cout&lt;&lt;"Using Static Library"&lt;&lt;'\n';
-    #endif
-    #ifdef ADDER_EXPORTS
-        std::cout&lt;&lt;"Using Shared Library"&lt;&lt;'\n';
-    #endif
-    std::cout&lt;&lt;"Hello World!\n";
-    std::cout&lt;&lt;add(1.2f, 2.3f)&lt;&lt;'\n';
-    return 0;
+#ifdef ADDER_STATIC
+    std::cout&lt;&lt;"Using Static Library"&lt;&lt;'\n';
+#endif
+#ifdef ADDER_EXPORTS
+    std::cout&lt;&lt;"Using Shared Library"&lt;&lt;'\n';
+#endif
+std::cout&lt;&lt;"Hello World!\n";
+std::cout&lt;&lt;add(1.2f, 2.3f)&lt;&lt;'\n';
+return 0;
 }
                                             </code>
                                         </pre>
@@ -748,23 +746,73 @@ int main()
                     </mat-accordion>
                 </li>
             </ul>
+        <li>Take note that:</li>
+            <ul>
+                <li>The installation paths above are relative paths.</li>
+                <li>CMAKE_INSTALL_PREFIX defaults to /usr/local on UNIX and c:/Program Files/$&#123;PROJECT_NAME} on Windows.</li>
+                <li>This prefix is used by default if the DESTINATION is a relative path.</li>
+                <li>Hence, our files will be installed into C:ProgramFiles.</li>
+                <li>We can specify ABSOLUTE paths such as $&#123;CMAKE_BUILD_DIR}/bin , but this is not
+                    what we want to do in this tutorial.
+                </li>
+                <li>In this tutorial, we put the shared libraries in bin folder together with the executable,
+                    instead of installing it into system folder.
+                </li>
+                <li>System Folder for Windows:</li>
+                    <ul>
+                        <li>System (for 32-bit OS)</li>
+                        <li>System32 (for 64-bit OS)</li>
+                        <li>SysWOW64 (for 64-bit OS)</li>
+                    </ul>
+                <li>System Search Path for Linux (different variants might have different ):</li>
+                    <ul>
+                        <li>/etc/ld.so.conf</li>
+                        <li>LD_LIBRARY_PATH environment variable</li>
+                        <li>/lib and /usr/lib (for 32-bit Linux)</li>
+                        <li>/lib64 and /usr/lib64 (for 64-bit Linux)</li>
+                    </ul>
+            </ul>
+        <li>Before proceeding with the following sessions, you should use command prompt with administrator privilege,
+            this is because later we will install files into C:Program Files , which requires admin rights.
+        </li>
         <li>Using UnixMakeFiles on Windows Platform</li>
             <ul>
-                <li>Run for static:
+                <li>Run for static (Debug):
                     <ul>
-                        <li><span class="CLI-font">cmake .. -B ./static_make -G "Unix Makefiles"</span></li>
-                        <li><span class="CLI-font">cmake --build ./static_make</span></li>
-                        <li><span class="CLI-font">cd static_make</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                        <li><span class="CLI-font">cmake .. -B ./static_make_debug -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug</span></li>
+                        <li><span class="CLI-font">cmake --build ./static_make_debug</span></li>
+                        <li>You will notice after building we already have the exe in build folder, but we not going to use it.</li>
+                        <li>We going to install it into our system: <span class="CLI-font">cmake --install ./static_make_debug</span></li>
+                        <li>You will notice there is a new folder called "learning_cmake" in Program Files (x86).</li>
+                        <li>In the folder you will see a bin folder, lib folder and include folder.</li>
+                        <li>You can try to run the executable.</li>
                     </ul>
                 </li>
-                <li>Run for shared:
+                <li>Run for shared (Debug):
                     <ul>
-                        <li><span class="CLI-font">cmake .. -B ./shared_make -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON</span></li>
-                        <li><span class="CLI-font">cmake --build ./shared_make</span></li>
-                        <li><span class="CLI-font">cmake --install ./shared_make</span></li>
-                        <li><span class="CLI-font">cd shared_make</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                        <li>Delete the learning_cmake folder in the C: Program Files (x86)</li>
+                        <li><span class="CLI-font">cmake .. -B ./shared_make_debug -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug</span></li>
+                        <li><span class="CLI-font">cmake --build ./shared_make_debug</span></li>
+                        <li><span class="CLI-font">cmake --install ./shared_make_debug</span></li>
+                        <li>You may go to the "learning_cmake" folder in Program Files (x86) and run the executable.</li>
+                    </ul>
+                </li>
+                <li>Run for static (Release):
+                    <ul>
+                        <li>Delete the learning_cmake folder in the C: Program Files (x86)</li>
+                        <li><span class="CLI-font">cmake .. -B ./static_make_release -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release</span></li>
+                        <li><span class="CLI-font">cmake --build ./static_make_release</span></li>
+                        <li><span class="CLI-font">cmake --install ./static_make_release</span></li>
+                        <li>Validate your result</li>
+                    </ul>
+                </li>
+                <li>Run for shared (Release):
+                    <ul>
+                        <li>Delete the learning_cmake folder in the C: Program Files (x86)</li>
+                        <li><span class="CLI-font">cmake .. -B ./shared_make_release -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON</span></li>
+                        <li><span class="CLI-font">cmake --build ./shared_make_release</span></li>
+                        <li><span class="CLI-font">cmake --install ./shared_make_release</span></li>
+                        <li>Validate your result</li>
                     </ul>
                 </li>
             </ul>
@@ -772,55 +820,44 @@ int main()
             <ul>
                 <li>Run for static (Debug):
                     <ul>
-                        <li><span class="CLI-font">cmake .. -B ./static_vs -G "Visual Studio 14 2015 Win64"</span></li>
-                        <li><span class="CLI-font">cmake --build ./static_vs</span></li>
-                        <li><span class="CLI-font">cd static_vs\Debug</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                        <li>Delete the learning_cmake folder in the C: Program Files (x86)</li>
+                        <li>Let's configure for both debug and release: <span class="CLI-font">cmake .. -B ./static_vs -G "Visual Studio 14 2015 Win64" -DCMAKE_CONFIGURATION_TYPES=Debug;Release</span></li>
+                        <li>Build for debug: <span class="CLI-font">cmake --build ./static_vs --config Debug</span></li>
+                        <li>You will see static_vs/Debug folder, but we going to ignore them and only install the
+                            necessary files into our C:Program Files.</li>
+                        <li><span class="CLI-font">cmake --install ./static_vs --config Debug</span></li>
+                        <li>You will see the "learning_cmake" folder in C:Program Files.</li>
+                        <li>Have a look at its content and try to run the exe.</li>
                     </ul>
                 </li>
                 <li>Run for shared (Debug):
                     <ul>
-                        <li><span class="CLI-font">cmake .. -B ./shared_vs -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON</span></li>
+                        <li>Delete the learning_cmake folder in the C: Program Files</li>
+                        <li>Let's configure for both debug and release: <span class="CLI-font">cmake .. -B ./shared_vs -G 
+                            "Visual Studio 14 2015 Win64" -DBUILD_SHARED_LIBS=ON -DCMAKE_CONFIGURATION_TYPES=Debug;Release</span></li>
                         <li><span class="CLI-font">cmake --build ./shared_vs --config Debug</span></li>
                         <li><span class="CLI-font">cmake --install ./shared_vs --config Debug</span></li>
-                        <li><span class="CLI-font">cd shared_vs\Debug</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                        <li>Validate your result</li>
                     </ul>
                 </li>
                 <li>Run for static (Release):
                     <ul>
-                        <li><span class="CLI-font">cmake .. -B ./static_vs -G "Visual Studio 14 2015 Win64"</span></li>
-                        <li><span class="CLI-font">cmake --build ./static_vs --config Release</span></li>
-                        <li><span class="CLI-font">cd static_vs\Release</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                        <li>Delete the learning_cmake folder in the C: Program Files</li>
+                        <li>Previously we configured for both Release and Debug, now we don't need to reconfigure it.</li>
+                        <li>Build for Release: <span class="CLI-font">cmake --build ./static_vs --config Release</span></li>
+                        <li><span class="CLI-font">cmake --install ./static_vs --config Release</span></li>
+                        <li>Validate your result</li>
                     </ul>
                 </li>
                 <li>Run for shared (Release):
                     <ul>
-                        <li>Take note that we specify the CMAKE_BUILD_TYPE here because we are using the same directory called shared_vs, which
-                            previously we set the CMAKE_BUILD_TYPE to "Debug". Now if we dont specify it, it will use the value
-                            in the cache which is "Debug".
-                        </li>
-                        <li><span class="CLI-font">cmake .. -B ./shared_vs -G "Visual Studio 14 2015 Win64" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release</span></li>
+                        <li>Delete the learning_cmake folder in the C: Program Files</li>
+                        <li>Previously we configured for both Release and Debug, now we don't need to reconfigure it.</li>
                         <li><span class="CLI-font">cmake --build ./shared_vs --config Release</span></li>
                         <li><span class="CLI-font">cmake --install ./shared_vs --config Release</span></li>
-                        <li><span class="CLI-font">cd shared_vs\Release</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
+                        <li>Validate your result</li>
                     </ul>
                 </li>
-            </ul>
-        <li>Cross-compile for Linux on Windows</li>
-            <ul>
-                <li>This will generate the libraries in .so format.</li>
-                <li>You need to specify "set(CMAKE_SYSTEM_NAME Linux)" in your top level CMakeLists.txt.</li>
-                <li>Then, run:</li>
-                    <ul>
-                        <li><span class="CLI-font">cmake .. -B ./cross_compile_Linux -G "Unix Makefiles" -DBUILD_SHARED_LIBS=ON</span></li>
-                        <li><span class="CLI-font">cmake --build ./cross_compile_Linux</span></li>
-                        <li><span class="CLI-font">cmake --install ./cross_compile_Linux</span></li>
-                        <li><span class="CLI-font">cd cross_compile_Linux</span></li>
-                        <li><span class="CLI-font">learning_cmake.exe</span></li>
-                    </ul>
             </ul>
     </ul>
     <mat-divider></mat-divider>
