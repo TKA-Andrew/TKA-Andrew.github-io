@@ -873,43 +873,70 @@ return 0;
         </li>
         <li>According to the explanation <a href="https://stackoverflow.com/questions/47749953/cpack-cmake-windows-absolute-path-install-destination-forbidden" target="_blank" rel="noopener noreferrer">
             here</a>, "With NSIS generator you have no other way than using relative install paths". Hence, we can't use ABSOLUTE PATH in our install() command,
-            which means we can't use those $&#123;CMAKE_BINARY_DIR} in our CMakeLists.txt. So I will put all the Adder files in bin folder:</li>
-            <pre>
-                <code>
-if (BUILD_SHARED_LIBS)
-    if (CMAKE_GENERATOR MATCHES "Visual Studio")
-        if (CMAKE_BUILD_TYPE MATCHES Debug)
-            install(TARGETS $&#123;PROJECT_NAME} CONFIGURATIONS Debug DESTINATION bin)
-        else()
-            install(TARGETS $&#123;PROJECT_NAME} CONFIGURATIONS Release DESTINATION bin)
-        endif()
-    else()
-        install(TARGETS $&#123;PROJECT_NAME} DESTINATION bin)
-    endif()
-endif ()
-                </code>
-            </pre>
+            which means we can't use those $&#123;CMAKE_BINARY_DIR} in our CMakeLists.txt. So I will put all the Adder files in bin folder. We already
+            handled this in Tutorial 03.
+        </li>
+        <li>We need resource file and icon file as our executable icon:</li>
+            <ul>
+                <li>Open a folder called "res"</li>
+                <li>Put a .ico file there, let's say "learning_cmake.ico"</li>
+                <li>Add a .rc file with the following content:</li>
+                    <pre>
+                        <code>
+IDI_ICON1 ICON DISCARDABLE "learning_cmake.ico"
+                        </code>
+                    </pre>
+            </ul>
         <li>Edit your top-level CMakeLists.txt:</li>
             <ul>
                 <li>Give your project a version: <span class="script-font">project(learning_cmake VERSION 1.0)</span></li>
-                <li>Install your executable into the bin directory also: <span class="script-font">install(TARGETS $&#123;PROJECT_NAME} DESTINATION bin)</span></li>
-                <li>Add these lines for CPack configuration:</li>
+                <li>Add the resource file into the executable:</li>
                     <pre>
                         <code>
-include(InstallRequiredSystemLibraries)
+set(AppIconRC res/learning_cmake.rc)
+add_executable(${PROJECT_NAME} src/main.cpp ${AppIconRC})
+                        </code>
+                    </pre>
+                <li>Then, install executable, install license, install resource folder and also add in CPack configuration:</li>
+                    <pre>
+                        <code>
+# to install the executable as well
+install(TARGETS $&#123;PROJECT_NAME} DESTINATION bin) 
+
+#install license
+install(FILES License.txt DESTINATION Licenses)
+
+#install resource folder
+install(DIRECTORY res DESTINATION res)
+
+# CPack
 set(CPACK_PACKAGE_NAME "Learning Cmake")
 set(CPACK_PACKAGE_VENDOR "ABC Technologies Sdn Bhd")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A simple demo")
 set(CPACK_RESOURCE_FILE_LICENSE "$&#123;CMAKE_SOURCE_DIR}/License.txt")
 set(CPACK_PACKAGE_VERSION_MAJOR "$&#123;PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "$&#123;PROJECT_VERSION_MINOR}")
+if (WIN32)
+include(InstallRequiredSystemLibraries) #Installing Microsoft Run Time Libraries
+set(CPACK_GENERATOR "NSIS")
+set(CPACK_NSIS_PACKAGE_NAME "Learning Cmake")
+set(CPACK_NSIS_DISPLAY_NAME "Learning Cmake")
+set(CPACK_NSIS_ICON "$&#123;CMAKE_SOURCE_DIR}/res/learning_cmake.ico")
+set(CPACK_NSIS_MUI_ICON "$&#123;CMAKE_SOURCE_DIR}/res/learning_cmake.ico")
+set(CPACK_NSIS_MUI_UNIICON "$&#123;CMAKE_SOURCE_DIR}/res/learning_cmake.ico")
+# set the add/remove programs icon using an installed executable
+set(CPACK_NSIS_INSTALLED_ICON_NAME "bin/$&#123;PROJECT_NAME}.exe")
+set(CPACK_PACKAGE_EXECUTABLES "$&#123;CMAKE_SOURCE_DIR}" "Learning CMake" )
+elseif(UNIX)
+set(CPACK_GENERATOR "STGZ;TGZ;RPM")
+endif()
 include(CPack)
                         </code>
                     </pre>
             </ul>
         <li>Run:</li>
             <ul>
-                <li><span class="CLI-font">cmake .. -B ./cpackExample -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON</span></li>
+                <li><span class="CLI-font">cmake .. -B ./cpackExample -G "Visual Studio 14 2015 Win64" -DBUILD_SHARED_LIBS=ON -DCMAKE_CONFIGURATION_TYPES=Debug;Release</span></li>
                 <li><span class="CLI-font">cmake --build ./cpackExample --config Release</span></li>
                 <li><span class="CLI-font">cd cpackExample</span></li>
                 <li>Use cpack command to generate installer: <span class="CLI-font">cpack</span></li>
