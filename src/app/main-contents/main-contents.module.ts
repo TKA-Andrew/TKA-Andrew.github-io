@@ -23,6 +23,7 @@ import { ShareFacadeService } from '../services/shareFacade.service';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { SwiperModule } from "swiper/angular";
 import { MglTimelineModule } from 'angular-mgl-timeline';
+import { ResumeComponent } from './resume/resume.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MglTimelineModule } from 'angular-mgl-timeline';
     TopbarComponent,
     HomeComponent,
     BackgroundImageLoadedDirective,
-    AchievementsComponent
+    AchievementsComponent,
+    ResumeComponent
   ],
   imports: [
     CommonModule,

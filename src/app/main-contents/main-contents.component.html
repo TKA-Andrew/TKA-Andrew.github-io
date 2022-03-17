@@ -4,7 +4,7 @@
         <div class="flexContainer">
             <div *ngIf="showMenu" fxLayout="column" id="responsiveMenu" style="z-index: 2;">
                 <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
-                <!-- <button mat-button class="topbarButtons" (click)="toggleMenu()">About</button> -->
+                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['resume']">Resume</button>
                 <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['achievements']" routerLinkActive="lightThemeRouterLinkActive">Achievements</button>
                 <!-- <button mat-button class="topbarButtons" (click)="toggleMenu()">Projects</button> -->
                 <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
