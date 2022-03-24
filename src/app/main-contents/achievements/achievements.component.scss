@@ -43,3 +43,11 @@
 mgl-timeline-entry-header {
   cursor: pointer;
 }
+
+.vertical {
+  border-left: 12px solid rgb(105, 174, 238);
+  height: calc(100% - 78px);
+  position:absolute;
+  left: calc(50% - 10px);
+  z-index: 2;
+}

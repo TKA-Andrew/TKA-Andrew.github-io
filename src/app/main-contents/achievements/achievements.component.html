@@ -1,6 +1,7 @@
 
 <div class="flexContainer" fxLayout="column"  style="height:100%; background-color: lightblue;" style="background-image: url('assets/images/lubo-minar-B-gb_8fgmz8-unsplash.jpg');   background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%; overflow: auto;" appBackgroundImageLoaded (imageLoaded)="loaded()">
-    <mgl-timeline style="height:100%;" [alternate]="true" side="right" [mobileWidthThreshold]=1000>
+    <div [ngStyle.lt-md]="{visibility: 'hidden'}" class="vertical"></div>
+    <mgl-timeline style="height:100%; padding: 30px 0px 0px" [alternate]="true" side="right" [mobileWidthThreshold]=959>
         <mgl-timeline-entry>
             <mgl-timeline-entry-header id="entry0"><h3>My first time with robotics</h3></mgl-timeline-entry-header>
             <mgl-timeline-entry-content>
