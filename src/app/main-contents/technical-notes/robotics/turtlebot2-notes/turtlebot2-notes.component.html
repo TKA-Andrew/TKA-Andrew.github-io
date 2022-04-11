@@ -113,7 +113,7 @@
             <h2>Setting initial position in launch file</h2>
             <ol>
                 <li>From the previous section you already know how to get the orientation and position of robot. 
-                    Now you </li>
+                    Now you can make use of it to get the initial position that you want, and then set it in your launch file.</li>
                 <li>Copy the amcl_demo.launch in opt/ros/indigo/share/turtlebot_navigation/launch</li>
                 <li>If you look at the launch file, there are three lines that defined the initial pose:</li>
                     <pre>
@@ -152,7 +152,7 @@
                 <li>The following explains what the symbols in number 5 represent. Actually, the bank is
                     roll, attitude is pitch and heading is yaw</li>
                     <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_03.png">
-                <li>For our case, our roll and pitch will be zero because our robot doesnt robot about x and y
+                <li>For our case, our roll and pitch will be zero because our robot doesnt rotate about x and y
                     axis. Therefore, we only concern on the yaw, which is our initial_pose_a value.
                     According to number 5, we can get the value of yaw if we know Qz or Qw. But after a
                     few trials, we noticed that Qz is more accurate compared to Qw, dont know why.</li>
@@ -178,7 +178,7 @@
             <ol>
                 <li>This is for those building map with SLAM only. If you are using SLAM in this tutorial to
                     build map, the package that you use will be turtlebot_navigation and the launch file that you use
-                    will be gmapping_demo.launch. And if you are using kincct to build map, the file that controls
+                    will be gmapping_demo.launch. And if you are using kinect to build map, the file that controls
                     all the settings of the map will be kinect_gmapping.launch.xml</li>
                 <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_05.png">
                     
