@@ -36,6 +36,7 @@ import { BellmanFordAlgorithmComponent } from './algorithms/bellman-ford-algorit
 import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dynamic-programming.component';
 import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-cmake.component';
 import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-algorithm.component';
+import { Ros2NotesComponent } from './robotics/ros2-notes/ros2-notes.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-al
     BellmanFordAlgorithmComponent,
     DynamicProgrammingComponent,
     LearningCmakeComponent,
-    AStarAlgorithmComponent],
+    AStarAlgorithmComponent,
+    Ros2NotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

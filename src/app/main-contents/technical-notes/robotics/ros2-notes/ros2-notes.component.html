@@ -1,0 +1,37 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>ROS2 Notes</h1>
+        <div>
+            <h2>Introduction</h2>
+            <p>This page documents some ROS2 notes of mine.</p>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>Some miscellaneous notes to get started</h3>
+            <ul>
+                <li>Beginners are recommended to <a href="https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html" 
+                    target="_blank" rel="noopener noreferrer">Install ROS2 via Debian Packages</a></li>
+                <li>If you installed ROS (for example, ROS noetic previously), and if you added 
+                    "source /opt/ros/noetic/setup.bash" and "source ~/catkin_ws/devel/setup.bash"
+                    in your ~/.bashrc , remember to comment them out.
+                </li>
+                <li>To ensure your current ROS environment is ROS2, run <span class="CLI-font">printenv | grep ROS</span> , and
+                    supposedly you see something like these:</li>
+                    <ul>
+                        <li>ROS_VERSION=2</li>
+                        <li>ROS_PYTHON_VERSION=3</li>
+                        <li>ROS_LOCALHOST_ONLY=0</li>
+                        <li>ROS_DISTRO=galactic</li>
+                    </ul>
+                <li>In ROS2, "nodes" are called "participants".</li>
+                <li>According to the <a href="https://docs.ros.org/en/galactic/Tutorials/Configuring-ROS2-Environment.html"
+                    target="_blank" rel="noopener noreferrer">tutorial</a>, we need to set a ROS_DOMAIN_ID, but we cannot simply set,
+                    please read through <a href="https://docs.ros.org/en/galactic/Concepts/About-Domain-ID.html" target="_blank"
+                    rel="noopener noreferrer">this article</a> before setting your domain ID.</li>
+                <li></li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
