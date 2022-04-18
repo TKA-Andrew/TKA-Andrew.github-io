@@ -33,11 +33,56 @@
                         <li>The HEAD is the commit or branch you are currently viewing.</li>
                         <li>A repository can contain a number of heads but only one HEAD</li>
                     </ul>
+                <li>git pull vs git fetch</li>
+                    <ul>
+                        <li>git pull does a git fetch followed by a git merge</li>
+                        <li>For example, let's say we are currently at branch "master", and
+                            we made some local changes already:
+                        </li>
+                            <ul>
+                                <li>If we do <span class="CLI-font">git fetch origin master</span>, 
+                                    it only updates the refs/remotes/master. Our refs/head will not
+                                    be affected and hence our working copy will not be changed.</li>
+                                <li>On the other hand, if we do <span class="CLI-font">git pull origin master</span>,
+                                    we are fetching and merging the changes, which will affect our refs/head.</li>
+                            </ul>
+                    </ul>
+                <li>git reset</li>
+                    <ul>
+                        <li>By default, executing <span class="CLI-font">git reset</span> is running
+                            <span class="CLI-font">git reset --mixed HEAD</span></li>
+                        <li>Different options of git reset are actually affecting different trees (working directory, staging area 
+                            and commit history)
+                        </li>
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="https://wac-cdn.atlassian.com/dam/jcr:7fb4b5f7-a2cd-4cb7-9a32-456202499922/03%20(8).svg?cdnVersion=309" style="max-height: 500px;">
+                                <span style="font-style: italic;">Source of image: https://www.atlassian.com/git/tutorials/undoing-changes/git-reset</span>
+                            </div>
+                    </ul>
+                <li>git revert</li>
+                    <ul>
+                        <li>Git revert is a safer alternative to git reset in regards to losing work.</li>
+                        <li>Git revert creates a new commit that inverses the changes specified.</li>
+                        <li>The video in git bisect section below will show you how git revert can be used.</li>
+                    </ul>
+                <li>git bisect</li>
+                    <ul>
+                        <li>git bisect is a useful command for us to binary search a commit that caused bug</li>
+                        <li>Refer to <a href="https://www.youtube.com/watch?v=D7JJnLFOn4A" target="_blank" rel="noopener noreferrer">this video</a> for the demo.</li>
+                    </ul>
+                <li>git cherry-pick</li>
+                    <ul>
+                        <li>"git merge" and "git rebase" will copy all the commits, but sometimes probably we only want to copy a
+                            specific commit, we can use "git cherry-pick" to achieve this.
+                        </li>
+                        <li>Refer to <a href="https://www.youtube.com/watch?v=wIY824wWpu4" target="_blank" rel="noopener noreferrer">this video</a> for the demo.</li>
+                    </ul>
             </ul>
             <h3>What happens to your files when you have multiple branches in your directory?</h3>
             <ul>
                 <li>The files in the working directory will change according to your HEAD.</li>
             </ul>
+            <h3><a href="https://blog.hackbrightacademy.com/blog/svn-vs-git/" target="_blank" rel="noopener noreferrer">Git vs SVN</a></h3>
             <mat-divider></mat-divider>
         </div>
         <div id="gitBranchStrategies">
@@ -169,6 +214,34 @@
                             <li><span class="CLI-font">git merge master</span></li>
                             <li><span class="CLI-font">git push origin &lt;branch-name></span></li>
                         </ol>
+                </ul>
+            </div>
+            <div>
+                <h3>To undo commit, or stage, or even workding changes</h3>
+                <ul>
+                    <li>To undo the latest commit, but keep it in staging area</li>
+                        <ul>
+                            <li><span class="CLI-font">git reset --soft HEAD</span></li>
+                        </ul>
+                    <li>To undo the last 3 commits(HEAD, HEAD^, and HEAD~2), but keep them in staging area</li>
+                        <ul>
+                            <li><span class="CLI-font">git reset --soft HEAD~3</span></li>                            
+                        </ul>
+                    <li>To undo the last commit, and remove from staging area, only keep in working changes</li>
+                        <ul>
+                            <li><span class="CLI-font">git reset</span></li>
+                            <li>Basically this equivalent to <span class="CLI-font">git reset --mixed HEAD</span></li>
+                            <li>Basically this also means undo a git add</li>
+                        </ul>
+                    <li>To undo the last commit, and also reset the working directory</li>
+                        <ul>
+                            <li><span class="CLI-font">git reset --hard</span></li>
+                            <li>DO NOT do hard reset if your commit is pushed a public repo and somebody already puled it</li>
+                        </ul>
+                    <li>To remove a file from staging area, but keep it in working directory</li>
+                        <ul>
+                            <li>git reset -- your_file_name</li>
+                        </ul>
                 </ul>
             </div>
             <mat-divider></mat-divider>
