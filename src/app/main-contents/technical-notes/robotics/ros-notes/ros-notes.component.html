@@ -182,6 +182,20 @@
             <mat-divider></mat-divider>
         </div>
         <div>
+            <h3>RVIZ</h3>
+            <ul>
+                <li>To run rviz in launch file together with a config file loaded</li>
+                    <pre>
+                        <code>
+    &lt;launch>
+        &lt;node type="rviz" name="rviz" pkg="rviz" args="-d $(find package_name)/folder_name/config_file_name.rviz" />
+    &lt;/launch>
+                        </code>
+                    </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
             <h3>URDF</h3>
             <ul>
                 <li>If you installed the ROS extension on Visual Studio Code, you can make use of one of the feature called "Preview URDF". 
