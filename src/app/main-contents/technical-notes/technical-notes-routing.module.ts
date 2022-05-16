@@ -25,6 +25,7 @@ import { DynamicProgrammingComponent } from './algorithms/dynamic-programming/dy
 import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-cmake.component';
 import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-algorithm.component';
 import { Ros2NotesComponent } from './robotics/ros2-notes/ros2-notes.component';
+import { LocalizationNotesComponent } from './robotics/localization-notes/localization-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -85,6 +86,10 @@ const routes: Routes = [{
     {
       path:'robotics/TurtleBot2',
       component: Turtlebot2NotesComponent
+    },
+    {
+      path:'robotics/Localization',
+      component: LocalizationNotesComponent
     },
     {
       path:'robotics/UsefulResources',

@@ -1,0 +1,43 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>Localization Notes</h1>
+        <div>
+            <h2>Introduction</h2>
+            <ul>
+                <li>Localization is about determining the robot's pose in a mapped environment.</li>
+                <li>Probabilistic algorithms are normally used to track or estimate a robot's position and orientation.</li>
+                <li>There are 4 popular Localization algorithms:</li>
+                    <ul>
+                        <li>Extended Kalman Filter</li>
+                        <li>Markov Localization</li>
+                        <li>Grid Localization</li>
+                        <li>Monte Carlo Localization</li>
+                    </ul>
+                <li>There are 3 types of Localization problems:</li>
+                    <ul>
+                        <li>Position Tracking / Local Localization</li>
+                            <ul>
+                                <li>The robot knows its initial pose</li>
+                                <li>The challenge of this problem is the uncertainty of the environments (for example, 
+                                    a robot might experience wheel slip when moving on a carpet)
+                                </li>
+                            </ul>
+                        <li>Global Localization</li>
+                            <ul>
+                                <li>The robot doesnt know its initial pose</li>
+                                <li>The robot needs to determine its pose relative to the ground truth map</li>
+                            </ul>
+                        <li>Kipnapped Robot</li>
+                            <ul>
+                                <li>This problem is similar to Global Localization problem, except that
+                                    the robot may be kipnapped (moved) to a new position at any time.
+                                </li>
+                            </ul>
+                    </ul>
+                <li>There are 2 types of environments need to be considered: static environment and dynamic environment</li>
+                <li>Dynamic environment is more difficult to localize in.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
