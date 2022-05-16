@@ -789,6 +789,18 @@ ptr = nullptr; // set ptr to be a null pointer
     }
                     </code>
                 </pre>
+                <li>More properly, std::make_tuple should be used to pack the variables into tuple: </li>
+                    <pre>
+                        <code>
+    std::make_tuple(123, 3.142, "Hello World");
+                        </code>
+                    </pre>
+                <li>On the other hand, std::tie can be used to unpack a tuple into variables:</li>
+                    <pre>
+                        <code>
+    std::tie (value1, value2, value3) = sampleFunc();
+                        </code>
+                    </pre>
             </ul>
         </div>
         <mat-divider></mat-divider>
