@@ -24,6 +24,7 @@ import { AchievementsComponent } from './achievements/achievements.component';
 import { SwiperModule } from "swiper/angular";
 import { MglTimelineModule } from 'angular-mgl-timeline';
 import { ResumeComponent } from './resume/resume.component';
+import { MathjaxModule } from 'mathjax-angular';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,20 @@ import { ResumeComponent } from './resume/resume.component';
       template: AppBusyComponent,
       wrapperClass: 'app-busy',
       disableAnimation: true,
-    }))
+    })),
+    MathjaxModule.forRoot({
+      "config": {
+        "loader": {
+          "load": ["output/svg", "[tex]/require", "[tex]/ams"]
+        },
+        "tex": {
+          "inlineMath": [["$", "$"]],
+          "packages": ["base", "require", "ams"]
+        },
+        "svg": { "fontCache": "global" }
+      },
+      "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
+    })
   ],
   providers: [
     ShareFacadeService,

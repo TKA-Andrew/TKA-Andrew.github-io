@@ -29,6 +29,7 @@
     "angular-mgl-timeline": "^0.4.0",
     "angular-svg-icon": "^12.0.0",
     "font-awesome": "^4.7.0",
+    "mathjax-angular": "^1.4.2",
     "ng-busy": "^12.0.2",
     "rxjs": "~6.6.0",
     "swiper": "^7.4.1",
