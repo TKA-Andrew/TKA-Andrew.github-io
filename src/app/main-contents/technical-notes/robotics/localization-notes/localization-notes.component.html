@@ -39,5 +39,151 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h2>Kalman Filter</h2>
+            <h3>Introduction to Kalman Filter</h3>
+            <ul>
+                <li>Kalman Filter is a very prominent estimation algorithm that is used to estimate the value of a variable
+                    in real-time as the data is being collected.
+                </li>
+                <li>Advantages of Kalman Filter algorithm:</li>
+                    <ul>
+                        <li>can provide a very accurate estimate of the real value</li>
+                        <li>can quickly perform the estimation with just a few sensor measurements</li>
+                        <li>can consider sensor fusion to provide a more accurate estimation</li>
+                    </ul>
+                <li>Kalman Filter algorithm is an iteration of 2 steps, prior with an initial estimate:</li>
+                    <ul>
+                        <li>State Prediction</li>
+                        <li>Measurement Update</li>
+                    </ul>
+                <li>Even with an awful initial guess (as long as the mean is logical and not too over), the Kalman Filter algorithm
+                    will still be able to estimate the state very quickly and accurately.</li>
+                <li>There are few types of Kalman Filters:</li>
+                    <ul>
+                        <li>KF - linear</li>
+                        <li>Extended KF - nonlinear</li>
+                        <li><a href="http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam05-ukf.pdf" target="_blank" rel="noopener noreferrer">Unscented KF</a> - highly nonlinear</li>
+                    </ul>
+                <li>The basis of Kalman Filter is the Gaussian Distribution.</li>
+            </ul>
+
+            <h3>1D Kalman Filter</h3>
+            <h4>1D Gaussian</h4>
+            <ul>
+                <li>Formula: <div class="matheqn" [mathjax]="'$$p(x) = \\frac {1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$'"></div>
+                   
+                
+                    where:
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\mu\\text{ : mean}$'"></div>
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\sigma\\text{ : standard deviation}$'"></div>
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\sigma^2\\text{ : variance}$'"></div>
+                </li>
+                <li>Code: </li>
+                    <pre>
+                        <code>
+double gaussian1D(double mu, double sigma, double x)
+&#123;
+    double prob = 1.0 / (sigma * sqrt(2.0 * M_PI)) * exp(-0.5 * pow((x - mu), 2.0) / pow(sigma, 2.0));
+    return prob;
+}
+                        </code>
+                    </pre>
+            </ul>
+
+            <h4>Naming Conventions</h4>
+            <ul>
+                <li><div class="matheqn-small" [mathjax]="'$x_t\\text{ : state}$'"></div></li>
+                <li><div class="matheqn-small" [mathjax]="'$z_t\\text{ : measurement}$'"></div></li>
+                <li><div class="matheqn-small" [mathjax]="'$u_t\\text{ : control action}$'"></div></li>
+            </ul>
+            <h4>Measurement Update</h4>
+            <ul>
+                <li>In the first iteration of the algorithm, our initial guess (which is also a gaussian distribution with mean and variance) will become our prior belief.</li>
+                <li>Then, we will get a measurement (which is also a gaussian distribution with mean and variance).</li>
+                <li>With this 2 gaussian distrbutions, we can estimate the posterior belief by getting the new mean and new variance:
+                    <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\frac {r^2\\mu + \\sigma^2v}{r^2 + \\sigma^2}$$'"></div>
+                    <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = \\frac {1}{\\frac {1}{r^2} + \\frac {1}{\\sigma^2}}$$'"></div>
+                    where:
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\mu\\text{ : mean of prior belief}$'"></div>
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\sigma^2\\text{ : variance of prior belief}$'"></div>
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$v\\text{ : mean of measurement}$'"></div>
+                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$r^2\\text{ : variance of measurement}$'"></div>
+                </li>
+            </ul>
+
+            <h4>State prediction</h4>
+            <ul>
+                <li>Now, the new mean and new variance that we calculated in the Measurement Update process are now referrerd to as the prior belief.</li>
+                <li>State prediction is the estimation that takes place after an inevitably uncertain motion.</li>
+                <li>The motion is also a gaussian distribution with a mean and variance.</li>
+                <li>To get the next gaussian distribution (which represents the state), simply sum up the mean and variance from both prior belief
+                    and motion:
+                    <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\mu_1 + \\mu_2$$'"></div>
+                    <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = {\\sigma^2}_{1} + {\\sigma^2}_{2}$$'"></div>
+                </li>
+            </ul>
+
+            <h4>Implementation of 1D Kalman Filter</h4>
+            <ul>
+                <li>You might ask how to get the mean and variance for the measurements and motions in actual. 
+                    Well, actually we can assume the measurement we get is the mean, and we can set the variance
+                    by ourselves accordingly.
+                </li>
+                <li>Code example:
+                    <pre>
+                        <code>
+    #include &lt;iostream>
+    #include &lt;math.h>
+    #include &lt;tuple>
+    
+    using namespace std;
+    
+    double new_mean, new_var;
+    
+    tuple&lt;double, double> measurement_update(double mean1, double var1, double mean2, double var2)
+    &#123;
+        new_mean = (var2 * mean1 + var1 * mean2) / (var1 + var2);
+        new_var = 1 / (1 / var1 + 1 / var2);
+        return make_tuple(new_mean, new_var);
+    }
+    
+    tuple&lt;double, double> state_prediction(double mean1, double var1, double mean2, double var2)
+    &#123;
+        new_mean = mean1 + mean2;
+        new_var = var1 + var2;
+        return make_tuple(new_mean, new_var);
+    }
+    
+    int main()
+    &#123;
+        //Measurements and measurement variance
+        double measurements[5] = &#123; 5, 6, 7, 9, 10 };
+        double measurement_sig = 4;
+        
+        //Motions and motion variance   m,ean
+        double motion[5] = &#123; 1, 1, 2, 1, 1 };
+        double motion_sig = 2;
+        
+        //Initial state
+        double mu = 0;
+        double sig = 1000;
+    
+        for (int i = 0; i &lt; sizeof(measurements) / sizeof(measurements[0]); i++) &#123;
+            tie(mu, sig) = measurement_update(mu, sig, measurements[i], measurement_sig);
+            printf("update:  [%f, %f]\n", mu, sig);
+            tie(mu, sig) = state_prediction(mu, sig, motion[i], motion_sig);
+            printf("predict: [%f, %f]\n", mu, sig);
+        }
+    
+        return 0;
+    }                                
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
     </div>
 </div>
