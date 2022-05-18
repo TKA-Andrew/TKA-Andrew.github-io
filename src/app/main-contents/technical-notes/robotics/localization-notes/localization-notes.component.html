@@ -184,6 +184,86 @@ double gaussian1D(double mu, double sigma, double x)
                 </li>
             </ul>
         </div>
+        
+        <div>
+            <h3>Multi-Dimensional Kalman Filter</h3>
+            <h4>Multivariate Gaussian</h4>
+            <ul>
+                <li>Multivariate Gaussian can be 2D, 3D, 4D etc. Depending on how many dimensions or variables there are, the mean and 
+                    covariance will have different size. The following are the mean and covariance of 2D Gaussians.
+                </li>
+                <li>Mean</li>
+                    <div class="matheqn" [mathjax]="'$$\\mu = \\begin{bmatrix}
+                    \\mu_x \\\\
+                    \\mu_y
+                    \\end{bmatrix}$$'"></div>
+                <li>Covariance</li>
+                    <div class="matheqn" [mathjax]="'$$\\Sigma = \\begin{bmatrix}
+                    \\sigma_x^2 & \\sigma_x\\sigma_y \\\\
+                    \\sigma_y\\sigma_x & \\sigma_y^2
+                    \\end{bmatrix}$$'"></div>
+                <li>Formula for the multivariate Gaussian</li>
+                    <div class="matheqn" [mathjax]="'$$p(x) = \\frac {1}{(2\\pi)^{\\frac{1}{2}}|\\Sigma|^{\\frac{1}{2}}} e^{-\\frac{1}{2} (x-\\mu)^T \\Sigma^{-1} (x-\\mu)}$$'"></div>
+            </ul>
+
+            <h4>Kalman Filter Equations</h4>
+            <ul>
+                <li>State Prediction:</li>
+                <ul>
+                    <li>Take note that this X is equivalent to the &mu; above</li>
+                        <div class="matheqn" [mathjax]="'$$X^{\'} = FX$$'"></div>
+                        where:
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$X^{\'}\\text{ : posterior state}$'"></div>
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{F : state transition function}$'"></div>
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{X : prior state}$'"></div>
+                        <br>The state transition function and state are depending on your application.
+                        <br>For example, if the state is about displacement and velocity, and we assume velocity is always constant:
+                        <div class="matheqn" [mathjax]="'$$X = \\begin{bmatrix}
+                        x_x \\\\
+                        \\dot{x}
+                        \\end{bmatrix}$$'"></div>
+                        <div class="matheqn" [mathjax]="'$$F = \\begin{bmatrix}
+                        1 & \\delta t \\\\
+                        0 & 1
+                        \\end{bmatrix}$$'"></div>
+                    <li>To calculate the posterior covariance, the prior covariance P is multiplied by F squared, and added Q as process noise</li>
+                        <div class="matheqn" [mathjax]="'$$P^{\'} = FPF^{T} + Q$$'"></div>
+                        where:
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$P^{\'}\\text{ : posterior covariance}$'"></div>
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$FF^{T}\\text{ : }F^2$'"></div>
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{P : prior covariance}$'"></div>
+                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{Q : process noise}$'"></div>
+                </ul>
+
+                <li>Measurement Update</li>
+                <ul>
+                    <li>Symbol z is used to represent the matrix of measurement.</li>
+                    <li>There is a measurement function, called H, which demonstrates how to map state(x) to observation(z).</li>
+                    <li>For example, let's say the state X is about displacement and velocity, but our measurement is only measuring displacement, then
+                        the measurement function is:
+                        <div class="matheqn" [mathjax]="'$$H = \\begin{bmatrix}
+                        1 \\ 
+                        0
+                        \\end{bmatrix}$$'"></div>
+                    </li>
+                    <li>The measurement residual (difference between measurement and expected measurement) also need to be calculated:</li>
+                    <div class="matheqn" [mathjax]="'$$y = z - HX^{\'}$$'"></div>
+                    <li>There is also another equation S, which considers measurement noise (R) and will be used in calculating Kalman Gain later:</li>
+                    <div class="matheqn" [mathjax]="'$$S = HP^{\'}H^T+R$$'"></div>
+                </ul>
+
+                <li>Calculation of Kalman Gain</li>
+                <ul>
+                    <li><div class="matheqn" [mathjax]="'$$K = P^{\'}H^TS^{-1}$$'"></div></li>
+                </ul>
+
+                <li>To further calculate posterior state and posterior covariance</li>
+                <ul>
+                    <li><div class="matheqn" [mathjax]="'$$X = X^{\'}+Ky$$'"></div></li>
+                    <li><div class="matheqn" [mathjax]="'$$P = (I - KH)P^{\'}$$'"></div></li>
+                </ul>
+            </ul>
+        </div>
         <mat-divider></mat-divider>
     </div>
 </div>
