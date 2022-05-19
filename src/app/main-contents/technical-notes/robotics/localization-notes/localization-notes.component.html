@@ -263,7 +263,34 @@ double gaussian1D(double mu, double sigma, double x)
                     <li><div class="matheqn" [mathjax]="'$$P = (I - KH)P^{\'}$$'"></div></li>
                 </ul>
             </ul>
+            <mat-divider></mat-divider>
         </div>
-        <mat-divider></mat-divider>
+        <div>
+            <h2>Monte Carlo Localization</h2>
+            <h3>Introduction</h3>
+            <ul>
+                <li>Monte Carlo Localization (MCL) can only solve Local and Global localization problems, it cannot solve kipnapped robot problem.</li>
+                <li>As compared to EKF, MCL has some advantages:</li>
+                    <ul>
+                        <li>Easier to implement/code</li>
+                        <li>Can handle global localization problem (EKF can only handle local localization problem</li>
+                        <li>MCL is not limited to Gaussian Distribution</li>
+                    </ul>
+                <li>MCL uses particles to localize the robot.</li>
+                <li>The algorithm of MCL:</li>
+                    <ul>
+                        <li>Randomly and uniformly place N numbers of particles on the map.</li>
+                        <li>Each particle has four private members: x, y, theta, weight</li>
+                        <li>There will be few landmarks on the map, which will be later used to estimate the position of the particles and robot.</li>
+                        <li>When the robot moves, for example, rotate clockwise 90 degreen and move forward 2m, the same action should be
+                            updated on all particles.
+                        </li>
+                        <li>Get robot's measurements (z), which are the distances of the robot from the landmarks.</li>
+                        <li>Update weight of each particle depending on the robot's measurement z and also the particle's position.</li>
+                        <li>Resample the particles with a sample probability proportional to the importance weight</li>
+                        <li>Repeat</li>
+                    </ul>
+            </ul>
+        </div>
     </div>
 </div>
