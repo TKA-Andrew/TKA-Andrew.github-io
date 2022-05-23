@@ -263,8 +263,38 @@ double gaussian1D(double mu, double sigma, double x)
                     <li><div class="matheqn" [mathjax]="'$$P = (I - KH)P^{\'}$$'"></div></li>
                 </ul>
             </ul>
+        </div>
+
+        <div>
+            <h3>Extended Kalman Filter</h3>
+            <h4>Introduction</h4>
+            <ul>
+                <li>When using Kalman Filter, there are 2 assumptions made:</li>
+                    <ul>
+                        <li>Motion and measurement models are linear</li>
+                        <li>State space can be represented by a unimodal Gaussian Distribution</li>
+                    </ul>
+                <li>The Kalman Filter cannot be used when the measurement and/or state transition functions are nonlinear, since this would result in a non-Gaussian distribution.</li>
+                <li>For example, if let's say we are tracking the x and y coordinates of a robot, our state will be:
+                    <div class="matheqn" [mathjax]="'$$X = \\begin{bmatrix}
+                    x \\\\
+                    y
+                    \\end{bmatrix}$$'"></div>
+                    and let's say our sensor only measures the distance from the robot to the object, r, as well as the angle between r and the x-axis, θ, our measurement will be:
+                    <div class="matheqn" [mathjax]="'$$Z = \\begin{bmatrix}
+                    r \\\\
+                    \\theta
+                    \\end{bmatrix}$$'"></div>
+                    Unlike the previous example that shows linear state transition function between displacement and velocity, we can't compute a linear F for this.
+                    <br>The measurement function is also no longer linear because:
+                    <div class="matheqn" [mathjax]="'$$r = \\sqrt{x^2 + y^2}$$'"></div>
+                    <div class="matheqn" [mathjax]="'$$\\theta = tan^{-1}\\frac{y}{x}$$'"></div>
+                </li>
+                
+            </ul>
             <mat-divider></mat-divider>
         </div>
+        
         <div>
             <h2>Monte Carlo Localization</h2>
             <h3>Introduction</h3>
@@ -291,6 +321,7 @@ double gaussian1D(double mu, double sigma, double x)
                         <li>Repeat</li>
                     </ul>
             </ul>
+            <mat-divider></mat-divider>
         </div>
     </div>
 </div>
