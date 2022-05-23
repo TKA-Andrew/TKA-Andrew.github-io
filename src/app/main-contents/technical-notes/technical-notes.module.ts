@@ -39,6 +39,7 @@ import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-al
 import { Ros2NotesComponent } from './robotics/ros2-notes/ros2-notes.component';
 import { LocalizationNotesComponent } from './robotics/localization-notes/localization-notes.component';
 import { MathjaxModule } from 'mathjax-angular';
+import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { MathjaxModule } from 'mathjax-angular';
     LearningCmakeComponent,
     AStarAlgorithmComponent,
     Ros2NotesComponent,
-    LocalizationNotesComponent],
+    LocalizationNotesComponent,
+    MappingNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

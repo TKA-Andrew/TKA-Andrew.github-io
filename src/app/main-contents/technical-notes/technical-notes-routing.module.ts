@@ -26,6 +26,7 @@ import { LearningCmakeComponent } from './miscellaneous/learning-cmake/learning-
 import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-algorithm.component';
 import { Ros2NotesComponent } from './robotics/ros2-notes/ros2-notes.component';
 import { LocalizationNotesComponent } from './robotics/localization-notes/localization-notes.component';
+import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -90,6 +91,10 @@ const routes: Routes = [{
     {
       path:'robotics/Localization',
       component: LocalizationNotesComponent
+    },
+    {
+      path:'robotics/Mapping',
+      component: MappingNotesComponent
     },
     {
       path:'robotics/UsefulResources',
