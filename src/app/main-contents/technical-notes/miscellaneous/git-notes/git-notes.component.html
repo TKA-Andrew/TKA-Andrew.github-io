@@ -244,6 +244,20 @@
                         </ul>
                 </ul>
             </div>
+            <div>
+                <h3>To remove image from Camo's cache</h3>
+                <ul>
+                    <li><a href="https://github.com/atom/markdown-preview/issues/207" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                    <li>This is needed when you replace an old image with new image with same name.</li>
+                    <li>The markdown preview will be displaying the old image if you do not remove the cache.</li>
+                    <li>To remove it:
+                        <ul>
+                            <li><span class="CLI-font">curl -X PURGE https://camo.githubusercontent.com/4d04abe0044d94fefcf9af2133223....</span></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
             <mat-divider></mat-divider>
         </div>
     </div>
