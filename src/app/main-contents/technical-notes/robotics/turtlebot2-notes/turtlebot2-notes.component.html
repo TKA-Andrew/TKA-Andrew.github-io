@@ -54,7 +54,7 @@
                     <ul>
                         <li><span class="CLI-font">roslaunch turtlebot_bringup minimal.launch</span></li>
                         <li><span class="CLI-font">roslaunch turtlebot_navigation amcl_demo.launch
-                            map_ file:=/DIRECTORY/YOUR_FILE_NAME.yaml</span></li>
+                            map_file:=/DIRECTORY/YOUR_FILE_NAME.yaml</span></li>
                         <li><span class="CLI-font">roslaunch turtlebot_rviz_launchers view_navigation.launch</span></li>
                     </ul>
                 <li>Your map will come up on the screen, you should calibrate the current position of
@@ -92,7 +92,7 @@
         0.0012125460173182706]
                     </pre>
                 <li>Take note of the position: x, y, z and the orientation x, y, z, w information.
-                    They can be used to define the coordinates (including the direction that you want the robot to face at) of some destinations for your robot to navigate to.
+                    They can be used to define the coordinates (including the direction that you want the robot to face at) or some destinations for your robot to navigate to.
                 </li>
                 <li>For example,in your program, you can do something like this:</li>
                     <pre>
@@ -104,7 +104,7 @@
                         </code>
                     </pre>
                 <li>Simply replace the values of Point() with position x, y, z and the values of Quaternion() coordinates with orientation x, y, z, w.</li>
-                <li>Refer to the section below to</li>
+                <li>Then, you can further use these poses to define the initial position of robot or some goals for the robot to navigate to.</li>
             </ol>
             <mat-divider></mat-divider>
         </div>
