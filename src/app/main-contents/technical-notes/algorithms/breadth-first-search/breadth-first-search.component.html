@@ -1,0 +1,52 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>Breadth First Search (BFS)</h1>
+        <div>
+            <h2>Introduction</h2>
+            <ul>
+                <li>The idea of BFS is cleary illustrated by the gif below:</li>
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif?20100504223639" width="40%">
+                        <span style="font-style: italic;">Source of gif: https://commons.wikimedia.org/wiki/File:Breadth-First-Search-Algorithm.gif</span>
+                    </div>
+                <li>BFS and DFS are the 2 most commonly known algorithms.</li>
+                <li>When used to find shortest path, BFS is faster than DFS, but its space complexity is higher than DFS.</li>
+                <li>Normally a queue is used to push and pop the nodes.</li>
+                <li>The following is a general pattern of BFS algorithm:</li>
+                    <pre>
+                        <code>
+std::queue&lt;TreeNode*> q;
+// push something into queue
+
+while(!q.empty()) &#123;
+    int n = q.size();
+    for (int i = 0; i &lt; n; i++) &#123;
+        auto currentNode = q.front();
+        q.pop();
+
+        // push next nodes into queue
+    }
+}
+                        </code>
+                    </pre>
+                <li><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener noreferrer">This</a> is the typical BFS problem and from its 
+                <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode111.MinimumDepthofBinaryTree_BFS.cpp" target="_blank" rel="noopener noreferrer">solution</a> you can see the pattern.</li>
+                <li>Other than finding shortest path, most of the graph questions are commonly solved with DFS. They can be solved with BFS but DFS is easier to code.</li>
+                <li>The following are some LeetCode problems that can be solved using both BFS and DFS, you may observe their difference.</li>
+                    <ul>
+                        <li><a href="https://leetcode.com/problems/symmetric-tree/" target="_blank" rel="noopener noreferrer">[easy] 101. Symmetric Tree</a></li>
+                            <ul>
+                                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode101.SymmetricTree_BFS.cpp" target="_blank" rel="noopener noreferrer">BFS solution</a></li>
+                                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode101.SymmetricTree_DFS.cpp" target="_blank" rel="noopener noreferrer">DFS solution</a></li>
+                            </ul>
+                        <li><a href="https://leetcode.com/problems/path-sum/" target="_blank" rel="noopener noreferrer">[easy] 112. Path Sum</a></li>
+                            <ul>
+                                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode112.PathSum_BFS.cpp" target="_blank" rel="noopener noreferrer">BFS solution</a></li>
+                                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode112.PathSum_DFS.cpp" target="_blank" rel="noopener noreferrer">DFS solution</a></li>
+                            </ul>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>

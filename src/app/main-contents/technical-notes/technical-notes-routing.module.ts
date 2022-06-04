@@ -27,6 +27,7 @@ import { AStarAlgorithmComponent } from './algorithms/a-star-algorithm/a-star-al
 import { Ros2NotesComponent } from './robotics/ros2-notes/ros2-notes.component';
 import { LocalizationNotesComponent } from './robotics/localization-notes/localization-notes.component';
 import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.component';
+import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/breadth-first-search.component';
 
 const routes: Routes = [{
   path:'',
@@ -59,6 +60,10 @@ const routes: Routes = [{
     {
       path: 'coding/javaScript',
       component: JavascriptNotesComponent
+    },
+    {
+      path: 'algorithms/breadth-first-search',
+      component: BreadthFirstSearchComponent
     },
     {
       path: 'algorithms/dynamic-programming',
