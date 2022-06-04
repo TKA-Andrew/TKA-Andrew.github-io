@@ -28,6 +28,7 @@ import { Ros2NotesComponent } from './robotics/ros2-notes/ros2-notes.component';
 import { LocalizationNotesComponent } from './robotics/localization-notes/localization-notes.component';
 import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.component';
 import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/breadth-first-search.component';
+import { BacktrackingComponent } from './algorithms/backtracking/backtracking.component';
 
 const routes: Routes = [{
   path:'',
@@ -64,6 +65,10 @@ const routes: Routes = [{
     {
       path: 'algorithms/breadth-first-search',
       component: BreadthFirstSearchComponent
+    },
+    {
+      path: 'algorithms/backtracking',
+      component: BacktrackingComponent
     },
     {
       path: 'algorithms/dynamic-programming',

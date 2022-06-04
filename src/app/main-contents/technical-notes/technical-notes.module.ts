@@ -41,6 +41,7 @@ import { LocalizationNotesComponent } from './robotics/localization-notes/locali
 import { MathjaxModule } from 'mathjax-angular';
 import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.component';
 import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/breadth-first-search.component';
+import { BacktrackingComponent } from './algorithms/backtracking/backtracking.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/b
     Ros2NotesComponent,
     LocalizationNotesComponent,
     MappingNotesComponent,
-    BreadthFirstSearchComponent],
+    BreadthFirstSearchComponent,
+    BacktrackingComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
