@@ -29,6 +29,7 @@ import { LocalizationNotesComponent } from './robotics/localization-notes/locali
 import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.component';
 import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/breadth-first-search.component';
 import { BacktrackingComponent } from './algorithms/backtracking/backtracking.component';
+import { PathPlanningComponent } from './robotics/path-planning/path-planning.component';
 
 const routes: Routes = [{
   path:'',
@@ -105,6 +106,10 @@ const routes: Routes = [{
     {
       path:'robotics/Mapping',
       component: MappingNotesComponent
+    },
+    {
+      path:'robotics/PathPlanning',
+      component: PathPlanningComponent
     },
     {
       path:'robotics/UsefulResources',
