@@ -247,12 +247,23 @@
             <div>
                 <h3>To remove image from Camo's cache</h3>
                 <ul>
-                    <li><a href="https://github.com/atom/markdown-preview/issues/207" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                    <li><a href="https://github.com/atom/markdown-preview/issues/207" target="_blank" rel="noopener noreferrer">Reference1</a></li>
+                    <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls" target="_blank" rel="noopener noreferrer">Reference2</a></li>
                     <li>This is needed when you replace an old image with new image with same name.</li>
                     <li>The markdown preview will be displaying the old image if you do not remove the cache.</li>
                     <li>To remove it:
                         <ul>
-                            <li><span class="CLI-font">curl -X PURGE https://camo.githubusercontent.com/4d04abe0044d94fefcf9af2133223....</span></li>
+                            <li>Right click on your image and click 'Open image in new tab'</li>
+                            <li>The URL of your image should be something like: <br> https://raw.githubusercontent.com/tka-andrew/PathFindingVisualizer_CPP/master/images/Dijkstra02.png</li>
+                            <li>Copy that URL, and curl it using your terminal: </li>
+                                <ul>
+                                    <li><span class="CLI-font">curl -I your_url</span></li>
+                                </ul>
+                            <li>Get the value of "etag" from the previous step</li>
+                            <li>Purge the specifc cache using the etag value: </li>
+                                <ul>
+                                    <li><span class="CLI-font">curl -X PURGE https://camo.githubusercontent.com/your_etag_value_here</span></li>
+                                </ul>                                
                         </ul>
                     </li>
 
