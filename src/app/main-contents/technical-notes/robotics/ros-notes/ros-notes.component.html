@@ -52,13 +52,6 @@
             <mat-divider></mat-divider>
         </div>
         <div>
-            <h3>To check whether a ROS package is installed</h3>
-            <ul>
-                <li><span class="CLI-font">rospack find [package-name]</span></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
             <h3>ROS Communication Mechanism: Topics vs Services</h3>
             <li><a href="https://programming.vip/docs/communication-mechanism-of-ros.html">This page</a> documented what happened underlying the Communication Mechanisms.</li>
             <table style="margin-top: 20px;">
@@ -88,99 +81,20 @@
                     <td>Used for remote procedure calls that terminate quickly</td>
                 </tr>
             </table>
+            <mat-divider></mat-divider>
         </div>
+
+
         <div>
-            <h3>Possible reason of why your "rospy.sleep" is not working</h3>
+            <h3>REP (ROS Enhancement Proposals)</h3>
             <ul>
-                <li><a href="https://answers.ros.org/question/11761/rospysleep-doesnt-get-awaken/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>This might be due to your /use_sim_time parameter was set to true, and it might be due to you opened gazebo recently.</li>
-                <li>When /use_sim_time is set and no time provider is running, all ROS sleep methods will just block infinitely.</li>
-                <li>To set it back to false: <span class="CLI-font">rosparam set use_sim_time false</span></li>
+                <li>There are a lot of REPs listed in <a href="https://ros.org/reps/rep-0000.html" target="_blank" rel="noopener noreferrer">REP-0000</a>.</li>
+                <li>One of the most basics one is <a href="https://ros.org/reps/rep-0103.html" target="_blank" rel="noopener noreferrer">REP-0103</a> which provides a reference for the units and coordinate conventions used within ROS. 
+                    This REP-0103 should be referred when writing your URDF file.</li>
             </ul>
             <mat-divider></mat-divider>
         </div>
-        <div>
-            <h3>Working with multiple catkin workspaces</h3>
-            <ul>
-                <li>There is no best practice of saying whether you should only have one or multiple catkin workspaces.</li>
-                <li>My personal opinion is use a same workspace for your personal development and testing, 
-                    and create a new workspace if only you are working on something that needs to be delivered to others</li>
-                <li>Important Note: You can't run multiple catkin workspaces on the same session. The last to be sourced is the one to be activated.</li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>To start or shutdown a launch file in script</h3>
-            <ul>
-                <li><a href="https://answers.ros.org/question/263862/if-it-possible-to-launch-a-launch-file-from-python/
-                    http://wiki.ros.org/roslaunch/API%20Usage" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>Code Snippet Example:</li>
-                <pre>
-                    <code>
-    #!/usr/bin/env python
-    import rospy
-    import roslaunch
-    import rospkg
-    
-    class roslaunchAPI():
-        def __init__(self):
-            rospy.init_node('roslaunchAPI', anonymous=True)
-            rospy.on_shutdown(self.shutdownHook)
-            uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
-            roslaunch.configure_logging(uuid)
-    
-            # get an instance of RosPack with the default search paths
-            rospack = rospkg.RosPack()
-    
-            # get the directory of the package
-            packagePath = rospack.get_path('beginner_tutorials')
-            
-            #TAKE NOTE: provide absolute path instead of relative path 
-            roslaunchControl = roslaunch.parent.ROSLaunchParent(uuid,[packagePath+"/launch/turtlemimic.launch"])
-    
-            roslaunchControl.start()
-            rospy.sleep(3)
-            roslaunchControl.shutdown()
-            rospy.signal_shutdown("Process completed.")
-    
-        def shutdownHook(self):
-            rospy.loginfo("Shutting down ...")
-    
-    if __name__ == "__main__":
-        try:
-            roslaunchApiObject = roslaunchAPI()
-            rospy.spin()
-    
-        except Exception as e:
-            rospy.logerr(e)
-                    </code>
-                </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Editing map generated</h3>
-            <ul>
-                <li>Sometimes the map generated might not be perfect and need some touch-ups. For this, we can use image editor such as GIMP to edit the map.</li>
-                <li>Some simple guidelines:</li>
-                    <ol>
-                        <li>Install GIMP</li>
-                        <li>To get the colour of the background of the map, use the Color Pickup Tool
-                            in the Toolbox, then set PickMode as Set foreground color, and click on the
-                            background</li>
-                        <li>To draw straight lines, click on the image with paintbrush tool, then hold the [Shift] key and move your mouse around.</li>
-                        <li>Export the file as .pgm format</li>
-                        <li>Go to the directory where you saved your map, you should see a file with the same name as your .pgm image, but in .yaml format.</li>
-                        <li>Modify the value of 'image' key and replace with absolute path of your pgm file, for example:</li>
-                            <pre>
-                                <code>
-    image: /home/andrew/catkin_ws/src/help_me_carry_2017/src/maps/HMC2017map.pgm
-                                </code>
-                            </pre>
-                    </ol>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+
         <div>
             <h3>RVIZ</h3>
             <ul>
@@ -195,6 +109,63 @@
             </ul>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h3>Gazebo</h3>
+            <h4>Miscellaneous</h4>
+            <ul>
+                <li>Gazebo can be used to do modelling, but most of the models are basically in XML format of Simulation
+                    Description Format (SDF).
+                </li>
+                <li>However, the model representation in ROS is in URDF format. Gazebo is able to automatically convert URDF into SDF, but
+                    there will be problems when loading SDF models into ROS.
+                </li>
+                <li>With some open source CAD tools such as Blender, FreeCAD and Meshlab, we can actually model the objects using these softwares
+                    and then export them in .dae format or .stl format, and then import it in your urdf file. The following is an example:
+                </li>
+                <pre>
+                    <code>
+&lt;link name="hokuyo">
+    &lt;inertial>
+        &lt;mass value="1e-5"/>
+        &lt;origin rpy="0 0 0" xyz="0 0 0"/>
+        &lt;inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    &lt;/inertial>
+    &lt;collision name="hokuyo_collision">
+        &lt;origin rpy="0 0 0" xyz="0 0 0"/>
+        &lt;geometry>
+        &lt;box size="0.1 0.1 0.1"/>
+        &lt;/geometry>
+    &lt;/collision>
+    &lt;visual name="hokuyo_visual">
+        &lt;origin rpy="0 0 0" xyz="0 0 0"/>
+        &lt;geometry>
+        &lt;mesh filename="package://my_robot/meshes/hokuyo.dae"/>
+        &lt;/geometry>
+    &lt;/visual>
+&lt;/link>
+                    </code>
+                </pre>
+            </ul>
+            <h4>To check the available list of Gazebo plugins</h4>
+            <ul>
+                <li>Go to the lib folder of ROS default installation path (for example: /opt/ros/noetic/lib)</li>
+                <li>All the files with naming of libgazeboXXXX.so are the Gazebo plugins.</li>
+                <li>Sometimes run-time libraries like libhector_gazebo_ros_gpu.so and libhector_gazebo_ros_imu.so are Gazebo plugins also.</li>
+                <li>To include Gazebo plugin in URDF model:</li>
+                    <pre>
+                        <code>
+&lt;gazebo>
+    &lt;plugin name="unique_name" filename="plugin_name.so">
+        ... plugin parameters ...
+    &lt;/plugin>
+&lt;/gazebo>
+                        </code>
+                    </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
         <div>
             <h3>URDF</h3>
             <ul>
@@ -232,25 +203,6 @@
                         <img src="https://roymech.org/images/in_box.gif">
                         <span style="font-style: italic;">Source of image: https://roymech.org/Useful_Tables/Form/Dynamics_inertia.html</span>
                     </div>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>To check the available list of Gazebo plugins</h3>
-            <ul>
-                <li>Go to the lib folder of ROS default installation path (for example: /opt/ros/noetic/lib)</li>
-                <li>All the files with naming of libgazeboXXXX.so are the Gazebo plugins.</li>
-                <li>Sometimes run-time libraries like libhector_gazebo_ros_gpu.so and libhector_gazebo_ros_imu.so are Gazebo plugins also.</li>
-                <li>To include Gazebo plugin in URDF model:</li>
-                    <pre>
-                        <code>
-    &lt;gazebo>
-        &lt;plugin name="unique_name" filename="plugin_name.so">
-            ... plugin parameters ...
-        &lt;/plugin>
-    &lt;/gazebo>
-                        </code>
-                    </pre>
             </ul>
             <mat-divider></mat-divider>
         </div>
@@ -430,6 +382,95 @@
                     <ul>
                         <li>The stability of ROS1 is not good, and not perfect for production environment.</li>
                     </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>Miscellaneous</h3>
+            <h4>Working with multiple catkin workspaces</h4>
+            <ul>
+                <li>There is no best practice of saying whether you should only have one or multiple catkin workspaces.</li>
+                <li>My personal opinion is use a same workspace for your personal development and testing, 
+                    and create a new workspace if only you are working on something that needs to be delivered to others</li>
+                <li>Important Note: You can't run multiple catkin workspaces on the same session. The last to be sourced is the one to be activated.</li>
+            </ul>
+            <h4>To start or shutdown a launch file in script</h4>
+            <ul>
+                <li><a href="https://answers.ros.org/question/263862/if-it-possible-to-launch-a-launch-file-from-python/
+                    http://wiki.ros.org/roslaunch/API%20Usage" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                <li>Code Snippet Example:</li>
+                <pre>
+                    <code>
+    #!/usr/bin/env python
+    import rospy
+    import roslaunch
+    import rospkg
+    
+    class roslaunchAPI():
+        def __init__(self):
+            rospy.init_node('roslaunchAPI', anonymous=True)
+            rospy.on_shutdown(self.shutdownHook)
+            uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+            roslaunch.configure_logging(uuid)
+    
+            # get an instance of RosPack with the default search paths
+            rospack = rospkg.RosPack()
+    
+            # get the directory of the package
+            packagePath = rospack.get_path('beginner_tutorials')
+            
+            #TAKE NOTE: provide absolute path instead of relative path 
+            roslaunchControl = roslaunch.parent.ROSLaunchParent(uuid,[packagePath+"/launch/turtlemimic.launch"])
+    
+            roslaunchControl.start()
+            rospy.sleep(3)
+            roslaunchControl.shutdown()
+            rospy.signal_shutdown("Process completed.")
+    
+        def shutdownHook(self):
+            rospy.loginfo("Shutting down ...")
+    
+    if __name__ == "__main__":
+        try:
+            roslaunchApiObject = roslaunchAPI()
+            rospy.spin()
+    
+        except Exception as e:
+            rospy.logerr(e)
+                    </code>
+                </pre>
+            </ul>
+            <h4>To check whether a ROS package is installed</h4>
+            <ul>
+                <li><span class="CLI-font">rospack find [package-name]</span></li>
+            </ul>
+            <h4>Possible reason of why your "rospy.sleep" is not working</h4>
+            <ul>
+                <li><a href="https://answers.ros.org/question/11761/rospysleep-doesnt-get-awaken/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                <li>This might be due to your /use_sim_time parameter was set to true, and it might be due to you opened gazebo recently.</li>
+                <li>When /use_sim_time is set and no time provider is running, all ROS sleep methods will just block infinitely.</li>
+                <li>To set it back to false: <span class="CLI-font">rosparam set use_sim_time false</span></li>
+            </ul>
+            <h4>Editing map generated</h4>
+            <ul>
+                <li>Sometimes the map generated might not be perfect and need some touch-ups. For this, we can use image editor such as GIMP to edit the map.</li>
+                <li>Some simple guidelines:</li>
+                    <ol>
+                        <li>Install GIMP</li>
+                        <li>To get the colour of the background of the map, use the Color Pickup Tool
+                            in the Toolbox, then set PickMode as Set foreground color, and click on the
+                            background</li>
+                        <li>To draw straight lines, click on the image with paintbrush tool, then hold the [Shift] key and move your mouse around.</li>
+                        <li>Export the file as .pgm format</li>
+                        <li>Go to the directory where you saved your map, you should see a file with the same name as your .pgm image, but in .yaml format.</li>
+                        <li>Modify the value of 'image' key and replace with absolute path of your pgm file, for example:</li>
+                            <pre>
+                                <code>
+    image: /home/andrew/catkin_ws/src/help_me_carry_2017/src/maps/HMC2017map.pgm
+                                </code>
+                            </pre>
+                    </ol>
             </ul>
             <mat-divider></mat-divider>
         </div>
