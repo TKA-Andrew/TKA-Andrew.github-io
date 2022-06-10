@@ -30,6 +30,7 @@ import { MappingNotesComponent } from './robotics/mapping-notes/mapping-notes.co
 import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/breadth-first-search.component';
 import { BacktrackingComponent } from './algorithms/backtracking/backtracking.component';
 import { PathPlanningComponent } from './robotics/path-planning/path-planning.component';
+import { CommunicationProtocolsComponent } from './robotics/communication-protocols/communication-protocols.component';
 
 const routes: Routes = [{
   path:'',
@@ -110,6 +111,10 @@ const routes: Routes = [{
     {
       path:'robotics/PathPlanning',
       component: PathPlanningComponent
+    },
+    {
+      path:'robotics/CommunicationProtocols',
+      component: CommunicationProtocolsComponent
     },
     {
       path:'robotics/UsefulResources',
