@@ -39,9 +39,9 @@
             <ul>
                 <li>Steps:</li>
                     <ul>
-                        <li>Develop a convenient continuous representation by representing the problem space as the configuration space</li>
-                        <li>The configuration space is discretized into a simpler representation and represented by a graph</li>
-                        <li>A search algorithm is applied to the graph to find the best path</li>
+                        <li>Develop a convenient <b>continuous representation</b> by representing the problem space as the configuration space</li>
+                        <li>The configuration space is <b>discretized</b> into a simpler representation and represented by a graph</li>
+                        <li>A <b>search algorithm</b> is applied to the graph to find the best path</li>
                     </ul>
                 <li>Discrete Planning is best suited for low-dimensional problems, and it can be very computationally expensive for high-dimensional problems.</li>
             </ul>
@@ -68,10 +68,13 @@
                             will ensure all worst cases are covered, but might abandon some possible paths that the robot is able to pass through if it rotates a bit.
                         </li>
                         <li>Since the configuration space changes depending on the robot's rotation, we need to add one more dimension to the configuration space, thus results
-                            in a 3D configuraiton space that covers configuration space at every angle of robot's rotation. You may look at
-                            <a href="https://www.youtube.com/watch?v=SBFwgR4K1Gk" target="_blank" rel="noopener noreferrer">this</a> video for the amazing visualization of a 3D configuration space.
+                            in a 3D configuraiton space that covers configuration space at every angle of robot's rotation. This results in a helix shaped configuration space.</li>
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="https://dl.acm.org/cms/asset/fc32abdf-9c67-4106-bcd4-1bdf9d05db17/2261250.2261313.key.jpg" width="25%">
+                                <span style="font-style: italic;">Source of image: https://dl.acm.org/doi/abs/10.1145/2261250.2261313</span>
+                            </div>
+                        <li>You may look at <a href="https://www.youtube.com/watch?v=SBFwgR4K1Gk" target="_blank" rel="noopener noreferrer">this</a> video for the amazing visualization of a 3D configuration space.
                         </li>
-                        <li></li>
                     </ul>
             </ul>
 
@@ -80,7 +83,7 @@
                 <li>The main purpose of discretization is to simply (reduce the size) of configuration space by separating the space into discrete segments,so that the amount of time
                     taken to apply a search algorithm is reasonable.
                 </li>
-                <li>Three methods of discretization:</li>
+                <li>3 methods of discretization:</li>
                     <ul>
                         <li>Roadmap</li>
                         <li>Cell Decomposition</li>
@@ -140,59 +143,66 @@
                         <li>Types of Cell Decomposition:</li>
                             <ul>
                                 <li>Exact Cell Decomposition</li>
-                                    <ul>
-                                        <li>Exact Cell Decomposition adds vertical line segments at every obstacle's vertex, results in a lot of non-overlapping cells.</li>
-                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                <img src="https://www.researchgate.net/profile/Fares-Abu-Dakka/publication/235929101/figure/fig3/AS:669473468055566@1536626321216/Exact-Cell-Decomposition-Latombe-1991.png" width="60%">
-                                                <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/Exact-Cell-Decomposition-Latombe-1991_fig3_235929101</span>
-                                            </div>
-                                        <li>Advantages</li>
-                                            <ul>
-                                                <li>It is complete.</li>
-                                                <li>Search algorithms will be able to find an optimal path.</li>
-                                            </ul>
-                                        <li>Disadvantages</li>
-                                            <ul>
-                                                <li>Difficult to compute the decomposition if the obstacles are not polygonal.</li>
-                                            </ul>    
-                                    </ul>
                                 <li>Approximate Cell Decomposition</li>
-                                    <ul>
-                                        <li>Approximate cell decomposition divides a configuration space into discrete cells of simple, regular shapes - such as rectangles and squares.</li>
-                                        <li>There are 2 types of approximage cell decomposition:</li>
-                                            <ul>
-                                                <li>Simple Decomposition</li>
-                                                    <ul>
-                                                        <li>This decomposes a 2D configuration space into a grid of rectangular cells.</li>
-                                                        <li>For each cell, if there is presence of obstacle (even if it only occupy 1% of the grid size), the grid cell will be marked as occupied.</li>
-                                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                                <img src="https://www.researchgate.net/profile/Mehdi-Mekni-2/publication/220505167/figure/fig1/AS:317245721989159@1452648682637/The-two-common-cell-decomposition-techniques-used-to-represent-environments.png" width="60%">
-                                                                <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/The-two-common-cell-decomposition-techniques-used-to-represent-environments_fig1_220505167</span>
-                                                            </div>
-                                                            <li>Iterative decomposition is normally preferred over this one.</li>
-                                                        </ul>
-                                                        <li>Iterative Decomposition</li>
-                                                        <ul>
-                                                            <li>Also called as quadtree decomposition</li>
-                                                            <li>This recursively decompose mixed cells until they find a sequence of free cells from start to goal.</li>
-                                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS7X2JYsLqpj89oPnRDEvcsQNEIjZvlO-bUw&usqp=CAU" width="30%">
-                                                                <span style="font-style: italic;">Source of image: http://web.cecs.pdx.edu/~mperkows/CLASS_479/S2006/Lecture14.pdf</span>
-                                                            </div>
-                                                            <li>With enough computation, approximate cell decomposition approaches completeness.</li>
-                                                    </ul>
-                                            </ul>
-                                        <li>Advantages</li>
-                                            <ul>
-                                                <li>It is complete.</li>
-                                                <li>Search algorithms will be able to find an optimal path.</li>
-                                            </ul>
-                                        <li>Disadvantages</li>
-                                            <ul>
-                                                <li>Not optimal because obvious (wide/open) paths are found first.</li>
-                                            </ul>  
-                                    </ul>
                             </ul>
+                        <li>Exact Cell Decomposition</li>
+                            <ul>
+                                <li>Exact Cell Decomposition adds vertical line segments at every obstacle's vertex, results in a lot of non-overlapping cells.</li>
+                                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                        <img src="https://www.researchgate.net/profile/Fares-Abu-Dakka/publication/235929101/figure/fig3/AS:669473468055566@1536626321216/Exact-Cell-Decomposition-Latombe-1991.png" width="60%">
+                                        <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/Exact-Cell-Decomposition-Latombe-1991_fig3_235929101</span>
+                                    </div>
+                                <li>Advantages</li>
+                                    <ul>
+                                        <li>It is complete.</li>
+                                        <li>Search algorithms will be able to find an optimal path.</li>
+                                    </ul>
+                                <li>Disadvantages</li>
+                                    <ul>
+                                        <li>Difficult to compute the decomposition if the obstacles are not polygonal.</li>
+                                    </ul>    
+                            </ul>
+                        <li>Approximate Cell Decomposition</li>
+                        <ul>
+                            <li>Approximate cell decomposition divides a configuration space into discrete cells of simple, regular shapes - such as rectangles and squares.</li>
+                            <li>There are 2 types of approximage cell decomposition:</li>
+                                <ul>
+                                    <li>Simple Decomposition</li>
+                                        <ul>
+                                            <li>This decomposes a 2D configuration space into a grid of rectangular cells.</li>
+                                            <li>For each cell, if there is presence of obstacle (even if it only occupy 1% of the grid size), the grid cell will be marked as occupied.</li>
+                                                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                                    <img src="https://www.researchgate.net/profile/Mehdi-Mekni-2/publication/220505167/figure/fig1/AS:317245721989159@1452648682637/The-two-common-cell-decomposition-techniques-used-to-represent-environments.png" width="60%">
+                                                    <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/The-two-common-cell-decomposition-techniques-used-to-represent-environments_fig1_220505167</span>
+                                                </div>
+                                            <li>Advantages</li>
+                                                <ul>
+                                                    <li>It is complete.</li>
+                                                </ul>
+                                            <li>Disadvantages</li>
+                                                <ul>
+                                                    <li>Not optimal (but actually quite acceptable) due to grid cells are considered occupied even if the obstacle only occupy 1% of the grid cell.</li>
+                                                </ul>  
+                                        </ul>
+                                    <li>Iterative Decomposition</li>
+                                        <ul>
+                                            <li>Also called as quadtree decomposition</li>
+                                            <li>This recursively decompose mixed cells until they find a sequence of free cells from start to goal.</li>
+                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                                <img src="https://video.udacity-data.com/topher/2018/April/5ad27861_c5-l2-67-exact-cell-decomposition-applied-v4/c5-l2-67-exact-cell-decomposition-applied-v4.png" width="60%">
+                                                <span style="font-style: italic;">Source of image: Udacity Nanodegree - Robotics Software Engineer</span>
+                                            </div>
+                                            <li>Advantages</li>
+                                                <ul>
+                                                    <li>With enough computation, it approaches completeness.</li>
+                                                </ul>
+                                            <li>Disadvantages</li>
+                                                <ul>
+                                                    <li>Not optimal because obvious (wide/open) paths are found first.</li>
+                                                </ul>  
+                                        </ul>
+                                </ul>
+                        </ul>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
