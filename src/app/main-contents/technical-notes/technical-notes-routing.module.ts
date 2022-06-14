@@ -31,6 +31,7 @@ import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/b
 import { BacktrackingComponent } from './algorithms/backtracking/backtracking.component';
 import { PathPlanningComponent } from './robotics/path-planning/path-planning.component';
 import { CommunicationProtocolsComponent } from './robotics/communication-protocols/communication-protocols.component';
+import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -155,6 +156,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/learning_cmake',
       component: LearningCmakeComponent
+    },
+    {
+      path: 'miscellaneuos/wxWidgets',
+      component: WxwidgetsNotesComponent
     }
   ]
 }];

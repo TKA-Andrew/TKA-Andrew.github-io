@@ -44,6 +44,7 @@ import { BreadthFirstSearchComponent } from './algorithms/breadth-first-search/b
 import { BacktrackingComponent } from './algorithms/backtracking/backtracking.component';
 import { PathPlanningComponent } from './robotics/path-planning/path-planning.component';
 import { CommunicationProtocolsComponent } from './robotics/communication-protocols/communication-protocols.component';
+import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { CommunicationProtocolsComponent } from './robotics/communication-protoc
     BreadthFirstSearchComponent,
     BacktrackingComponent,
     PathPlanningComponent,
-    CommunicationProtocolsComponent],
+    CommunicationProtocolsComponent,
+    WxwidgetsNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

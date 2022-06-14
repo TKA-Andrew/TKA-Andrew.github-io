@@ -1,0 +1,139 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <h1>wxWidgets notes</h1>
+
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>wxWidgets is a very popular C++ GUI library that can be used to develop cross-platform applications.</li>
+            <li>The official <a href="https://github.com/wxWidgets/wxWidgets/tree/v3.1.7" target="_blank" rel="noopener noreferrer">Github repo</a> does include some samples.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h3>wxSizer</h3>
+        <ul>
+            <li><a href="http://neume.sourceforge.net/sizerdemo/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>List of parameters:</li>
+                <ul>
+                    <li>Parameter 1 : wxWidgets element</li>
+                    <li>Parameter 2 : Proportion</li>
+                        <ul>
+                            <li>If proportion is 0, it will be minimum size</li>
+                        </ul>
+                    <li>Parameter 3: Flags</li>
+                        <ul>
+                            <li>See list of wxSizer flags <a href="https://docs.wxwidgets.org/3.0/classwx_sizer.html" target="_blank" rel="noopener noreferrer">here</a>.</li>
+                            <li>wxEXPAND is synonymous with wxGROW</li>
+                            <li>wxSHAPED ensures that the width and height of the object stay proportional to each other, this is
+                                very useful for bitmaps.
+                            </li>
+                            <li>Examples to use multiple flags:</li>
+                                <ul>
+                                    <li>sizer->Add(new wxButton(this, -1, "Tiny Button"), 0, wxEXPAND | wxLEFT, 20);</li>
+                                </ul>
+                        </ul>
+                    <li>Parameter 4: Border</li>
+                        <ul>
+                            <li>This should be used together with at least one of the following flags:</li>
+                                <ul>
+                                    <li>wxTOP</li>
+                                    <li>wxBOTTOM</li>
+                                    <li>wxLEFT</li>
+                                    <li>wxRIGHT</li>
+                                    <li>wxALL</li>
+                                </ul>
+                        </ul>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h3>wxFrame & wxPanel</h3>
+        <ul>
+            <li>A wxFrame is a window whose size and position can (usually) be changed by the user.</li>
+            <li>A wxFrame can contain any window that is not a frame or dialog.</li>
+            <li><a href="https://stackoverflow.com/questions/61416611/interaction-between-wxpanel-and-wxframe#:~:text=From%20the%20wx%20docs%3A,on%20which%20controls%20are%20placed." target="_blank" rel="noopener noreferrer">A very good reference</a></li>
+            <li>The idea of "switching frames" should be "switching panels", refer to <a href="https://forums.wxwidgets.org/viewtopic.php?t=3874"
+                target="_blank" rel="noopener noreferrer">this</a> to get an idea.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h3>Drawing with wxDC</h3>
+        <ul>
+            <li>Go through <a href="https://zetcode.com/gui/wxwidgets/gdi/#:~:text=The%20wxClientDC%20is%20used%20to,the%20client%20area%20as%20well." target="_blank" rel="noopener noreferrer">this</a> to have a basic understanding.</li>
+            <li>Go through all 6 pages of <a href="https://www.informit.com/articles/article.aspx?p=405047" target="_blank" rel="noopener noreferrer">this article</a> to have a better understanding.</li>
+            <li>The wxClientDC is used to draw on the client area of a window. The client area is the area of a window without its decorations (title and border).</li>
+            <li><a href="https://wiki.wxwidgets.org/Drawing_on_a_panel_with_a_DC" target="_blank" rel="noopener noreferrer">This</a> shows a very simple example of how to make use of the
+                wxClientDC to draw some hard-coded shapes at some hard-coded positions.
+            </li>
+            <li>The code snippet of "Drawing on Windows with wxClientDC" in <a href="https://www.informit.com/articles/article.aspx?p=405047#" target="_blank" rel="noopener noreferrer">here</a> shows a 
+                simple doodling example.</li>
+            <li>Take note that the graphic drawn using wxClientDC will only linger on the window until the next paint event is received, you may experiment it
+                by minimizing the window and open again.</li>
+            <li>In order to "remember" the painting, you should draw on a bitmap using wxMemoryDC, and then redraw the bitmap in 
+                <a href="https://docs.wxwidgets.org/3.0/classwx_paint_event.html" target="_blank" rel="noopener noreferrer">PaintEvent</a>.
+                The following is a code snippet:</li>
+                <pre>
+                    <code>
+    void EnvironmentGeometryPanel::OnPaint(wxPaintEvent & evt)
+    &#123;
+        wxAutoBufferedPaintDC dc(this);
+        dc.DrawBitmap(environmentDrawing, 0, 0);
+    }
+    
+    // REFERENCE: https://www.informit.com/articles/article.aspx?p=405047
+    void EnvironmentGeometryPanel::OnMotion(wxMouseEvent& event)
+    &#123;
+        if (event.Dragging())
+        &#123;
+            int x, y;
+            event.GetPosition(&x, &y);
+            wxPen pen(wxColor(0,0,0), 10 ); // black pen of width 10
+    
+            // we need 2 different DC here
+            // wxClientDC for visualization
+            // wxMemoryDC for updating the bitmap, so that later wxAutoBufferedPaintDC can draw it in OnPaint() function
+            wxClientDC cdc = wxClientDC(this);
+            wxMemoryDC mdc(environmentDrawing);
+    
+            mdc.SelectObject(environmentDrawing);
+            cdc.SetBrush(wxColor(0,0,0)); // black filling
+            cdc.SetPen(pen);
+            mdc.SetBrush(cdc.GetBrush());
+            mdc.SetPen(cdc.GetPen());
+    
+            cdc.DrawRectangle( x, y, 10, 10 );
+            mdc.DrawRectangle( x, y, 10, 10 );
+    
+            cdc.SetPen(wxNullPen);
+            mdc.SetPen(wxNullPen);
+            mdc.SelectObject(wxNullBitmap);
+        }
+    }                        
+                    </code>
+                </pre>
+            <li>There is another derived class of wxDC called wxPaintDC, it is similar to wxClientDC, but it should be used only from a wxPaintEvent. The wxClientDC should not be used from a wxPaintEvent.</li>
+            <li>It is recommended to use <a href="https://docs.wxwidgets.org/3.0/classwx_auto_buffered_paint_d_c.html" target="_blank" rel="noopener noreferrer">wxAutoBufferedPaintDC</a> instead
+                of wxPaintDC. And to use it, you must set the background of your panel/window with wxBG_STYLE_PAINT:</li>
+                <ul>
+                    <li>SetBackgroundStyle(wxBG_STYLE_PAINT);</li>
+                </ul>
+            <li>It is also important to avoid <a href="https://wiki.wxwidgets.org/Flicker-Free_Drawing#:~:text=Flicker%20free%20drawing%20can%20be,event%20and%20a%20paint%20event." 
+                target="_blank" rel="noopener noreferrer">flickering</a>.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h3>Miscellaneous Notes</h3>
+        <ul>
+            <li><a href="http://cool-emerald.blogspot.com/2017/11/opencv-with-wxwidgets.html" target="_blank" rel="noopener noreferrer">OpenCV with wxWidgets</a></li>
+            <li>I read it somewhere saying this->Connect(event, event function) is a modern way of writing wxEVENT Table</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+</div>
