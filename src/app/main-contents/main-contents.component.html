@@ -3,7 +3,7 @@
     <div class="flexRemainingSpace">
         <div class="flexContainer">
             <mat-drawer-container class="flexContainer" hasBackdrop="true">
-                <mat-drawer id="sideMenu" #sideMenu mode="side" hasBackdrop="true" position="end" style="background-color: rgb(61, 61, 61); height: 100%;">
+                <mat-drawer id="sideMenu" #sideMenu mode="over" hasBackdrop="true" position="end" style="background-color: rgb(61, 61, 61);">
                     <div fxLayout="column" style="z-index: 3;">
                         <button mat-button class="menuItem" (click)="toggleSideNav()" [routerLink]="['home']" routerLinkActive="sideNavRouterLinkActive">Home</button>
                         <button mat-button class="menuItem" (click)="toggleSideNav()" [routerLink]="['resume']" routerLinkActive="sideNavRouterLinkActive">Resume</button>

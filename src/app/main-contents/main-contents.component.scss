@@ -2,10 +2,6 @@ $hoverBackgroundColor: rgb(102, 102, 102);
 $hoverTextColor: white;
 $normalTextColor: #d9d9d9;
 
-mat-drawer {
-    width: 300px;
-}
-
 .menuItem {
     text-transform: unset;
     white-space: normal;
@@ -31,8 +27,7 @@ mat-drawer {
     font-weight: bold;
 }
 
-@media screen and (max-width: 590px) {
-    #sideMenu {
-        width: 200px !important;
-    }
+// REFERENCE: https://stackoverflow.com/questions/44725864/md-sidenav-how-to-change-the-color-of-the-backdrop
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: rgba(53, 53, 53, 0.44);
 }
