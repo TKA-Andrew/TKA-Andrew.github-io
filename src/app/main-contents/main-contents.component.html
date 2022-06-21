@@ -1,17 +1,20 @@
 <div style="height: 100%; display: flex; flex-direction: column;" [ngBusy]="{busy: [busy], backdrop: true}">
-    <main-content-topbar class="flexContentSize" (toggleEvent)="toggleMenu()"></main-content-topbar>
+    <main-content-topbar class="flexContentSize" (toggleEvent)="toggleSideNav()"></main-content-topbar>
     <div class="flexRemainingSpace">
         <div class="flexContainer">
-            <div *ngIf="showMenu" fxLayout="column" id="responsiveMenu" style="z-index: 2;">
-                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['home']" routerLinkActive="lightThemeRouterLinkActive">Home</button>
-                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['resume']">Resume</button>
-                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['achievements']" routerLinkActive="lightThemeRouterLinkActive">Achievements</button>
-                <!-- <button mat-button class="topbarButtons" (click)="toggleMenu()">Projects</button> -->
-                <button mat-button class="topbarButtons" (click)="toggleMenu()" [routerLink]="['technicalNotes']" routerLinkActive="lightThemeRouterLinkActive">Technical Notes</button>
-            </div>
-            <div class="flexRemainingSpace" style="overflow: auto;">
-                <router-outlet></router-outlet>
-            </div>
+            <mat-drawer-container class="flexContainer" hasBackdrop="true">
+                <mat-drawer id="sideMenu" #sideMenu mode="side" hasBackdrop="true" position="end" style="background-color: rgb(61, 61, 61); height: 100%;">
+                    <div fxLayout="column" style="z-index: 3;">
+                        <button mat-button class="menuItem" (click)="toggleSideNav()" [routerLink]="['home']" routerLinkActive="sideNavRouterLinkActive">Home</button>
+                        <button mat-button class="menuItem" (click)="toggleSideNav()" [routerLink]="['resume']" routerLinkActive="sideNavRouterLinkActive">Resume</button>
+                        <button mat-button class="menuItem" (click)="toggleSideNav()" [routerLink]="['achievements']" routerLinkActive="sideNavRouterLinkActive">Achievements</button>
+                        <button mat-button class="menuItem" (click)="toggleSideNav()" [routerLink]="['technicalNotes']" routerLinkActive="sideNavRouterLinkActive">Technical Notes</button>
+                    </div>
+                </mat-drawer>
+                <mat-drawer-content class="flexContainer">                  
+                    <router-outlet></router-outlet>
+                </mat-drawer-content>
+            </mat-drawer-container>
         </div>
     </div>
 </div>

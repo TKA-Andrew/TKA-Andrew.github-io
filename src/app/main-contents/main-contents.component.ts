@@ -9,8 +9,7 @@ import { ShareFacadeService } from '../services/shareFacade.service';
   styleUrls: ['./main-contents.component.scss']
 })
 export class MainContentsComponent implements OnInit {
-  @ViewChild('sidenav') public sidenav: MatDrawer | undefined
-  public showMenu = false
+  @ViewChild('sideMenu') public sidenav: MatDrawer | undefined
   public faBars = faBars
   public busy: Promise<boolean>;
   private globalResolve: any;
@@ -37,10 +36,6 @@ export class MainContentsComponent implements OnInit {
 
   toggleSideNav() {
     this.sidenav?.toggle();
-  }
-
-  toggleMenu() {
-    this.showMenu = !this.showMenu
   }
 
   getBusy(): void {
