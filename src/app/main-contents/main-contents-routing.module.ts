@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { HomeComponent } from './home/home.component';
 import { MainContentsComponent } from './main-contents.component';
+import { ProjectsComponent } from './projects/projects.component';
 import { ResumeComponent } from './resume/resume.component';
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'resume',
         component: ResumeComponent
+      },
+      {
+        path: 'projects',
+        component: ProjectsComponent
       },
       {
         path: 'achievements',

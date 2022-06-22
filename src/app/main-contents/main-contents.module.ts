@@ -25,6 +25,7 @@ import { SwiperModule } from "swiper/angular";
 import { MglTimelineModule } from 'angular-mgl-timeline';
 import { ResumeComponent } from './resume/resume.component';
 import { MathjaxModule } from 'mathjax-angular';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MathjaxModule } from 'mathjax-angular';
     HomeComponent,
     BackgroundImageLoadedDirective,
     AchievementsComponent,
-    ResumeComponent
+    ResumeComponent,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,
