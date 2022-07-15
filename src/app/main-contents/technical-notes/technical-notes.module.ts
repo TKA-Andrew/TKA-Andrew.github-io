@@ -45,6 +45,7 @@ import { BacktrackingComponent } from './algorithms/backtracking/backtracking.co
 import { PathPlanningComponent } from './robotics/path-planning/path-planning.component';
 import { CommunicationProtocolsComponent } from './robotics/communication-protocols/communication-protocols.component';
 import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
+import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidge
     BacktrackingComponent,
     PathPlanningComponent,
     CommunicationProtocolsComponent,
-    WxwidgetsNotesComponent],
+    WxwidgetsNotesComponent,
+    CppCodeOptimiationComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

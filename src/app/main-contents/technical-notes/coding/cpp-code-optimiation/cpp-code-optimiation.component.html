@@ -1,0 +1,215 @@
+<div class="flexContainer">
+    <div fxLayout="column">
+        <div>
+            <h1>C++ Code Optimization</h1>
+            <h2>Introduction</h2>
+            <ul>
+                <li>This page introduces some code optimization techniques.</li>
+                <li>However, take note that modern compilers sometimes do perform some of the optimization techniques automatically,
+                    hence you might not need to implement some of them for better code readability.
+                </li>
+                <li>Despite knowing these techniques, you should always test the performance before and after each optimization.</li>
+                <li>You may profile the time taken for your function by using the following template (from Udacity's Intro to 
+                    Self-Driving Cars Nanodegree):</li>
+                    <pre>
+                        <code>
+    #include &lt;ctime>
+
+    std::clock_t start;
+    double duration;
+    
+    start = std::clock();
+    
+    function_name(var1, var2);
+    
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    
+    std::cout &lt;&lt; "duration milliseconds initialize beliefs " &lt;&lt; 1000 * duration &lt;&lt; '\n';
+                        </code>
+                    </pre>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Perform inline expansion on small functions</h3>
+            <ul>
+                <li><a href="https://www.learncpp.com/cpp-tutorial/inline-functions/" target="_blank" ref="noopener noreferrer">Reference</a></li>
+                <li>Every time a function is called, there is a certain amount of performance overhead that occurs.</li>
+                <li>For functions that are large and/or perform complex tasks, the overhead of the function call is typically insignificant compared to the amount of time the function takes to run.</li>
+                <li>However, for small functions, the overhead costs can be larger than the time needed to actually execute the function’s code.</li>
+                <li>To resolve this issue, we can use the <b>inline</b> keyword to perform inline expansion, where the function call will be replaced by the code.</li>
+                <li>For detailed explanation and examples, refer to the reference link above.</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Loop unrolling/ Loop unwinding</h3>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Loop_unrolling" target="_blank" ref="noopener noreferrer">Reference</a></li>
+                <li>Loop unrolling is a space-time tradeoff as it optimizes a program's execution time but increases its binary size due
+                    to increased code size.
+                </li>
+                <li>Loop unrolling can increase a program's speed because it reduces the instructions that control the loop, such as 
+                    pointer arithmetic and "end of loop" tests on each iteration; reducing branch penalties; as well as hiding latencies, 
+                    including the delay in reading data from memory.</li>
+                <li>Example</li>
+                    <table style="margin-top: 20px;">
+                        <tr>
+                            <th>Original code</th>
+                            <th>After loop unrolling</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code style="text-align: left">
+    for (int i=0; i&lt;3; i++)
+    &#123;
+        std::&lt;&lt;cout&lt;&lt;"hello world!\n";
+    }
+                                    </code>
+                                </pre>
+                            </td>
+                            <td>
+                                <pre>
+                                    <code style="text-align: left">
+    std::&lt;&lt;cout&lt;&lt;"hello world!\n";
+    std::&lt;&lt;cout&lt;&lt;"hello world!\n";
+    std::&lt;&lt;cout&lt;&lt;"hello world!\n";
+                                    </code>
+                                </pre>
+                            </td>
+                        </tr>
+                    </table>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Removing Dead Code</h3>
+            <ul>
+                <li>Dead code is extra code that no longer serves a purpose, and can be removed without affecting the
+                    functionality.
+                </li>
+                <li>Although dead code doesn't affect the functionality, but it does somehow impact the performance as 
+                    some unnecessary codes are being executed.
+                </li>
+                <li>Redundant code and unreachable code can be considered as dead code as well.</li>
+                <li>Example of <b>unreachable code</b>:
+                    <pre>
+                        <code>
+    int x = 10;
+    if (x > 5) &#123;
+        return true;
+    }
+    else &#123;
+        return false;
+    }
+                        </code>
+                    </pre>
+                    The code above is considered redundant as it can be simply replaced by
+                    <pre>
+                        <code>
+    int x = 10;
+    return x > 5;
+                        </code>
+                    </pre>
+                </li>
+                <li>Another example of <b>redundant code</b>, the x >= 5 below is redundant</li>
+                    <pre>
+                        <code>
+    if (x &lt; 10) &#123;
+            x = x + 1;
+    }
+    else if (x >= 10 && x &lt; 20) &#123;
+        x = x + 2;
+    }
+                        </code>
+                    </pre>
+                <li>An example of <b>unreachable code</b>: the else bracket below is unreachable because unsigned int is always greater than 0</li>
+                    <pre>
+                        <code>
+    unsigned int x;
+    // do something
+    if (x >= 0) &#123;
+        // do something
+    } else &#123;
+        // do something
+    }
+                        </code>
+                    </pre>
+            </ul>
+        </div>
+
+        <div>
+            <h3>If Statements Optimization</h3>
+            <ul>
+                <li>Many compilers nowadays help you to optimize if statements.</li>
+                <li>However, it is still better if we could avoid too many if branches being executed by
+                    putting the most common case on a higher branch.
+                </li>
+                <li>For example,</li>
+                    <pre>
+                        <code>
+    for (int i = 0; i &lt; 100; i++) &#123;
+        if (i > 0 && i &lt;= 10) &#123;
+            cout &lt;&lt;  "super rare \n";
+        }
+        else if (i > 10 && i &lt;= 40) &#123;
+            cout &lt;&lt; "rare \n";
+        }
+        else &#123;
+            cout &lt;&lt; "common \n";
+        }
+    }
+                        </code>
+                    </pre>
+                    The code above could be optimized by putting the most common case on top:
+                    <pre>
+                        <code>
+    for (int i = 0; i &lt; 100; i++) &#123;
+        if ( i > 40 ) &#123;
+            cout &lt;&lt; "common \n";
+        }
+        else if (i > 10 && i &lt;= 40) &#123;
+            cout &lt;&lt;  "rare \n";
+        }
+        else &#123;
+            cout &lt;&lt; "super rare \n";
+        }
+    }
+                        </code>
+                    </pre>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Avoid unnecessary nested for loop if possible</h3>
+            <ul>
+                <li>For example, initialization of a 2D vector:</li>
+                    <pre>
+                        <code>
+    std::vector &lt; std::vector&lt;int> > matrix;
+    std::vector&lt;int> new_row;
+    int initial_value = 1;
+    
+    for (int i = 0; i &lt; num_rows; i++) &#123;
+        new_row.clear();
+        for (int j = 0; j &lt; num_cols; j++) &#123;
+            new_row.push_back(initial_value);
+        }
+        matrix.push_back(new_row);
+    }
+                        </code>
+                    </pre>
+                The code above considered a unnecessary for loop as we can straight away initialize the 2D v
+                    <pre>
+                        <code>
+    int initial_value = 1;
+    std::vector &lt; std::vector&lt;int> > matrix(num_rows, std::vector&lt;int> (num_cols, initial_value));
+                        </code>
+                    </pre>
+            </ul>
+        </div>
+
+
+    </div>
+</div>

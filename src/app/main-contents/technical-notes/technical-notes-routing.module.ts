@@ -32,6 +32,7 @@ import { BacktrackingComponent } from './algorithms/backtracking/backtracking.co
 import { PathPlanningComponent } from './robotics/path-planning/path-planning.component';
 import { CommunicationProtocolsComponent } from './robotics/communication-protocols/communication-protocols.component';
 import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
+import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
 
 const routes: Routes = [{
   path:'',
@@ -60,6 +61,10 @@ const routes: Routes = [{
     {
       path: 'coding/cpp-intermediate',
       component: CppIntermediateComponent
+    },
+    {
+      path: 'coding/cpp-code-optimization',
+      component: CppCodeOptimiationComponent
     },
     {
       path: 'coding/javaScript',
