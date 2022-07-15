@@ -200,7 +200,7 @@
     }
                         </code>
                     </pre>
-                The code above considered a unnecessary for loop as we can straight away initialize the 2D v
+                The code above considered a unnecessary for loop as we can straight away initialize the 2D vector:
                     <pre>
                         <code>
     int initial_value = 1;
@@ -210,6 +210,175 @@
             </ul>
         </div>
 
+        <div>
+            <h3>Remove unnecessary intermediate variables</h3>
+            <ul>
+                <li>Intermediate variables could be considered as redundant code.</li>
+                <li>For example:</li>
+                    <pre>
+                        <code>
+    std::vector&lt;int> x(4, 0);
+    for (int i = 0; i &lt; 5; i++) &#123;
+        int new_element = x[i] + i;
+        x[i] = new_element;
+    }
+                        </code>
+                    </pre>
+                    The "new_element" variable above is considered intermediate variable as the code above
+                    could be simplified to:
+                    <pre>
+                        <code>
+    std::vector&lt;int> x(4, 0);
+    for (int i = 0; i &lt; 5; i++) &#123;
+        x[i] = x[i] + i;
+    }
+                        </code>
+                    </pre>
+                <li>However, in most of cases, these intermediate variables are actually acceptable as those fundamental 
+                    variable types (such as float, int and char) are relatively efficient, and we probably won't notice
+                    the difference as the compiler might have optimized it.
+                </li>
+                <li>Hence, avoid intermediate variables unless they are critical for code readability, and also avoid 
+                    adding intermediate variables for non-fundamental variable types such as vector, queue etc unless necessary.
+                </li>
+            </ul>
+        </div>
 
+        <div>
+            <h3>Reserve Vector Memory Storage</h3>
+            <ul>
+                <li>When we declare a vector, we don't need to specify a vector's length, so the compiler will
+                    not know ahead of time how much memory to allocate.
+                </li>
+                <li>When a vector is initialized, there is some initial allocated memory. And since vector is dynamic
+                    array, we can keep adding elements to the vector. But what happens when the vector's length goes
+                    beyond the initial allocated memory? It will actually need to find another address with enough 
+                    length of memory and then move the entire vector to the new address, and this is an O(N) operation.
+                </li>
+                <li>Therefore, if we know the length of our vector variable, we can reserve it earlier to avoid the
+                    unnecessary O(N) operations above.
+                </li>
+                <li>For example:</li>
+                    <pre>
+                        <code>
+    std::vector&lt;int> v;
+    int maxNumOfElements = 50;
+    v.reserve(maxNumOfElements);
+                        </code>
+                    </pre>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Pass variables by reference</h3>
+            <ul>
+                <li>Again, those C++ fundamental data types are relatively fast enough and efficient enough, so you
+                    do not need to implement this technique on fundamental data types. However, for non-fundamental 
+                    data types such as arrays and vectors, the difference will be obvious.
+                </li>
+                <li>Every time when we pass by value, actually the input variables are copied into memory</li>
+                <li>For example:</li>
+                    <pre>
+                        <code>
+    void printVector(std::vector&lt;int> v) &#123;
+        int N = v.size();
+        for (int i; i &lt; N; ++i)
+        &#123;
+            std::cout&lt;&lt;v[i]&lt;&lt;'\n';
+        }
+    }
+
+    int main() &#123;
+        std::vector&lt;&lt;int> my_vector(5, 1);
+        printVector(my_vector);
+        return 0;
+    }
+                        </code>
+                    </pre>
+                    The my_vector is actually copied into another memory address and if we modify the "v" in the printVector, it will not
+                    affect the my_vector in main() function. However, in this case where we don't need to modify the vector, and also
+                    only reading the vector's element, we can optimize the printVector() function into:
+                    <pre>
+                        <code>
+    void printVector(const std::vector&lt;int> &v) &#123;
+        for (const auto &element : v)
+        &#123;
+            std::cout&lt;&lt;element&lt;&lt;'\n';
+        }
+    }
+                        </code>
+                    </pre>
+                    The const added above is a kind of defensive programming, just to make sure it is not modified in the function.
+            </ul>
+        </div>
+
+        <div>
+            <h3>Declaring static variable</h3>
+            <ul>
+                <li>When a static variable is declared, it is actually placed in the same area of RAM as global variables. But the main difference is 
+                    global variables are in global scope but static variables remain in function scope.
+                </li>
+                <li>This is a simple (but I think is not practical) example just for demonstration purpose:</li>
+                    <pre>
+                        <code>
+    float getDoubledVariance(float deviation) &#123;
+        int variance&#123; deviation*2 };
+        return variance*2;
+    }
+
+    const float STANDARD_DEVIATION = 0.2
+    for (int i = 0; i &lt; 10; ++i) &#123;
+        std::cout&lt;&lt;getDoubledVariance(STANDARD_DEVIATION)&lt;&lt;'\n';
+    }
+                        </code>
+                    </pre>
+                    For the strange use case above, if let's say the STANDARD_DEVIATION is const, means actually
+                    the variance actually only need to use the input variable once, and means we don't need to
+                    reinitialize the variance variable everytime. Hence, FOR THIS STRANGE USE CASE, we can make
+                    the variance variable static:
+                    <pre>
+                        <code>
+    float getDoubledVariance(float deviation) &#123;
+        static int variance&#123; deviation*2 }; // this only initialized at the first time
+        return variance*2;
+    }
+                        </code>
+                    </pre>
+                <li>A proper use case of static local variable (not related to optimization):</li>
+                    <pre>
+                        <code>
+    #include &lt;iostream>
+
+    int generateID() &#123;
+        static int s_itemID&#123; 0 }; // this only initialized at the first time
+        return s_itemID++; // makes copy of s_itemID, increments the real s_itemID, then returns the value in the copy
+    }
+    
+    int main() &#123;
+        std::cout&lt;&lt;"OUTPUT:";
+        for (int i&#123;0}; i&lt;10; i++) &#123;
+            std::cout&lt;&lt;' '&lt;&lt;generateID();
+        }
+        return 0;
+    }
+                        </code>
+                    </pre>
+                <li>Notice that you need to declare and define the variable simultaneously. You cannot define a variable with the static keyword without giving the variable a value.</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Miscellaneous</h3>
+            <ul>
+                <li><a href="https://stackoverflow.com/questions/24886/is-there-a-performance-difference-between-i-and-i-in-c" 
+                    target="_blank" rel="noopener noreferrer">Reference</a>: i++ could potentially be slower than ++i, since the old 
+                    value of i might need to be saved for later use, but in practice all modern compilers will optimize this away.
+                </li>
+                <li><a href="https://stackoverflow.com/questions/25109552/what-is-the-best-way-to-improve-the-performance-of-iterating-through-a-stdvect"
+                    target="_blank" rel="noopener noreferrer">Reference</a>: storing the my_vector.size() as a variable, or iterating the
+                    vector using iterator, or using the <span class="script-font">for (const auto &element : my_vector)</span> could be 
+                    considered as an optimization as compared to calling my_vector.size() into loop every time.</li>
+            </ul>
+        </div>
     </div>
 </div>
