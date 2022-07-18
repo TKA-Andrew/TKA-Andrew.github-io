@@ -39,6 +39,9 @@
                 <li>However, for small functions, the overhead costs can be larger than the time needed to actually execute the function’s code.</li>
                 <li>To resolve this issue, we can use the <b>inline</b> keyword to perform inline expansion, where the function call will be replaced by the code.</li>
                 <li>For detailed explanation and examples, refer to the reference link above.</li>
+                <li>HOWEVER, modern optimizing compilers are typically very good at determining which functions should be made inline -- better than humans in most cases.
+                    Hence, you may IGNORE this optimization technique.
+                </li>
             </ul>
         </div>
 
@@ -64,7 +67,7 @@
                                     <code style="text-align: left">
     for (int i=0; i&lt;3; i++)
     &#123;
-        std::&lt;&lt;cout&lt;&lt;"hello world!\n";
+        std::cout&lt;&lt;"hello world!\n";
     }
                                     </code>
                                 </pre>
@@ -72,9 +75,9 @@
                             <td>
                                 <pre>
                                     <code style="text-align: left">
-    std::&lt;&lt;cout&lt;&lt;"hello world!\n";
-    std::&lt;&lt;cout&lt;&lt;"hello world!\n";
-    std::&lt;&lt;cout&lt;&lt;"hello world!\n";
+    std::cout&lt;&lt;"hello world!\n";
+    std::cout&lt;&lt;"hello world!\n";
+    std::cout&lt;&lt;"hello world!\n";
                                     </code>
                                 </pre>
                             </td>
@@ -93,7 +96,7 @@
                     some unnecessary codes are being executed.
                 </li>
                 <li>Redundant code and unreachable code can be considered as dead code as well.</li>
-                <li>Example of <b>unreachable code</b>:
+                <li>Example of <b>redundant code</b>:
                     <pre>
                         <code>
     int x = 10;
@@ -113,7 +116,7 @@
                         </code>
                     </pre>
                 </li>
-                <li>Another example of <b>redundant code</b>, the x >= 5 below is redundant</li>
+                <li>Another example of <b>redundant code</b>, the x >= 10 below is redundant</li>
                     <pre>
                         <code>
     if (x &lt; 10) &#123;
