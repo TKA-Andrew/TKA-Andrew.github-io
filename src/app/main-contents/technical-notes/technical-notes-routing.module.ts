@@ -33,6 +33,7 @@ import { PathPlanningComponent } from './robotics/path-planning/path-planning.co
 import { CommunicationProtocolsComponent } from './robotics/communication-protocols/communication-protocols.component';
 import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
 import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
+import { NetworkingNotesComponent } from './miscellaneous/networking-notes/networking-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -165,6 +166,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/wxWidgets',
       component: WxwidgetsNotesComponent
+    },
+    {
+      path: 'miscellaneuos/networkingNotes',
+      component: NetworkingNotesComponent
     }
   ]
 }];
