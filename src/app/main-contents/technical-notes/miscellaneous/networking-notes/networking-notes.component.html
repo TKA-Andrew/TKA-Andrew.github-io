@@ -1,18 +1,21 @@
 <div fxLayout="column" fxLayoutGap="10px">
     <h1>Networking Notes</h1>
+    <ul>
+        <li>Take note that some notes below are copied from the reference links below:</li>
+            <ul>
+                <li><a href="https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html#~switches" target="_blank" rel="noopener noreferrer">Reference 1</a></li>
+                <li><a href="https://www.geeksforgeeks.org/basics-computer-networking/" target="_blank" rel="noopener noreferrer">Reference 2</a></li>
+                <li><a href="https://www.geeksforgeeks.org/what-is-web-socket-and-how-it-is-different-from-the-http/" target="_blank" rel="noopener noreferrer">Reference 3</a></li>
+                <li><a href="https://community.fs.com/blog/dhcp-vs-static-ip-differences.html" target="_blank" rel="noopener noreferrer">Reference 4</a></li>
+            </ul>
+    </ul>
 
-    <h2>Miscellaneous Notes</h2>
+    <h3>Miscellaneous Notes</h3>
     <ul>
         <li>Networks are made up of various devices—computers, switches, routers—connected together by cables or wireless signals.</li>
         <li>When our browser surfs "www.google.com", it is actually making a DNS query and the DNS will return the ip address of the server that serves us the Google.com.</li>
         <li>A server listens for requests on specific ports.</li>
         
-    </ul>
-    <mat-divider></mat-divider>
-
-    <h3>Client and Servers</h3>
-    <ul>
-        <li></li>
     </ul>
 
     <h3>IP Address & Ports</h3>
@@ -22,6 +25,7 @@
         <li>localhost IP address = 127.0.0.1</li>
         <li>IP address of private network = 192.168.x.y (For example, every device that connected to the same private wifi network will have the same prefix)</li>
         <li>Any machine that has a distinct IP address has 2^16 ports in total (between 0 and 65535).</li>
+        <li>A port can be referred to as a logical channel through which data can be sent/received to an application.</li>
         <li>Ports 0-1023 are reserved for system ports and should not be used by user-level processes.</li>
         <li>If a client is trying to speak to a server using HTTP protocol, it's always going to use port 80.</li>
         <li>Some ports with pre-defined uses:</li>
@@ -32,15 +36,84 @@
                 <li>443: HTTPS</li>
             </ul>
     </ul>
-    <mat-divider></mat-divider>
+
+    <h3>MAC Address (Media Access Control address)</h3>
+    <ul>
+        <li>Is considered as physical address, because a MAC address is assigned to the NIC at the time of manufacturing. </li>
+        <li>As typically represented, MAC addresses are recognizable as six groups of two hexadecimal digits, separated by hyphens, colons, or without a separator.
+            For example: 00:00:5e:00:53:af.
+        </li>
+    </ul>
+
+    <h3>Proxies</h3>
+    <ul>
+        <li>Forward Proxy = a server that sits between a client and servers, and acts on behalf of the client, typically used to mask the client's IP address.</li>
+        <li>Reverse Proxy = a server that sits between servers and clients, and acts on behalf of the servers, typically used for logging, load balancing, or caching.</li>
+        <li>Nginx is a very popular webserver that is often used as a reverse proxy and load balancer.</li>
+    </ul>
     
     <h3>Switches</h3>
+    <ul>
+        <li>Switches allow devices on your network to communicate with each other, as well as with other networks, creating a network of shared resources.</li>
+        <li></li>
+    </ul>
 
     <h3>Routers</h3>
-
+    <ul>
+        <li>Routers connect multiple networks together. They also connect computers on those networks to the Internet.</li>
+        <li>Routers enable all networked computers to share a single Internet connection.</li>
+    </ul>
+    
     <h3>Wireless Access Points</h3>
+    <ul>
+        <li>An access point allows devices to connect to the wireless network without cables.</li>
+        <li>An access point acts like an amplifier for your network. While a router provides the bandwidth, 
+            an access point extends that bandwidth so that the network can support many devices, and those devices can access the network from farther away.</li>
+    </ul>
+
+    <h3>Sockets</h3>
+    <ul>
+        <li>The unique combination of IP address and Port number together are termed as Socket.</li>
+    </ul>
 
     <h3>DHCP vs Static</h3>
+    <ul>
+        <li>Static IP</li>
+        <ul>
+            <li>A static IP address is an address that is permanently assigned to your network devices by your Internet Service Provider, 
+                and does not change even if your device reboots.</li>
+            <li>It's more expensive than a dynamic IP address because ISP often charges an additional fee for static IP addresses.</li>
+        </ul>
+        <li>DHCP</li>
+        <ul>
+            <li>Dynamic IP address is an address that keeps on changing.</li>
+            <li>To create dynamic IP addresses, the network must have a DHCP server configured and operating.</li>
+            <li>DHCP does not need any manual configuration to connect to local devices or gain access to the Web.</li>
+        </ul>
+    </ul>
+
+    <h3>HTTP vs Websocket</h3>
+    <ul>
+        <li>Both HTTP and WebSocket are communication protocols used in client-server communication.</li>
+        <li>HTTP/HTTPS</li>
+            <ul>
+                <li>HTTP is unidirectional where the client sends the request and the server sends the response.</li>
+                <li>After each respond is sent, the connection gets closed. </li>
+            </ul>
+        <li>WebSocket</li>
+            <ul>
+                <li>WebSocket is bidirectional, a full-duplex protocol that is used in the same scenario of client-server communication, unlike HTTP it starts from ws:// or wss://.</li>
+                <li>It is a stateful protocol, which means the connection between client and server will keep alive until it is terminated by either party (client or server). </li>
+                <li>Some applications of websocket:</li>
+                    <ul>
+                        <li>Real-time web application uses a web socket to show the data at the client end, which is continuously being sent by the backend server.</li>
+                        <li>In gaming application, data is continuously received by the server without even establishing new connection.</li>
+                        <li>In chat application, once the WebSocket connection is successful, the same WebSocket connection will be reused
+                            for sending and receiving the messages.
+                        </li>
+                    </ul>
+            </ul>
+    </ul>
 
     <h3>ifconfig/ipconfig information explained</h3>
     <ul>
