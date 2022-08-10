@@ -34,6 +34,7 @@ import { CommunicationProtocolsComponent } from './robotics/communication-protoc
 import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
 import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
 import { NetworkingNotesComponent } from './miscellaneous/networking-notes/networking-notes.component';
+import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -122,6 +123,10 @@ const routes: Routes = [{
     {
       path:'robotics/CommunicationProtocols',
       component: CommunicationProtocolsComponent
+    },
+    {
+      path:'robotics/ElectronicsNotes',
+      component: ElectronicsNotesComponent
     },
     {
       path:'robotics/UsefulResources',

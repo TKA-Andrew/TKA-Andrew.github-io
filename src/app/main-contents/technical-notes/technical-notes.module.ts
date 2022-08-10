@@ -47,6 +47,7 @@ import { CommunicationProtocolsComponent } from './robotics/communication-protoc
 import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidgets-notes.component';
 import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
 import { NetworkingNotesComponent } from './miscellaneous/networking-notes/networking-notes.component';
+import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { NetworkingNotesComponent } from './miscellaneous/networking-notes/netwo
     CommunicationProtocolsComponent,
     WxwidgetsNotesComponent,
     CppCodeOptimiationComponent,
-    NetworkingNotesComponent],
+    NetworkingNotesComponent,
+    ElectronicsNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
