@@ -241,6 +241,17 @@ std::cout &lt;&lt; 9876543.21 &lt;&lt; '\n'; // output: 9.87654e+06
         <mat-divider></mat-divider>
 
         <div>
+            <h3>argc & *argv[] in C/C++</h3>
+            <ul>
+                <li><a href="https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                <li>We can pass command-line arguments to C/C++ program by defining main() with 2 arguments: <span class="script-font">int main(int argc, char *argv[]) &#123;  }</span></li>
+                <li><b>argc (ARGument Count)</b> is int and stores number of command-line arguments passed by the user <b>including</b> the name of the program.</li>
+                <li><b>argv(ARGument Vector)</b> is array of character pointers listing all the arguments, and argv[0] will be name of the program.</li>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
             <h3>static & extern || Internal Linkage & External Linkage</h3>
             <ul>
                 <li>Internal Linkage</li>
