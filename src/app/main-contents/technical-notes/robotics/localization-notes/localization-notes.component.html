@@ -41,6 +41,71 @@
         </div>
 
         <div>
+            <h2>Probability</h2>
+            <h3>Introduction</h3>
+            <ul>
+                <li>Despite having lots of sensors, there is always uncertainty in robotics as there are always noises and disturbances
+                    due to inaccurate sensors, wheel slip, etc. Hence, 
+                    <a href="https://books.google.com.my/books/about/Probabilistic_Robotics.html?id=2Zn6AQAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&redir_esc=y#v=onepage&q&f=false" target="_blank" rel="noopener noreferrer">Probabilistic Robatics</a> 
+                    is a common topic in Robotic.
+                </li>
+                <li>The content of this section is mainly based on this <a href="https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373"
+                    target="_blank" rel="noopener noreferrer">free Udacity course</a>.</li>
+            </ul>
+
+            <h3>Basics</h3>
+            <ul>
+                <li>Probability Function</li>
+                <ul>
+                    <li>A probabilty function, P(X) has its value bounded between 0 and 1.</li>
+                    <li>The 'X' here represents an event. Let's say X is representing 
+                        the event of robot located at position (0,0), and let's say P(X) = 0.3, then
+                        P(X') will be 0.7
+                    </li>
+                </ul>
+                <li><b>Belief</b></li>
+                <ul>
+                    <li>Let's say a robot is on a map with grid of 1x4, and there is a landmark 'X' on the third cell: [0, 0, 'X', 0] </li>
+                    <li>Assuming the robot has uniform belief of its location initially,
+                        then the probability of the robot at &#123;0,0}, &#123;0,1} etc are all the same: [0,25, 0.25, 0.25, 0.25]</li>
+                </ul>
+                <li><b>Measurement Update</b></li>
+                <ul>
+                    <li>Now, let's say the robot has sensor to detect the landmark.</li>
+                    <li>Let's say the sensor accuracy is 80%, meaning pHit = 0.8, pMiss = 0.2;</li>
+                    <li>If now the sensor sensed the landmark, the vector of belief will become: [0.05, 0.05, 0.2, 0.05]</li>
+                    <li>If the sensor didnt sense the landmark, it will be in another way round: [0.2, 0.2, 0.05, 0.2]</li>
+                    <li>No matter whether the sensor sensed the landmark or not, as you can see, the sum of probabilities no longer equal to one
+                        after the measurememt update.</li>
+                    <li>A probability distribution always have to add up to 1. Hence, we shoud normalize them by dividing each of the probabilty with the
+                        sum of all probabilities, and then we will get: [0.1429, 0.1429, 0.5714, 0.1429] for the case of the sensor sensed the landmark.
+                    </li>
+                </ul>
+                <li><b>Motion Update</b></li>
+                <ul>
+                    <li>Every time the robot moves, there should be a motion update. However, considering that the robot might be overshoot or undershoot,
+                        we should update the vector of probability according to probability of undershoot and overshoot.
+                    </li>
+                    <li>Let's say the initial belief of a robot is [0,1,0,0].</li>
+                    <li>Let's say the probability of exact motion is 0.8, probabilities of undershoot and overshoot are both 0.1.</li>
+                    <li>If the motion update is to move towards right for 1 step, then the updated probability will be [0, 0.1, 0.8, 0.1]</li>
+                    <li>The process above is actually a convolution.</li>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="https://miro.medium.com/max/1400/1*D6iRfzDkz-sEzyjYoVZ73w.gif" width="60%">
+                            <span style="font-style: italic;">Source of animation: https://miro.medium.com/max/1400/1*D6iRfzDkz-sEzyjYoVZ73w.gif</span>
+                        </div>
+                </ul>
+            </ul>
+
+            <h3>Bayes Rule</h3>
+
+            <h3>Total Probability</h3>
+
+            <h3></h3>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
             <h2>Kalman Filter</h2>
             <h3>Introduction to Kalman Filter</h3>
             <ul>
