@@ -63,6 +63,12 @@
                         P(X') will be 0.7
                     </li>
                 </ul>
+                <li>Conditional Probability Function</li>
+                <ul>
+                    <li>P(X|Y) means the probability of event X given that you already have event Y. For example, it is raining outside,
+                        the probability of I go jogging is P(jog|raining) = 0.2 </li>
+                    <li>P(X|Y) = P(X&#8745;Y) / P(Y)</li>
+                </ul>
                 <li><b>Belief</b></li>
                 <ul>
                     <li>Let's say a robot is on a map with grid of 1x4, and there is a landmark 'X' on the third cell: [0, 0, 'X', 0] </li>
@@ -73,6 +79,23 @@
                 <ul>
                     <li>Now, let's say the robot has sensor to detect the landmark.</li>
                     <li>Let's say the sensor accuracy is 80%, meaning pHit = 0.8, pMiss = 0.2;</li>
+                        <table style="margin-top: 20px;">
+                            <tr>
+                                <th></th>
+                                <th>Robot on landmark</th>
+                                <th>Robot not on landmark</th>
+                            </tr>
+                            <tr>
+                                <td><b>Landmark sensed</b></td>
+                                <td style="background-color: #43ec70;">pHit</td>
+                                <td style="background-color: #e96e31;">pMiss</td>
+                            </tr>
+                            <tr>
+                                <td><b>Landmark not sensed</b></td>
+                                <td style="background-color: #e96e31;">pMiss</td>
+                                <td style="background-color: #43ec70;">pHit</td>
+                            </tr>
+                        </table>
                     <li>If now the sensor sensed the landmark, the vector of belief will become: [0.05, 0.05, 0.2, 0.05]</li>
                     <li>If the sensor didnt sense the landmark, it will be in another way round: [0.2, 0.2, 0.05, 0.2]</li>
                     <li>No matter whether the sensor sensed the landmark or not, as you can see, the sum of probabilities no longer equal to one
@@ -89,19 +112,56 @@
                     <li>Let's say the initial belief of a robot is [0,1,0,0].</li>
                     <li>Let's say the probability of exact motion is 0.8, probabilities of undershoot and overshoot are both 0.1.</li>
                     <li>If the motion update is to move towards right for 1 step, then the updated probability will be [0, 0.1, 0.8, 0.1]</li>
-                    <li>The process above is actually a convolution.</li>
-                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <img src="https://miro.medium.com/max/1400/1*D6iRfzDkz-sEzyjYoVZ73w.gif" width="60%">
-                            <span style="font-style: italic;">Source of animation: https://miro.medium.com/max/1400/1*D6iRfzDkz-sEzyjYoVZ73w.gif</span>
-                        </div>
+                    <li>The belief of robot at each cell, X<sub>i</sub> is calculated in such way:</li>
+                        <ul>
+                            <li><div class="matheqn-small" [mathjax]="'$$P(X_i) = P(X_i - U - 1) * pUndershoot + P(X_i - U) * pExact + P(X_i - U + 1) * pOvershoot$$'"></div></li>
+                            <li>U = the number of steps in motion</li>
+                            <li>pUndershoot = probability of undershoot</li>
+                            <li>pOvershoot = probability of overshoot</li>
+                            <li>pExact = probability of exact motion</li>
+                            <li>The equation above assumes the overshoot and undershoot are only 1 cell difference</li>
+                        </ul>
                 </ul>
             </ul>
 
-            <h3>Bayes Rule</h3>
+            <h3>Total Probability (for Motion Update)</h3>
+            <ul>
+                <li><div class="matheqn-small" [mathjax]="'$$P(X) = \\Sigma_i P(X&#8745;Y_i) = \\Sigma_i P(X|Y_i) P(Y_i)$$'"></div></li>
+                <li>The equation above basically is a convolution process.</li>
+            </ul>
 
-            <h3>Total Probability</h3>
+            <h3>Bayes Rule (for Measurement Update)</h3>
+            <ul>
+                <li><div class="matheqn-small" [mathjax]="'$$P(X|Z) = \\frac {P(X&#8745;Z)}{P(Z)} = \\frac {P(Z|X) P(X)}{P(Z)}$$'"></div></li>
+                <li>An Example:</li>
+                    <ul>
+                        <li>Notations:</li>
+                            <ul>
+                                <li>P(X) = Probability of robot on landmark X</li>
+                                <li>P(X') = Probability of robot on landmark X</li>
+                                <li>P(Sensed | X) = Probability of sensing landmark given that robot is on landmark X</li>
+                                <li>P(Sensed | X') = Probability of sensing landmark given that robot is not on landmark X</li>
+                            </ul>
+                        <li>Notations:</li>
+                            <ul>
+                                <li>P(X) = 0.25</li>
+                                <li>P(X') = 0.75</li>
+                                <li>P(Sensed | X) = 0.8</li>
+                                <li>P(Sensed | X') = 0.2</li>
+                            </ul>
+                        <li>Find P(X | Sensed), which represents the probabilty of the robot is on landmark X given that the landmark is sensed by sensor</li>
+                        <li>Solution:</li>
+                            <ul>
+                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {P(Sensed | X) P(X)}{P(Sensed)}$$'"></div></li>
+                                <li>By applying Total Probability Theorem, P(Sensed) = P(Sensed | X) * P(X) + P(Sensed | X') * P(X')</li>
+                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {P(Sensed | X) P(X)}{P(Sensed | X) P(X) + P(Sensed | X\') P(X\')}$$'"></div></li>
+                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {0.8 * 0.25}{0.8 * 0.25 + 0.75 * 0.2}$$'"></div></li>
+                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = 0.5714$$'"></div></li>
+                            </ul>
+                    </ul>
+            </ul>
+            
 
-            <h3></h3>
             <mat-divider></mat-divider>
         </div>
 

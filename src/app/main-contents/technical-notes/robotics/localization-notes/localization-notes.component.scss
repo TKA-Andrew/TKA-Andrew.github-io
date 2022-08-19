@@ -1,3 +1,28 @@
+@use '../../technical-notes-content.scss';
+tr {
+    width: 100%;
+    display: flex;
+}
+
+th {
+    width: 50%;
+    border: black;
+    border-left: black;
+    border-right: black;
+    border: 1px solid black;
+}
+
+td {
+    width: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: black;
+    border-left: black;
+    border-right: black;
+    border: 1px solid black;
+}
+
 .matheqn {
     font-size: 20px;
 }
