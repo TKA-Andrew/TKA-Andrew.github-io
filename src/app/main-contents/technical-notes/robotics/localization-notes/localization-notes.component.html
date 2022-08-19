@@ -114,7 +114,7 @@
                     <li>If the motion update is to move towards right for 1 step, then the updated probability will be [0, 0.1, 0.8, 0.1]</li>
                     <li>The belief of robot at each cell, X<sub>i</sub> is calculated in such way:</li>
                         <ul>
-                            <li><div class="matheqn-small" [mathjax]="'$$P(X_i) = P(X_i - U - 1) * pUndershoot + P(X_i - U) * pExact + P(X_i - U + 1) * pOvershoot$$'"></div></li>
+                            <li><div class="matheqn-small" [mathjax]="'$$P(X_i) = P(X_i - U + 1) * pUndershoot + P(X_i - U) * pExact + P(X_i - U - 1) * pOvershoot$$'"></div></li>
                             <li>U = the number of steps in motion</li>
                             <li>pUndershoot = probability of undershoot</li>
                             <li>pOvershoot = probability of overshoot</li>
