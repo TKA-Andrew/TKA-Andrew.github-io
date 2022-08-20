@@ -30,3 +30,25 @@ td {
 .matheqn-small {
     font-size: 15px;
 }
+
+mat-expansion-panel {
+    color: black;
+}
+
+mat-panel-title {
+    line-height: 14px;
+    text-transform: none;
+}
+
+mat-expansion-panel-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.mat-expansion-panel-header {
+    padding-left: 24px; 
+    padding-right: 24px; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: fit-content;
+}
