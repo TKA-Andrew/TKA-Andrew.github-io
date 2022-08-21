@@ -161,6 +161,68 @@
         </div>
         <div id='cheatSheet'>
             <h2>Cheat Sheet</h2>
+            <diV>
+                <h3>git status</h3>
+                <ul>
+                    <li>This will show you what changes to be commited, what changes are not staged yet, and what files are untracked:</li>
+                    <img style="width: 80%; height: auto;" src="assets/images/gitNotes/gitStatusExample.png">
+                </ul>
+            </diV>
+            <diV>
+                <h3>git add</h3>
+                <ul>
+                    <li>This is to stage the changes</li>
+                    <li>To stage all changes:</li>
+                    <ul>
+                        <li><span class="CLI-font">git add .</span></li>
+                    </ul>
+                    <li>To stage specific file:</li>
+                    <ul>
+                        <li><span class="CLI-font">git add path/to/your/file</span></li>
+                        <li>For example: git add src/app/main-contents/home/home.component.html</li>
+                    </ul>
+                    <li>You can also make use of asterik, for example: git add */html</li>
+                    <li>You can also only stage specific hunk of the changes using -p option</li>
+                    <ul>
+                        <li><span class="CLI-font">git add -p</span></li>
+                        <li>This will add all files into consideration, 
+                            and it will ask for your input from one of the options [y,n,q,a,d,e,?] for each hunk, enter "y" for yes and "n" for no.</li>
+                        <li>For detailed about each options, refer to <a href="https://git-scm.com/docs/git-add#Documentation/git-add.txt-patch"
+                            target="_blank" rel="noopener noreferrer">the official documentation</a>.</li>
+
+                    </ul>
+                    <li>You can also stage specific hunk of specific file:</li>
+                    <ul>
+                        <li><span class="CLI-font">git add -p path/to/your/file</span></li>
+                    </ul>
+                </ul>
+            </diV>
+            <div>
+                <h3>git commit</h3>
+                <ul>
+                    <li>To commit with a single line commit message</li>
+                        <ul>
+                            <li><span class="CLI-font">git commit -m "your commit message"</span></li>
+                        </ul>
+                    <li>To commit multi-line commit message</li>
+                        <ul>
+                            <li><span class="CLI-font">git commit -m "first line" -m "second line" -m "third line"</span></li>
+                        </ul>
+                </ul>
+            </div>
+            <div>
+                <h3>git checkout</h3>
+                <ul>
+                    <li>To switch to another branch:</li>
+                    <ul>
+                        <li><span class="CLI-font">git checkout &lt;branch-name></span></li>
+                    </ul>
+                    <li>To create a new branch and switch to it:</li>
+                    <ul>
+                        <li><span class="CLI-font">git checkout -b &lt;new-branch-name></span></li>
+                    </ul>
+                </ul>
+            </div>
             <div>
                 <h3>To clone a branch of remote repository</h3>
                 <ul>
@@ -246,6 +308,22 @@
                         <ul>
                             <li>git reset -- your_file_name</li>
                         </ul>
+                </ul>
+            </div>
+            <div>
+                <h3>To add a submodule</h3>
+                <ul>
+                    <li><span class="CLI-font">git submodule add &lt;htps-link-of-the-git-repo> &lt;specific location if any></span></li>
+                    <li>For example, let's say I want to add googletest into thirdparty/googletest folder:</li>
+                        <ul>
+                            <li><span class="CLI-font">git submodule add https://github.com/google/googletest.git thirdparty/googletest</span></li>
+                        </ul>
+                </ul>
+            </div>
+            <div>
+                <h3>If someone added a submodule, you need to update and init your submodule</h3>
+                <ul>
+                    <li><span class="CLI-font">git submodule update --init</span></li>
                 </ul>
             </div>
             <div>
