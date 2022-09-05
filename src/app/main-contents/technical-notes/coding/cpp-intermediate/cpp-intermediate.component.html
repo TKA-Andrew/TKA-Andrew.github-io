@@ -821,6 +821,68 @@
         </div>
 
         <div>
+            <h3>Friend Class</h3>
+            <ul>
+                <li>Normally we cannot access the private members of a class, but a friend class can.</li>
+                <li>In the code snippet below, the Robot declares RobotController class as its friend, so RobotController class
+                    can access the private members of Robot, but RobotController doesnt declare Robot class as friend, so Robot class
+                    cannot access the private members of RobotController.
+                </li>
+                <pre>
+                    <code>
+    #include &lt;iostream>
+
+    class RobotController; // forward declaration
+    
+    class Robot
+    &#123;
+    private:
+        float x&#123;0.0f};
+        float y&#123;0.0f};
+        float theta&#123;0.0f};
+    
+    public:
+        Robot()
+        &#123;
+        }
+    
+        void getCurrentPosition()
+        &#123;
+            std::cout&lt;&lt;"x: "&lt;&lt; x &lt;&lt;" y: "&lt;&lt; y &lt;&lt; " theta: "&lt;&lt;theta&lt;&lt;'\n';
+        }
+    
+        friend class RobotController; // RobotController is considered a friend by Robot
+    };
+    
+    class RobotController
+    &#123;
+    private:
+        bool safety_triggered&#123;false};
+    
+    public:
+        void setRobotPosition(Robot &r, float x, float y, float theta)
+        &#123;
+            r.x = x;
+            r.y = y;
+            r.theta = theta;
+        }
+    };
+    
+    int main()
+    &#123;
+        Robot robot1;
+        RobotController robot_ctrl;
+        robot_ctrl.setRobotPosition(robot1, 2.0f, 3.0f, 3.14f);
+        robot1.getCurrentPosition();
+        return 0;
+    }
+                    </code>
+                </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
             <h3>Multi-threaded programming (mutex, recursive_mutex, lock, lock_guard)</h3>
             <ul>
                 <li>References</li>
@@ -828,7 +890,7 @@
                         <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11.php" target="_blank" rel="noopener noreferrer">Part A</a></li>
                         <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11B.php" target="_blank" rel="noopener noreferrer">Part B</a></li>
                     </ul>
-                <li>A simple example</li>
+                <li>A simple example for multi threading</li>
                     <pre>
                         <code>
     #include &lt;string>
