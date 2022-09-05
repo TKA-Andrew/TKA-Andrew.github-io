@@ -657,6 +657,55 @@ return 0;
     }
                         </code>
                     </pre>
+                <li>size() vs capacity()</li>
+                    <ul>
+                        <li>size() shows how many items in the vector</li>
+                        <li>capacity() shows how many items the vector can fit, when we push_back() more than that, reallocatin will
+                            happen and the capacity() will be doubled
+                        </li>
+                    </ul>
+                <li>reserve() vs resize()</li>
+                    <ul>
+                        <li>reserve() only does allocation of memory, only changes the capacity</li>
+                        <li>resize() does both allocation and instance creation, and this changes both size and capacity</li>
+                        <li>Look at the code snippet below for better understanding:</li>
+                            <pre>
+                                <code>
+    std::cout&lt;&lt;"===== v1 =====\n";
+    std::vector&lt;int> v1;
+    v1.resize(10); //allocation + instance creation
+
+    std::cout &lt;&lt; v1.size() &lt;&lt; std::endl;     //prints 10, already 10 items in the vector
+    std::cout &lt;&lt; v1.capacity() &lt;&lt; std::endl; //prints 10
+
+    // Since there are already 10 items in the vector, we should modify the elements instead of push_back
+    for (int i = 0; i &lt; 10; ++i) v1[i] = 999999;
+
+    std::cout&lt;&lt;"===== v2 =====\n";
+    std::vector&lt;int> v2;
+    v2.reserve(10); //only allocation
+
+    std::cout &lt;&lt; v2.size() &lt;&lt; std::endl;     //prints 0, still no item in the vector
+    std::cout &lt;&lt; v2.capacity() &lt;&lt; std::endl; //prints 10
+
+    // Since there is no items in the vector, we can only push_back()
+    for (int i = 0; i &lt; 10; ++i) v2.push_back(999999);
+
+    std::cout&lt;&lt;"===== v3 =====\n";
+    std::vector&lt;int> v3;
+    v3.reserve(10); //only allocation
+
+    std::cout &lt;&lt; v3.size() &lt;&lt; std::endl;     //prints 0, still no item in the vector
+    std::cout &lt;&lt; v3.capacity() &lt;&lt; std::endl; //prints 10
+
+    // What if we append 11 items?
+    for (int i = 0; i &lt; 11; ++i) v3.push_back(999999);
+
+    std::cout &lt;&lt; v3.size() &lt;&lt; std::endl;     //prints 11
+    std::cout &lt;&lt; v3.capacity() &lt;&lt; std::endl; //prints 20, capacity is doubled when reallocation happens
+                                </code>
+                            </pre>
+                    </ul>
             </ul>
         </div>
         <mat-divider></mat-divider>
