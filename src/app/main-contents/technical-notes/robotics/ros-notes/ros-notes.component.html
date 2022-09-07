@@ -103,6 +103,86 @@
         </div>
 
         <div>
+            <h3>Writing your own ROS Python API</h3>
+            <ul>
+                <li>Ever wonder is it possible to get number of subscribers of a topic through Python code?</li>
+                <li>You can achieve that by referring to the source code of the ros repository, more specically, the
+                    <a href="https://github.com/ros/ros_comm" target="_blank" rel="noopener noreferrer">ros_comm</a> package
+                </li>
+                <li>By looking at the source code of <a href="https://github.com/ros/ros_comm/blob/noetic-devel/tools/rostopic/src/rostopic/__init__.py" target="_blank" rel="noopener noreferrer">rostopic</a>,
+                    you will know it is possible to get "rostopic info /turtle1/pose" through Python code.</li>
+                    <pre>
+                        <code>
+    import rostopic
+    print(rostopic.get_info_text("/turtle1/pose"))
+                        </code>
+                    </pre>
+                <li>The following are some examples that I have written:</li>
+                    <pre>
+                        <code>
+import rostopic
+import rosgraph
+import socket
+
+class RosPythonApi:
+    def __init__(self):
+        pass
+
+    def get_topic_list(self):
+        try:
+            pubs_out, subs_out = rostopic.get_topic_list()
+            all_topics = []
+            for topic, topic_type, nodes in pubs_out:
+                all_topics.append(topic)
+            for topic, topic_type, nodes in subs_out:
+                all_topics.append(topic)
+            all_topics = list(set(all_topics))
+            return all_topics
+        except socket.error:
+            raise ROSTopicIOException("Unable to communicate with master!")
+
+    def get_topic_info(self, topic):
+        return rostopic.get_info_text(topic)
+
+    def get_topic_type(self, topic):
+        return rostopic._get_topic_type(topic)[0]
+
+    def get_topic_publishers(self, topic):
+        import itertools
+        master = rosgraph.Master('/rostopic')
+        try:
+            pubs = rostopic.get_topic_list(master=master)[0]
+            # filter based on topic
+            pubs = [x for x in pubs if x[0] == topic]
+            topic_types = rostopic._master_get_topic_types(master)
+            pubs_list = []
+            for p in itertools.chain(*[nodes for topic, ttype, nodes in pubs]):
+                pubs_list.append(p)
+            return pubs_list
+        except socket.error:
+            raise ROSTopicIOException("Unable to communicate with master!")
+
+    def get_topic_subscribers(self, topic):
+        import itertools
+        master = rosgraph.Master('/rostopic')
+        try:
+            subs = rostopic.get_topic_list(master=master)[1]
+            # filter based on topic
+            subs = [x for x in subs if x[0] == topic]
+            topic_types = rostopic._master_get_topic_types(master)
+            subs_list = []
+            for p in itertools.chain(*[nodes for topic, ttype, nodes in subs]):
+                subs_list.append(p)
+            return subs_list
+        except socket.error:
+            raise ROSTopicIOException("Unable to communicate with master!")
+                        </code>
+                    </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
             <h3>REP (ROS Enhancement Proposals)</h3>
             <ul>
                 <li>There are a lot of REPs listed in <a href="https://ros.org/reps/rep-0000.html" target="_blank" rel="noopener noreferrer">REP-0000</a>.</li>
