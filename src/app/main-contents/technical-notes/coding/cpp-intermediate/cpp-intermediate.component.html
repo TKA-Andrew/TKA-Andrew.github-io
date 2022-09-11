@@ -828,56 +828,7 @@
                     can access the private members of Robot, but RobotController doesnt declare Robot class as friend, so Robot class
                     cannot access the private members of RobotController.
                 </li>
-                <pre>
-                    <code>
-    #include &lt;iostream>
-
-    class RobotController; // forward declaration
-    
-    class Robot
-    &#123;
-    private:
-        float x&#123;0.0f};
-        float y&#123;0.0f};
-        float theta&#123;0.0f};
-    
-    public:
-        Robot()
-        &#123;
-        }
-    
-        void getCurrentPosition()
-        &#123;
-            std::cout&lt;&lt;"x: "&lt;&lt; x &lt;&lt;" y: "&lt;&lt; y &lt;&lt; " theta: "&lt;&lt;theta&lt;&lt;'\n';
-        }
-    
-        friend class RobotController; // RobotController is considered a friend by Robot
-    };
-    
-    class RobotController
-    &#123;
-    private:
-        bool safety_triggered&#123;false};
-    
-    public:
-        void setRobotPosition(Robot &r, float x, float y, float theta)
-        &#123;
-            r.x = x;
-            r.y = y;
-            r.theta = theta;
-        }
-    };
-    
-    int main()
-    &#123;
-        Robot robot1;
-        RobotController robot_ctrl;
-        robot_ctrl.setRobotPosition(robot1, 2.0f, 3.0f, 3.14f);
-        robot1.getCurrentPosition();
-        return 0;
-    }
-                    </code>
-                </pre>
+                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/friend_class_example.cpp" target="_blank" rel="noopener noreferrer">Code example implementing Friend Class</a></li>
             </ul>
             <mat-divider></mat-divider>
         </div>
@@ -890,77 +841,13 @@
                         <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11.php" target="_blank" rel="noopener noreferrer">Part A</a></li>
                         <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11B.php" target="_blank" rel="noopener noreferrer">Part B</a></li>
                     </ul>
-                <li>A simple example for multi threading</li>
-                    <pre>
-                        <code>
-    #include &lt;string>
-    #include &lt;iostream>
-    #include &lt;thread>
-    #include &lt;chrono>
-    #include &lt;ctime>
-    
-    void loading()
-    &#123;
-        std::cout&lt;&lt;"\nLoading Multi Threading Demo\n";
-        float progress = 0.0;
-        while (progress &lt;= 1.00)
-        &#123;
-            int barWidth = 70;
-    
-            std::cout &lt;&lt; "[";
-            int pos = barWidth * progress;
-            for (int i = 0; i &lt; barWidth; ++i)
-            &#123;
-                if (i &lt; pos)
-                    std::cout &lt;&lt; "=";
-                else if (i == pos)
-                    std::cout &lt;&lt; ">";
-                else
-                    std::cout &lt;&lt; " ";
-            }
-            std::cout &lt;&lt; "] " &lt;&lt; int(progress * 100.0) &lt;&lt; " %\r";
-            std::cout.flush();
-    
-            progress += 0.2;
-            std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(1));
-        }
-        std::cout &lt;&lt; std::endl &lt;&lt; std::endl;
-    }
-    
-    void currentTime()
-    &#123;
-        while (true)
-        &#123;
-            std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(1));
-            auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-            std::cout &lt;&lt; ctime(&time);
-        }
-    }
-    
-    void printMsgEvery5seconds(std::string msg)
-    &#123;
-        while (true)
-        &#123;
-            std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(5));
-            std::cout &lt;&lt; msg &lt;&lt; '\n';
-        }
-    }
-    
-    int main()
-    &#123;
-        std::thread task1(loading);
-        task1.join(); // block main execution until task1 finished
-    
-        // Constructs the new thread and runs it. Does not block execution.
-        std::thread task2(currentTime);
-        std::thread task3(printMsgEvery5seconds, "Hello World"); // thread constructor with parameters
-    
-        while (true) &#123;}
-    
-        return 0;
-    }
-                        </code>
-                    </pre>
+                <li>Mutex stands for Mutual Exclusion.</li>
+                <li>Calling join() will block until the thread is finished.</li>
+                <li>Calling detach() will leave the thread to run in the background.</li>
+                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/multithreaded_example.cpp" target="_blank" rel="noopener noreferrer">Code example for multithreaded program</a></li>
+                <li>Race condition is a condition where multiple threads are trying to change the same variable at the same time.</li>
+                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/race_condition_example.cpp" target="_blank" rel="noopener noreferrer">Race Condition Example</a></li>
+                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/mutex_lock_unlock_example.cpp" target="_blank" rel="noopener noreferrer">Code example for resolving race condition using lock() and unlock()</a></li>
             </ul>
             <mat-divider></mat-divider>
         </div>
