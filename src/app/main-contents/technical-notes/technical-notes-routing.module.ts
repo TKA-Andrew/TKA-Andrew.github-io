@@ -35,6 +35,7 @@ import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidge
 import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
 import { NetworkingNotesComponent } from './miscellaneous/networking-notes/networking-notes.component';
 import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
+import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -67,6 +68,10 @@ const routes: Routes = [{
     {
       path: 'coding/cpp-code-optimization',
       component: CppCodeOptimiationComponent
+    },
+    {
+      path: 'coding/python-notes',
+      component: PythonNotesComponent
     },
     {
       path: 'coding/javaScript',

@@ -48,6 +48,7 @@ import { WxwidgetsNotesComponent } from './miscellaneous/wxwidgets-notes/wxwidge
 import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-code-optimiation.component';
 import { NetworkingNotesComponent } from './miscellaneous/networking-notes/networking-notes.component';
 import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
+import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ElectronicsNotesComponent } from './robotics/electronics-notes/electron
     WxwidgetsNotesComponent,
     CppCodeOptimiationComponent,
     NetworkingNotesComponent,
-    ElectronicsNotesComponent],
+    ElectronicsNotesComponent,
+    PythonNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

@@ -1,0 +1,56 @@
+<div class="flexContainer">
+    <div fxLayout="column">
+        <div>
+            <h1>Python Notes</h1>
+            <h2>Introduction</h2>
+            <ul>
+                <li>Assuming python basics are easy and common, the basics notes are not included here.</li>
+            </ul>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+            <h3>getattr(), setattr(), hasattr(), delattr()</h3>
+            <ul>
+                <li>getattr(object, attribute, default)</li>
+                <li>setattr(object, attribute, value)</li>
+                <li>hasattr(object, attribute)</li>
+                <li>delattr(object, attribute)</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>classmethod() , @classmethod</h3>
+            <ul>
+                <li>Class methods can be called by both class and object.</li>
+                <li>Class methods can also be used to do something like multiple constructors of C++.</li>
+                <li>Take note that class methods take 'cls' as the first parameter instead of 'self'</li>
+                <li>Code snippet example:</li>
+                    <pre>
+                        <code>
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+  
+    # a class method to create a Person object by birth year.
+    @classmethod
+    def fromBirthYear(cls, name, year):
+        return cls(name, date.today().year - year)
+    
+    def displayHelloWorld():
+        print("Hello World!")
+
+# Make the displayHelloWorld as a classmethod
+Person.displayHelloWorld = classmethod(Person.displayHelloWorld)
+Person.displayHelloWorld() # Now the function can be called directly without instantiation of object
+abc = Person('abc', 10) # Instantiation of object using default __init__()
+xyz = Person.fromBirthYear('xyz', 1997) # Instantiation of object using fromBirthYear()
+                        </code>
+                    </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
