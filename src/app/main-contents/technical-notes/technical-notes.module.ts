@@ -49,6 +49,7 @@ import { CppCodeOptimiationComponent } from './coding/cpp-code-optimiation/cpp-c
 import { NetworkingNotesComponent } from './miscellaneous/networking-notes/networking-notes.component';
 import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
 import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
+import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { PythonNotesComponent } from './coding/python-notes/python-notes.compone
     CppCodeOptimiationComponent,
     NetworkingNotesComponent,
     ElectronicsNotesComponent,
-    PythonNotesComponent],
+    PythonNotesComponent,
+    UnixNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
