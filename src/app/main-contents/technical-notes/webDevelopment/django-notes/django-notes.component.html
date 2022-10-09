@@ -1,0 +1,72 @@
+<div class="flexContainer">    
+    <div fxLayout="column" fxLayoutGap="10px">
+        <h1>Django Notes</h1>
+        <div>
+            <h2>Introduction</h2>
+            <ul>
+                <li>Django is a free and open-source framework for building web apps with Python.</li>
+                <li>Django has a few amazing features, and hence we don't need to code most of them from scratch:</li>
+                    <ul>
+                        <li>The admin site</li>
+                        <li>Object-relational mapper(ORM)</li>
+                        <li>Authentication</li>
+                        <li>Caching</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h2>Getting Started</h2>
+            <h3>Setting up the Development Environment</h3>
+            <ul>
+                <li>Pre-requisites:</li>
+                    <ul>
+                        <li>Python installed</li>
+                        <li>pipenv installed</li>
+                    </ul>
+                <li>Creating a virtual environment for the django application</li>
+                    <ul>
+                        <li>Make a directory and change directory into it</li>
+                        <li><span class="CLI-font">pipenv install django</span></li>
+                        <li>After installing django into the virtual env, you should see
+                            a Pipfile and Pipfile.lock in the directory. You can have a look
+                            at the Pipfile.
+                        </li>
+                        <li>From the terminal output, you should also be able to see the
+                            path of the virtual environment.
+                        </li>
+                    </ul>
+                <li>Creating a Django project</li>
+                    <ul>
+                        <li>Use <span class="CLI-font">pipenv shell</span> to run PIP end shell</li>
+                        <li><span class="CLI-font">django-admin startproject core-app-name .</span></li>
+                        <li>The last argument '.' above is to ask django to use current directory as project directory.</li>
+                        <li>With the command line above, it will generate the following files:</li>
+                            <ul>
+                                <li>core-app-name</li>
+                                    <ul>
+                                        <li>__init__.py</li>
+                                        <li>asgi.py</li>
+                                        <li>settings.py</li>
+                                        <li>urls.py</li>
+                                        <li>wsgi.py</li>
+                                    </ul>
+                                <li>manage.py</li>
+                            </ul>
+                        <li>The __init__.py defines the core-app-name as a package.</li>
+                        <li>The settings.py defines the application settings.</li>
+                        <li>The urls.py module defines the URLs of the application.</li>
+                        <li>The asgi.py and wsgi.py are used for deployment.</li>
+                        <li>The manage.py is a wrapper around <span class="CLI-font">django-admin</span>.</li>
+                        <li>The manage.py will be mainly used as it can read the settings of our application.
+                            For example, if you straight away use <span class="CLI-font">django-admin runserver</span>
+                            you will get an error saying settings are not configured.
+                        </li>
+                        <li>To run the django application: <span class="CLI-font">python manage.py runserver 8080</span></li>
+                        <li>The 8080 above is just to provide a port number, its default is 8000.</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>

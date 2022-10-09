@@ -37,6 +37,7 @@ import { NetworkingNotesComponent } from './miscellaneous/networking-notes/netwo
 import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
 import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
 import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
+import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -149,6 +150,10 @@ const routes: Routes = [{
     {
       path: 'webDevelopment/postgresql',
       component: PostgresqlNotesComponent
+    },
+    {
+      path: 'webDevelopment/django',
+      component: DjangoNotesComponent
     },
     {
       path: 'miscellaneuos/npm',

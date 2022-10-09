@@ -50,6 +50,7 @@ import { NetworkingNotesComponent } from './miscellaneous/networking-notes/netwo
 import { ElectronicsNotesComponent } from './robotics/electronics-notes/electronics-notes.component';
 import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
 import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
+import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.compon
     NetworkingNotesComponent,
     ElectronicsNotesComponent,
     PythonNotesComponent,
-    UnixNotesComponent],
+    UnixNotesComponent,
+    DjangoNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
