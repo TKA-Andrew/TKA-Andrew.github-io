@@ -51,6 +51,7 @@ import { ElectronicsNotesComponent } from './robotics/electronics-notes/electron
 import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
 import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
 import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
+import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes
     ElectronicsNotesComponent,
     PythonNotesComponent,
     UnixNotesComponent,
-    DjangoNotesComponent],
+    DjangoNotesComponent,
+    HtmlCssNotesComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

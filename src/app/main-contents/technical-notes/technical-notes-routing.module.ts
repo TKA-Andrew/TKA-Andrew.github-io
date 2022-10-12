@@ -38,6 +38,7 @@ import { ElectronicsNotesComponent } from './robotics/electronics-notes/electron
 import { PythonNotesComponent } from './coding/python-notes/python-notes.component';
 import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
 import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
+import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
 
 const routes: Routes = [{
   path:'',
@@ -154,6 +155,10 @@ const routes: Routes = [{
     {
       path: 'webDevelopment/django',
       component: DjangoNotesComponent
+    },
+    {
+      path: 'webDevelopment/html-css',
+      component: HtmlCssNotesComponent
     },
     {
       path: 'miscellaneuos/npm',
