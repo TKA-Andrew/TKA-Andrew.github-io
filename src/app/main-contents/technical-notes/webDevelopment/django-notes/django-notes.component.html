@@ -36,36 +36,165 @@
                             path of the virtual environment.
                         </li>
                     </ul>
-                <li>Creating a Django project</li>
-                    <ul>
-                        <li>Use <span class="CLI-font">pipenv shell</span> to run PIP end shell</li>
-                        <li><span class="CLI-font">django-admin startproject core-app-name .</span></li>
-                        <li>The last argument '.' above is to ask django to use current directory as project directory.</li>
-                        <li>With the command line above, it will generate the following files:</li>
-                            <ul>
-                                <li>core-app-name</li>
-                                    <ul>
-                                        <li>__init__.py</li>
-                                        <li>asgi.py</li>
-                                        <li>settings.py</li>
-                                        <li>urls.py</li>
-                                        <li>wsgi.py</li>
-                                    </ul>
-                                <li>manage.py</li>
-                            </ul>
-                        <li>The __init__.py defines the core-app-name as a package.</li>
-                        <li>The settings.py defines the application settings.</li>
-                        <li>The urls.py module defines the URLs of the application.</li>
-                        <li>The asgi.py and wsgi.py are used for deployment.</li>
-                        <li>The manage.py is a wrapper around <span class="CLI-font">django-admin</span>.</li>
-                        <li>The manage.py will be mainly used as it can read the settings of our application.
-                            For example, if you straight away use <span class="CLI-font">django-admin runserver</span>
-                            you will get an error saying settings are not configured.
-                        </li>
-                        <li>To run the django application: <span class="CLI-font">python manage.py runserver 8080</span></li>
-                        <li>The 8080 above is just to provide a port number, its default is 8000.</li>
-                    </ul>
             </ul>
+
+            <h3>Creating a Django project</h3>
+            <ul>
+                <li>Use <span class="CLI-font">pipenv shell</span> to run PIP end shell</li>
+                <li><span class="CLI-font">django-admin startproject core-app-name .</span></li>
+                <li>The last argument '.' above is to ask django to use current directory as project directory.</li>
+                <li>With the command line above, it will generate the following files:</li>
+                    <ul>
+                        <li>core-app-name</li>
+                            <ul>
+                                <li>__init__.py</li>
+                                <li>asgi.py</li>
+                                <li>settings.py</li>
+                                <li>urls.py</li>
+                                <li>wsgi.py</li>
+                            </ul>
+                        <li>manage.py</li>
+                    </ul>
+                <li>The __init__.py defines the core-app-name as a package.</li>
+                <li>The settings.py defines the application settings.</li>
+                <li>The urls.py module defines the URLs of the application.</li>
+                <li>The asgi.py and wsgi.py are used for deployment.</li>
+                <li>The manage.py is a wrapper around <span class="CLI-font">django-admin</span>.</li>
+                <li>The manage.py will be mainly used as it can read the settings of our application.
+                    For example, if you straight away use <span class="CLI-font">django-admin runserver</span>
+                    you will get an error saying settings are not configured.
+                </li>
+                <li>To run the django application: <span class="CLI-font">python manage.py runserver 8080</span></li>
+                <li>The 8080 above is just to provide a port number, its default is 8000.</li>
+            </ul>
+
+            <h3>Creating Your First App</h3>
+            <ul>
+                <li>A django project can contain multiple apps, and each app has its own responsibility.</li>
+                <li>If you look at the INSTALLED_APPS of settings.py, you will see by default there are some django apps
+                    being included in the project:
+                </li>
+                    <ul>
+                        <li>django.contrib.admin</li>
+                        <li>django.contrib.auth</li>
+                        <li>django.contrib.contenttypes</li>
+                        <li>django.contrib.sessions</li>
+                        <li>django.contrib.messages</li>
+                        <li>django.contrib.staticfiles</li>
+                    </ul>
+                <li>To create an app: <span class="CLI-font">python manage.py startapp your_app_name</span></li>
+                <li>Then you will see a folder of your_app_name is created. Inside the folder, have these files:</li>
+                    <ul>
+                        <li>admin.py</li>
+                            <ul>
+                                <li>a place to define admin interface for this app</li>
+                            </ul>
+                        <li>apps.py</li>
+                            <ul>
+                                <li>a place to <b>configure</b> this app</li>
+                            </ul>
+                        <li>models.py</li>
+                            <ul>
+                                <li>a place to define model classes which pull out data from database</li>
+                            </ul>
+                        <li>tests.py</li>
+                            <ul>
+                                <li>a place to write unit test</li>
+                            </ul>
+                        <li>views.py</li>
+                            <ul>
+                                <li>a place to write <b>request handler</b></li>
+                            </ul>
+                    </ul>
+                <li>Since we added new app to the project, we need to add it into the INSTALLED_APPS in settings.py also.</li>
+            </ul>
+                
+            <h3>Writing View Functions & Mapping them to urls</h3>
+            <ul>
+                <li>As mentioned earlier, views.py is a place to write request handlers (view functions).</li>
+                <li>A view function is a function that takes a request and returns a response.</li>
+                <li>An example of simple view function is as below:</li>
+                    <pre>
+                        <code>
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    def say_hello(request):
+        return HttpResponse('Hello World')                   
+                        </code>
+                    </pre>
+                <li>Now we need to map this request handler to an url. Create a file called urls.py in your app directory.</li>
+                <li>Update the content of the urls.py:</li>
+                    <pre>
+                        <code>
+    from django.urls import path
+    from .views import say_hello
+    
+    # urlpatterns is a special keyword being searched by django, make sure spell it correctly
+    urlpatterns = [
+        path('hello/', say_hello)
+    ]
+                        </code>
+                    </pre>
+                <li>Take note that what we did above is just writing urls for the app above. To include it into the django project,
+                    we need to include it into the urls.py of django project:
+                </li>
+                    <pre>
+                        <code>
+    from django.contrib import admin
+    from django.urls import path, include
+    
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('playground/', include('playground.urls'))
+    ]
+                        </code>
+                    </pre>
+                <li>With the configuration above, the url now is "playground/hello"</li>
+            </ul>
+
+            <h3>Writing templates</h3>
+            <ul>
+                <li>Templates in django is the html views</li>
+                <li>Add a folder called 'templates' into your app directory.</li>
+                <li>Put your html files into the templates folder.</li>
+                <li>In the views.py snippet above, we returned a plain HttpResponse for the say_hello view function.
+                    In order to return an html response, we need to use the 'render' function, and it is also 
+                    where we render our templates:
+                </li>
+                    <pre>
+                        <code>
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    def say_hello(request):
+        return render(request, 'hello.html')
+                        </code>
+                    </pre>
+                <li>We can also pass a dictionary to the render function, and then the html will be able to use the 
+                    data in the dictionary. For example:
+                </li>
+                    <pre>
+                        <code>
+    def say_hello(request):
+        return render(request, 'hello.html', &#123;'name': 'Andrew'})
+                        </code>
+                    </pre>
+                <li>Then your hello.html can be something like:</li>
+                    <pre>
+                        <code>
+    &#123;% if name %}
+    &lt;h1>Hello &#123; &#123; name } }&lt;/h1>
+    &#123;% else %}
+    &lt;h1>Hello World&lt;/h1>
+    &#123;% endif %}
+                        </code>
+                    </pre>
+                <li>For more about django template language, refer to 
+                    <a href="https://docs.djangoproject.com/en/4.1/ref/templates/language/#templates" target="_blank" rel="noopener noreferrer">this</a>
+                </li>
+            </ul>
+
             <mat-divider></mat-divider>
         </div>
     </div>
