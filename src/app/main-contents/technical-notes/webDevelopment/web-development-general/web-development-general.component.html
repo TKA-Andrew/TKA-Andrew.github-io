@@ -6,6 +6,7 @@
                     General
                 </mat-panel-title>
             </mat-expansion-panel-header>
+            <button mat-button class="listItem" (click)="scrollTo('how-web-works')">How the Web works</button>
             <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
             <button mat-button class="listItem" (click)="scrollTo('nodeJS')">Node.js</button>
             <button mat-button class="listItem" (click)="scrollTo('esModules')">ES Modules</button>
@@ -14,8 +15,73 @@
         </mat-expansion-panel>
     </mat-accordion>
     <div fxLayout="column">
+        <h1>Web Development General Knowledge</h1>
+        <div id="how-web-works">
+            <h2>How the Web works?</h2>
+            <ul>
+                <li>The front-end is the part that is loaded inside a web browser on a client machine. 
+                    It is the part the user sees and interacts with.
+                </li>
+                <li>The back-end is the part that runs on a web server, and is responsible for
+                    data processing, validating, business rules, etc.
+                </li>
+                <li>URL (Uniform Resource Locator) is a way to locate a resource on our internet. 
+                    A resource can be a webpage, an image, a video, a PDF, etc.
+                </li>
+                <li>When someone types lets say www.abc.com in the browser and press Enter,
+                    the browser sends a HTTP request to the web server. Then, the webserver takes the request
+                    and returns a response to the client. There are 2 ways of returning responses:
+                </li>
+                    <ul>
+                        <li>Generates the page on the server, and then return an html document to the client</li>
+                        <li>Return the data needed on the requested page, and let the client generate the page</li>
+                    </ul>
+                <li>Second option above is more preferable as it frees up the server, so the server can
+                    serve more clients.
+                </li>
+                <li>With the second option being implemented, the server becomes an gateway to the data. On the
+                    server, we can provide different endpoints (API) to let client get different data. For example,
+                    /products to get list of products.
+                </li>
+                <li>Back to the HTTP request,</li>
+                    <ul>
+                        <li>The communication between client and server is based on HTTP protocol.</li>
+                        <li>Here is a simplified example of an HTTP message, and basically it means "GET a file called 
+                            index.html using HTTP version 1.1":</li>
+                            <pre>
+                                <code>
+    GET /index.html HTTP/1.1
+    Host: www.abcdefg.com
+    Accept-Language: en-us
+                                </code>
+                            </pre>
+                        <li>index.html normally represents the home page of websites</li>
+                        <li>Here is a simplified example of HTTP response:</li>
+                            <pre>
+                                <code>
+    HTTP/1.1 200 OK
+    Date: 13 Oct 2022 00:15
+    Content-Type: text/html
+
+    &lt;!DOCTYPE html>
+    &lt;html>
+        ...
+    &lt;/html>
+                                </code>
+                            </pre>
+                        <li>As the browser reads the HTML document, it constructs a DOM (Document 
+                            Object Model) which represents an object/element in HTML documents.
+                            The elements include paragraph of text, images, links etc.
+                        </li>
+                        <li>If the HTML document contains references to other resources such as images,
+                            and each of this resource has its URL, the browser will further send HTTP requests
+                            to fetch the resources. 
+                        </li>
+                    </ul>
+            </ul>
+        </div>
+
         <div id="difference">
-            <h1>Web Development General Knowledge</h1>
             <h2>Broswer vs Node.js</h2>
             <p>Both the broswer and Node.js use Javacript as their programming langauge. However, building apps that run in the browser
                 is different than building a Node.js application, one of the reasons is the difference in the module system used.
