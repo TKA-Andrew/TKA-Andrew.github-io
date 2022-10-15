@@ -181,12 +181,94 @@
             <ul>
                 <li>Basics</li>
                     <ul>
-                        <li>We can define CSS style for a tag.</li>
-                        <li>We can define the CSS style of a class using . (dot)</li>
-                        <li>We can define the CSS style of an element with id using #</li>
-                        <li>We can refer to a specifc class of a specifc tag by using dot when defining
-                            the css style, for example, div.product is applicable to all divs with product class.
+                        <li>Basic selectors:</li>
+                            <ul>
+                                <li>type</li>
+                                    <ul>
+                                        <li>For example: p &#123; color: black }</li>
+                                    </ul>
+                                <li>id</li>
+                                    <ul>
+                                        <li>For example: p#special_remark &#123; color: purple }</li>
+                                    </ul>
+                                <li>class</li>
+                                    <ul>
+                                        <li>For example: p.product_description &#123; color: grey }</li>
+                                    </ul>
+                                <li>attribute</li>
+                                    <ul>
+                                        <li>For example: a[href^="https"][href$=".com"] &#123; color: blue } </li>
+                                    </ul>
+                            </ul>
+                        <li>There are also <a href="https://www.w3schools.com/css/css_combinators.asp" target="_blank" rel="noopener noreferrer">
+                            relation selectors</a>, they could make the markup cleaner but can be fragile as well.</li>
+                        <li><a href="https://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank" rel="noopener noreferrer">
+                            Pseudo-class Selectors & Pseudo-element Selectors</a> are very helpful too.</li>
+                            <ul>
+                                <li>Example of Pseudo-class Selectors</li>
+                                    <ul>
+                                        <li>p:hover</li>
+                                        <li>a:visited</li>
+                                        <li>tr:nth-child(odd)</li>
+                                    </ul>
+                                <li>Example of Pseudo-element Selectors</li>
+                                    <ul>
+                                        <li>::selection</li>
+                                        <li>p::first-line</li>
+                                        <li>p::first-letter</li>
+                                    </ul>
+                            </ul>
+                        <li>The level of selector specificity (Weight) is arranged as follows, from highest to lowest:</li>
+                            <ol>
+                                <li>ID Selector</li>
+                                <li>Class & Attribute Selectors</li>
+                                <li>Element Selectors</li>
+                            </ol>
+                        <li>The level of specificity can be higher by combining the types of selectors. For example:
+                            "p .info #productID" has much higher specificity than "#productID"
                         </li>
+                        <li>Inheritance</li>
+                            <ul>
+                                <li>Some CSS properties by default, inherit values from parents.</li>
+                                <li>To avoid inherit or force the selector the inherit, use "initial" and "inherit".
+                                    For example:
+                                </li>
+                                    <pre>
+                                        <code>
+    strong &#123;
+        color: initial;
+        border: inherit;
+    }
+                                        </code>
+                                    </pre>
+                            </ul>
+                        <li>To avoid the selectors being overrided, we can use the !important keyword,
+                            but take note that this is a bad practice.
+                        </li>
+                        <li>Take note that when defining properties of a selector, the bottom one will always
+                            replace the upper one if there is conflict. For example, the bottom-top property below
+                            will be replaced by the border property:
+                        </li>
+                            <pre>
+                                <code>
+    .box &#123;
+        border-top: 10px dashed blue;
+        border: 5px solid red;
+    }
+                                </code>
+                            </pre>
+                        <li>Colors</li>
+                            <ul>
+                                <li>rgb</li>
+                                <li>rgba</li>
+                                <li>6 digit HEX</li>
+                                <li>3 digit HEX</li>
+                                <li>hsl</li>
+                                <li>hsla</li>
+                            </ul>
+                        <li><a href="https://www.w3schools.com/css/css3_gradients.asp" target="_blank" rel="noopener noreferrer">Gradients</a></li>
+                        <li><a href="https://www.w3schools.com/css/css_border.asp" target="_blank" rel="noopener noreferrer">Borders</a></li>
+                        <li><a href="https://css-tricks.com/the-shapes-of-css/" target="_blank" rel="noopener noreferrer">Shapes</a></li>
                         <li>To embed css style:</li>
                             <ol>
                                 <li>Move all styles definition into a .css file</li>
