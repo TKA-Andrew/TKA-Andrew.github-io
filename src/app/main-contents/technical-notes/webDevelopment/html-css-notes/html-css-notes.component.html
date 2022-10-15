@@ -17,6 +17,212 @@
                     </ul>
             </ul>
             <mat-divider></mat-divider>
+
+            <h2>HTML Notes</h2>
+            <h3>Basics</h3>
+            <ul>
+                <li>The <span class="script-font">&lt;!DOCTYPE html></span> at first line of html file tells browser that 
+                it is a HTML file.</li>
+                <li>Take note that certain types of tags are not supported by certain type or version of browsers, to check, use
+                    <a href="https://caniuse.com/" target="_blank" rel="noopener noreferer">caniuse.com</a>
+                </li>
+                <li>The html elemetn includes a head element and a body element:</li>
+                    <ul>
+                        <li>The head element contains information about the page such as its title.</li>
+                        <li>The body element includes the structure and content of the page.</li>
+                    </ul>
+                <li>Head</li>
+                    <ul>
+                        <li>meta element - charset</li>
+                            <ul>
+                                <li>Types of charset</li>
+                                    <ul>
+                                        <li>ASCII</li>
+                                            <ul>
+                                                <li>ASCII can only represents characters in English Language</li>
+                                            </ul>
+                                        <li>UTF-8</li>
+                                            <ul>
+                                                <li>This can represent almost all characters in the world.</li>
+                                            </ul>
+                                    </ul>
+                            </ul>
+                        <li>meta element - viewport</li>
+                            <ul>
+                                <li>The viewport is the visible area of a webpage. </li>
+                                <li>Viewport element allows us to define the inital width and scale.</li>
+                            </ul>
+                        <li>Example:</li>
+                            <pre>
+                                <code>
+    &lt;html>
+        &lt;meta charset="UTF-8"/>
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    &lt;/html>
+                                </code>
+                            </pre>
+                    </ul>
+                <li>Text</li>
+                    <ul>
+                        <li>Use &lt;em&lt;/em> for emphaized text</li>
+                        <li>Use &lt;strong&lt;/strong> for important/serious/urgent content</li>
+                        <li>&lt;b> and &lt;i> can make text bold and italic respectively, 
+                            but they should not be used as it should be the responsibilty of CSS
+                            to do the styling.
+                        </li>
+                    </ul>
+                <li>Entities</li>
+                    <ul>
+                        <li>Sometimes you might want to display some symbols, you may refer to the 
+                            <a href="https://tools.w3cub.com/html-entities" target="_blank" rel="noopener noreferrer">
+                                HTML Entities Reference Chart</a>
+                        </li>
+                    </ul>
+                <li>Hyperlink</li>
+                    <ul>
+                        <li>href can be used for relative or absolute reference to html files</li>
+                        <li>href can also be used to "scroll" to another fragment.</li>
+                        <li>Adding "download" attribute to a hyperlink of an image can also make it downloadable.</li>
+                        <li>Example:
+                            <pre>
+                                <code>
+    &lt;body>
+        &lt;a href="company/about.html">About&lt;/a>
+        &lt;a href="images/profile.jpg" download>Profile&lt;/a>
+        &lt;a href="#section-css">CSS&lt;/a>
+        &lt;a href="https://google.com">Google&lt;/a>
+        &lt;h2>HTML&lt;/h2>
+        &lt;h2 id="section-css">CSS&lt;/h2>
+        &lt;a href="#">Jump to top&lt;/a>
+    &lt;/body>
+                                </code>
+                            </pre>
+                        </li>
+                    </ul>
+                <li>Image, Video and Audio</li>
+                    <ul>
+                        <li>You may get free images from unslash.com</li>
+                        <li>You may get free videos from pexels.com</li>
+                        <li>To include video in your html, use &lt;video> tag, and you can use these attributes also:</li>
+                            <ul>
+                                <li>controls</li>
+                                <li>autoplay</li>
+                                <li>loop</li>
+                            </ul>
+                        <li>For audio, use &lt;audio>, it has the same attributes as video tag as well.</li>
+                    </ul>
+                <li>List</li>
+                    <ul>
+                        <li>Types of list:
+                            <ul>
+                                <li>unordered list - ul + li</li>
+                                <li>ordered list - ol + li</li>
+                                <li>description list - dl + dt + dd</li>
+                            </ul>
+                        </li>
+                    </ul>
+                <li>Table</li>
+                    <ul>
+                        <li>Example:</li>
+                            <pre>
+                                <code>
+    &lt;table>
+        &lt;thead>
+            &lt;tr>
+                &lt;th colspan="2">Expenses&lt;/th>
+            &lt;/tr>
+            &lt;tr>
+                &lt;th>Category&lt;/th>
+                &lt;th>Amount&lt;/th>
+            &lt;/tr>
+        &lt;/thead>
+        &lt;tbody>
+            &lt;tr>
+                &lt;td>Marketing&lt;/td>
+                &lt;td>$ 500&lt;/td>
+            &lt;/tr>
+            &lt;tr>
+                &lt;td>Accounting&lt;/td>
+                &lt;td>$ 200&lt;/td>
+            &lt;/tr>
+        &lt;/tbody>
+        &lt;tfoot>
+            &lt;tr>
+                &lt;th>Total&lt;/th>
+                &lt;th>$ 700&lt;/th>
+            &lt;/tr>
+        &lt;/tfoot>
+    &lt;/table>
+                                </code>
+                            </pre>
+                    </ul>
+                <li>Container</li>
+                    <ul>
+                        <li>The most common containers are &lt;div> and &lt;span> elements.</li>
+                        <li>div is block-element whereas span is inline-element.</li>
+                        <li>Block-level element always starts on a new line, and 
+                            fill up the entire available space. You may set the width through CSS to reduce its width.
+                        </li>
+                        <li>Inline element only takes up the width it needs.</li>
+                        <li>div and span are general purpose containers. Other than general purpose containers,
+                            there are also semantic elements which make the elements more descriptive.
+                        </li>
+                            <ul>
+                                <li>&lt;article></li>
+                                <li>&lt;figure></li>
+                                <li>&lt;mark></li>
+                                <li>&lt;time></li>
+                            </ul>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+
+            <h2>CSS Notes</h2>
+            <ul>
+                <li>Basics</li>
+                    <ul>
+                        <li>We can define CSS style for a tag.</li>
+                        <li>We can define the CSS style of a class using . (dot)</li>
+                        <li>We can define the CSS style of an element with id using #</li>
+                        <li>We can refer to a specifc class of a specifc tag by using dot when defining
+                            the css style, for example, div.product is applicable to all divs with product class.
+                        </li>
+                        <li>To embed css style:</li>
+                            <ol>
+                                <li>Move all styles definition into a .css file</li>
+                                <li>Add this line into head of html: &lt;link rel="stylesheet" href="styles.css"/></li>
+                            </ol>
+                        <li>Normalizing css</li>
+                            <ul>
+                                <li>HTML is rendered differently in different browsers. To address this problem,
+                                    there is a css file called <a href="https://necolas.github.io/normalize.css/" target="_blank" rel="noopener noreferer">
+                                        normalize.css</a>
+                                </li>
+                                <li>Simply link the normalize.css file into your html file to use it.</li>
+                            </ul>
+                    </ul>
+                <li>img</li>
+                    <ul>
+                        <li>object-fit</li>
+                            <ul>
+                                <li>To fit image into a fixed width and height.</li>
+                                <li>Example of options are: scale-down, cover, fill</li>
+                            </ul>
+                    </ul>
+                <li>list</li>
+                    <ul>
+                        <li>list-style-types</li>
+                            <ul>
+                                <li>square</li>
+                            </ul>
+                    </ul>
+                <li>table</li>
+                    <ul>
+                        <li>border: line-width line-type line-color</li>
+                        <li>border-collapse: collapse</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
         </div>
     </div>
 </div>
