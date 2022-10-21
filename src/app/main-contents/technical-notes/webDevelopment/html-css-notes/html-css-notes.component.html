@@ -18,8 +18,7 @@
             </ul>
             <mat-divider></mat-divider>
 
-            <h2>HTML Notes</h2>
-            <h3>Basics</h3>
+            <h2>HTML Basics</h2>
             <ul>
                 <li>The <span class="script-font">&lt;!DOCTYPE html></span> at first line of html file tells browser that 
                 it is a HTML file.</li>
@@ -177,7 +176,7 @@
             </ul>
             <mat-divider></mat-divider>
 
-            <h2>CSS Notes</h2>
+            <h2>CSS Basics</h2>
             <ul>
                 <li>Basics</li>
                     <ul>
@@ -302,6 +301,44 @@
                     <ul>
                         <li>border: line-width line-type line-color</li>
                         <li>border-collapse: collapse</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+
+            <h2>Layouts</h2>
+            <ul>
+                <li>Box Model</li>
+                    <ul>
+                        <li>Content, Padding, Border, Margin:</li>
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="https://qph.cf2.quoracdn.net/main-qimg-d424c463fabd68e11736d4a7f09a14ce-pjlq" width="60%">
+                                <span style="font-style: italic;">Source of image: https://www.quora.com/What-are-the-differences-between-margin-and-padding</span>
+                            </div>
+                        <li>Sizing Elements</li>
+                            <li>Imagine if you define the following html and css:</li>
+                                <pre>
+                                    <code>
+    &lt;div class="box">&lt;/div>
+
+    .box &#123;
+        height: 100px;
+        width: 100px;
+        background-color: purple;
+        padding: 20px;
+        border: 10 px solid black;
+    }
+                                    </code>
+                                </pre>
+                                You will get a div box with size greater than 100x100.
+                            <li>This is because the default box-sizing attribute is content-box, so the height
+                                and weight only consider the content.
+                            </li>
+                            <li>To make the entire box including padding and border to be within 100px x 100px, 
+                                simply set the box-sizing attribute to border-box.
+                            </li>
+                            <li>Take note that if you use inline element (such as span), inline elements dont respect 
+                                width and height. You need to change the display attribute from 'inline' to 'inline-block'
+                            </li>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
