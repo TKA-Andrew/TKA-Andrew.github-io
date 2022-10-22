@@ -81,7 +81,7 @@
                     <ul>
                         <li>href can be used for relative or absolute reference to html files</li>
                         <li>href can also be used to "scroll" to another fragment.</li>
-                        <li>Adding "download" attribute to a hyperlink of an image can also make it downloadable.</li>
+                        <li>Adding "download" property to a hyperlink of an image can also make it downloadable.</li>
                         <li>Example:
                             <pre>
                                 <code>
@@ -102,13 +102,13 @@
                     <ul>
                         <li>You may get free images from unslash.com</li>
                         <li>You may get free videos from pexels.com</li>
-                        <li>To include video in your html, use &lt;video> tag, and you can use these attributes also:</li>
+                        <li>To include video in your html, use &lt;video> tag, and you can use these properties also:</li>
                             <ul>
                                 <li>controls</li>
                                 <li>autoplay</li>
                                 <li>loop</li>
                             </ul>
-                        <li>For audio, use &lt;audio>, it has the same attributes as video tag as well.</li>
+                        <li>For audio, use &lt;audio>, it has the same properties as video tag as well.</li>
                     </ul>
                 <li>List</li>
                     <ul>
@@ -194,7 +194,7 @@
                                     <ul>
                                         <li>For example: p.product_description &#123; color: grey }</li>
                                     </ul>
-                                <li>attribute</li>
+                                <li>property</li>
                                     <ul>
                                         <li>For example: a[href^="https"][href$=".com"] &#123; color: blue } </li>
                                     </ul>
@@ -220,7 +220,7 @@
                         <li>The level of selector specificity (Weight) is arranged as follows, from highest to lowest:</li>
                             <ol>
                                 <li>ID Selector</li>
-                                <li>Class & Attribute Selectors</li>
+                                <li>Class & property Selectors</li>
                                 <li>Element Selectors</li>
                             </ol>
                         <li>The level of specificity can be higher by combining the types of selectors. For example:
@@ -314,31 +314,334 @@
                                 <img src="https://qph.cf2.quoracdn.net/main-qimg-d424c463fabd68e11736d4a7f09a14ce-pjlq" width="60%">
                                 <span style="font-style: italic;">Source of image: https://www.quora.com/What-are-the-differences-between-margin-and-padding</span>
                             </div>
-                        <li>Sizing Elements</li>
-                            <li>Imagine if you define the following html and css:</li>
-                                <pre>
-                                    <code>
+                    </ul>
+                <li>Sizing Elements</li>
+                    <ul>
+                        <li>Imagine if you define the following html and css:</li>
+                            <pre>
+                                <code>
     &lt;div class="box">&lt;/div>
 
     .box &#123;
         height: 100px;
         width: 100px;
         background-color: purple;
-        padding: 20px;
+        padding: 20px 10px 20px 10px; /*top right bottom left*/
         border: 10 px solid black;
     }
-                                    </code>
-                                </pre>
-                                You will get a div box with size greater than 100x100.
-                            <li>This is because the default box-sizing attribute is content-box, so the height
-                                and weight only consider the content.
-                            </li>
-                            <li>To make the entire box including padding and border to be within 100px x 100px, 
-                                simply set the box-sizing attribute to border-box.
-                            </li>
-                            <li>Take note that if you use inline element (such as span), inline elements dont respect 
-                                width and height. You need to change the display attribute from 'inline' to 'inline-block'
-                            </li>
+                                </code>
+                            </pre>
+                            You will get a div box with size greater than 100x100.
+                        <li>This is because the default box-sizing property is content-box, so the height
+                            and weight only consider the content.
+                        </li>
+                        <li>To make the entire box including padding and border to be within 100px x 100px, 
+                            simply set the box-sizing property to border-box.
+                        </li>
+                        <li>Take note that if you use inline element (such as span), inline elements dont respect 
+                            width and height. You need to change the display property from 'inline' to 'inline-block'
+                        </li>
+                    </ul>
+                <li>Overflow</li>
+                    <ul>
+                        <li>Overflow happens when your content is bigger than your container.</li>
+                        <li>The default value of overflow property is visible.</li>
+                        <li>Some other options of values:</li>
+                            <ul>
+                                <li>hidden</li>
+                                    <ul>
+                                        <li>hide all overflow content</li>
+                                    </ul>
+                                <li>scroll</li>
+                                    <ul>
+                                        <li>display a scroll bar no matter there is overflow or not</li>
+                                    </ul>
+                                <li>auto</li>
+                                    <ul>
+                                        <li>only display scrollbar when there is overflow</li>
+                                    </ul>
+                            </ul>
+                        <li>You can control the overflow in 2 directions using overflow-x and overflow-y.</li>
+                    </ul>
+                <li>Measurement units</li>
+                    <ul>
+                        <li>Absolute measurement units</li>
+                            <ul>
+                                <li>px</li>
+                                <li>pt</li>
+                                <li>in</li>
+                                <li>cm</li>
+                                <li>mm</li>
+                            </ul>
+                        <li>Relative measurement units</li>
+                            <ul>
+                                <li>%</li>
+                                    <ul>
+                                        <li>relative to the size of the container</li>
+                                    </ul>
+                                <li>vw</li>
+                                    <ul>
+                                        <li>relative to the viewport</li>
+                                    </ul>
+                                <li>vh</li>
+                                    <ul>
+                                        <li>relative to the viewport</li>
+                                    </ul>
+                                <li>em</li>
+                                    <ul>
+                                        <li>Relative to parent element's font size</li>
+                                        <li>10em means 10 times of font size</li>
+                                    </ul>
+                                <li>rem</li>
+                                    <ul>
+                                        <li>Relative to root(HTML)font size</li>
+                                        <li>So if you wish to scale the element's size based on the root size, no matter what the parent size is, use REM.</li>
+                                    </ul>
+                            </ul>
+                        <li>By default, the body element is block element, and hence it always
+                            take up 100% width of the browser. BUT take note that, the body
+                            element does not have a height property, and hence by default the 
+                            height of body is zero. HENCE, if you want to do something relative
+                            to view port (the visible area of a webpage), you should use vw and vh.
+                        </li>
+                    </ul>
+                <li>Positioning</li>
+                    <ul>
+                        <li>By default, the value of position property is 'static', means they are not positioned.</li>
+                        <li>Other options of position property:</li>
+                            <ul>
+                                <li>relative</li>
+                                    <ul>
+                                        <li>Relative to its normal position (its static position)</li>
+                                        <li>Then, you can start to set left, right, top, bottom properties</li>
+                                        <li>The positions of other elements will not be affected by this element.</li>
+                                    </ul>
+                                <li>absolute</li>
+                                    <ul>
+                                        <li>Relative to the parent.</li>
+                                        <li>If one of your elements want to be absolute, your parent container should 
+                                            set the position property to be relatives.
+                                        </li>
+                                        <li>If a container contains an element with absolute positioning, from the 
+                                            container's point of view, the absolute element does not exist. And hence,
+                                            the absolute positioned element's positioning is relative to parent container.
+                                        </li>
+                                    </ul>
+                                <li>fixed</li>
+                                    <ul>
+                                        <li>Relative to view port</li>
+                                        <li>Hence, to have a navigation bar that is always stay on top of view port:</li>
+                                            <pre>
+                                                <code>
+    .navigation-bar &#123;
+        position: fixed;
+        top: 0;
+    }
+                                                </code>
+                                            </pre>
+                                        <li>If you set width and height to auto, the browser will decide its
+                                            width and height.
+                                        </li>
+                                    </ul>
+                            </ul>
+                        <li>By default, z-index value is 0. Setting it to higher value means it will
+                            be "closer" to us, it can be negative value also.
+                        </li>
+                    </ul>
+                <li>Floating elements</li>
+                    <ul>
+                        <li>float property</li>
+                            <ul>
+                                <li>By setting an element to float, for example 'float: left;', it will make that element
+                                    float to left side of the container. And then all the subsequent elements will float
+                                    around it.
+                                </li>
+                                <li>However, take note that parent elements dont see floating elements.</li>
+                            </ul>
+                        <li>clear property</li>
+                            <ul>
+                                <li>clear property can be used to clear floats.</li>
+                                <li>A typical use ase is as below:</li>
+                                    <pre>
+                                        <code>
+    &lt;article class="tweet clearfix">
+        &lt;div class="avatar">&lt;/div>
+        &lt;p>Lorem ipsum dolor sit amet.&lt;/p>
+    &lt;/article>
+
+    .clearfix::after &#123;
+        content: '';
+        display: block;
+        clear: both;
+    }
+                                        </code>
+                                    </pre>
+                            </ul>
+                    </ul>
+                <li>Flexbox (Flexible Box Layout)</li>
+                    <ul>
+                        <li>Used for laying out elements in one direction (row or column).</li>
+                        <li>To use flexbox, you need to set <span class="script-font">display: flex;</span> for the parent element.</li>
+                        <li>Even though we set <span class="script-font">display: flex;</span>, the container is still
+                            a block-level element.</li>
+                        <li>You can use flex-direction to control the direction, by default it is row.</li>
+                        <li>To use flexbox, you must know the flexbox axes:</li>
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <img src="https://samanthaming.gumlet.io/flexbox30/4-flexbox-axes.jpg.gz" width="60%">
+                                <span style="font-style: italic;">Source of image: https://www.samanthaming.com/flexbox30/4-flexbox-axes/</span>
+                            </div>
+                        <li>justify-content property</li>
+                            <ul>
+                                <li>To align item along the <b>main</b> axis</li>
+                                <li>Default value: flex-start</li>
+                            </ul>
+                        <li>align-items property</li>
+                            <ul>
+                                <li>To align item along the <b>cross</b> axis</li>
+                                <li>Default value: flex-start</li>
+                            </ul>
+                        <li>flex-wrap property</li>
+                            <ul>
+                                <li>Take note that, let's say you have a flex container and it contains multiple boxes, 
+                                    even if you set the width property of the boxes, their width will be modified to ensure
+                                    all the elements fit in one line.</li>
+                                <li>The default value of flex-wrap is nowrap</li>
+                                <li>If you set <span class="script-font">flex-wrap: wrap;</span>, then 
+                                    the items in the flex container can keep their own width and height.</li>
+                            </ul>
+                        <li>align-content property</li>
+                            <ul>
+                                <li>This property only works if you have multiple lines in a flex container.</li>
+                                <li>When you have multiple lines in a flex container, for example due to flex-wrap,
+                                    you can use align-content to align all the lines as a whole.
+                                </li>
+                            </ul>
+                        <li>align-self and justify-self property</li>
+                            <ul>
+                                <li>If you want override the align-items or justify-content property
+                                    set by parent container, you can use align-self or justify-self.
+                                </li>
+                            </ul>
+                        <li>Sizing items:</li>
+                            <ul>
+                                <li>The following properties can be used to size items (cannot be used for container)</li>
+                                    <ul>
+                                        <li>flex-basis property</li>
+                                            <ul>
+                                                <li>Default value is auto, which means browser sets the width and height
+                                                    based on the width and height properties.
+                                                </li>
+                                                <li>This will override width or height based on the flex main-axis:</li>
+                                                    <ul>
+                                                        <li>If flex-direction is set to row, it overrides the width</li>
+                                                        <li>If flex-direction is set to column, it overrides the height</li>
+                                                    </ul>
+                                            </ul>
+                                        <li>flex-grow property</li>
+                                            <ul>
+                                                <li>This determines the grow factor.</li>
+                                            </ul>
+                                        <li>flex-shrink property</li>
+                                            <ul>
+                                                <li>This determines the shrink factor.</li>
+                                            </ul>
+                                        <li>flex property</li>
+                                            <ul>
+                                                <li>It is a combination of flex-grow, flex-shrink and flex-basis.</li>
+                                            </ul>
+                                    </ul>
+                            </ul>
+                    </ul>
+                <li>Grid</li>
+                    <ul>
+                        <li>Flexbox allows us to lay out elements in a row or a column.</li>
+                        <li>Grid allows us to lay out elements in both rows and columns.</li>
+                        <li>To use grid, you need to set <span class="script-font">display: grid;</span> for the parent element.</li>
+                        <li>grid-template-rows</li>
+                            <ul>
+                                <li>To define the height of each grid row.</li>
+                                <li>For example: <span class="script-font">grid-template-rows: 100px 100px 100px;</span>
+                                    will define that there will be 3 rows in the grid, and each of them is 100px height.</li>
+                                <li></li>
+                            </ul>
+                        <li>grid-template-columns</li>
+                        <li>justify-items property</li>
+                            <ul>
+                                <li>To align items in <b>each grid cell</b> along the <b>horizontal</b> axis</li>
+                                <li>Default value is stretch, but it will not be applied if the item has already defined
+                                    height and width.
+                                </li>
+                            </ul>
+                        <li>align-items property</li>
+                            <ul>
+                                <li>To align items <b>in each grid cell</b> along the <b>vertical</b> axis</li>
+                                <li>Default value is stretch, but it will not be applied if the item has already defined
+                                    height and width.
+                                </li>
+                            </ul>
+                        <li>justify-content property</li>
+                            <ul>
+                                <li>To align the <b>entire grid</b> along the <b>horizontal</b> axis</li>
+                            </ul>
+                        <li>align-content property</li>
+                            <ul>
+                                <li>To align the <b>entire grid</b> along the <b>vertical</b> axis</li>
+                            </ul>
+                        <li>fr measurement unit</li>
+                            <ul>
+                                <li>Grid layout has a special relative measurement unit called 'fr', it is called fraction.</li>
+                                <li>Unlike % which is relative to the size of container, fr is relative to the size of
+                                    the remaining space.
+                                </li>
+                                <li>For example, if width of container is 200px, and the <span class="script-font">grid-template-columns: 100px 20fr 80fr</span>
+                                    means the width of second column will be 20px and width of third column will be 80px.
+                                </li>
+                                <li>Other than fr, we can also use auto to let the browser automatically fill up 
+                                    the remaining space.
+                                </li>
+                            </ul>
+                        <li>row-gap and column-gap properties</li>
+                            <ul>
+                                <li>To adjust the gaps between grid cells</li>
+                            </ul>
+                        <li>grid-column and grid-row properties</li>
+                            <ul>
+                                <li>To implicitly place the item at specific row and column.</li>
+                                <li>By default, each item takes only one cell.</li>
+                                <li>If you want it to take more than one cell, use span. 
+                                    For example: <span class="script-font">grid-column: 1 / span 2</span>
+                                </li>
+                            </ul>
+                        <li>grid-template-areas and grid-area properties</li>
+                            <ul>
+                                <li>With grid-template-areas, we can give names to each grid cell.
+                                    For example:
+                                </li>
+                                    <pre>
+                                        <code>
+    grid-template-areas: 
+        "header     header"
+        "sidebar    main"
+        "footer     footer";
+                                        </code>
+                                    </pre>
+                                <li>With the names defined, you can now use grid-area property to place it 
+                                    in named areas. For example: <span class="script-font">grid-area: footer</span>
+                                </li>
+                            </ul>
+                    </ul>
+                <li>Hiding elements</li>
+                    <ul>
+                        <li>Using display property:</li>
+                            <ul>
+                                <li>If you set <span class="script-font">display: none;</span>, no 
+                                    space will be allocated for the item and it will not be displayed as well.</li>
+                            </ul>
+                        <li>Using visibility property:</li>
+                            <ul>
+                                <li>If you set <span class="script-font">visibility: hidden;</span>, the 
+                                    space will still be allocated for the item, but it is just not visible.</li>
+                            </ul>
                     </ul>
             </ul>
             <mat-divider></mat-divider>
