@@ -643,6 +643,29 @@
                                     space will still be allocated for the item, but it is just not visible.</li>
                             </ul>
                     </ul>
+                <li>Media Queries</li>
+                    <ul>
+                        <li>When designing responsive web, normally people prefer to build the mobile
+                            version first, then only do adjustment for desktop version.
+                        </li>
+                        <li>With media queries, we can set different class style based on width and height.</li>
+                        <li>For example:</li>
+                            <pre>
+                                <code>
+    .responsive-container &#123;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    @media screen and (min-width: 800px) &#123;
+        .responsive-container &#123;
+            flex-direction: row;
+        }
+    }
+                                </code>
+                            </pre>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
