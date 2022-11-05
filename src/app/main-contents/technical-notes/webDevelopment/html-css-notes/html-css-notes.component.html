@@ -668,6 +668,146 @@
                     </ul>
             </ul>
             <mat-divider></mat-divider>
+
+            <h2>Typography</h2>
+            <ul>
+                <li>3 main types of fonts:</li>
+                    <ul>
+                        <li>Serif</li>
+                            <ul>
+                                <li>More professional and serious</li>
+                                <li>Examples:</li>
+                                    <ul>
+                                        <li>Times New Roman</li>
+                                    </ul>
+                            </ul>
+                        <li>Sans-serif</li>
+                            <ul>
+                                <li>More playful and modern</li>
+                                <li>Examples:</li>
+                                    <ul>
+                                        <li>Arial</li>
+                                        <li>Roboto</li>
+                                    </ul>
+                            </ul>
+                        <li>Monospace</li>
+                            <ul>
+                                <li>Ideal for displaying code</li>
+                                <li>Examples:</li>
+                                    <ul>
+                                        <li>Courier</li>
+                                        <li>Ubuntu</li>
+                                        <li>Consolas</li>
+                                    </ul>
+                            </ul>
+                    </ul>
+                <li>Web Safe Fonts</li>
+                    <ul>
+                        <li>Web Safe Fonts are fonts that are available on most computers out there.</li>
+                        <li></li>
+                    </ul>
+                <li>Font Stack</li>
+                    <ul>
+                        <li>A font stack consists of multiple fonts, and it will try to use the first font
+                            in the stack if it is available, else it will look for the next one. The last one
+                            in the stack should be a generic font type, such as serif, sans-serif or monospace.
+                        </li>
+                        <li>Example of setting font-family using font stack:</li>
+                            <pre>
+                                <code>
+    font-family: Georgia, 'Times New Roman', serif;
+                                </code>
+                            </pre>
+                    </ul>
+                <li>font-weight</li>
+                    <ul>
+                        <li>Range is between 100 - 900</li>
+                        <li>normal = 400</li>
+                        <li>bold = 700</li>
+                    </ul>
+                <li>font-size</li>
+                    <ul>
+                        <li>The common best practice of setting font size is by setting it relative to 
+                            root font size by using 'rem'. This applies to margin etc as well.
+                        </li>
+                        <li>This is so that we can easily scale the font size according to different 
+                            screen size. For example:
+                        </li>
+                            <pre>
+                                <code>
+    body &#123;
+        font-size: 1rem;
+    }
+    h1 &#123;
+        font-size: 2rem;
+    }
+    @media screen and (min-width: 400px) &#123;
+        html &#123;
+            font-size: 130%;
+        }
+    }
+                                </code>
+                            </pre>
+                    </ul>
+                <li>line-height</li>
+                    <ul>
+                        <li>The general rule of thumb is to set the line-height to 1.5 times of font-size.</li>
+                        <li>To make it always relative to font size, no matter how we change the 
+                            font size, we can just set it to 1.5, without px without rem etc.
+                        </li>
+                            <pre>
+                                <code>
+    body &#123;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+                                </code>
+                            </pre>
+                    </ul>
+                <li>text-align</li>
+                    <ul>
+                        <li>options: left, right, center, justify</li>
+                    </ul>
+                <li>text-indent</li>
+                    <ul>
+                        <li>This is to add indentation to the first line of our text.</li>
+                    </ul>
+                <li>text-decoration</li>
+                    <ul>
+                        <li>options: underline, line-through</li>
+                    </ul>
+                <li>text-transform</li>
+                    <ul>
+                        <li>options: capitalize, lowercase, uppercase</li>
+                    </ul>
+                <li>splitting text to columns</li>
+                    <ul>
+                        <li>Example:</li>
+                            <pre>
+                                <code>
+    p &#123;
+        column-count: 2;
+        column-gap: 1rem;
+        column-rule: 3px dotted #999;
+    }
+                                </code>
+                            </pre>
+                    </ul>
+                <li>setting nowrap to long text and shows "..." at the end</li>
+                    <ul>
+                        <li>Example:</li>
+                            <pre>
+                                <code>
+    p &#123;
+        white-space: nowrap;
+        border: solid;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+                                </code>
+                            </pre>
+                    </ul>
+            </ul>
         </div>
     </div>
 </div>
