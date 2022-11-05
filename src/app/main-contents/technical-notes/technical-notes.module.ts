@@ -52,6 +52,7 @@ import { PythonNotesComponent } from './coding/python-notes/python-notes.compone
 import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
 import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
 import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
+import { CodingMathComponent } from './miscellaneous/coding-math/coding-math.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-
     PythonNotesComponent,
     UnixNotesComponent,
     DjangoNotesComponent,
-    HtmlCssNotesComponent],
+    HtmlCssNotesComponent,
+    CodingMathComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

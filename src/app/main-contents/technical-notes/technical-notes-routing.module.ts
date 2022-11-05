@@ -39,6 +39,7 @@ import { PythonNotesComponent } from './coding/python-notes/python-notes.compone
 import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.component';
 import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
 import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
+import { CodingMathComponent } from './miscellaneous/coding-math/coding-math.component';
 
 const routes: Routes = [{
   path:'',
@@ -195,6 +196,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/networkingNotes',
       component: NetworkingNotesComponent
+    },
+    {
+      path: 'miscellaneuos/codingMath',
+      component: CodingMathComponent
     }
   ]
 }];

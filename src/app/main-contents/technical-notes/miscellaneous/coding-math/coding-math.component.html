@@ -1,0 +1,139 @@
+<div class="flexContainer">
+    <div fxLayout="column">
+        <div>
+            <h1>Coding Math Notes</h1>
+            <h2>Introduction</h2>
+            <ul>
+                <li>The main reference of content here is from <a href="https://www.youtube.com/user/codingmath" target="_blank" rel="noopener noreferrer">this YouTube channel</a>.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h2>Collision Detection / Hit-test</h2>
+
+            <h3>Collision between two circles</h3>
+            <img style="width: 40%;" src="assets/images/codingMath/collisionBetweenTwoCircles.png">
+            <p><span class="CLI-font">return d &lt;= r1 + r2</span></p>
+            
+            <h3>Collision between a circle and a point</h3>
+            <img style="width: 40%;" src="assets/images/codingMath/collisionBetweenPointAndCircle.png">
+            <p><span class="CLI-font">return d &lt;= r</span></p>
+
+            <h3>Collision between a rectangle and a point</h3>
+            <img style="width: 40%;" src="assets/images/codingMath/collisionBetweenPointAndRectangle.png">
+            <p><span class="CLI-font">return x1 &lt;= x2 &lt;= (x1+width) && y1 &lt;= y2 &lt;= (y1+height)</span></p>
+
+            <h3>Range Intersect</h3>
+            <img style="width: 80%;" src="assets/images/codingMath/rangeIntersect.png">
+            <p><span class="CLI-font">return max0 >= min1 && min0 &lt;= max1</span></p>
+            
+            <h3>Collision between two rectangles</h3>
+            <img style="width: 40%;" src="assets/images/codingMath/collisionBetweenTwoRectangles.png">
+            <p><span class="CLI-font">return rangeIntersect(x1, x1+width, x2, x2+width) && 
+                rangeIntersect(y1, y1+width, y2, y2+height)
+            </span></p>
+
+            <h3>Collision between two segments</h3>
+            <img style="width: 40%;" src="assets/images/codingMath/segmentIntersect01.png">
+            <img style="width: 60%;" src="assets/images/codingMath/segmentIntersect02.png">
+            <pre>
+                <code>
+    function segmentIntersect(segment1, segment2) &#123;
+        let p0 = segment1.get_p1();
+        let p1 = segment1.get_p2();
+        let p2 = segment2.get_p1();
+        let p3 = segment2.get_p2();
+        let A1 = p1.y - p0.y;
+        let B1 = p0.x - p1.x;
+        let C1 = A1 * p0.x + B1 * p0.y;
+        let A2 = p3.y - p2.y;
+        let B2 = p2.x - p3.x;
+        let C2 = A2 * p2.x + B2 * p2.y;
+        let denominator = A1 * B2 - A2 * B1;
+
+        if (denominator === 0) &#123;
+            return null;
+        }
+
+        let intersectX = (B2 * C1 - B1 * C2) / denominator;
+        let intersectY = (A1 * C2 - A2 * C1) / denominator;
+        let rx0 = (intersectX - p0.x) / (p1.x - p0.x); // ratio
+        let ry0 = (intersectY - p0.y) / (p1.y - p0.y); // ratio
+        let rx1 = (intersectX - p2.x) / (p3.x - p2.x); // ratio
+        let ry1 = (intersectY - p2.y) / (p3.y - p2.y); // ratio
+
+        if (((rx0 >= 0 && rx0 lt;= 1) || (ry0 >= 0 && ry0 lt;= 1)) &&
+            ((rx1 >= 0 && rx1 lt;= 1) || (ry1 >= 0 && ry1 lt;= 1))) &#123;
+            return &#123;
+                x: intersectX,
+                y: intersectY
+            }
+        } else &#123;
+            return null;
+        }
+    }
+                </code>
+            </pre>
+        </div>
+
+        <div>
+            <h2>Shapes / Lines</h2>
+            <h3>Quadriterals</h3>
+            <img style="width: 80%;" src="assets/images/codingMath/quadriterals.png">
+            <ul>
+                <li>Given 4 points, how to draw quadriterals with largest area?</li>
+                    <ul>
+                        <li>We need to use the solution of <a href="https://leetcode.com/problems/erect-the-fence/"
+                            target="_blank" rel="noopener noreferrer">LeetCode 587: Erect the Fence</a></li>
+                    </ul>
+            </ul>
+
+            <h3>Bezier Curves</h3>
+            <h4>Quadratic Bezier Curve</h4>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/B%C3%A9zier_2_big.gif">
+                <span style="font-style: italic;">Source of image: https://en.wikipedia.org/wiki/B%C3%A9zier_curve</span>
+            </div>
+            <pre>
+                <code>
+    quadraticBezier: function (p0, p1, p2, t) &#123;
+        let pFinal = &#123;};
+        pFinal.x = Math.pow(1 - t, 2) * p0.x +
+            (1 - t) * 2 * t * p1.x +
+            t * t * p2.x;
+            
+            pFinal.y = Math.pow(1 - t, 2) * p0.y +
+            (1 - t) * 2 * t * p1.y +
+            t * t * p2.y;
+            
+            return pFinal;
+        },                
+    </code>
+</pre>
+<h4>Cubic Bezier Curve</h4>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/B%C3%A9zier_3_big.gif">
+    <span style="font-style: italic;">Source of image: https://en.wikipedia.org/wiki/B%C3%A9zier_curve</span>
+</div>
+<pre>
+    <code>
+        cubicBezier: function (p0, p1, p2, p3, t) &#123;
+        let pFinal = &#123;};
+        pFinal.x = Math.pow(1 - t, 3) * p0.x +
+            Math.pow(1 - t, 2) * 3 * t * p1.x +
+            (1 - t) * 3 * t * t * p2.x +
+            t * t * t * p3.x;
+        pFinal.y = Math.pow(1 - t, 3) * p0.y +
+            Math.pow(1 - t, 2) * 3 * t * p1.y +
+            (1 - t) * 3 * t * t * p2.y +
+            t * t * t * p3.y;
+
+        return pFinal;
+    },
+                </code>
+            </pre>
+
+        </div>
+    </div>
+</div>
