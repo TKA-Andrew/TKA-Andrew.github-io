@@ -7,6 +7,8 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('how-web-works')">How the Web works</button>
+            <button mat-button class="listItem" (click)="scrollTo('AJAX')">What is AJAX?</button>
+            <button mat-button class="listItem" (click)="scrollTo('jQuery')">What is jQuery?</button>
             <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
             <button mat-button class="listItem" (click)="scrollTo('nodeJS')">Node.js</button>
             <button mat-button class="listItem" (click)="scrollTo('esModules')">ES Modules</button>
@@ -79,6 +81,70 @@
                         </li>
                     </ul>
             </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div id="AJAX">
+            <h2><a href="https://www.w3schools.com/jquery/jquery_ajax_intro.asp"
+                target="_blank" rel="noopener noreferrer">What is AJAX?</a></h2>
+            <ul>
+                <li>With jQuery, you may not need to learn XML AJAX.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div id="jQuery">
+            <h2>What is jQuery?</h2>
+            <ul>
+                <li>jQuery is a lightweight, "write less, do more" Javascript library.</li>
+                <li>jQuery is the most-know skill after having a basic knowledge about HTML and CSS.</li>
+                <li>jQuery is so useful that it has the folloing features:</li>
+                    <ul>
+                        <li>HTML/DOM manipulation</li>
+                            <pre>
+                                <code>
+    // FOR EXAMPLE
+    $("p").append("Some appended text.");
+    $(".productDescription").prepend("Some prepended text.");
+                                </code>
+                            </pre>
+                        <li>CSS manipulation</li>
+                        <pre>
+                            <code>
+    // FOR EXAMPLE
+    $("#pageTitle").css(&#123;"color": "black", "font-style": "italic", "font-weight": "bold"});
+                            </code>
+                        </pre>
+                        <li>HTML event methods</li>
+                            <pre>
+                                <code>
+    // FOR EXAMPLE
+    $("#button1").click(function() &#123;
+        $("#div1").toggle();
+    })
+                                </code>
+                            </pre>
+                        <li>Effects and animation</li>
+                            <pre>
+                                <code>
+    // FOR EXAMPLE
+    $("#div1").slideUp();
+    $("#div2").animate(&#123;height: '300px', opacity: '0.5'}, "slow");
+                                </code>
+                            </pre>
+                        <li>AJAX</li>
+                            <pre>
+                                <code>
+    // FOR EXAMPLE
+    $("#div1").load("demo_test.txt");
+                                </code>
+                            </pre>
+                        <li>Utilities</li>
+                    </ul>
+                <li>Recommended to go through <a href="https://www.w3schools.com/jquery/default.asp"
+                    target="_blank" rel="noopener noreferrer">W3 Schools jQuery Tutorial</a>.</li>
+            </ul>
+            <mat-divider></mat-divider>
         </div>
 
         <div id="difference">
