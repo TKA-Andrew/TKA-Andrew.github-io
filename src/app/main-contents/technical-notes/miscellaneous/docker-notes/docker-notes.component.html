@@ -7,11 +7,18 @@
             <ul>
                 <li>https://www.simplilearn.com/tutorials/docker-tutorial/getting-started-with-docker?source=sl_frs_nav_playlist_video_clicked</li>
                 <li>https://www.youtube.com/watch?v=3c-iBn73dDE</li>
+                <li>https://codewithmosh.com/p/the-ultimate-docker-course</li>
             </ul>
         <h3>What is Docker?</h3>
         <ul>
             <li>Docker is an OS-level virtualization software platform that enables users to create, deploy and run applications in a Docker Container.</li>
             <li>A Docker Container is a light-weight software package that includes all the dependencies(framework, libraries, etc) required to execute an applicaiton.</li>
+            <li>Hence, Docker is a platform for building, running and shipping applications in a consistent manner. (If your application
+                can work on your development machine, it can work the same way on the other machines)
+            </li>
+            <li>With isolated environment, multiple applications are allowed to use different versions of 
+                dependencies side by side.
+            </li>
             <li>Docker is so popular today that “Docker” and “containers” are used interchangeably.</li>
         </ul>
         <h3>What is a Container?</h3>
@@ -61,6 +68,147 @@
                 <td>host OS dependent (need to check system requirement)</td>
             </tr>
         </table>
+        <mat-divider></mat-divider>
+
+        <h3>Dockerfile vs Docker Image vs Docker Container</h3>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://miro.medium.com/max/1079/1*3ds-PdxGGMN-ZzJH95_lsA.png" width="80%">
+            <span style="font-style: italic;">Source of image: https://bikramat.medium.com/docker-objects-e561f0ce3365</span>
+        </div>
+        <mat-divider></mat-divider>
+
+        <h3>Miscellaneous Notes</h3>
+        <ul>
+            <li>By default, the <span class="script-font">FROM</span> command will pull images from Docker Hub.
+                For example: <span class="script-font">FROM node:19.1.0-alpine3.16</span><br>
+                However, we can also pull container images from other Container Registry by providing full url.
+                <a href="https://github.com/dotnet/dotnet-docker/blob/main/samples/host-aspnetcore-https.md"
+                target="_blank" rel="noopener noreferrer">For example</a>.</li>
+            <li>By default, Docker uses the 'latest' tag if you didnt specify one. For production release,
+                it is better to specify a specific tag for your base Docker image.
+            </li>
+            <li>Normally you will see for each container image, for each tag, under it there are several items, each
+                of them are built for different CPU architecture. But don't worry, when you pull the image, it 
+                will automatically download the right Docker image for your CPU architecture.
+                <img style="width: 90%;" src="assets/images/DockerNotes/dockernotes_02.png">
+            </li>
+            <li>Alpine images are normally small, but it does not come with bash, and it comes with shell instead.
+                So for example if you want to run shell script in interactive mode: <span class="CLI-font">docker
+                run -t your-node-docker-image sh
+                </span>
+            </li>
+            <li>Alpine images do not come with 'apt' also, it uses 'APK' instead.</li>
+            <li><span class="script-font">WORKDIR</span> is kind of like 'cd' where it determines where do the rest
+                of the commands will be executed.</li>
+            <li>Example usage of <span class="script-font">COPY</span>:</li>
+                <ul>
+                    <li class="script-font">COPY ["README.md", "package.json", "/app/"]</li>
+                    <li class="script-font">COPY README.md package.json /app/</li>
+                    <li class="script-font">COPY package*.json .</li>
+                    <li class="script-font">COPY . .</li>
+                </ul>
+            <li>Take note that when we specify more than one source files to be copied, the destination must be an 
+                absolute directory.
+            </li>
+            <li>The strings we copied are transferred through network, so we should try to avoid copying unnecessary
+                items.
+            </li>
+            <li>To exclude some file or directories, simply add an .dockerignore file and list out the files and directories to be excluded.</li>
+            <li><span class="script-font">RUN</span> command can be used to execute commands that we normally run on terminal sessions. For example:
+                <span class="script-font">RUN npm install</span></li>
+            <li><span class="script-font">ENV</span> command can be used to set environment variable for that container,
+                for example: <span class="script-font">ENV API_URL=http://api.myapp.com/</span></li>
+            <li><span class="script-font">EXPOSE</span> command can be used to 'indicate' what port the container will
+                be listening on. For example: <span class="script-font">EXPOSE 8000</span></li>
+            <li><span class="script-font">EXPOSE</span> command does not automatically publish
+                the port on the host. It is just a form of documentation, we should further map a port
+                on the host to the respective port on the container.</li>
+            <li><span class="script-font">USER</span> command can be used set the username to used when running the rest of the commands.
+                For example:</li>
+                <pre>
+                    <code>
+    RUN addgroup app && adduser -S -G app admin
+    USER admin
+                    </code>
+                </pre>
+            <li><span class="script-font">RUN</span> vs <span class="script-font">CMD</span> vs <span class="script-font">ENTRYPOINT</span>
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <th></th>
+                        <th>RUN</th>
+                        <th>CMD</th>
+                        <th>ENTRYPOINT</th>
+                    </tr>
+                    <tr>
+                        <td>Execution</td>
+                        <td>Every command takes effect.</td>
+                        <td>Only last command takes effect.</td>
+                        <td>Only last command takes effect.</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>build time instruction</td>
+                        <td>run time instruction</td>
+                        <td>run time instruction</td>
+                    </tr>
+                    <tr>
+                        <td>Will be overrided by execution command</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No, unless <span class="CLI-font">--entrypoint</span></td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><span class="script-font">RUN npm install</span></td>
+                        <td><span class="script-font">CMD ["npm", "start"]</span></td>
+                        <td><span class="script-font">ENTRYPOINT ["npm", "start"]</span></td>
+                    </tr>
+                </table>
+            </li>
+            <li>The <span class="script-font">CMD</span> instruction has 2 forms:</li>
+                <ul>
+                    <li>Shell form</li>
+                        <ul>
+                            <li>Example: <span class="script-font">CMD npm start</span></li>
+                            <li>Will spin up a new shell process in order to execute the command.</li>
+                        </ul>
+                    <li>Exec form</li>
+                        <ul>
+                            <li>Example: <span class="script-font">CMD ["npm", "start"]</span></li>
+                            <li>Will execute the command directly.</li>
+                            <li>Easier and faster to clean up resources when you stop containers.</li>
+                        </ul>
+                </ul>
+            <li>A docker image is collection of layers. When Docker build image, it executes every line written in
+                Dockerfile, and each of the lines is a layer. The layers are bottom-up sequence, so if the bottom
+                layer has changes, the upper layers will rebuild. Hence, to optimize building process, the instructions
+                that most likely not going to change frequently should be written on top.
+            </li>
+            <li>Now you know that everytime we make changes, there will be a lot of unused layers/images. We can
+                remove them using <span class="CLI-font">docker image prune</span>, but before that you should remove
+                all stopped containers first using <span class="CLI-font">docker container prune</span>.
+            </li>
+            <li>To push a Docker image to Docker Hub</li>
+                <ol>
+                    <li>Make sure you already registered a Docker Hub account and created a repository</li>
+                    <li>Tag your docker image so that it has the same name as your repository, for example:
+                        <br>
+                        <span class="CLI-font">docker image tag learning_docker:latest tankuianandrew/learning_docker:1.0.0</span>
+                    </li>
+                    <li>Log in to your Docker Hub account: <span class="CLI-font">docker login</span></li>
+                    <li><span class="CLI-font">docker push image-name:tag-name</span></li>
+                </ol>
+            <li>To transfer a docker image through offline:</li>
+                <ol>
+                    <li>cd to the directory that contains the Dockerfile</li>
+                    <li>Use <span class="CLI-font">docker image save</span> to save the image. For example: 
+                        <span class="CLI-font">docker image save -i learning_docker.tar learning_docker:1.0.0</span></li>
+                    <li>Transfer the .tar file to another machine that has docker installed</li>
+                    <li>Load the image using <span class="CLI-font">docker image load</span>. For example:
+                        <span class="CLI-font">docker image load -i learning_docker.tar</span></li>
+                </ol>
+            <li>Something to be looking forward: <a href="https://docs.docker.com/desktop/wasm/" target="_blank" rel="noopener noreferrer">Docker + Wasm</a></li>
+        </ul>
 
         <h3>Docker Commands Cheat Sheet</h3>
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
