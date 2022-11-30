@@ -77,7 +77,7 @@
         </div>
         <mat-divider></mat-divider>
 
-        <h3>Miscellaneous Notes</h3>
+        <h3>Notes: Basics</h3>
         <ul>
             <li>By default, the <span class="script-font">FROM</span> command will pull images from Docker Hub.
                 For example: <span class="script-font">FROM node:19.1.0-alpine3.16</span><br>
@@ -208,6 +208,44 @@
                         <span class="CLI-font">docker image load -i learning_docker.tar</span></li>
                 </ol>
             <li>Something to be looking forward: <a href="https://docs.docker.com/desktop/wasm/" target="_blank" rel="noopener noreferrer">Docker + Wasm</a></li>
+        </ul>
+
+        <h3>Notes: Working with Containers</h3>
+        <ul>
+            <li>To run container in detached mode, use <span class="CLI-font">-d</span> option.</li>
+            <li>To run container with specific name, use <span class="CLI-font">--name</span> option.</li>
+            <li>To view the logs of a container, use <span class="CLI-font">docker logs container-name</span></li>
+            <li>To map the port of host to port of container, use <span class="CLI-font">-p</span> option.
+                For example: <span class="CLI-font">docker run -d -p 3001:3000 docker-container-name</span> means 
+                mapping localhost port 3001 to port 3000 of the container. Hence, accessing localhost:3001 
+                will be able to access port 3000 of the container.</li>
+            <li>When a docker container is running, we can further execute commands on the docker container using
+                <span class="CLI-font">docker exec</span>. For example: <span class="CLI-font">docker exec -it 
+                    demo-container sh
+                </span>
+            </li>
+            <li><span class="CLI-font">docker run</span> will start a new container, if we want to start 
+                a stopped container, we can use <span class="CLI-font">docker start</span>. To stop a container,
+                we can use <span class="CLI-font">docker stop</span></li>
+            <li>To remove a container, <span class="CLI-font">docker container rm</span></li>
+            <li>Each container has its own filesystem, if the container is removed, the filesystem in it
+                will be removed as well.
+            </li>
+            <li>In order to preserve data outside of the containers, we can use <span class="CLI-font">-v</span> 
+                option to bind volume of host to volume of container. For example: <span class="CLI-font">
+                docker run -d -v my-data:/app/data learning_docker</span> will bind the my-data directory
+                of host to the /app/data folder of container.</li>
+            <li>By binding the volume of containers to volume of host, the sharing of data between containers can be achieved.</li>
+            <li>To copy files between host and containers, use <span class="CLI-font">docker cp</span>. 
+                For examples: 
+                <ul>
+                    <li><span class="CLI-font">docker cp 22e0739c5704:hello.txt ~/ws/</span></li>
+                    <li><span class="CLI-font">docker cp  ~/ws/hello2.txt 22e0739c5704:/app</span></li>
+                </ul>
+            </li>
+            <li>Normally for development mode, we don't want to rebuild the image every time we make changes.
+                Therefore, for development purpose we can bind the source code of our host to the volume of container.
+            </li>
         </ul>
 
         <h3>Docker Commands Cheat Sheet</h3>
