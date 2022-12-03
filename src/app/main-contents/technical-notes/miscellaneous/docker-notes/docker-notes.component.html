@@ -246,6 +246,92 @@
             <li>Normally for development mode, we don't want to rebuild the image every time we make changes.
                 Therefore, for development purpose we can bind the source code of our host to the volume of container.
             </li>
+            <li>Take note that actually we can pass list of docker image id as argument, for example:
+                <span class="CLI-font">docker image rm $(docker image ls -aq)</span> will remove all images listed
+                using <span class="CLI-font">docker image ls</span>
+            </li>
+        </ul>
+
+
+        <h3>Notes: Working with Multiple Containers</h3>
+        <ul>
+            <li>Docker Compose is built on top of Docker Engine. If you installed Docker Desktop, it already
+                included Docker Compose.
+            </li>
+            <li>YAML vs JSON</li>
+                <ul>
+                    <li>Afterwards we need to write docker-compose.yml file, so we should roughly understand
+                        YAML and JSON.
+                    </li>
+                    <li>Example of JSON</li>
+                        <pre>
+                            <code>
+&#123;
+    "name": "react-app",
+    "version": 2,
+    "development_mode": true
+    "tags": ["software", "deveops"]
+}
+                            </code>
+                        </pre>
+                    <li>Example of YAML</li>
+                        <pre>
+                            <code>
+---
+name: react-app,
+version: 2,
+development_mode: true
+tags: 
+    - software
+    - deveops
+                            </code>
+                        </pre>
+                    <li>YAML is easier to read and understand, however, parsing YAML file is a little bit
+                        slower than parsing JSON file. This is because everything in YAML is passed as string,
+                        there is extra processing needed to evaluate whether the values parsed are string or number.
+                        In constrast, JSON files use double quotes for string.
+                    </li>
+                    <li>Hence, YAML format is normally used for configuration files whereas JSON format
+                        is normally used for exchanging data.
+                    </li>
+                    <li>There is different compose file format version for different Docker Engine Release,
+                        you should use the correct docker compose file version according to the list
+                        <a href="https://docs.docker.com/compose/compose-file/compose-versioning/#compatibility-matrix"
+                        target="_blank" rel="noopener noreferrer">here</a>
+                    </li>
+                </ul>
+            <li>Docker Networking</li>
+                <ul>
+                    <li>One very powerful feature of Docker is Docker Networking.</li>
+                    <li>There are several types of <a href="https://docs.docker.com/network/#network-drivers"
+                        target="_blank" rel="noopener noreferrer">Network drivers</a></li>
+                    <li>The default network driver is 'bridge', it allows multiple containers to communicate on
+                        the same Docker host.
+                    </li>
+                    <li>Everytime when we run docker-compose, the bridge network driver is by default used
+                        to create a network. You may use <span class="CLI-font">docker network ls</span> to
+                        list them out.
+                    </li>
+                    <li>How can we test it? We can use <span class="CLI-font">docker exec -it &lt; container> sh</span>
+                        and ping another container within the network. For example, let's say another service is called
+                        'db', we can try to <span class="CLI-font">ping db</span>, and you will notice that the ping
+                        is succesful. There is an embedded DNS server that contains the name and IP of each container,
+                        that's why we can ping another container using its container name. </li>
+                    <li>On the other hand, when we use <span class="CLI-font">docker run</span> or 
+                        <span class="CLI-font">docker container start</span>, no network will be created.</li>
+                </ul>
+            <li>Similar to docker container, for development mode we can bind the volumes of containers in docker stack to volume of host,
+                then we dont need to keep building the images.
+            </li>
+            <li>We can also do database migration on docker, simply by running its respective script based on
+                the framework that we use, such as mongo and django. However, to ensure database migration happens
+                after the database container is ready, we sometimes need the <a href="https://github.com/vishnubob/wait-for-it"
+                target="_blank" rel="noopener noreferrer">wait for script</a>
+            </li>
+            <li>We can also run tests through docker-compose, which is by running a duplicated container of our image
+                and then override the default command, for example 'npm test'. But this might not be reliable 
+                in production environment as it takes time to run the tests.
+            </li>
         </ul>
 
         <h3>Docker Commands Cheat Sheet</h3>
