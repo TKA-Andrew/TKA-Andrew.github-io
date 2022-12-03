@@ -131,6 +131,10 @@
     USER admin
                     </code>
                 </pre>
+            <li>However, take note that in older versions of Docker, there are some instructions that 
+                do not respect the <span class="script-font">USER</span> instruction. So you might still face
+                permission errors if you use older versions of Docker.
+            </li>
             <li><span class="script-font">RUN</span> vs <span class="script-font">CMD</span> vs <span class="script-font">ENTRYPOINT</span>
                 <table style="margin-top: 20px;">
                     <tr>
@@ -184,6 +188,8 @@
                 layer has changes, the upper layers will rebuild. Hence, to optimize building process, the instructions
                 that most likely not going to change frequently should be written on top.
             </li>
+            <li><span class="CLI-font">docker build</span> by default looks for Dockerfile, but we can use -f option 
+                to specify path of an alternative file to be used, for example: Dockerfile.prod</li>
             <li>Now you know that everytime we make changes, there will be a lot of unused layers/images. We can
                 remove them using <span class="CLI-font">docker image prune</span>, but before that you should remove
                 all stopped containers first using <span class="CLI-font">docker container prune</span>.
@@ -320,6 +326,7 @@ tags:
                     <li>On the other hand, when we use <span class="CLI-font">docker run</span> or 
                         <span class="CLI-font">docker container start</span>, no network will be created.</li>
                 </ul>
+            <li><span class="CLI-font">docker-compose --build</span> can be used to build the services.</li>
             <li>Similar to docker container, for development mode we can bind the volumes of containers in docker stack to volume of host,
                 then we dont need to keep building the images.
             </li>
@@ -332,6 +339,81 @@ tags:
                 and then override the default command, for example 'npm test'. But this might not be reliable 
                 in production environment as it takes time to run the tests.
             </li>
+        </ul>
+
+        <h3>Deploying Docker Applications</h3>
+        <ul>
+            <li>Normally for applications that need to handle a lot of users, 
+                cluster deployment is preferred, where there will be more servers to handle
+                more requests.
+            </li>
+            <li>When comes to cluster deployment of docker applications, there are 2 
+                options: Docker Swarm and Kubernetes. But Kubernetes is more commonly
+                preferred.
+            </li>
+            <li>To deploy our applications, we need a Virtual Private Server. There are a few
+                options out there such as Digital Ocean, Google Cloud Platform, Microsoft Azure and AWS.
+            </li>
+            <li>Most importantly, we need a Docker Machine to talk to the Virtual Private 
+                Server, so that the commands we execute on the Docker Machine will be sent to
+                the Virtual Private Server.
+            </li>
+            <li>To install Docker Machine, follow the instructions <a
+                href="https://github.com/docker/machine/releases" target="_blank"
+                rel="noopener noreferrer">here</a></li>
+            <li>To create a docker machine, you need to use <span class="CLI-font">docker-machine create</span> command 
+                and you need to provide its respective <a href="https://docker-docs.netlify.app/machine/drivers/"
+                target="_blank" rel="noopener noreferrer">machine driver</a></li>
+            <li>With docker machine created, we can ssh into the server using <span class="CLI-font">docker-machine ssh</span>
+                command.</li>
+            <li>Trick to reduce docker image size for deployment</li>
+                <ul>
+                    <li>A lot of frameworks out there have a build function to generate static files 
+                        for production. For example, for Angular it is <span class="CLI-font">ng build --prod</span>
+                    </li>
+                    <li>These static files are smaller in size and hence results in smaller docker image size
+                        if we deploy them instead of the entire repository.
+                    </li>
+                    <li>The following is an example of Dockerfile.prod:</li>
+                        <pre>
+                            <code>
+# build-stage
+FROM node:14.16.0-alpine3.13 AS build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+ENV REACT_APP_API_URL=https://104.131.24.150:3001/api
+RUN npm run build
+
+# production-stage
+FROM nginx:1.12-alpine
+COPY --from=build-stage /app/build /usr/share/nginx/html
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+                            </code>
+                        </pre>
+                    <li>As you noticed, the build stage uses node as base image for building,
+                        and the production stage only needs nginx to serve the web content.<br>
+                        The COPY command in the production stage basically is copying the static files
+                        from the /app/build of build-stage to the /usr/share/nginx/html, because 
+                        that is the standard path for serving files using nginx. You should modify it
+                        according to your application.
+                    </li>
+                    <li>Also, take note that environment variables are used in building stage,
+                        not production stage.
+                    </li>
+                </ul>
+            <li>To activate the docker machine:</li>
+                <ul>
+                    <li>Run <span class="CLI-font">docker-machine env &lt;machine-name></span> and 
+                        you will see a list environment variables that we need to set.</li>
+                    <li>Once the environment variables are set, whatever docker commands that we
+                        execute in our terminal will be sent and executed in the Virtual Private Server.
+                    </li>
+                    <li>So we can straight away run <span class="CLI-font">docker-compose up</span>
+                        on our terminal and it will be executed on the server.</li>
+                </ul>
         </ul>
 
         <h3>Docker Commands Cheat Sheet</h3>
