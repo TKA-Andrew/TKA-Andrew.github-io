@@ -214,13 +214,107 @@
                 <h3>git checkout</h3>
                 <ul>
                     <li>To switch to another branch:</li>
-                    <ul>
-                        <li><span class="CLI-font">git checkout &lt;branch-name></span></li>
-                    </ul>
+                        <ul>
+                            <li><span class="CLI-font">git checkout &lt;branch-name></span></li>
+                        </ul>
                     <li>To create a new branch and switch to it:</li>
-                    <ul>
-                        <li><span class="CLI-font">git checkout -b &lt;new-branch-name></span></li>
-                    </ul>
+                        <ul>
+                            <li><span class="CLI-font">git checkout -b &lt;new-branch-name></span></li>
+                        </ul>
+                    <li>To replace a file with older version of that file at a specific commit:</li>
+                        <ul>
+                            <li><span class="CLI-font">git checkout &lt;commit-hash> &lt;relative-path-to-file></span></li>
+                        </ul>
+                </ul>
+            </div>
+            <div>
+                <h3>git log</h3>
+                <ul>
+                    <li>To show commit message in history only</li>
+                        <ul>
+                            <li><span class="CLI-font">git log --oneline</span></li>
+                        </ul>
+                    <li>To show commits that modified a file</li>
+                        <ul>
+                            <li><span class="CLI-font">git log &lt;relative-path-of-file></span></li>
+                        </ul>
+                    <li>To show all files modified in each commit</li>
+                        <ul>
+                            <li><span class="CLI-font">git log --stat</span></li>
+                        </ul>
+                    <li>To see actual changes in each commit</li>
+                        <ul>
+                            <li><span class="CLI-font">git log --patch</span></li>
+                        </ul>
+                </ul>
+            </div>
+            <div>
+                <h3>git show</h3>
+                <ul>
+                    <li>To show the changes made in a specific commit:</li>
+                        <ul>
+                            <li><span class="CLI-font">git show &lt;commit-hash></span></li>
+                        </ul>
+                    <li>To show the files affected in a specific commit</li>
+                        <ul>
+                            <li><span class="CLI-font">git show &lt;commit-hash></span> --name-status</li>
+                        </ul>
+                    <li>To show the entire file content at a specific commit:</li>
+                        <ul>
+                            <li><span class="CLI-font">git show &lt;commit-hash>:&lt;file-path></span></li>
+                            <li>For example: git show 53c0dc0:.gitignore</li>
+                        </ul>
+                </ul>
+            </div>
+            <div>
+                <h3>git diff</h3>
+                <ul>
+                    <li>To see staged changes: <span class="CLI-font">git diff --staged</span></li>
+                    <li>To see unstaged changes: <span class="CLI-font">git diff</span></li>
+                </ul>
+            </div>
+            <div>
+                <h3>To rename a file without losing the commits</h3>
+                <ul>
+                    <li>For example, let's say we want to rename fileA.txt to fileB.txt:</li>
+                        <ol>
+                            <li><span class="CLI-font">mv fileA.txt fileB.txt</span></li>
+                            <li><span class="CLI-font">git add fileA.txt fileB.txt</span></li>
+                            <li><span class="CLI-font">git status</span></li>
+                            <li><span class="CLI-font">git commit -m "renamed fileA to fileB"</span></li>
+                        </ol>
+                    <li>Take note that both fileA.txt and fileB.txt need to be staged, 
+                        then <span class="CLI-font">git status</span> will show the changes made
+                        is "renamed", instead of "deleted" and "untracked files"
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>To restore a deleted file</h3>
+                <ul>
+                    <li>For example, let's say we deleted a file called demo.txt and we commited that change.
+                        Then let's say we regretted and want to add it back.
+                    </li>
+                        <ul>
+                            <li>Use <span class="CLI-font">git log --oneline -- demo.txt</span>
+                                to find out what are the commits that removed this file. 
+                                Take note that the additional "--" is necessary</li>
+                            <li>For example, let's say the following are the outputs returned:</li>
+                                <pre>
+                                    <code>
+    7e41e54 Removed unnecessary file
+    6265cd0 Updated content
+    85d0288 initial commit
+                                    </code>
+                                </pre>
+                            <li>The latest commit in the list shown in previous step is the commit
+                                that removed the file.
+                            </li>
+                            <li>Hence, we need to retrieve the latest demo.txt from commit 6265cd0
+                                using: <span class="CLI-font">git checkout 6265cd0 demo.txt</span>
+                            </li>
+                            <li>Use <span class="CLI-font">git status</span> to validate the changes.</li>
+                        </ul>
                 </ul>
             </div>
             <div>
