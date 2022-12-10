@@ -837,6 +837,126 @@
                     target="_blank" rel="noopener noreferrer">formspree</a></li>
             </ul>
 
-        </div>
+            <h2>Transformation, Transition & Animation</h2>
+            <ul>
+                <li>2D Transformation</li>
+                    <ul>
+                        <li>There are some transformation functions in css:</li>
+                            <ul>
+                                <li>rotate()</li>
+                                <li>scale()</li>
+                                <li>skew()</li>
+                                <li>translate()</li>
+                            </ul>
+                        <li>Examples:</li>
+                            <ul>
+                                <li><div class="box box1">transform: rotate(-15deg);</div></li>
+                                <li><div class="box box2">transform: scale(0.5);</div></li>
+                                <li><div class="box box3">transform: skew(15deg);</div></li>
+                                <li><div class="box box4">transform: translate(10px, 10px);</div></li>
+                            </ul>
+                    </ul>
+                <li>3D Transformation</li>
+                    <ul>
+                        <li>3D Transformation is mostly about translating on z-axis, and rotating
+                            about x-axis and y-axis.
+                        </li>
+                        <li>To achieve 3D Transformation, we need to provide a perspective (either
+                            by defining the perspective property of the parent or calling perspective() function
+                            in the transform property), to define how far is the DOM away from us.
+                        </li>
+                        <li>By default, the transform-origin is center, but we can modify it also.
+                            For examples:
+                        </li>
+                            <ul>
+                                <li>transform-origin: center;</li>
+                                <li>transform-origin: top left;</li>
+                                <li>transform-origin: 20px 50px;</li>
+                                <li>transform-origin: bottom right 50px;</li>
+                            </ul>
+                        <li>The additional transformation functions for 3D transformations are:</li>
+                            <ul>
+                                <li>perspective()</li>
+                                <li>rotateX()</li>
+                                <li>rotateY()</li>
+                                <li>translateZ()</li>
+                            </ul>
+                        <li>Examples</li>
+                            <ul>
+                                <li><div class="box box5">transform: perspective(200px) translateZ(100px);</div></li>
+                                <li><div class="box box6">transform: perspective(200px) rotateY(-20deg);</div></li>
+                                <li><div class="box box7">transform: perspective(200px) rotateX(-20deg);</div></li>
+                                <li><div class="box box8">transform-origin: top left;<br>transform: perspective(200px) rotateX(-20deg);</div></li>
+                            </ul>
+                    </ul>
+                <li>Transition</li>
+                    <ul>
+                        <li>We can use transition property to display the transition of transformation,
+                            color changes, etc.
+                        </li>
+                        <li>Examples</li>
+                        <ul>
+                            <li><div class="box box9 box-transition1">transition: transform 0.5s, background 0.5s;</div></li>
+                            <li><div class="box box9 box-transition2">transition: transform 2s linear, background 2s linear;</div></li>
+                            <li><div class="box box9 box-transition3">transition: transform 2s ease-in, background 2s ease-in;</div></li>
+                            <li><div class="box box9 box-transition4">transition: transform 2s linear 1s;</div></li>
+                        </ul>
+                    </ul>
+                <li>Animation</li>
+                    <ul>
+                        <li>Transition is sufficient for simple animations. However, for more complex ones
+                            such as controlling a sequence of transition, we need the animate property.
+                        </li>
+                        <li>To create animation, we need to use the @keyframes to define our animation.</li>
+                        <li>The following is an example:</li>
+                            <pre>
+                                <code>
+@keyframes example01 &#123;
+    0% &#123;
+        transform: scale(1);
+        opacity: 0%;
+    }
+    20% &#123;
+        opacity: 100%;
+        transform: translate(80px);
+    }
+    40% &#123;
+        transform: translate(-80px);
+    }
+    60% &#123;
+        transform: scale(0.5);
+        transform: translate(-80px);
+        transform: rotate(45deg);
+        background: tomato;
+    }
+    80% &#123;
+        transform: translate(80px);
+    }
+    
+    100% &#123;
+        background: burlywood;
+        opacity: 0%;
+    }
+}
+
+#animation-demo &#123;
+    width: 200px;
+    height: 200px;
+    background-color: burlywood;
+    animation: example01 8s linear 0s infinite normal;
+}
+                                </code>
+                            </pre>
+                            <div style="display: flex; justify-content:center; align-items: center; width: 100%; height: 300px; border: black solid 2px;">
+                                <div id="animation-demo"></div>
+                            </div>
+                        <li>To make your animation reusable, you can create a class for your animation properties such as 
+                            animation-name, animation-duration, animation-delay, animation-iterative-count etc.
+                            <br>Then, you just apply the class to the DOM that you want to animate.
+                        </li>
+                        <li><a href="https://animate.style/" target="_blank" rel="noopener noreferrer">Animate.css</a> is a libary of
+                            animations that you may want to explore.</li>
+                    </ul>
+            </ul>
     </div>
 </div>

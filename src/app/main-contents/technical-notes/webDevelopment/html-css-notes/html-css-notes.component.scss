@@ -1,0 +1,98 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+    height: 50px;
+    background-color: cadetblue;
+}
+
+.box-transition1 {
+    transition: transform 0.5s, background 0.5s;
+}
+
+.box-transition2 {
+    transition: transform 2s linear, background 2s linear;
+}
+
+.box-transition3 {
+    transition: transform 2s ease-in, background 2s ease-in;
+}
+
+.box-transition4 {
+    transition: transform 2s linear 1s;
+}
+
+.box1:hover {
+    transform: rotate(-15deg);
+}
+
+.box2:hover {
+    transform: scale(0.5);
+}
+
+.box3:hover {
+    transform: skew(15deg);
+}
+
+.box4:hover {
+    transform: translate(10px, 10px);
+}
+
+.box5:hover {
+    transform: perspective(200px) translateZ(50px);
+}
+
+.box6:hover {
+    transform: perspective(200px) rotateY(-20deg);
+}
+
+.box7:hover {
+    transform: perspective(200px) rotateX(-20deg);
+}
+
+.box8:hover {
+    transform-origin: top left;
+    transform: perspective(200px) rotateX(-20deg);
+}
+
+.box9:hover {
+    transform: rotate(-5deg);
+    background: palevioletred;
+}
+
+@keyframes example01 {
+    0% {
+        transform: scale(1);
+        opacity: 0%;
+    }
+    20% {
+        opacity: 100%;
+        transform: translate(80px);
+    }
+    40% {
+        transform: translate(-80px);
+    }
+    60% {
+        transform: scale(0.5);
+        transform: translate(-80px);
+        transform: rotate(45deg);
+        background: tomato;
+    }
+    80% {
+        transform: translate(80px);
+    }
+    
+    100% {
+        background: burlywood;
+        opacity: 0%;
+    }
+}
+
+#animation-demo {
+    width: 200px;
+    height: 200px;
+    background-color: burlywood;
+    animation: example01 8s linear 0s infinite normal;
+}
