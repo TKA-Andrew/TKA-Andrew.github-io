@@ -13,9 +13,7 @@
     <h3>Miscellaneous Notes</h3>
     <ul>
         <li>Networks are made up of various devices—computers, switches, routers—connected together by cables or wireless signals.</li>
-        <li>When our browser surfs "www.google.com", it is actually making a DNS query and the DNS will return the ip address of the server that serves us the Google.com.</li>
         <li>A server listens for requests on specific ports.</li>
-        
     </ul>
 
     <h3>IP Address & Ports</h3>
@@ -120,6 +118,21 @@
     <ul>
         <li>The unique combination of IP address and Port number together are termed as Socket.</li>
     </ul>
+    
+    <h3>DNS Server</h3>
+    <ul>
+        <li>The DNS server is responsible for maintaining a database of domain names and their corresponding IP addresses.</li>
+        <li>Examples of DNS servers are:</li>
+            <ul>
+                <li>Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
+                <li>OpenDNS: 208.67.222.222 and 208.67.220.220</li>
+                <li>Cloudflare: 1.1.1.1 and 1.0.0.1</li>
+            </ul>
+        <li>When our browser surfs "www.google.com", it is actually making a DNS query and the DNS will return the ip address of the server that serves us the Google.com.</li>
+        <li>It's important to note that using different DNS servers can affect the performance and security of your network.</li>
+        <li>For example, using a third-party DNS server like Google Public DNS or OpenDNS can potentially improve the speed and reliability of name resolution, 
+            while using a DNS server from your internet service provider(ISP) may give you more privacy.</li>
+    </ul>
 
     <h3>DHCP vs Static</h3>
     <ul>
@@ -129,6 +142,33 @@
             <li>A static IP address is an address that is permanently assigned to your network devices by your Internet Service Provider, 
                 and does not change even if your device reboots.</li>
             <li>It's more expensive than a dynamic IP address because ISP often charges an additional fee for static IP addresses.</li>
+            <li>When configuring a static IP address, the following are required:   </li>
+                <ul>
+                    <li>IP address</li>
+                        <ul>
+                            <li>You can assign any IP address as long as:</li>
+                                <ul>
+                                    <li>The IP address is within the range of the network.</li>
+                                    <li>The IP address is unique and not used by other device on the network.</li>
+                                </ul>
+                        </ul>
+                    <li>subnet mask</li>
+                        <ul>
+                            <li>Up to you to decide which network you want your device to be in.</li>
+                            <li>For example, if you assigned static IP address 192.168.1.42 and you want your
+                                device to be in network 192.168.x.x then use 255.255.0.0 for your subnet mask.
+                            </li>
+                        </ul>
+                    <li>default gateway</li>
+                        <ul>
+                            <li>This is the IP address of your router, which is used to connect your PC to the internet. </li>
+                            <li>You can check the default gateway IP address of your router by accessing the router's configuration page.</li>
+                        </ul>
+                    <li>DNS server address</li>
+                        <ul>
+                            <li>You can use any DNS server, such as Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
+                        </ul>
+                </ul>
         </ul>
         <li>DHCP</li>
         <ul>
