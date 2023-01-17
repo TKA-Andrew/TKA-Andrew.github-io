@@ -2,135 +2,172 @@
     <h1>Networking Notes</h1>
     <ul>
         <li>Take note that some notes below are copied from the reference links below:</li>
-            <ul>
-                <li><a href="https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html#~switches" target="_blank" rel="noopener noreferrer">Reference 1</a></li>
-                <li><a href="https://www.geeksforgeeks.org/basics-computer-networking/" target="_blank" rel="noopener noreferrer">Reference 2</a></li>
-                <li><a href="https://www.geeksforgeeks.org/what-is-web-socket-and-how-it-is-different-from-the-http/" target="_blank" rel="noopener noreferrer">Reference 3</a></li>
-                <li><a href="https://community.fs.com/blog/dhcp-vs-static-ip-differences.html" target="_blank" rel="noopener noreferrer">Reference 4</a></li>
-            </ul>
+        <ul>
+            <li><a href="https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html#~switches"
+                    target="_blank" rel="noopener noreferrer">Reference 1</a></li>
+            <li><a href="https://www.geeksforgeeks.org/basics-computer-networking/" target="_blank"
+                    rel="noopener noreferrer">Reference 2</a></li>
+            <li><a href="https://www.geeksforgeeks.org/what-is-web-socket-and-how-it-is-different-from-the-http/"
+                    target="_blank" rel="noopener noreferrer">Reference 3</a></li>
+            <li><a href="https://community.fs.com/blog/dhcp-vs-static-ip-differences.html" target="_blank"
+                    rel="noopener noreferrer">Reference 4</a></li>
+        </ul>
     </ul>
 
     <h3>Miscellaneous Notes</h3>
     <ul>
-        <li>Networks are made up of various devices—computers, switches, routers—connected together by cables or wireless signals.</li>
+        <li>Networks are made up of various devices—computers, switches, routers—connected together by cables or
+            wireless signals.</li>
         <li>A server listens for requests on specific ports.</li>
     </ul>
 
     <h3>IP Address & Ports</h3>
     <ul>
         <li>IP address = an address given to each machine connected to the public Internet.</li>
-        <li>IPv4 addresses consist of four numbers separated by dots and all the four numbers are between 0 and 255.</li>
+        <li>IPv4 addresses consist of four numbers separated by dots and all the four numbers are between 0 and 255.
+        </li>
         <li>localhost IP address = 127.0.0.1</li>
-        <li>IP address of private network = 192.168.x.y (For example, every device that connected to the same private wifi network will have the same prefix)</li>
+        <li>IP address of private network = 192.168.x.y (For example, every device that connected to the same private
+            wifi network will have the same prefix)</li>
         <li>Any machine that has a distinct IP address has 2^16 ports in total (between 0 and 65535).</li>
-        <li>A port can be referred to as a logical channel through which data can be sent/received to an application.</li>
+        <li>A port can be referred to as a logical channel through which data can be sent/received to an application.
+        </li>
         <li>Ports 0-1023 are reserved for system ports and should not be used by user-level processes.</li>
         <li>If a client is trying to speak to a server using HTTP protocol, it's always going to use port 80.</li>
         <li>Some ports with pre-defined uses:</li>
-            <ul>
-                <li>22: Secure Shell</li>
-                <li>53: DNS lookup</li>
-                <li>80: HTTP</li>
-                <li>443: HTTPS</li>
-            </ul>
+        <ul>
+            <li>22: Secure Shell</li>
+            <li>53: DNS lookup</li>
+            <li>80: HTTP</li>
+            <li>443: HTTPS</li>
+        </ul>
     </ul>
 
     <h3>Public Network vs Private Network</h3>
     <ul>
-        <li>An internal network, also known as a private network, is a network that is only accessible by devices within a private organization or home and is not accessible by the general public.</li>
-        <li>An external network, also known as a public network, is a network that is accessible by devices outside of the private network, such as the internet.</li>
-        <li>A private IP address is an IP address that is used within a private network and is not accessible from the internet.</li>
-        <li>A public IP address is an IP address that is used on the internet and is accessible from anywhere in the world. </li>
-        <li>To spot the difference between private and public IP addresses, you can check the IP address ranges. 
+        <li>An internal network, also known as a private network, is a network that is only accessible by devices within
+            a private organization or home and is not accessible by the general public.</li>
+        <li>An external network, also known as a public network, is a network that is accessible by devices outside of
+            the private network, such as the internet.</li>
+        <li>A private IP address is an IP address that is used within a private network and is not accessible from the
+            internet.</li>
+        <li>A public IP address is an IP address that is used on the internet and is accessible from anywhere in the
+            world. </li>
+        <li>To spot the difference between private and public IP addresses, you can check the IP address ranges.
             Private IP addresses are typically assigned from the following ranges:
         </li>
-            <ul>
-                <li>10.0.0.0 to 10.255.255.255</li>
-                <li>172.16.0.0 to 172.31.255.255</li>
-                <li>192.168.0.0 to 192.168.255.255</li>
-            </ul>
+        <ul>
+            <li>10.0.0.0 to 10.255.255.255</li>
+            <li>172.16.0.0 to 172.31.255.255</li>
+            <li>192.168.0.0 to 192.168.255.255</li>
+        </ul>
     </ul>
 
     <h3>Subnet mask</h3>
     <ul>
-        <li>The IP addresses within a network are determined by the subnet mask, which is a value that is used to divide the IP address into two parts: the network address and the host address. </li>
-        <li>The subnet mask is used to define which portion of the IP address belongs to the network and which portion belongs to the host.</li>
-        <li>The subnet mask is usually represented in the form of a dotted decimal notation, such as 255.255.255.0. </li>
-        <li>The subnet mask 255.255.255.0 means that the first 24 bits (3 bytes) of the IP address are used for the network address and the last 8 bits (1 byte) are used for the host address.</li>
-        <li>When you assign an IP address to a device, you also need to assign a subnet mask, the subnet mask and the IP address together will determine which network the device belongs to.</li>
-        <li>Once the subnet mask determines which network the devices belong to, it can be used to determine whether the devices are "within the same network".</li>
-        <li>Devices "within the network" typically refers to devices that are assigned IP addresses within the same subnet, as determined by the subnet mask.</li>
-        <li>Devices within the same network can communicate with each other directly (such as through SSH), 
+        <li>The IP addresses within a network are determined by the subnet mask, which is a value that is used to divide
+            the IP address into two parts: the network address and the host address. </li>
+        <li>The subnet mask is used to define which portion of the IP address belongs to the network and which portion
+            belongs to the host.</li>
+        <li>The subnet mask is usually represented in the form of a dotted decimal notation, such as 255.255.255.0.
+        </li>
+        <li>The subnet mask 255.255.255.0 means that the first 24 bits (3 bytes) of the IP address are used for the
+            network address and the last 8 bits (1 byte) are used for the host address.</li>
+        <li>When you assign an IP address to a device, you also need to assign a subnet mask, the subnet mask and the IP
+            address together will determine which network the device belongs to.</li>
+        <li>Once the subnet mask determines which network the devices belong to, it can be used to determine whether the
+            devices are "within the same network".</li>
+        <li>Devices "within the network" typically refers to devices that are assigned IP addresses within the same
+            subnet, as determined by the subnet mask.</li>
+        <li>Devices within the same network can communicate with each other directly (such as through SSH),
             without the need for routing.</li>
     </ul>
 
     <h3>Internal Switch vs External Switch</h3>
     <ul>
-        <li>An internal switch is a switch that is located inside a device such as a router, a computer, or a server. 
-            It is used to provide connectivity within the device and to route or switch data between internal interfaces or ports.</li>
-        <li>An external switch, on the other hand, is a standalone networking device that is located outside of a device. 
-            It is typically used to provide connectivity for multiple devices on a LAN (Local Area Network) or a WAN (Wide Area Network) by connecting to the devices via Ethernet cables. 
+        <li>An internal switch is a switch that is located inside a device such as a router, a computer, or a server.
+            It is used to provide connectivity within the device and to route or switch data between internal interfaces
+            or ports.</li>
+        <li>An external switch, on the other hand, is a standalone networking device that is located outside of a
+            device.
+            It is typically used to provide connectivity for multiple devices on a LAN (Local Area Network) or a WAN
+            (Wide Area Network) by connecting to the devices via Ethernet cables.
         </li>
-        <li>To clarify, internal switches are used to create network connections within a single device, while external switches are used to connect multiple devices to form a network.</li>
+        <li>To clarify, internal switches are used to create network connections within a single device, while external
+            switches are used to connect multiple devices to form a network.</li>
         <li>In the case of using Hyper-V, the 'Default Switch' is an internal switch, and the network between
-            VM and the host PC is internal and not accessible outside of the device. Hence, if you want your VM to be accessible by 
-            another PC connected to the same Local Area Network, you should use External Switch as Network Adapter for your VM.
+            VM and the host PC is internal and not accessible outside of the device. Hence, if you want your VM to be
+            accessible by
+            another PC connected to the same Local Area Network, you should use External Switch as Network Adapter for
+            your VM.
         </li>
     </ul>
 
     <h3>MAC Address (Media Access Control address)</h3>
     <ul>
-        <li>Is considered as physical address, because a MAC address is assigned to the NIC at the time of manufacturing. </li>
-        <li>As typically represented, MAC addresses are recognizable as six groups of two hexadecimal digits, separated by hyphens, colons, or without a separator.
+        <li>Is considered as physical address, because a MAC address is assigned to the NIC at the time of
+            manufacturing. </li>
+        <li>As typically represented, MAC addresses are recognizable as six groups of two hexadecimal digits, separated
+            by hyphens, colons, or without a separator.
             For example: 00:00:5e:00:53:af.
         </li>
-        <li>Since MAC addresses are unique, they are used in internet and networking to identify and differentiate devices on a LAN (Local Area Network) or WAN (Wide Area Network) 
+        <li>Since MAC addresses are unique, they are used in internet and networking to identify and differentiate
+            devices on a LAN (Local Area Network) or WAN (Wide Area Network)
             and also at the data link layer of the OSI (Open Systems Interconnection) model.</li>
     </ul>
 
     <h3>Proxies</h3>
     <ul>
-        <li>Forward Proxy = a server that sits between a client and servers, and acts on behalf of the client, typically used to mask the client's IP address.</li>
-        <li>Reverse Proxy = a server that sits between servers and clients, and acts on behalf of the servers, typically used for logging, load balancing, or caching.</li>
+        <li>Forward Proxy = a server that sits between a client and servers, and acts on behalf of the client, typically
+            used to mask the client's IP address.</li>
+        <li>Reverse Proxy = a server that sits between servers and clients, and acts on behalf of the servers, typically
+            used for logging, load balancing, or caching.</li>
         <li>Nginx is a very popular webserver that is often used as a reverse proxy and load balancer.</li>
     </ul>
-    
+
     <h3>Switches</h3>
     <ul>
-        <li>Switches allow devices on your network to communicate with each other, as well as with other networks, creating a network of shared resources.</li>
+        <li>Switches allow devices on your network to communicate with each other, as well as with other networks,
+            creating a network of shared resources.</li>
         <li></li>
     </ul>
 
     <h3>Routers</h3>
     <ul>
-        <li>Routers connect multiple networks together. They also connect computers on those networks to the Internet.</li>
+        <li>Routers connect multiple networks together. They also connect computers on those networks to the Internet.
+        </li>
         <li>Routers enable all networked computers to share a single Internet connection.</li>
     </ul>
-    
+
     <h3>Wireless Access Points</h3>
     <ul>
         <li>An access point allows devices to connect to the wireless network without cables.</li>
-        <li>An access point acts like an amplifier for your network. While a router provides the bandwidth, 
-            an access point extends that bandwidth so that the network can support many devices, and those devices can access the network from farther away.</li>
+        <li>An access point acts like an amplifier for your network. While a router provides the bandwidth,
+            an access point extends that bandwidth so that the network can support many devices, and those devices can
+            access the network from farther away.</li>
     </ul>
 
     <h3>Sockets</h3>
     <ul>
         <li>The unique combination of IP address and Port number together are termed as Socket.</li>
     </ul>
-    
+
     <h3>DNS Server</h3>
     <ul>
-        <li>The DNS server is responsible for maintaining a database of domain names and their corresponding IP addresses.</li>
+        <li>The DNS server is responsible for maintaining a database of domain names and their corresponding IP
+            addresses.</li>
         <li>Examples of DNS servers are:</li>
-            <ul>
-                <li>Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
-                <li>OpenDNS: 208.67.222.222 and 208.67.220.220</li>
-                <li>Cloudflare: 1.1.1.1 and 1.0.0.1</li>
-            </ul>
-        <li>When our browser surfs "www.google.com", it is actually making a DNS query and the DNS will return the ip address of the server that serves us the Google.com.</li>
-        <li>It's important to note that using different DNS servers can affect the performance and security of your network.</li>
-        <li>For example, using a third-party DNS server like Google Public DNS or OpenDNS can potentially improve the speed and reliability of name resolution, 
+        <ul>
+            <li>Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
+            <li>OpenDNS: 208.67.222.222 and 208.67.220.220</li>
+            <li>Cloudflare: 1.1.1.1 and 1.0.0.1</li>
+        </ul>
+        <li>When our browser surfs "www.google.com", it is actually making a DNS query and the DNS will return the ip
+            address of the server that serves us the Google.com.</li>
+        <li>It's important to note that using different DNS servers can affect the performance and security of your
+            network.</li>
+        <li>For example, using a third-party DNS server like Google Public DNS or OpenDNS can potentially improve the
+            speed and reliability of name resolution,
             while using a DNS server from your internet service provider(ISP) may give you more privacy.</li>
     </ul>
 
@@ -139,36 +176,39 @@
         <li>IP addresses are either configured manually (static IP address) or configured by a DHCP server.</li>
         <li>Static IP</li>
         <ul>
-            <li>A static IP address is an address that is permanently assigned to your network devices by your Internet Service Provider, 
+            <li>A static IP address is an address that is permanently assigned to your network devices by your Internet
+                Service Provider,
                 and does not change even if your device reboots.</li>
-            <li>It's more expensive than a dynamic IP address because ISP often charges an additional fee for static IP addresses.</li>
-            <li>When configuring a static IP address, the following are required:   </li>
+            <li>It's more expensive than a dynamic IP address because ISP often charges an additional fee for static IP
+                addresses.</li>
+            <li>When configuring a static IP address, the following are required: </li>
+            <ul>
+                <li>IP address</li>
                 <ul>
-                    <li>IP address</li>
-                        <ul>
-                            <li>You can assign any IP address as long as:</li>
-                                <ul>
-                                    <li>The IP address is within the range of the network.</li>
-                                    <li>The IP address is unique and not used by other device on the network.</li>
-                                </ul>
-                        </ul>
-                    <li>subnet mask</li>
-                        <ul>
-                            <li>Up to you to decide which network you want your device to be in.</li>
-                            <li>For example, if you assigned static IP address 192.168.1.42 and you want your
-                                device to be in network 192.168.x.x then use 255.255.0.0 for your subnet mask.
-                            </li>
-                        </ul>
-                    <li>default gateway</li>
-                        <ul>
-                            <li>This is the IP address of your router, which is used to connect your PC to the internet. </li>
-                            <li>You can check the default gateway IP address of your router by accessing the router's configuration page.</li>
-                        </ul>
-                    <li>DNS server address</li>
-                        <ul>
-                            <li>You can use any DNS server, such as Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
-                        </ul>
+                    <li>You can assign any IP address as long as:</li>
+                    <ul>
+                        <li>The IP address is within the range of the network.</li>
+                        <li>The IP address is unique and not used by other device on the network.</li>
+                    </ul>
                 </ul>
+                <li>subnet mask</li>
+                <ul>
+                    <li>Up to you to decide which network you want your device to be in.</li>
+                    <li>For example, if you assigned static IP address 192.168.1.42 and you want your
+                        device to be in network 192.168.x.x then use 255.255.0.0 for your subnet mask.
+                    </li>
+                </ul>
+                <li>default gateway</li>
+                <ul>
+                    <li>This is the IP address of your router, which is used to connect your PC to the internet. </li>
+                    <li>You can check the default gateway IP address of your router by accessing the router's
+                        configuration page.</li>
+                </ul>
+                <li>DNS server address</li>
+                <ul>
+                    <li>You can use any DNS server, such as Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
+                </ul>
+            </ul>
         </ul>
         <li>DHCP</li>
         <ul>
@@ -182,33 +222,40 @@
     <ul>
         <li>Both HTTP and WebSocket are communication protocols used in client-server communication.</li>
         <li>HTTP/HTTPS</li>
-            <ul>
-                <li>HTTP is unidirectional where the client sends the request and the server sends the response.</li>
-                <li>After each respond is sent, the connection gets closed. </li>
-            </ul>
+        <ul>
+            <li>HTTP is unidirectional where the client sends the request and the server sends the response.</li>
+            <li>After each respond is sent, the connection gets closed. </li>
+        </ul>
         <li>WebSocket</li>
+        <ul>
+            <li>WebSocket is bidirectional, a full-duplex protocol that is used in the same scenario of client-server
+                communication, unlike HTTP it starts from ws:// or wss://.</li>
+            <li>It is a stateful protocol, which means the connection between client and server will keep alive until it
+                is terminated by either party (client or server). </li>
+            <li>Some applications of websocket:</li>
             <ul>
-                <li>WebSocket is bidirectional, a full-duplex protocol that is used in the same scenario of client-server communication, unlike HTTP it starts from ws:// or wss://.</li>
-                <li>It is a stateful protocol, which means the connection between client and server will keep alive until it is terminated by either party (client or server). </li>
-                <li>Some applications of websocket:</li>
-                    <ul>
-                        <li>Real-time web application uses a web socket to show the data at the client end, which is continuously being sent by the backend server.</li>
-                        <li>In gaming application, data is continuously received by the server without even establishing new connection.</li>
-                        <li>In chat application, once the WebSocket connection is successful, the same WebSocket connection will be reused
-                            for sending and receiving the messages.
-                        </li>
-                    </ul>
+                <li>Real-time web application uses a web socket to show the data at the client end, which is
+                    continuously being sent by the backend server.</li>
+                <li>In gaming application, data is continuously received by the server without even establishing new
+                    connection.</li>
+                <li>In chat application, once the WebSocket connection is successful, the same WebSocket connection will
+                    be reused
+                    for sending and receiving the messages.
+                </li>
             </ul>
+        </ul>
     </ul>
 
     <h3>ifconfig/ipconfig information explained</h3>
     <ul>
-        <li><a href="https://codewithyury.com/demystifying-ifconfig-and-network-interfaces-in-linux/#:~:text=ifconfig%20is%20a%20command%20line,is%20used%20for%20network%20diagnostics." target="_blank" rel="noopener noreferrer">Reference</a></li>
+        <li><a href="https://codewithyury.com/demystifying-ifconfig-and-network-interfaces-in-linux/#:~:text=ifconfig%20is%20a%20command%20line,is%20used%20for%20network%20diagnostics."
+                target="_blank" rel="noopener noreferrer">Reference</a></li>
     </ul>
 
     <h3>Remote Desktop Access to Ubuntu</h3>
     <ul>
-        <li><a href="https://www.makeuseof.com/tag/how-to-establish-simple-remote-desktop-access-between-ubuntu-and-windows/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        <li><a href="https://www.makeuseof.com/tag/how-to-establish-simple-remote-desktop-access-between-ubuntu-and-windows/"
+                target="_blank" rel="noopener noreferrer">Reference</a></li>
     </ul>
 
 </div>
