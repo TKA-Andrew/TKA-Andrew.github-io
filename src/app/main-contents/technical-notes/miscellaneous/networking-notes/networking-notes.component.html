@@ -40,6 +40,7 @@
             <li>53: DNS lookup</li>
             <li>80: HTTP</li>
             <li>443: HTTPS</li>
+            <li>587: normally used for email servers</li>
         </ul>
     </ul>
 
@@ -216,6 +217,55 @@
             <li>To create dynamic IP addresses, the network must have a DHCP server configured and operating.</li>
             <li>DHCP does not need any manual configuration to connect to local devices or gain access to the Web.</li>
         </ul>
+    </ul>
+
+    <h3>SSH (Secure Shell)</h3>
+    <ul>
+        <li>SSH is a protocol that allows secure remote login and other network services over an insecure network. </li>
+        <li>In order for a client to connect to a server using SSH, the server must be running an SSH server software
+            and be configured to listen for incoming connections on the SSH port (default is 22).
+        </li>
+        <li>On the other hand, the client must have an SSH client software installed, and be able to connect to the
+            server's
+            IP address and port on which the SSH server is listening.</li>
+        <li>Once connected, the client can authenticate with the server using a username and password,
+            or a public key and private key pair.</li>
+    </ul>
+
+    <h3>Port forwarding</h3>
+    <ul>
+        <li>Port forwarding allows remote servers and devices on the internet to
+            access the devices that are within your private local-area network (LAN) and vice versa.</li>
+        <li>Without port forwarding, only devices that are part of the internal network can access each other,
+            and with port forwarding, anyone can</li>
+        <li>There are 3 types of port forwarding:</li>
+        <ul>
+            <li>Local port forwarding</li>
+            <ul>
+                <li>allows you to forward traffic from a local machine (SSH client) to a remote machine (SSH server)
+                    using an SSH connection</li>
+                <li>allows you to access services or devices on a remote network that are not directly accessible from
+                    your local machine</li>
+            </ul>
+            <li>Remote port forwarding</li>
+            <ul>
+                <li>allows you to forward traffic from a remote machine (SSH server) to a local machine (SSH client)
+                    using an SSH connection</li>
+                <li>allows you to make a service or device on your local network accessible to other remote machines
+                    over the internet</li>
+            </ul>
+            <li>Dynamic port forwarding (virtually an extension of the local port forwarding)</li>
+            <ul>
+                <li>allows you to create a SOCKS proxy on your local machine using an SSH connection</li>
+                <li>allows you to redirect traffic from various applications on your local machine to a remote machine,
+                    effectively bypassing firewalls or other network restrictions</li>
+                <li>allows you to use the SSH tunnel as a proxy for any application on your machine to access any remote
+                    destination port by using only one port on your side</li>
+            </ul>
+        </ul>
+        <li>The local machine and remote machine mentioned above can be within same network or in different network.
+            If they are in different network, both of the machines must have internet connection.
+        </li>
     </ul>
 
     <h3>HTTP vs Websocket</h3>
