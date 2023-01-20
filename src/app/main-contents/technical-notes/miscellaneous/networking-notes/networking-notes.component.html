@@ -308,4 +308,47 @@
                 target="_blank" rel="noopener noreferrer">Reference</a></li>
     </ul>
 
+    <h3>Hidden SSID</h3>
+    <ul>
+        <li>The hidden wifi ssid is one of the security mechanisms implemented by Wifi networks by hiding their name,
+             since a client device can only connect to a Wi-Fi network with a known SSID. </li>
+        <li>Hiding the SSID does not actually provide any significant security benefits. 
+            Although it makes it more difficult for unauthorized users to discover the network, 
+            it does not prevent them from attempting to connect to the network or from discovering the SSID through other means, such as packet sniffing.
+        </li>
+        <li>In Linux, in order to connect to a hidden ssid, you need to configure 'scan_ssid = 1'
+            for the hidden network in the wpa_supplicant.conf file, this is to force the device
+            to scan for the invisible SSID by name.
+        </li>
+    </ul>
+
+    <h3>WPA2-Personal vs WPA2-Enterprise</h3>
+    <ul>
+        <li>When configuring your wireless access point, you need to select its security type. The most common one for
+            general use is WPA2-Personal whereas the more preferred one in corporate environment is WPA2-Enterprise.
+        </li>
+        <li>WPA2-Personal</li>
+        <ul>
+            <li>WPA2-Personal has a rather simple concept, it has static passphrase and users
+                can connect to it as long as they know the passphrase.
+            </li>
+        </ul>
+        <li>WPA2-Enterprise</li>
+        <ul>
+            <li>Instead of using static password, WPA2-Enterprise uses a unique username and password for 
+                every user. 
+            </li>
+            <li>It works by having the access point connected to a database first and checks to see
+                if the credentials are valid every time they connect to the network.
+            </li>
+            <li>This is done using a RADIUS server, which acts as an Access Control Protocol.
+            </li>
+            <li>There are 2 authentiation methods supported by RADIUS servers:</li>
+                <ul>
+                    <li>via certificates</li>
+                    <li>via username & password</li>
+                </ul>
+        </ul>
+    </ul>
+
 </div>
