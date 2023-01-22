@@ -343,11 +343,127 @@
             </li>
             <li>This is done using a RADIUS server, which acts as an Access Control Protocol.
             </li>
-            <li>There are 2 authentiation methods supported by RADIUS servers:</li>
+            <li>There are 2 authentication methods supported by RADIUS servers:</li>
                 <ul>
                     <li>via certificates</li>
                     <li>via username & password</li>
                 </ul>
+        </ul>
+        <li>EAP-TLS configuration for WPA-Enterprise using FreeRadius for Debian</li>
+        <ul>
+            <li><a href="https://www.tp-link.com/us/support/faq/3456/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>Step 1: Install FreeRadius on a Linux VM or PC</li>
+            <ul>
+                <li><a href="https://wiki.freeradius.org/guide/Getting-Started" target="_blank"
+                rel="noopener noreferrer">Reference</a></li>
+                <li><span class="CLI-font">sudo apt-get install freeradius</span></li>
+                <li>For version 3.0, the configuration files will be at at /etc/freeradius/3.0/
+                    and you need root permission to enter that directory
+                </li>
+                <li>To run the radius server: <span class="CLI-font">sudo freeradius -X</span></li>
+                <li>Go through step 1 and step 2 in this
+                    <a href="http://freesoftwaremagazine.com/articles/howto_incremental_setup_freeradius_server_eap_authentications/" 
+                    target="_blank" rel="noopener noreferrer">article</a> to test the basic setup of
+                    freeradius</li>
+            </ul>
+            <li>Step 2: Edit the FreeRADIUS clients configuration</li>
+            <ul>
+                <li>In /etc/freeradius/3.0/ there is one file called clients.conf and this is
+                    the file where you configure all the clients of FreeRADIUS server.
+                </li>
+                <li>You need to add  your AP to the configuration file so that FreeRADIUS will 
+                    process the authenticate request sent from the AP.
+                </li>
+                <li>The following is an example of client configuration for AP:</li>
+                <pre>
+                    <code>
+    client AP &#123;
+        ipaddr = 192.168.2.1/24  # ip-address of the IP
+        secret = secret123
+    }
+                    </code>
+                </pre>
+                <li>The 'secret' key above is based on the RADIUS setting of your AP.</li>
+            </ul>
+            <li>Step 3: Generate certificates</li>
+            <ul>
+                <li>You straight away use the Makefile provided by freeRADIUS to generate
+                    the certificates. But before that, you need to clean up all the CAs each 
+                    time before you recreate them, or openssl will output ‘Nothing to be done’ 
+                    and it won’t regenerate new CAs. 
+                </li>
+                <ul>
+                    <li><span class="CLI-font">cd /etc/freeradius/3.0/certs/</span></li>
+                    <li><span class="CLI-font">rm -f *csr *key *p12 *pem *crl *crt *der *mk *txt *attr *old serial dh</span></li>
+                    <li><span class="CLI-font">make</span></li>
+                </ul>
+            </ul>
+            <li>Step 4: Edit the FreeRADIUS EAP configuration to enable TLS</li>
+            <ul>
+                <li>Edit /etc/freeradius/3.0/mods-enabled/eap</li>
+                <li>Change default_eap_type to tls:</li>
+                <pre>
+                    <code>
+eap &#123;
+    default_eap_type = tls
+}
+                    </code>
+                </pre>
+                <li>Add a custom tls-config to configure the path of ca_file, certificate_file etc (The 
+                    configuration below is TO-BE double confirmed)</li>
+                <pre>
+                    <code>
+tls-config tls-my-custom &#123;
+    private_key_password = whatever
+    private_key_file = $&#123;certdir}/client.key
+    certificate_file = $&#123;certdir}/client.crt
+    ca_file = $&#123;cadir}/ca.crt
+    dh_file = $&#123;certdir}/dh
+    ca_path = $&#123;cadir}
+    cipher_list = "DEFAULT"
+    cipher_server_performance = no
+    make_cert_command = "$&#123;certdir}/bootstrap"
+    cache &#123;
+        enable = no
+        lifetime = 24 # hours
+        max_entries = 255
+    }
+    verify &#123;
+    }
+}
+
+tls &#123;
+    tls = tls-my-custom
+}
+                    </code>
+                </pre>
+                <li>Step 5: Start the FreeRADIUS server</li>
+                <ul>
+                    <li><span class="CLI-font">sudo freeradius -X</span></li>
+                </ul>
+                <li>Step 6: Config the wireless network authentication settings</li>
+                <ul>
+                    <li>Make sure the security type of your AP wireless network 
+                        is set to WPA2-Enterprise</li>
+                    <li>Make sure the authentication password matched with
+                        what is set in the clients.conf
+                    </li>
+                </ul>
+                <li>Step 7: Install the certificates on clients</li>
+                <ul>
+                    <li><a href="https://www.hs-schmalkalden.de/en/university/faculties/faculty-of-electrical-engineering/studium/use-of-it/install-ca-certificates-on-linux-systems.html" 
+                        target="_blank" rel="noopener noreferrer">Reference</a></li>
+                    <li>Change the PEM files generated into .crt</li>
+                    <li>Create the /usr/local/share/ca-certificates directory if not yet present.</li>
+                    <li>Copy the PEM files to /usr/local/share/ca-certificates</li>
+                    <li><span class="CLI-font">update-ca-certificates</span></li>
+                </ul>
+                <li>Step 8: Configure wpa_supplicant.conf</li>
+                <ul>
+                    <li>Refer to the examples <a href="https://www.freebsd.org/cgi/man.cgi?query=wpa_supplicant.conf&sektion=5"
+                        target="_blank" rel="reopener referrer">here</a></li>
+                </ul>
+            </ul>
         </ul>
     </ul>
 
