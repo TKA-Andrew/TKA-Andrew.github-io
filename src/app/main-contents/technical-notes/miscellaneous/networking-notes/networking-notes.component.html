@@ -361,10 +361,18 @@
                     and you need root permission to enter that directory
                 </li>
                 <li>To run the radius server: <span class="CLI-font">sudo freeradius -X</span></li>
-                <li>Go through step 1 and step 2 in this
+                <li>Go through step 1, 2 and 3 in this
                     <a href="http://freesoftwaremagazine.com/articles/howto_incremental_setup_freeradius_server_eap_authentications/" 
                     target="_blank" rel="noopener noreferrer">article</a> to test the basic setup of
                     freeradius</li>
+                <li>To uninstall the freeradius, you need to unintall its related packages as well:</li>
+                    <ul>
+                        <li><span class="CLI-font">dpkg-query -l | grep radius</span></li>
+                        <li><span class="CLI-font">sudo apt-get remove --purge freeradius</span></li>
+                        <li><span class="CLI-font">sudo apt-get remove --purge freeradius-common</span></li>
+                        <li><span class="CLI-font">sudo apt-get remove --purge freeradius-config</span></li>
+                        <li><span class="CLI-font">sudo apt-get remove --purge libfreeradius3</span></li>
+                    </ul>
             </ul>
             <li>Step 2: Edit the FreeRADIUS clients configuration</li>
             <ul>
@@ -397,11 +405,12 @@
                     <li><span class="CLI-font">rm -f *csr *key *p12 *pem *crl *crt *der *mk *txt *attr *old serial dh</span></li>
                     <li><span class="CLI-font">make</span></li>
                 </ul>
+                <li>The private_key_password of all the certs are 'whatever'</li>
             </ul>
             <li>Step 4: Edit the FreeRADIUS EAP configuration to enable TLS</li>
             <ul>
                 <li>Edit /etc/freeradius/3.0/mods-enabled/eap</li>
-                <li>Change default_eap_type to tls:</li>
+                <li>Change default_eap_type to tls (To be verified whether this is necessary):</li>
                 <pre>
                     <code>
 eap &#123;
@@ -415,18 +424,17 @@ eap &#123;
                     <code>
 tls-config tls-my-custom &#123;
     private_key_password = whatever
-    private_key_file = $&#123;certdir}/client.key
-    certificate_file = $&#123;certdir}/client.crt
+    private_key_file = $&#123;certdir}/server.pem
+    certificate_file = $&#123;certdir}/server.pem
     ca_file = $&#123;cadir}/ca.crt
     dh_file = $&#123;certdir}/dh
     ca_path = $&#123;cadir}
     cipher_list = "DEFAULT"
-    cipher_server_performance = no
+    cipher_server_preference = no
     make_cert_command = "$&#123;certdir}/bootstrap"
     cache &#123;
         enable = no
         lifetime = 24 # hours
-        max_entries = 255
     }
     verify &#123;
     }
@@ -449,13 +457,17 @@ tls &#123;
                         what is set in the clients.conf
                     </li>
                 </ul>
-                <li>Step 7: Install the certificates on clients</li>
+                <li>Step 7: Install the certificates on clients (Debian)</li>
                 <ul>
                     <li><a href="https://www.hs-schmalkalden.de/en/university/faculties/faculty-of-electrical-engineering/studium/use-of-it/install-ca-certificates-on-linux-systems.html" 
                         target="_blank" rel="noopener noreferrer">Reference</a></li>
-                    <li>Change the PEM files generated into .crt</li>
                     <li>Create the /usr/local/share/ca-certificates directory if not yet present.</li>
-                    <li>Copy the PEM files to /usr/local/share/ca-certificates</li>
+                    <li>Create the /usr/share/ca-certificates/extra directory if not yet present.</li>
+                    <li>Copy the PEM files  to /usr/local/share/ca-certificates</li>
+                    <li>Change the PEM files generated into .crt</li>
+                    <li>Copy the .crt files to /usr/share/ca-certificates/extra</li>
+                    <li><span class="CLI-font">sudo dpkg-reconfigure ca-certificates</span> and use 'space'
+                        key to check the newly added certificates.</li>
                     <li><span class="CLI-font">update-ca-certificates</span></li>
                 </ul>
                 <li>Step 8: Configure wpa_supplicant.conf</li>
