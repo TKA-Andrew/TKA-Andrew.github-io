@@ -106,7 +106,22 @@
                                 <li>a place to write <b>request handler</b></li>
                             </ul>
                     </ul>
-                <li>Since we added new app to the project, we need to add it into the INSTALLED_APPS in settings.py also.</li>
+                <li>Since we added new app to the project, we need to add the AppConfig class of the app into the INSTALLED_APPS in settings.py also.
+                    For example:
+                    <pre>
+                        <code>
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'my_app.apps.MyAppConfig'
+]
+                        </code>
+                    </pre>
+                </li>
             </ul>
                 
             <h3>Writing View Functions & Mapping them to urls</h3>
@@ -196,6 +211,198 @@
             </ul>
 
             <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h2>Miscellaneous Notes</h2>
+            <ul>
+                <li>Dynamic Routing Example:</li>
+                <ul>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.http.response import HttpResponse, Http404
+
+articles = &#123;
+    'sports' : 'Sports Page',
+    'finance' : 'Finance Page',
+    'politics' : 'Politics Page',
+}
+
+def news_view(request, topic):
+    try:
+        return HttpResponse(articles[topic])
+    except:
+        raise Http404("404 Generic Error")
+                        </code>
+                    </pre>
+                    <li>urls.py</li>
+                    <pre>
+                        <code>
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('&lt;topic>', views.news_view),
+]
+                        </code>
+                    </pre>
+                </ul>
+                <li>Using path converter in urls</li>
+                <ul>
+                    <li>urls.py</li>
+                    <pre>
+                        <code>
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('&lt;str:topic>', views.news_view),
+    path('add/&lt;int:num1>/&lt;int:num2>', views.addition_view),
+    path('profile/&lt;uuid:user_uuid>', views.user_view),
+]
+                        </code>
+                    </pre>
+                </ul>
+                <li>Using reverse() function to redirect url</li>
+                <ul>
+                    <li>urls.py</li>
+                    <pre>
+                        <code>
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('&lt;str:topic>', views.news_view, name='topic-page'),
+]
+                        </code>
+                    </pre>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.urls import reverse
+from django.http.response import HttpResponse, HttpResponseRedirect
+
+articles = &#123;
+    'sports' : 'Sports Page',
+    'finance' : 'Finance Page',
+    'politics' : 'Politics Page',
+}
+
+def news_view(request, topic):
+    return HttpResponse(articles[topic])
+
+def num_page_view(request, num_page):
+    topics_list = list(articles.keys())
+    topic = topics_list[num_page]
+    return HttpResponseRedirect(reverse('topic-page', args=[topic]))
+
+                        </code>
+                    </pre>
+                </ul>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/templates/builtins/"
+                    target="_blank" rel="noopener noreferrer">Django Template filters and tags</a></li>
+                <li>Using URL Names in Templates</li>
+                <ul>
+                    <li>urls.py</li>
+                    <pre>
+                        <code>
+from django.urls import path
+from . import views
+
+# app_name and urlpatterns below are special variables that Django looks for in the urls.py
+
+# Make sure the app_name matches your actuall name of the app
+app_name = 'my_app'
+
+# Remember to assign name to each path below so that they can be referenced in html
+urlpatterns = [
+    path('', views.sample_view, name='example'),
+    path('variable/', views.variable_view, name='variable'),
+]
+                        </code>
+                    </pre>
+                    <li>example.html</li>
+                    <pre>
+                        <code>
+&lt;body>
+    &lt;h1>HELLLOOOO&lt;/h1>
+    &lt;h1>&lt;a href="&#123;% url 'my_app:variable' %}">Click me to go variable page&lt;/a>&lt;/h1>
+&lt;/body>
+                        </code>
+                    </pre>
+                </ul>
+                <li>Template Inheritance</li>
+                <ul>
+                    <li>base.html</li>
+                    <pre>
+                        <code>
+&lt;html lang="en">
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+    &lt;title>Document&lt;/title>
+&lt;/head>
+&lt;body>
+    &lt;h1>This is header&lt;/h1>
+    &#123;% block my_base_block %}
+
+    &#123;% endblock %}
+    &lt;h1>This is footer&lt;/h1>
+&lt;/body>
+&lt;/html>
+                        </code>
+                    </pre>
+                    <li>example.html</li>
+                    <pre>
+                        <code>
+&#123;% extends 'base.html' %}
+
+&#123;% block my_base_block %}
+&lt;h1>HELLLOOOO&lt;/h1>
+&lt;h1>&lt;a href="&#123;% url 'my_app:variable' %}">Click me to go variable page&lt;/a>&lt;/h1>
+&#123;% endblock %}
+                        </code>
+                    </pre>
+                    <li>variable.html</li>
+                    <pre>
+                        <code>
+&#123;% extends 'base.html' %}
+
+&#123;% block my_base_block %}
+&lt;h1>Variable page&lt;/h1>
+&#123;% endblock %}
+                        </code>
+                    </pre>
+                </ul>
+                <li>Custom 404 Template</li>
+                <ul>
+                    <li>Instead of adding try except in each view, we should generalize some templates
+                        such as responses for status 404.
+                    </li>
+                    <li>Add a custom html file, for example: my_custom_404.html</li>
+                    <li>In views.py of main project, write a function view that renders that html</li>
+                    <pre>
+                        <code>
+from django.shortcuts import render
+
+def my_custom_not_found_view(request, exception):
+    return render(request, 'my_custom_404.html', status=404)
+                        </code>
+                    </pre>
+                    <li>Add the following lines in urls.py of main project</li>
+                    <pre>
+                        <code>
+# this handler404 is a specific variable that Django looks for
+# there are more specific handlers such as handler500, handler403, handler400 etc
+handler404 = 'my_site.views.my_custom_not_found_view'
+                        </code>
+                    </pre>
+                    <li>Make sure you close the Debug mode in settings.py and also updated the DIR and ALLOW_HOST
+                        in order to view it in Development mode.
+                    </li>
+                </ul>
+            </ul>
         </div>
     </div>
 </div>
