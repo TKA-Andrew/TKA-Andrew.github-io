@@ -209,11 +209,10 @@ INSTALLED_APPS = [
                     <a href="https://docs.djangoproject.com/en/4.1/ref/templates/language/#templates" target="_blank" rel="noopener noreferrer">this</a>
                 </li>
             </ul>
-
             <mat-divider></mat-divider>
         </div>
         <div>
-            <h2>Miscellaneous Notes</h2>
+            <h2>Views, Routing and URLs</h2>
             <ul>
                 <li>Dynamic Routing Example:</li>
                 <ul>
@@ -299,6 +298,12 @@ def num_page_view(request, num_page):
                         </code>
                     </pre>
                 </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h2>Templates</h2>
+            <ul>
                 <li><a href="https://docs.djangoproject.com/en/4.1/ref/templates/builtins/"
                     target="_blank" rel="noopener noreferrer">Django Template filters and tags</a></li>
                 <li>Using URL Names in Templates</li>
@@ -403,6 +408,92 @@ handler404 = 'my_site.views.my_custom_not_found_view'
                     </li>
                 </ul>
             </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h2>Models, Databases, Queries</h2>
+            <ul>
+                <li>Example of models.py</li>
+                <pre>
+                    <code>
+    from django.db import models
+
+    class Patient(models.Model):
+        first_name = models.CharField(max_length=30)
+        last_name = models.CharField(max_length=30)
+        age = models.IntegerField()
+        heartrate = models.IntegerField()
+
+        def __str__(self):
+            return f"&#123;self.first_name} &#123;self.last_name} - &#123;self.age} years old"
+                    </code>
+                </pre>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/models/fields/"
+                    target="_blank" rel="noopener noreferrer">Model fields reference</a></li>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/validators/#maxvaluevalidator"
+                    target="_blank" rel="noopener noreferrer">Django validators</a></li>
+                <li><span class="CLI-font">python manage.py makemigrations</span> creates the set of 
+                    instructions that will apply changes to the database.</li>
+                <li><span class="CLI-font">python manage.py migrate</span> runs any existing migrations.</li>
+                <li><span class="CLI-font">python manage.py sqlmigrate [app-name] [migration-file-name]</span> doesn't actually
+                run any migrations, it only shows the SQL code of the migration files.</li>
+                <li>3 methods of creatin new data entries with a model:</li>
+                <ul>
+                    <li>Create Object and .save()</li>
+                    <pre>
+                        <code>
+from first_app.models import Patient
+carl = Patient(first_name='carl', last_name='smith', age=24)
+carl.save()
+                        </code>
+                    </pre>
+                    <li>objects.create()</li>
+                    <pre>
+                        <code>
+from first_app.models import Patient
+Patient.objects.create(first_name='Sam', last_name='Lim', age=24)
+                        </code>
+                    </pre>
+                    <li>objects.bulk_create()</li>
+                    <pre>
+                        <code>
+from first_app.models import Patient
+p_list = [Patient(first_name='brian', last_name='smith', age=20), Patient(first_name='garfield', last_name='smith', age=27)]
+Patient.objects.bulk_create(p_list)
+                        </code>
+                    </pre>                 
+                </ul>
+                <li>Something like "MyModels.objects" is a kind of Django Model Manager.</li>
+                <ul>
+                    <li>.all() returns the full list of objects</li>
+                    <li>.get() can only return a single object, it will prompt error if there are multiple objects returned</li>
+                    <pre>
+                        <code>
+Patient.objects.get(pk=1)
+                        </code>
+                    </pre>
+                    <li>.filter()</li>
+                    <pre>
+                        <code>
+Patient.objects.filter(last_name='smith').all()
+Patient.objects.filter(last_name='smith').filter(age=30).all()
+
+from django.db.models import Q
+Patient.objects.filter(Q(last_name='smith') & Q(age=30)).all()
+                        </code>
+                    </pre>
+                </ul>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/models/querysets/#field-lookups"
+                    target="_blank" rel="noopener noreferrer">Field lookups</a></li>
+                    <pre>
+                        <code>
+Patient.objects.filter(last_name__startswith='s').all()
+Patient.objects.filter(age__in=[20,24,30]).all()
+Patient.objects.filter(age__gte=20).all()
+                        </code>
+                    </pre>
+            </ul>
+            <mat-divider></mat-divider>
         </div>
     </div>
 </div>
