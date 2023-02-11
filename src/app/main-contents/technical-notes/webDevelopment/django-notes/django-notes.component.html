@@ -419,10 +419,11 @@ handler404 = 'my_site.views.my_custom_not_found_view'
     from django.db import models
 
     class Patient(models.Model):
+        id = models.BigAutoField(auto_created=True, primary_key= True)
         first_name = models.CharField(max_length=30)
         last_name = models.CharField(max_length=30)
-        age = models.IntegerField()
-        heartrate = models.IntegerField()
+        age = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(120)])
+        heartrate = models.IntegerField(default=60, validators=[MinValueValidator(1), MaxValueValidator(300)])    
 
         def __str__(self):
             return f"&#123;self.first_name} &#123;self.last_name} - &#123;self.age} years old"
@@ -492,6 +493,68 @@ Patient.objects.filter(age__in=[20,24,30]).all()
 Patient.objects.filter(age__gte=20).all()
                         </code>
                     </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h2>Django Admin</h2>
+            <ul>
+                <li>To create a superuser: <span class="CLI-font">python manage.py createsuperuser</span></li>
+                <li>Superuser is needed to access the Django adminstration page through /admin url.</li>
+                <li>By default, the Django administration page already has the Authentication And Authorization
+                    setting for you to configure the usergroups and users.s
+                </li>
+                <li>To register your model to the Django adminstration page (so that superusers can edit the 
+                    models/database through admin page):
+                </li>
+                <ul>
+                    <li>admin.py in first_app</li>
+                    <pre>
+                        <code>
+from django.contrib import admin
+from first_app.models import Patient
+
+admin.site.register(Patient)
+                        </code>
+                    </pre>
+                </ul>
+                <li>For more advanced use case such as you want to modify the orders of fields displayed in
+                    the django admin page:
+                </li>
+                <ul>
+                    <li>admin.py in first_app</li>
+                    <pre>
+                        <code>
+from django.contrib import admin
+from first_app.models import Patient
+
+class PatientAdmin(admin.ModelAdmin):
+    fields = ['first_name', 'last_name']
+
+admin.site.register(Patient, PatientAdmin)
+                        </code>
+                    </pre>
+                </ul>
+                <li>Or even if you want to make the fields grouped in to different categories:</li>
+                <ul>
+                    <li>admin.py in first_app</li>
+                    <pre>
+                        <code>
+from django.contrib import admin
+from first_app.models import Patient
+
+class PatientAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('PERSONAL INFORMATION', &#123;'fields':['first_name', 'last_name', 'age']}),
+        ('HEALTH INFORMATION', &#123;'fields':['heartrate']})
+    ]
+
+admin.site.register(Patient, PatientAdmin)
+                        </code>
+                    </pre>
+                </ul>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/"
+                    target="_blank" rel="noopener noreferrer">More detailed reference</a></li>
             </ul>
             <mat-divider></mat-divider>
         </div>
