@@ -558,5 +558,65 @@ admin.site.register(Patient, PatientAdmin)
             </ul>
             <mat-divider></mat-divider>
         </div>
+        <div>
+            <h2>Django Forms</h2>
+            <ul>
+                <li>HTML forms require a lot of processing to connect with Django,
+                    especially when we want to later connect these inputs to Models.
+                </li>
+                <li>Fortunately, Django comes with a built-in Forms class which can be
+                    used with Django and Python to create forms and then send that form 
+                    to the template through a simple tag call &#123; &#123; form } }
+                </li>
+                <li>When you create an HTML form, by default it is going to send GET
+                    request.
+                </li>
+                <li>CSRF (Cross-Site Request Forgery)</li>
+                <ul>
+                    <li>CSRF, also known as one-click attack or session riding, is a type of
+                        malicious exploit of a website where unauthroized command are transmitted
+                        from a user that the website trusts.
+                    </li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>Let's say a hacker creates a duplicate of bank's money transfer
+                            form. And the form is edited so that the POST request of the form will
+                            ask the bank's web server to transfer money to the hacker.
+                        </li>
+                        <li>And then, the hacker send some phishing email to an authenticated user
+                            to ask him to click on the button, where the button is actually the 
+                            submit button of the fake form.
+                        </li>
+                        <li>Once the user clicks it (provided that the user already signed in to
+                            the bank's website and hence the user is considered authenticated from the
+                            perspective of the bank's webserver), the bank's webserver receives the HTTP POST
+                            request and thought that the form is submitted by the authenticated user
+                            and hence proceed with transferring money to the hacker.
+                        </li>
+                        <li>This type of CSRF attack is more common on social media where hackers simply
+                            post a link and if someone clicks it, it will share something together with
+                            that link, and if some other people click it also, the attack spreads.
+                        </li>
+                    </ul>
+                    <li>To prevent CSRF attack:</li>
+                    <ul>
+                        <li>We could generate a random cryptographic token with every form during each session.</li>
+                        <li>The server could then confirms if the token matches with the current session.</li>
+                    </ul>
+                    <li>Django creates these CSRF tokens for us automatically with a
+                        simple tag call: <span class="CLI-font">&#123;% csrf_token %}</span>
+                    </li>
+                    <li>To use Django Form:</li>
+                    <li>References:</li>
+                    <ul>
+                        <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/" 
+                            target="_blank" rel="noopener noreferrer">Working with forms</a></li>
+                        <li><a href="https://docs.djangoproject.com/en/4.1/ref/forms/fields/" 
+                            target="_blank" rel="noopener noreferrer">Form Fields</a></li>
+                    </ul>
+                </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
