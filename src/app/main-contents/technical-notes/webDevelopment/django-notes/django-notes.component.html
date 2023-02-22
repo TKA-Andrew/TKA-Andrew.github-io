@@ -606,14 +606,166 @@ admin.site.register(Patient, PatientAdmin)
                     <li>Django creates these CSRF tokens for us automatically with a
                         simple tag call: <span class="CLI-font">&#123;% csrf_token %}</span>
                     </li>
-                    <li>To use Django Form:</li>
-                    <li>References:</li>
-                    <ul>
-                        <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/" 
-                            target="_blank" rel="noopener noreferrer">Working with forms</a></li>
-                        <li><a href="https://docs.djangoproject.com/en/4.1/ref/forms/fields/" 
-                            target="_blank" rel="noopener noreferrer">Form Fields</a></li>
-                    </ul>
+                </ul>
+                <li>To use Django Form:</li>
+                <ul>
+                    <li>forms.py</li>
+                    <pre>
+                        <code>
+    from django import forms
+
+    class ReviewForm(forms.Form):
+        first_name = forms.CharField(label='First Name', max_length=100)
+        last_name = forms.CharField(label='Last Name', max_length=100)
+        email = forms.EmailField(label='Email')
+        review = forms.CharField(label='Please write your review here')
+                        </code>
+                    </pre>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+    from django.shortcuts import render, redirect
+    from django.urls import reverse
+    from .forms import ReviewForm
+    
+    def rental_review(request):
+        if (request.method == 'POST'):
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                return redirect(reverse('cars:thank_you'))
+        else:
+            form = ReviewForm()
+        return render(request, 'cars/rentalreview.html', context=&#123;'form': form})
+    
+    def thank_you(request):
+        return render(request, 'cars/thankyou.html')
+                        </code>
+                    </pre>
+                    <li>rentalreview.html</li>
+                    <pre>
+                        <code>
+&#123;% extends 'base.html' %}
+
+&#123;% block my_form_block %}
+    &lt;h1>RENTAL REVIEW FORM&lt;/h1>
+    &lt;form method="POST">
+        &#123;% csrf_token %}
+        &#123; &#123;form} }
+        &lt;input type="submit">
+    &lt;/form>
+&#123;% endblock %}
+                        </code>
+                    </pre>
+                </ul>
+                <li>More examples of customizing forms:</li>
+                <ul>
+                    <li>
+                    <pre>
+                        <code>
+    &lt;form method="POST">
+        &#123;% csrf_token %}
+        &#123; &#123;form.as_p} }
+        &lt;input type="submit">
+    &lt;/form>
+                        </code>
+                    </pre>
+                    </li>
+                    <li>
+                    <pre>
+                        <code>
+    &lt;form method="POST">
+        &#123;% csrf_token %}
+        &#123; &#123;form.first_name.label_tag} } &#123; &#123;form.first_name} }
+        &#123; &#123;form.last_name.label_tag} } &#123; &#123;form.last_name} }
+        &lt;input type="submit">
+    &lt;/form>
+                        </code>
+                    </pre>
+                    </li>
+                    <li>
+                    <pre>
+                        <code>
+    &lt;form method="POST">
+        &#123;% csrf_token %}
+        &#123; for field in form }
+        &lt;div class='form-control'>
+            &#123; &#123;field.label_tag} } &#123; &#123;field} }
+        &lt;/div>
+        &#123; endfor %}
+        &lt;input type="submit">
+    &lt;/form>
+                        </code>
+                    </pre>
+                    </li>
+                </ul>
+                <li>Styling Form Widgets with CSS</li>
+                <ul>
+                    <li>Pre-requisites: <a href="https://docs.djangoproject.com/en/4.0/howto/static-files/#how-to-manage-static-files-e-g-images-javascript-css"
+                        target="_blank" rel="noopener noreferrer">How to manage static files</a></li>
+                    <li>Once you have your css ready, you can edit the forms.py to define the class attributes
+                        or even other attributes of the form widgets. For example:
+                        <pre>
+                            <code>
+class ReviewForm(forms.Form):
+    first_name = forms.CharField(label='First Name', max_length=100)
+    last_name = forms.CharField(label='Last Name', max_length=100)
+    email = forms.EmailField(label='Email')
+    review = forms.CharField(label='Please write your review here',
+                                widget=forms.Textarea(attrs=&#123;'class': 'myform',
+                                'rows': '2', 'columns':'10'}))
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+                <li>You can even use <a href="https://docs.djangoproject.com/en/4.1/topics/forms/modelforms/"
+                    target="_blank" rel="noopener noreferrer">ModelForm</a> to straight away create form based on your model:</li>
+                <ul>
+                    <li>forms.py</li>
+                    <pre>
+                        <code>
+from .models import Review
+from django.forms import ModelForm
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ['first_name', 'last_name', 'stars']
+                        </code>
+                    </pre>
+                    <li>To add save the new query, use form.save() in views.py when the form.is_valid()</li>
+                    <li>You can further configure the meta class of the model form:</li>
+                    <pre>
+                        <code>
+from .models import Review
+from django.forms import ModelForm
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = "__all__"  # pass all model fields as form fields
+        labels = &#123;
+            'first_name': "Your First Name",
+            'last_name': "Your Last Name",
+            'rating': "Your Rating",
+        }
+        error_messages = &#123;
+            'stars': &#123;
+                'min_value': "Hey! Min value is 1",
+                'max_value': "Hey! Max value is 6",
+            }
+        }
+                        </code>
+                    </pre>
+                    <li>To display the error_messages returned by Validators used in ModelField, use &#123; &#123; form.errors } }
+                        in your html template.
+                    </li>
+                </ul>
+                <li>References:</li>
+                <ul>
+                    <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/" 
+                        target="_blank" rel="noopener noreferrer">Working with forms</a></li>
+                    <li><a href="https://docs.djangoproject.com/en/4.1/ref/forms/fields/" 
+                        target="_blank" rel="noopener noreferrer">Form Fields</a></li>
                 </ul>
             </ul>
             <mat-divider></mat-divider>
