@@ -770,5 +770,207 @@ class ReviewForm(ModelForm):
             </ul>
             <mat-divider></mat-divider>
         </div>
+        <div>
+            <h2>Django Class Based Views</h2>
+            <ul>
+                <li>Template View</li>
+                <ul>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import TemplateView
+
+class HomeView(TemplateView):
+    template_name = 'classroom/home.html'
+                        </code>
+                    </pre>
+                    <li>urls.py</li>
+                    <pre>
+                        <code>
+from django.urls import path
+from .views import HomeView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('home', HomeView.as_view(), name = 'home')
+]
+                        </code>
+                    </pre>
+                </ul>
+                <li>FormView</li>
+                <ul>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import FormView
+from django.urls import reverse_lazy
+from classroom.forms import ContactForm
+
+class ContactFormView(FormView):
+    form_class = ContactForm
+    template_name = 'classroom/contact.html'
+
+    # reverse returns a string
+    # reverse_lazy returns an object
+    success_url = reverse_lazy('classroom:home')
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+                        </code>
+                    </pre>
+                </ul>
+                <li>Create View</li>
+                <ul>
+                    <li>Create View will automatically run .save() function when user clicks submit button</li>
+                    <li>Auto lookup of template name pattern: [your_model_name]_form.html</li>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from classroom.models import Teacher
+
+class TeacherCreateView(CreateView):
+    model = Teacher
+    # since we use Teacher model here, it will automatically look for teacher_form.html
+    # and hence we do not need to define template_name
+
+    fields = "__all__"
+    success_url = reverse_lazy('classroom:home')
+                        </code>
+                    </pre>
+                    <li>teacher_form.html</li>
+                    <pre>
+                        <code>
+&lt;h1>Teacher Form&lt;/h1>
+&lt;form method="post">
+    &#123; % csrf_token % }
+    &#123; &#123;form.as_p } }
+    &lt;input type="submit" value="Submit">
+&lt;/form>
+                        </code>
+                    </pre>
+                </ul>
+                <li>ListView</li>
+                <ul>
+                    <li>Auto lookup of template name pattern: [your_model_name]_list.html</li>
+                    <li>The default context_object_name is object_list, but you can change it.</li>
+                    <li>The default query is to query all objects in the model, you can also change the queryset.</li>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import ListView
+from classroom.models import Teacher
+
+class TeacherListView(ListView):
+    model = Teacher
+
+    # default is object_list
+    context_object_name = "teacher_list"
+
+    # default queryset is Teacher.objects.all()
+    queryset = Teacher.objects.order_by('last_name')
+                        </code>
+                    </pre>
+                    <li>teacher_list.html</li>
+                    <pre>
+                        <code>
+&lt;h1>List of teachers&lt;/h1>
+&lt;ul>
+    &#123;% for teacher in teacher_list %}
+        &lt;li>&#123; &#123;teacher.first_name}} &#123;&#123;teacher.last_name} }&lt;/li>
+    &#123;% endfor %}
+&lt;/ul>
+                        </code>
+                    </pre>
+                </ul>
+                <li>DetailView</li>
+                <ul>
+                    <li>Auto lookup of template name pattern: [your_model_name]_detail.html</li>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import DetailView
+from classroom.models import Teacher
+class TeacherDetailView(DetailView):
+    model = Teacher
+                        </code>
+                    </pre>
+                    <li>urls.py</li>
+                    <pre>
+                        <code>
+from django.urls import path
+from .views import HomeView, TeacherListView, TeacherDetailView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('home', HomeView.as_view(), name='home'),
+    path('teacher_list', TeacherListView.as_view(), name='teacher_list'),
+    path('teacher_detail/&lt;int:pk>', TeacherDetailView.as_view(), name='teacher_detail'),
+]
+
+                        </code>
+                    </pre>
+                    <li>teacher_list.html</li>
+                    <li>teacher_detail.html</li>
+                    <pre>
+                        <code>
+&lt;h1>Detail View of teacher&lt;/h1>
+&#123; &#123;teacher}}
+                        </code>
+                    </pre>
+                </ul>
+                <li>UpdateView</li>
+                <ul>
+                    <li>UpdateView will be using the template view used by CreateView</li>
+                    <li>Similar like DetailView, this UpdateView requires a unique key as well.</li>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from classroom.models import Teacher
+
+class TeacherUpdateView(UpdateView):
+    model = Teacher
+    fields = "__all__"
+    success_url = reverse_lazy('classroom:teacher_list')
+                        </code>
+                    </pre>
+                </ul>
+                <li>DeleteView</li>
+                <ul>
+                    <li>Auto lookup of template name pattern: [your_model_name]_confirm_delete.html</li>
+                    <li>Similar like DetailView and UpdateView, this DeleteView requires a unique key as well.</li>
+                    <li>views.py</li>
+                    <pre>
+                        <code>
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
+from classroom.models import Teacher
+                            
+class TeacherDeleteView(DeleteView):
+    model = Teacher
+    success_url = reverse_lazy('classroom:teacher_list')
+                        </code>
+                    </pre>
+                    <li>teacher_confirm_delete.html</li>
+                    <pre>
+                        <code>
+&lt;h1>Are you sure you want to delete this teacher?&lt;/h1>
+&lt;h2>&#123; &#123;teacher}}&lt;/h2>
+&lt;form method="post">
+    &#123;% csrf_token%}
+    &lt;input type="submit" value="Confirm Delete">
+&lt;/form>
+                        </code>
+                    </pre>
+                </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
