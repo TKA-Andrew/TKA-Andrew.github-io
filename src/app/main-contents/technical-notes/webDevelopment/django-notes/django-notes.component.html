@@ -502,7 +502,7 @@ Patient.objects.filter(age__gte=20).all()
                 <li>To create a superuser: <span class="CLI-font">python manage.py createsuperuser</span></li>
                 <li>Superuser is needed to access the Django adminstration page through /admin url.</li>
                 <li>By default, the Django administration page already has the Authentication And Authorization
-                    setting for you to configure the usergroups and users.s
+                    setting for you to configure the usergroups and users.
                 </li>
                 <li>To register your model to the Django adminstration page (so that superusers can edit the 
                     models/database through admin page):
@@ -825,6 +825,7 @@ class ContactFormView(FormView):
                 <ul>
                     <li>Create View will automatically run .save() function when user clicks submit button</li>
                     <li>Auto lookup of template name pattern: [your_model_name]_form.html</li>
+                    <li>The default success_url is to reverse to [your_model_name]_detail.</li>
                     <li>views.py</li>
                     <pre>
                         <code>
@@ -971,6 +972,66 @@ class TeacherDeleteView(DeleteView):
                 </ul>
             </ul>
             <mat-divider></mat-divider>
+        </div>
+        <div>
+            <h2>User Authentication and Sessions</h2>
+            <ul>
+                <li>In the project-level urls.py, add this path: path('accounts/', include('django.contrib.auth.urls'))</li>
+                <li>The path above will add the following paths:</li>
+                    <ul>
+                        <li>accounts/login/ [name='login']</li>
+                        <li>accounts/logout/ [name='logout']</li>
+                        <li>accounts/password_change/ [name='password_change']</li>
+                        <li>etc</li>
+                    </ul>
+                <li>Although the views and urls are added, we need to provide the templates.</li>
+                <li>The views above will automatically look for /templates/registration/ directory
+                    at project level.
+                </li>
+                <li>Since the templates are added at the project level, we should configure the 
+                    TEMPLATES 'DIR' in settings.py to include os.path.join(BASE_DIR, 'templates/')
+                </li>
+                <li>The template name that is lookup by the Authentication views are:</li>
+                <ul>
+                    <li>templates/registration/login.html</li>
+                    <li>templates/registration/logged_out.html</li>
+                </ul>
+                <li>The Authentication system automatically return a 'next' variable, which is returned
+                    if the users are not authenticated or they don't have permission to view
+                    the page.
+                </li>
+                <li>The Authentication system also returns a user object, which has several methods:</li>
+                <ul>
+                    <li>is_authenticated</li>
+                </ul>
+                <li>By default, after login, it will redirect to /accounts/profile. We can change this default
+                    by setting the LOGIN_REDIRECT_URL in settings.py
+                </li>
+                <li>An example to add permission control to function based view:</li>
+                <pre>
+                    <code>
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def my_view(request):
+    return render(request, 'catalog/my_view.html')
+                    </code>
+                </pre>
+                <li>An example to add permission control to class based view:</li>
+                <pre>
+                    <code>
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class BookCreateView(LoginRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+                    </code>
+                </pre>
+                <li>There are also some built-in forms that we can used such as:</li>
+                <ul>
+                    <li>from django.contrib.auth.forms import UserCreationForm</li>
+                </ul>
+            </ul>
         </div>
     </div>
 </div>
