@@ -4,7 +4,23 @@
         <div>
             <h2>Introduction</h2>
             <ul>
-                <li>If you are able to find a state transition in the problem, most probably you can solve it with DP.</li>
+                <li>Dynamic Programming is the method of solving a problem by breaking it down
+                    into smaller easier problems.
+                </li>
+                <li>For us to be able to apply Dynamic Programming, it has 2 properties:</li>
+                    <ul>
+                        <li>Optimal substructure</li>
+                            <ul>
+                                <li>Finding the solution to each its subproblems and joining the individual
+                                    solutions can lead to optimal solution of the original problem
+                                </li>
+                            </ul>
+                        <li>Overlapping subproblems</li>
+                            <ul>
+                                <li>The solutions to the subproblems are mutually dependent</li>
+                                <li>Also known as 'state transition' in this note</li>
+                            </ul>
+                    </ul>
                 <li>What we need in DP solution:</li>
                     <ul>
                         <li>base case</li>
@@ -16,7 +32,9 @@
                     it all depends on the definition of your "dp" variable.
                 </li>
                 <li>State compression can be done to compress the dp vector (from 2D to 1D, or from 1D to a few variables) if the state transition only relies on neighbor elements</li>
-                <li>Normally problems that relate to finding maximum, minimum, greatest, longest etc are possibly related to DP</li>
+                <li>Normally problems that relate to finding maximum, minimum, greatest, longest etc are possibly related to DP
+                    (as normally the problem fulfills the 2 properties of Dynamic Programming)
+                </li>
                 <li>Questions related to subsequences also possibly related to DP</li>
                 <li>The content here will try to focus on bottom-up approach of DP only, will try to use the same pattern of solution</li>
             </ul>
@@ -24,7 +42,7 @@
         </div>
 
         <div>
-            <h2>List of Dijkstra's LeetCode Questions</h2>
+            <h2>List of Dynamic Programming LeetCode Questions</h2>
             <ul>
                 <li><a href="https://leetcode.com/problems/fibonacci-number/" target="_blank" rel="noopener noreferrer">
                     [easy] 509. Fibonacci Number</a></li>    
