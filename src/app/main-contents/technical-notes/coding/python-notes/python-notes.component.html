@@ -57,5 +57,85 @@ xyz = Person.fromBirthYear('xyz', 1997) # Instantiation of object using fromBirt
             </ul>
             <mat-divider></mat-divider>
         </div>
+
+        <div>
+            <h3>@cached_property</h3>
+            <ul>
+                <li>The cached_property is a decorator provided by the functools module in Python.</li>
+                <li>The @cached_property decorator transforms a method of a class into a property.</li>
+                <li>When accessed, the property's value is computed only once and then cached as a 
+                    normal attribute.</li>
+                <li>It is important to note that cached_property is suitable for use when the dependent
+                    attribute is constant, as the computation is only performed once.</li>
+                <li>Example:
+                    <pre>
+                        <code>
+from functools import cached_property
+
+
+class MiscMath:
+    def __init__(self, number):
+        self.number = number
+    
+    @cached_property
+    def squared(self):
+        print(f"Calculating squared of &#123;self.number} ...")
+        return self.number ** 2
+                        </code>
+                    </pre>
+
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3><b>from __future__ import absolute_import</b> and <b>from __future__ import unicode_literals</b></h3>
+            <ul>
+                <li>This 2 imports are needed if you want your code to be compatible with both Python 2.x and Python 3.x</li>
+                <li>They are not needed in Python 3.x as the behaviors they enable are already the default.</li>
+                <li>from __future__ import absolute_import</li>
+                    <ul>
+                        <li>This import statement is used in Python 2.x to enable the behavior of absolute imports, 
+                            which is the default import behavior in Python 3.x.</li>
+                        <li>In Python 2.x, when you have a package with submodules and you use relative imports within that package, 
+                            there can be ambiguity if there is a module with the same name as a submodule in another package. Absolute imports help avoid this ambiguity.</li>
+                    </ul>
+                <li>from __future__ import unicode_literals</li>
+                    <ul>
+                        <li>This import statement is used in Python 2.x to enable the behavior of treating string literals as Unicode by default, 
+                            similar to Python 3.x.</li>
+                        <li>In Python 2.x, string literals are treated as ASCII by default, which can lead to issues when working with Unicode characters and strings.</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>Python Dictionary get() method</h3>
+            <ul>
+                <li>When accessing a value of a Python Dictionary, using the get() function instead of the [] operator can be beneficial in certain situations to handle 
+                    the absence of a key without raising a KeyError exception.
+                </li>
+                <li>Example:
+                    <pre>
+                        <code>
+sample_dict = &#123;
+    'a': 123,
+    'b': 'abc'
+}
+
+try:
+    print(sample_dict['c'])
+except KeyError as e:
+    print("Key error exception!")
+
+print(sample_dict.get('c', None))  # Returns None
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
