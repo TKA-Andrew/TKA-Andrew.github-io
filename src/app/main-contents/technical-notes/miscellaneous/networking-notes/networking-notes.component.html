@@ -210,6 +210,39 @@
                     <li>You can use any DNS server, such as Google Public DNS: 8.8.8.8 and 8.8.4.4</li>
                 </ul>
             </ul>
+            <li>How to setup static IP address in Debian:</li>
+            <ul>
+                <li>Use `ifconfig` command to check your network interface. For example,
+                    normall will be 'eth0' for Ethernet connections or 'wlan0' for 
+                    wireless connections.
+                </li>
+                <li>Edit the network configuration file using `sudo nano /etc/network/interfaces`</li>
+                <li>Add the code below:</li>
+                <pre>
+                    <code>
+auto &lt;interface_name>
+iface &lt;interface_name> inet static
+    address &lt;desired_ip_address>
+    netmask &lt;netmask>
+    gateway &lt;default_gateway>
+    dns-nameservers &lt;dns_server_1> &lt;dns_server_2>
+                    </code>
+                </pre>
+                <li>Example:</li>
+                <pre>
+                    <code>
+auto eth0
+iface eth0 inet static
+    address 192.168.1.202
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    dns-nameservers 8.8.8.8 8.8.4.4
+                    </code>
+                </pre>
+                <li>Take note that the second DNS server is not always required, 
+                    and you can specify only one DNS server if desired.
+                </li>
+            </ul>
         </ul>
         <li>DHCP</li>
         <ul>
