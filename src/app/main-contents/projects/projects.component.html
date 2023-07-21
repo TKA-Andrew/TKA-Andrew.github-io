@@ -18,17 +18,13 @@
                     <div class="slide--path-finding-visualizer fade">
                         <img src="assets/images/Projects/path-finding-visualizer/demo_bibfs.jpeg" style="width:100%">
                     </div>
-                    
-                    <!-- Next and previous buttons -->
-                    <a class="prev" (click)="plusSlides('path-finding-visualizer', -1)">&#10094;</a>
-                    <a class="next" (click)="plusSlides('path-finding-visualizer', 1)">&#10095;</a>
+                    <a class="prev" (click)="updateSlideIndex('path-finding-visualizer', -1)">&#10094;</a>
+                    <a class="next" (click)="updateSlideIndex('path-finding-visualizer', 1)">&#10095;</a>
                 </div>
                 <div style="text-align:center">
-                    <span class="dot--path-finding-visualizer" (click)="currentSlide('path-finding-visualizer', 1)"></span>
-                    <span class="dot--path-finding-visualizer" (click)="currentSlide('path-finding-visualizer', 2)"></span>
-                    <span class="dot--path-finding-visualizer" (click)="currentSlide('path-finding-visualizer', 3)"></span>
-                    <span class="dot--path-finding-visualizer" (click)="currentSlide('path-finding-visualizer', 4)"></span>
-                    <span class="dot--path-finding-visualizer" (click)="currentSlide('path-finding-visualizer', 5)"></span>
+                    <ng-container *ngFor="let in of projectImagesCount['path-finding-visualizer']; let i = index">
+                        <span class="dot--path-finding-visualizer" (click)="showSlide('path-finding-visualizer', i)"></span>
+                    </ng-container>
                 </div>
             </div>
             <div fxLayout="column" fxLayoutAlign="center center" fxFlex='40' fxFlex.lt-md='80'>
@@ -39,6 +35,7 @@
                 <p style="color: black; font-size: 22px; align-self: center; text-align: justify; max-width: 400px; margin-left: 10px; margin-right: 10px;" [ngStyle.lt-md]="{'font-size': '15px'}">
                     A desktop application developed using wxWidgets to visualize some path finding algorithms written in C++, such as Dijkstra, BFS, A* Search, 
                     Greedy Best First Search & Bi-directional BFS.
+                </p>
             </div>
         </div>
         
@@ -63,18 +60,13 @@
                     <div class="slide--path-planning-visualizer fade">
                         <img src="assets/images/Projects/path-planning-visualizer/step6.jpeg" style="width:100%">
                     </div>
-                    
-                    <!-- Next and previous buttons -->
-                    <a class="prev" (click)="plusSlides('path-planning-visualizer', -1)">&#10094;</a>
-                    <a class="next" (click)="plusSlides('path-planning-visualizer', 1)">&#10095;</a>
+                    <a class="prev" (click)="updateSlideIndex('path-planning-visualizer', -1)">&#10094;</a>
+                    <a class="next" (click)="updateSlideIndex('path-planning-visualizer', 1)">&#10095;</a>
                 </div>
                 <div style="text-align:center">
-                    <span class="dot--path-planning-visualizer" (click)="currentSlide('path-planning-visualizer', 1)"></span>
-                    <span class="dot--path-planning-visualizer" (click)="currentSlide('path-planning-visualizer', 2)"></span>
-                    <span class="dot--path-planning-visualizer" (click)="currentSlide('path-planning-visualizer', 3)"></span>
-                    <span class="dot--path-planning-visualizer" (click)="currentSlide('path-planning-visualizer', 4)"></span>
-                    <span class="dot--path-planning-visualizer" (click)="currentSlide('path-planning-visualizer', 5)"></span>
-                    <span class="dot--path-planning-visualizer" (click)="currentSlide('path-planning-visualizer', 6)"></span>
+                    <ng-container *ngFor="let in of projectImagesCount['path-planning-visualizer']; let i = index">
+                        <span class="dot--path-planning-visualizer" (click)="showSlide('path-planning-visualizer', i)"></span>
+                    </ng-container>
                 </div>
             </div>
             <div fxLayout="column" fxLayoutAlign="center center" fxFlex='40' fxFlex.lt-md='100'>
@@ -85,6 +77,7 @@
                 <p style="color: black; font-size: 22px; align-self: center; text-align: justify; max-width: 400px; margin-left: 10px; margin-right: 10px;" [ngStyle.lt-md]="{'font-size': '15px'}">
                     A desktop application developed using wxWidgets to visualize the path planning process, starting from defining environment geometry and robot geometry, 
                     till generating a path using the graph generated based on the type of decomposition method selected.
+                </p>
             </div>
         </div>
 
@@ -94,13 +87,13 @@
                     <div class="slide--image-based-sudoku-solver fade">
                         <img src="assets/images/Projects/image-based-sudoku-solver/demo.jpeg" style="width:100%">
                     </div>
-                    
-                    <!-- Next and previous buttons -->
-                    <a class="prev" (click)="plusSlides('image-based-sudoku-solver', -1)">&#10094;</a>
-                    <a class="next" (click)="plusSlides('image-based-sudoku-solver', 1)">&#10095;</a>
+                    <a class="prev" (click)="updateSlideIndex('image-based-sudoku-solver', -1)">&#10094;</a>
+                    <a class="next" (click)="updateSlideIndex('image-based-sudoku-solver', 1)">&#10095;</a>
                 </div>
                 <div style="text-align:center">
-                    <span class="dot--image-based-sudoku-solver" (click)="currentSlide('image-based-sudoku-solver', 1)"></span>
+                    <ng-container *ngFor="let in of projectImagesCount['image-based-sudoku-solver']; let i = index">
+                        <span class="dot--image-based-sudoku-solver" (click)="showSlide('image-based-sudoku-solver', i)"></span>
+                    </ng-container>
                 </div>
             </div>
             <div fxLayout="column" fxLayoutAlign="center center" fxFlex='40' fxFlex.lt-md='100'>
@@ -110,6 +103,7 @@
                 </p>
                 <p style="color: black; font-size: 22px; align-self: center; text-align: justify; max-width: 400px; margin-left: 10px; margin-right: 10px;" [ngStyle.lt-md]="{'font-size': '15px'}">
                     A project that uses some image processing techniques to retrieve the sudoku from an input image, transform it into a 2D vector,  and then solve it using the backtracking algorithm.
+                </p>
             </div>
         </div>
     </div>
