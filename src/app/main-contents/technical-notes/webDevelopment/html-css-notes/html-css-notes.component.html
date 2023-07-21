@@ -25,7 +25,7 @@
                 <li>Take note that certain types of tags are not supported by certain type or version of browsers, to check, use
                     <a href="https://caniuse.com/" target="_blank" rel="noopener noreferer">caniuse.com</a>
                 </li>
-                <li>The html elemetn includes a head element and a body element:</li>
+                <li>The html element includes a head element and a body element:</li>
                     <ul>
                         <li>The head element contains information about the page such as its title.</li>
                         <li>The body element includes the structure and content of the page.</li>
@@ -50,6 +50,29 @@
                             <ul>
                                 <li>The viewport is the visible area of a webpage. </li>
                                 <li>Viewport element allows us to define the inital width and scale.</li>
+                                <li>The width here is referring to screen width in device independent pixels.</li>
+                                <li>Hardware pixels VS Independent device pixels VS device pixel ratio</li>
+                                    <ul>
+                                        <li>Hardware pixels are the physical pixels on the device screen.</li>
+                                        <li>Independent device pixels doesnt care how many pixels the device
+                                            has, because it will scale the resolution afterwards based on
+                                            number of hardware pixels.
+                                        </li>
+                                        <li>For example, if Device Independent Pixel is 960px and
+                                            the device has 1920 hardware pixels, the device pixel ratio
+                                            will be 2.
+                                        </li>
+                                    </ul>
+                                <li>Setting initial scale to 1 instructs the browsers to establish a 1:1 relationship
+                                    between device independent pixels and CSS pixels.
+                                </li>
+                                <li>CSS pixels are what we used to working with most of the time.</li>
+                                <li>Without setting initial-scale to 1, some browsers will keep the page width constant
+                                    when rotating to landscape mode.
+                                </li>
+                                <li>With the initial scale being set, the browsers will scale the content instead
+                                    of allowing them to reflow.
+                                </li>
                             </ul>
                         <li>Example:</li>
                             <pre>
@@ -63,8 +86,8 @@
                     </ul>
                 <li>Text</li>
                     <ul>
-                        <li>Use &lt;em&lt;/em> for emphaized text</li>
-                        <li>Use &lt;strong&lt;/strong> for important/serious/urgent content</li>
+                        <li>Use &lt;em>&lt;/em> for emphaized text</li>
+                        <li>Use &lt;strong>&lt;/strong> for important/serious/urgent content</li>
                         <li>&lt;b> and &lt;i> can make text bold and italic respectively, 
                             but they should not be used as it should be the responsibilty of CSS
                             to do the styling.
@@ -958,5 +981,66 @@
                             animations that you may want to explore.</li>
                     </ul>
             </ul>
+            <mat-divider></mat-divider>
+            
+            <h2>Responsive Design</h2>
+            <ul>
+                <li>CSS does allow overflow content to overflow its container if you didnt specify
+                    its width. Hence, it is recommended to set "max-width : 100%" for these 
+                    elements.
+                    <ul>
+                        <li>img</li>
+                        <li>embed</li>
+                        <li>object</li>
+                        <li>video</li>
+                    </ul>
+                </li>
+                <li>Tap targets's size should be at least 48px x 48px (such as by using 
+                    min-height and min-width properties, or by increasing the padding of 
+                    the tap targets), or else they should be far aparts 
+                    from each other if they have to be small. 
+                </li>
+                <li>Start designing websites from small (focus working on small screens,
+                    then should be less problems to work with bigger screens).
+                </li>
+                <li>Media queries are normally used to handle different screenz size.</li>
+                    <ul>
+                        <li>There are 3 ways to apply media queries:</li>
+                            <ol>
+                                <li>Using the media attribute in link style sheet</li>
+                                    <pre>
+                                        <code>
+&lt;link rel="stylesheet" href="styles.css">
+&lt;link rel="stylesheet" media="screen and (min-width:500px)" href="over500.css">
+&lt;link rel="stylesheet" media="screen and (min-width:1000px)" href="over1000.css">
+                                        </code>
+                                    </pre>
+                                <li>Using @media tag</li>
+                                    <pre>
+                                        <code>
+@media screen and (min-width: 500px) &#123;
+    body &#123; background-color: green; }
+}
+                                        </code>
+                                    </pre>
+                                <li>Using @import tag</li>
+                                    <pre>
+                                        <code>
+@import url("over500.css") only screen and (min-width: 500px);
+                                        </code>
+                                    </pre>
+                            </ol>
+                        <li>For performance reasons, the @import tag should not be used as the process is pretty expensive.</li>
+                        <li>For the first option, you will have many small files, but will end up in many HTTP Requests.</li>
+                        <li>For the second option, you will have fewer HTTP requests, but the file size tends to be bigger.</li>
+                    </ul>
+                <li>Other than media queries, the following patterns are useful for maintaining responsive designs as well:</li>
+                    <ul>
+                        <li>FlexBox</li>
+                        <li>Grid (Bootstrap Grid is built with flexbox.)</li>
+                    </ul>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 </div>
