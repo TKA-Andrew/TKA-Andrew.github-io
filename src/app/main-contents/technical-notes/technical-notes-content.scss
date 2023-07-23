@@ -50,10 +50,12 @@ p {
     padding-bottom: 5px;
 }
 
-.listItem:hover {
-    background-color: $hoverBackgroundColor;
-    color: $hoverTextColor;
-    font-style: italic;
+@media (hover: hover) and (pointer: fine) {
+    .listItem:hover {
+        background-color: $hoverBackgroundColor;
+        color: $hoverTextColor;
+        font-style: italic;
+    }
 }
 
 mat-drawer {
@@ -113,4 +115,8 @@ li {
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
     cursor: pointer;
+}
+
+img {
+    max-width: 100%;
 }
