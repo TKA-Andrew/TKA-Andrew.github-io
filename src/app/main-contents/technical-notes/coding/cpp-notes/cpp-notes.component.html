@@ -326,76 +326,78 @@
                         <li>The amount of memory that an object uses is based on its data type.</li>
                         <li>The size of a given data type is dependent on the compiler and/or the computer architecture!</li>
                         <li>C++ only guarantees that each fundamental data types will have a minimum size:</li>
-                            <table style="margin: 10px; overflow: auto; width: 100%;">
-                                <tr class="trFlex">
-                                    <th class="thQuarter">Category</th>
-                                    <th class="thQuarter">Types</th>
-                                    <th class="thQuarter">Minumum Size</th>
-                                    <th class="thQuarter">Note</th>
-                                </tr>
-                                <tr class="trFlex">
-                                    <td class="tdQuarter">Integral (Boolean)</td>
-                                    <td class="tdQuarter">bool</td>
-                                    <td class="tdQuarter">1 byte</td>
-                                    <td class="tdQuarter"></td>
-                                </tr>
-                                <tr class="trFlex">
-                                    <td class="tdQuarter">
-                                        Integral (Character)
-                                    </td>
-                                    <td class="tdQuarter">
-                                        <div>char</div>
-                                        <div>wchar_t</div>
-                                        <div>char8_t</div>
-                                        <div>char16_t</div>
-                                        <div>char32_t</div>
-                                    </td>
-                                    <td class="tdQuarter">
-                                        <div>1 byte</div>
-                                        <div>2 bytes</div>
-                                        <div>1 byte</div>
-                                        <div>2 bytes</div>
-                                        <div>4 bytes</div>
-                                    </td>
-                                    <td class="tdQuarter">
-                                        <div>Always 1 byte</div>
-                                        <div>-</div>
-                                        <div>-</div>
-                                        <div>-</div>
-                                        <div>-</div>
-                                    </td>
-                                </tr>
-                                <tr class="trFlex">
-                                    <td class="tdQuarter">Integral (Integer)</td>
-                                    <td class="tdQuarter">
-                                        <div>short</div>
-                                        <div>int</div>
-                                        <div>long</div>
-                                        <div>long long</div>
-                                    </td>
-                                    <td class="tdQuarter">
-                                        <div>2 bytes</div>
-                                        <div>2 bytes</div>
-                                        <div>4 bytes</div>
-                                        <div>8 bytes</div>
-                                    </td>
-                                    <td class="tdQuarter"></td>
-                                </tr>
-                                <tr class="trFlex">
-                                    <td class="tdQuarter">Floating Point</td>
-                                    <td class="tdQuarter">
-                                        <div>float</div>
-                                        <div>double</div>
-                                        <div>long double</div>
-                                    </td>
-                                    <td class="tdQuarter">
-                                        <div>4 bytes</div>
-                                        <div>8 bytes</div>
-                                        <div>8 bytes</div>
-                                    </td>
-                                    <td class="tdQuarter"></td>
-                                </tr>
-                            </table>
+                            <div style="overflow-x : auto">
+                                <table>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Types</th>
+                                        <th>Minumum Size</th>
+                                        <th>Note</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Integral (Boolean)</td>
+                                        <td>bool</td>
+                                        <td>1 byte</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Integral (Character)
+                                        </td>
+                                        <td>
+                                            <div>char</div>
+                                            <div>wchar_t</div>
+                                            <div>char8_t</div>
+                                            <div>char16_t</div>
+                                            <div>char32_t</div>
+                                        </td>
+                                        <td>
+                                            <div>1 byte</div>
+                                            <div>2 bytes</div>
+                                            <div>1 byte</div>
+                                            <div>2 bytes</div>
+                                            <div>4 bytes</div>
+                                        </td>
+                                        <td>
+                                            <div>Always 1 byte</div>
+                                            <div>-</div>
+                                            <div>-</div>
+                                            <div>-</div>
+                                            <div>-</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Integral (Integer)</td>
+                                        <td>
+                                            <div>short</div>
+                                            <div>int</div>
+                                            <div>long</div>
+                                            <div>long long</div>
+                                        </td>
+                                        <td>
+                                            <div>2 bytes</div>
+                                            <div>2 bytes</div>
+                                            <div>4 bytes</div>
+                                            <div>8 bytes</div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Floating Point</td>
+                                        <td>
+                                            <div>float</div>
+                                            <div>double</div>
+                                            <div>long double</div>
+                                        </td>
+                                        <td>
+                                            <div>4 bytes</div>
+                                            <div>8 bytes</div>
+                                            <div>8 bytes</div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
                         <li><strong>Best practice</strong>: For maximum compatibility, you shouldn’t assume that variables are larger than the specified minimum size.</li>
                         <li>The <strong>sizeof operator</strong> can be used to get the size in bytes of a date type or variable.</li>
                     </ul>
@@ -1235,7 +1237,7 @@ int main() &#123;
                 <li>Control Flow</li>
                     <ul>
                         <li>Categories of flow control statements</li>
-                            <table style="margin: 10px; overflow: auto; width: 100%;">
+                            <table>
                                 <tr>
                                     <th>Category</th>
                                     <th>Meaning</th>

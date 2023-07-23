@@ -31,43 +31,45 @@
             <img src="https://images.contentstack.io/v3/assets/blt300387d93dabf50e/bltb6200bc085503718/5e1f209a63d1b6503160c6d5/containers-vs-virtual-machines.jpg" width="80%">
             <span style="font-style: italic;">Source of image: https://www.weave.works/blog/a-practical-guide-to-choosing-between-docker-containers-and-vms</span>
         </div>
-        <table style="margin-top: 20px;">
-            <tr>
-                <th>VM</th>
-                <th>Container</th>
-            </tr>
-            <tr>
-                <td colspan="2" style="width: 100%;">application isolation</td>
-            </tr>
-            <tr>
-                <td>sizes are measured in gigabytes</td>
-                <td>sizes are measured in megabytes</td>
-            </tr>
-            <tr>
-                <td>high memory usage</td>
-                <td>low memory usage</td>
-            </tr>
-            <tr>
-                <td>poor performance</td>
-                <td>better performance</td>
-            </tr>
-            <tr>
-                <td>high memory usage</td>
-                <td>low memory usage</td>
-            </tr>
-            <tr>
-                <td>longer boot-up time</td>
-                <td>shorter boot-up time</td>
-            </tr>
-            <tr>
-                <td>terrible for portability</td>
-                <td>designed for portability</td>
-            </tr>
-            <tr>
-                <td>host OS independent</td>
-                <td>host OS dependent (need to check system requirement)</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>VM</th>
+                    <th>Container</th>
+                </tr>
+                <tr>
+                    <td colspan="2">application isolation</td>
+                </tr>
+                <tr>
+                    <td>sizes are measured in gigabytes</td>
+                    <td>sizes are measured in megabytes</td>
+                </tr>
+                <tr>
+                    <td>high memory usage</td>
+                    <td>low memory usage</td>
+                </tr>
+                <tr>
+                    <td>poor performance</td>
+                    <td>better performance</td>
+                </tr>
+                <tr>
+                    <td>high memory usage</td>
+                    <td>low memory usage</td>
+                </tr>
+                <tr>
+                    <td>longer boot-up time</td>
+                    <td>shorter boot-up time</td>
+                </tr>
+                <tr>
+                    <td>terrible for portability</td>
+                    <td>designed for portability</td>
+                </tr>
+                <!-- <tr>
+                    <td>host OS independent</td>
+                    <td>host OS dependent (need to check system requirement)</td>
+                </tr> -->
+            </table>
+        </div>
         <mat-divider></mat-divider>
 
         <h3>Dockerfile vs Docker Image vs Docker Container</h3>
@@ -136,38 +138,40 @@
                 permission errors if you use older versions of Docker.
             </li>
             <li><span class="script-font">RUN</span> vs <span class="script-font">CMD</span> vs <span class="script-font">ENTRYPOINT</span>
-                <table style="margin-top: 20px;">
-                    <tr>
-                        <th></th>
-                        <th>RUN</th>
-                        <th>CMD</th>
-                        <th>ENTRYPOINT</th>
-                    </tr>
-                    <tr>
-                        <td>Execution</td>
-                        <td>Every command takes effect.</td>
-                        <td>Only last command takes effect.</td>
-                        <td>Only last command takes effect.</td>
-                    </tr>
-                    <tr>
-                        <td>Type</td>
-                        <td>build time instruction</td>
-                        <td>run time instruction</td>
-                        <td>run time instruction</td>
-                    </tr>
-                    <tr>
-                        <td>Will be overrided by execution command</td>
-                        <td>No</td>
-                        <td>Yes</td>
-                        <td>No, unless "--entrypoint"</td>
-                    </tr>
-                    <tr>
-                        <td>Example</td>
-                        <td><span class="script-font">RUN npm install</span></td>
-                        <td><span class="script-font">CMD ["npm", "start"]</span></td>
-                        <td><span class="script-font">ENTRYPOINT ["npm", "start"]</span></td>
-                    </tr>
-                </table>
+                <div style="overflow-x : auto">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>RUN</th>
+                            <th>CMD</th>
+                            <th>ENTRYPOINT</th>
+                        </tr>
+                        <tr>
+                            <td>Execution</td>
+                            <td>Every command takes effect.</td>
+                            <td>Only last command takes effect.</td>
+                            <td>Only last command takes effect.</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>build time instruction</td>
+                            <td>run time instruction</td>
+                            <td>run time instruction</td>
+                        </tr>
+                        <tr>
+                            <td>Will be overrided by execution command</td>
+                            <td>No</td>
+                            <td>Yes</td>
+                            <td>No, unless "--entrypoint"</td>
+                        </tr>
+                        <tr>
+                            <td>Example</td>
+                            <td><span class="script-font">RUN npm install</span></td>
+                            <td><span class="script-font">CMD ["npm", "start"]</span></td>
+                            <td><span class="script-font">ENTRYPOINT ["npm", "start"]</span></td>
+                        </tr>
+                    </table>
+                </div>
             </li>
             <li>The <span class="script-font">CMD</span> instruction has 2 forms:</li>
                 <ul>

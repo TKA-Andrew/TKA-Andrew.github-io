@@ -618,36 +618,38 @@
                                 </code>
                             </pre>
                         <li>size() function can be used to retrieve length</li>
-                        <table>
-                            <tr class="trFlex">
-                                <th class="thHalf">built-in fixed array</th>
-                                <th class="thHalf">std::array</th>
-                            </tr>
-                            <tr class="trFlex">
-                                <td class="tdHalf">int myArray1[5] &#123; 9, 7, 5, 3, 1 };</td>
-                                <td class="tdHalf">std::array&lt;int, 5> myArray2 &#123; 9, 7, 5, 3, 1 };</td>
-                            </tr>
-                            <tr class="trFlex">
-                                <td class="tdHalf">decay into pointers</td>
-                                <td class="tdHalf">DOES NOT decay into pointers</td>
-                            </tr>
-                            <tr class="trFlex">
-                                <td class="tdHalf">can omit array length when providing an initializer</td>
-                                <td class="tdHalf">CANNOT omit array length when providing an initializer</td>
-                            </tr>
-                            <tr class="trFlex">
-                                <td class="tdHalf">decay into pointers</td>
-                                <td class="tdHalf">do not decay into pointers</td>
-                            </tr>
-                            <tr class="trFlex">
-                                <td class="tdHalf">use .length to get length of array</td>
-                                <td class="tdHalf">use .size() to get length of array</td>
-                            </tr>
-                            <tr class="trFlex">
-                                <td class="tdHalf">does not have .begin() and .end() function<br>std::sort(std::begin(array), std::end(array));</td>
-                                <td class="tdHalf">has .begin() and .end() function<br>std::sort(myArray.begin(), myArray.end());</td>
-                            </tr>
-                        </table>
+                        <div style="overflow-x : auto">
+                            <table>
+                                <tr>
+                                    <th>built-in fixed array</th>
+                                    <th>std::array</th>
+                                </tr>
+                                <tr>
+                                    <td>int myArray1[5] &#123; 9, 7, 5, 3, 1 };</td>
+                                    <td>std::array&lt;int, 5> myArray2 &#123; 9, 7, 5, 3, 1 };</td>
+                                </tr>
+                                <tr>
+                                    <td>decay into pointers</td>
+                                    <td>DOES NOT decay into pointers</td>
+                                </tr>
+                                <tr>
+                                    <td>can omit array length when providing an initializer</td>
+                                    <td>CANNOT omit array length when providing an initializer</td>
+                                </tr>
+                                <tr>
+                                    <td>decay into pointers</td>
+                                    <td>do not decay into pointers</td>
+                                </tr>
+                                <tr>
+                                    <td>use .length to get length of array</td>
+                                    <td>use .size() to get length of array</td>
+                                </tr>
+                                <tr>
+                                    <td>does not have .begin() and .end() function<br>std::sort(std::begin(array), std::end(array));</td>
+                                    <td>has .begin() and .end() function<br>std::sort(myArray.begin(), myArray.end());</td>
+                                </tr>
+                            </table>
+                        </div>
                         <li>Passing std::array of different lengths to a function</li>
                             <ul>
                                 <li>When we use a std::array as a function parameter, we have to specify the element type and array length,

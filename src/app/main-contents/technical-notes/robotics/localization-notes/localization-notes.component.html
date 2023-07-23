@@ -79,23 +79,25 @@
                 <ul>
                     <li>Now, let's say the robot has sensor to detect the landmark.</li>
                     <li>Let's say the sensor accuracy is 80%, meaning pHit = 0.8, pMiss = 0.2;</li>
-                        <table style="margin-top: 20px;">
-                            <tr>
-                                <th></th>
-                                <th>Robot on landmark</th>
-                                <th>Robot not on landmark</th>
-                            </tr>
-                            <tr>
-                                <td><b>Landmark sensed</b></td>
-                                <td style="background-color: #43ec70;">pHit</td>
-                                <td style="background-color: #e96e31;">pMiss</td>
-                            </tr>
-                            <tr>
-                                <td><b>Landmark not sensed</b></td>
-                                <td style="background-color: #e96e31;">pMiss</td>
-                                <td style="background-color: #43ec70;">pHit</td>
-                            </tr>
-                        </table>
+                        <div style="overflow-x : auto">
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>Robot on landmark</th>
+                                    <th>Robot not on landmark</th>
+                                </tr>
+                                <tr>
+                                    <td><b>Landmark sensed</b></td>
+                                    <td style="background-color: #43ec70;">pHit</td>
+                                    <td style="background-color: #e96e31;">pMiss</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Landmark not sensed</b></td>
+                                    <td style="background-color: #e96e31;">pMiss</td>
+                                    <td style="background-color: #43ec70;">pHit</td>
+                                </tr>
+                            </table>
+                        </div>
                     <li>If now the sensor sensed the landmark, the vector of belief will become: [0.05, 0.05, 0.2, 0.05]</li>
                     <li>If the sensor didnt sense the landmark, it will be in another way round: [0.2, 0.2, 0.05, 0.2]</li>
                     <li>No matter whether the sensor sensed the landmark or not, as you can see, the sum of probabilities no longer equal to one
@@ -351,9 +353,9 @@ show(p) # displays your answer
                    
                 
                     where:
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\mu\\text{ : mean}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\sigma\\text{ : standard deviation}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\sigma^2\\text{ : variance}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\mu\\text{ : mean}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\sigma\\text{ : standard deviation}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\sigma^2\\text{ : variance}$'"></div>
                 </li>
                 <li>Code: </li>
                     <pre>
@@ -381,10 +383,10 @@ double gaussian1D(double mu, double sigma, double x)
                     <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\frac {r^2\\mu + \\sigma^2v}{r^2 + \\sigma^2}$$'"></div>
                     <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = \\frac {1}{\\frac {1}{r^2} + \\frac {1}{\\sigma^2}}$$'"></div>
                     where:
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\mu\\text{ : mean of prior belief}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\sigma^2\\text{ : variance of prior belief}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$v\\text{ : mean of measurement}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$r^2\\text{ : variance of measurement}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\mu\\text{ : mean of prior belief}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\sigma^2\\text{ : variance of prior belief}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$v\\text{ : mean of measurement}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$r^2\\text{ : variance of measurement}$'"></div>
                 </li>
             </ul>
 
@@ -488,9 +490,9 @@ double gaussian1D(double mu, double sigma, double x)
                     <li>Take note that this X is equivalent to the &mu; above</li>
                         <div class="matheqn" [mathjax]="'$$X^{\'} = FX$$'"></div>
                         where:
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$X^{\'}\\text{ : posterior state}$'"></div>
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{F : state transition function}$'"></div>
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{X : prior state}$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$X^{\'}\\text{ : posterior state}$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$\\text{F : state transition function}$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$\\text{X : prior state}$'"></div>
                         <br>The state transition function and state are depending on your application.
                         <br>For example, if the state is about displacement and velocity, and we assume velocity is always constant:
                         <div class="matheqn" [mathjax]="'$$X = \\begin{bmatrix}
@@ -504,10 +506,10 @@ double gaussian1D(double mu, double sigma, double x)
                     <li>To calculate the posterior covariance, the prior covariance P is multiplied by F squared, and added Q as process noise</li>
                         <div class="matheqn" [mathjax]="'$$P^{\'} = FPF^{T} + Q$$'"></div>
                         where:
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$P^{\'}\\text{ : posterior covariance}$'"></div>
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$FF^{T}\\text{ : }F^2$'"></div>
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{P : prior covariance}$'"></div>
-                        <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$\\text{Q : process noise}$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$P^{\'}\\text{ : posterior covariance}$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$FF^{T}\\text{ : }F^2$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$\\text{P : prior covariance}$'"></div>
+                        <div class="matheqn-small" [mathjax]="'$\\text{Q : process noise}$'"></div>
                 </ul>
 
                 <li>Measurement Update</li>

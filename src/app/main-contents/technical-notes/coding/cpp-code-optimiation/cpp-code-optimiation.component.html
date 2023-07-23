@@ -56,15 +56,16 @@
                     pointer arithmetic and "end of loop" tests on each iteration; reducing branch penalties; as well as hiding latencies, 
                     including the delay in reading data from memory.</li>
                 <li>Example</li>
-                    <table style="margin-top: 20px;">
-                        <tr>
-                            <th>Original code</th>
-                            <th>After loop unrolling</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <pre>
-                                    <code style="text-align: left">
+                    <div style="overflow-x : auto">
+                        <table>
+                            <tr>
+                                <th>Original code</th>
+                                <th>After loop unrolling</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>
+                                        <code style="text-align: left">
     for (int i=0; i&lt;3; i++)
     &#123;
         std::cout&lt;&lt;"hello world!\n";
@@ -78,11 +79,12 @@
     std::cout&lt;&lt;"hello world!\n";
     std::cout&lt;&lt;"hello world!\n";
     std::cout&lt;&lt;"hello world!\n";
-                                    </code>
-                                </pre>
-                            </td>
-                        </tr>
-                    </table>
+                                        </code>
+                                    </pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
             </ul>
         </div>
 

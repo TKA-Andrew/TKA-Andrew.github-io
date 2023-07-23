@@ -1,32 +1,4 @@
 @use '../../technical-notes-content.scss';
-table {
-    font-family: arial, sans-serif;
-    width: 100%;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-td {
-    text-align: center;
-    padding: 8px;
-    border: black;
-    border-left: black;
-    border-right: black;
-    border: 2px solid black;
-}
-
-th {
-    background-color: rgb(63, 76, 192);
-    color: white;
-    text-align: center;
-    padding: 8px;
-    width: 50%;
-    border: 2px solid black;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
 
 mat-expansion-panel {
     color: black;

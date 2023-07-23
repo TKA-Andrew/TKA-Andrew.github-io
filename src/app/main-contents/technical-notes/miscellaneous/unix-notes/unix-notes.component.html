@@ -27,49 +27,51 @@
 
         <div>
             <h2>UNIX vs Linux</h2>
-            <table>
-                <tr>
-                    <th>UNIX</th>
-                    <th>Linux</th>
-                </tr>
-                <tr>
-                    <td>proprietary</td>
-                    <td>open-source</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>UNIX in itself is a complete OS as everything (all required applications tied together) comes from a single vendor.</p></td>
-                    <td>
-                        <p>Linux is a UNIX clone but it is just a kernel, not the complete OS.
-                        <br>This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul>
-                            <li>macOS</li>
-                            <li>Solaris</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Debian</li>
-                            <li>Ubuntu (based on Debian)</li>
-                            <li>Alpine</li>
-                            <li>Fedora</li>
-                            <li>CentOS</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Default shell is Bash</td>
-                    <td>Default shell is Bourne Shell (sh)</td>
-                </tr>
-                <tr>
-                    <td>Not portable</td>
-                    <td>Portable and is booted from a USB Stick</td>
-                </tr>
-            </table>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th>UNIX</th>
+                        <th>Linux</th>
+                    </tr>
+                    <tr>
+                        <td>proprietary</td>
+                        <td>open-source</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>UNIX in itself is a complete OS as everything (all required applications tied together) comes from a single vendor.</p></td>
+                        <td>
+                            <p>Linux is a UNIX clone but it is just a kernel, not the complete OS.
+                            <br>This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>macOS</li>
+                                <li>Solaris</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Debian</li>
+                                <li>Ubuntu (based on Debian)</li>
+                                <li>Alpine</li>
+                                <li>Fedora</li>
+                                <li>CentOS</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Default shell is Bash</td>
+                        <td>Default shell is Bourne Shell (sh)</td>
+                    </tr>
+                    <tr>
+                        <td>Not portable</td>
+                        <td>Portable and is booted from a USB Stick</td>
+                    </tr>
+                </table>
+            </div>
             <mat-divider></mat-divider>
         </div>
 
@@ -92,29 +94,31 @@
                 <li>For details about apt vs apt-get, refer to <a href="https://itsfoss.com/apt-vs-apt-get-difference/" target="_blank"
                     rel="noopener noreferrer">this tutorial</a>.</li>
                 <li>
-                    <table>
-                        <tr>
-                            <th>APT</th>
-                            <th>DPKG</th>
-                        </tr>
-                        <tr>
-                            <td>APT (Advanced Package Tool) is a free software user interface for Debian and Debian-based Linux distributions 
-                                that interacts with core libraries to handle program installation and removal.</td>
-                            <td>The package management system of the free operating system Debian and its many variations is based on the program DPKG.</td>
-                        </tr>
-                        <tr>
-                            <td>Packages from external repositories can be downloaded.</td>
-                            <td>Packages from external repositories cannot be downloaded.</td>
-                        </tr>
-                        <tr>
-                            <td>Has the ability to resolve dependencies</td>
-                            <td>Doesn’t have such ability.</td>
-                        </tr>
-                        <tr>
-                            <td>If you try to install a package whose dependencies are missing, APT downloads the dependencies.</td>
-                            <td>Dpkg will terminate and report missing dependencies if you try to install a package with it’s dependencies missing.</td>
-                        </tr>
-                    </table>
+                    <div style="overflow-x : auto">
+                        <table>
+                            <tr>
+                                <th>APT</th>
+                                <th>DPKG</th>
+                            </tr>
+                            <tr>
+                                <td>APT (Advanced Package Tool) is a free software user interface for Debian and Debian-based Linux distributions 
+                                    that interacts with core libraries to handle program installation and removal.</td>
+                                <td>The package management system of the free operating system Debian and its many variations is based on the program DPKG.</td>
+                            </tr>
+                            <tr>
+                                <td>Packages from external repositories can be downloaded.</td>
+                                <td>Packages from external repositories cannot be downloaded.</td>
+                            </tr>
+                            <tr>
+                                <td>Has the ability to resolve dependencies</td>
+                                <td>Doesn’t have such ability.</td>
+                            </tr>
+                            <tr>
+                                <td>If you try to install a package whose dependencies are missing, APT downloads the dependencies.</td>
+                                <td>Dpkg will terminate and report missing dependencies if you try to install a package with it’s dependencies missing.</td>
+                            </tr>
+                        </table>
+                    </div>
                 </li>
                 <li>In short, apt is "higher-level" package management tool whereas dkpg is "lower-level".</li>
 

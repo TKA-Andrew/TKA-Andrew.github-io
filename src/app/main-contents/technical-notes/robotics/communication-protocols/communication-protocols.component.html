@@ -42,38 +42,44 @@
                         <li>The data sent from the slave back to the master is usually sent with the least significant bit first.</li>
                     </ul>
                 <li>Summary</li>
-                    <table style="margin-top: 20px;">
-                        <tr>
-                            <td style="background-color: #dddddd">Wires used</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Maximum speed</td>
-                            <td>Up to 10Mbps</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Synchronous or Asynchronous</td>
-                            <td>Synchronous</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Advantages</td>
-                            <td style="display: block;">
-                                <li>No start and stop bits, so the data can be streamed continuously without interruption</li>
-                                <li>No complicated slave addressing system like I2C</li>
-                                <li>Separate MISO and MOSI lines, so data can be sent and received at the same time</li>
-                                <li>Higher data transfer rate than I2C</li>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Disadvantages</td>
-                            <td style="display: block;">
-                                <li>Uses four wires (I2C and UARTs use two)</li>
-                                <li>No acknowledgement that the data has been successfully received</li>
-                                <li>No form of error checking like the parity bit in UART</li>
-                                <li>Only allows for a single master</li>
-                            </td>
-                        </tr>
-                    </table>
+                    <div style="overflow-x : auto">
+                        <table>
+                            <tr>
+                                <td>Wires used</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Maximum speed</td>
+                                <td>Up to 10Mbps</td>
+                            </tr>
+                            <tr>
+                                <td>Synchronous or Asynchronous</td>
+                                <td>Synchronous</td>
+                            </tr>
+                            <tr>
+                                <td>Advantages</td>
+                                <td>
+                                    <ul>
+                                        <li>No start and stop bits, so the data can be streamed continuously without interruption</li>
+                                        <li>No complicated slave addressing system like I2C</li>
+                                        <li>Separate MISO and MOSI lines, so data can be sent and received at the same time</li>
+                                        <li>Higher data transfer rate than I2C</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Disadvantages</td>
+                                <td>
+                                    <ul>
+                                        <li>Uses four wires (I2C and UARTs use two)</li>
+                                        <li>No acknowledgement that the data has been successfully received</li>
+                                        <li>No form of error checking like the parity bit in UART</li>
+                                        <li>Only allows for a single master</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
             </ul>
 
             <h3>UART (Universal Asynchronous Receiver/Transmitter)</h3>
@@ -96,37 +102,43 @@
                         <li>The baud rate between the transmitting and receiving UARTs can only differ by about 10% before the timing of bits gets too far off.</li>
                     </ul>
                 <li>Summary</li>
-                    <table style="margin-top: 20px;">
-                        <tr>
-                            <td style="background-color: #dddddd">Wires used</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Maximum speed</td>
-                            <td>Any speed up to 115200 baud, usually 9600 baud</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Synchronous or Asynchronous</td>
-                            <td>Asynchronous</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Advantages</td>
-                            <td style="display: block;">
-                                <li>Only uses two wires</li>
-                                <li>No clock signal is necessary</li>
-                                <li>Has a parity bit to allow for error checking</li>
-                                <li>The structure of the data packet can be changed as long as both sides are set up for it</li>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Disadvantages</td>
-                            <td style="display: block;">
-                                <li>The size of the data frame is limited to a maximum of 9 bits</li>
-                                <li>Only allow single master and single slave</li>
-                                <li>The baud rates of each UART must be within 10% of each other</li>
-                            </td>
-                        </tr>
-                    </table>
+                    <div style="overflow-x : auto">
+                        <table>
+                            <tr>
+                                <td>Wires used</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Maximum speed</td>
+                                <td>Any speed up to 115200 baud, usually 9600 baud</td>
+                            </tr>
+                            <tr>
+                                <td>Synchronous or Asynchronous</td>
+                                <td>Asynchronous</td>
+                            </tr>
+                            <tr>
+                                <td>Advantages</td>
+                                <td>
+                                    <ul>
+                                        <li>Only uses two wires</li>
+                                        <li>No clock signal is necessary</li>
+                                        <li>Has a parity bit to allow for error checking</li>
+                                        <li>The structure of the data packet can be changed as long as both sides are set up for it</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Disadvantages</td>
+                                <td>
+                                    <ul>
+                                        <li>The size of the data frame is limited to a maximum of 9 bits</li>
+                                        <li>Only allow single master and single slave</li>
+                                        <li>The baud rates of each UART must be within 10% of each other</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
             </ul>
 
             <h3>I2C (Inter-Integrated Circuit)</h3>
@@ -149,36 +161,42 @@
                             </div>
                     </ul>
                 <li>Summary</li>
-                    <table style="margin-top: 20px;">
-                        <tr>
-                            <td style="background-color: #dddddd">Wires used</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Maximum speed</td>
-                            <td>100kbps - 5Mbps</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Synchronous or Asynchronous</td>
-                            <td>Synchronous</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Advantages</td>
-                            <td style="display: block;">
-                                <li>Only uses two wires</li>
-                                <li>Supports multiple masters and multiple slaves</li>
-                                <li>ACK/NACK bit gives confirmation that each frame is transferred successfully</li>
-                                <li>Hardware is less complicated than with UARTs</li>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #dddddd">Disadvantages</td>
-                            <td style="display: block;">
-                                <li>Slower data transfer rate than SPI</li>
-                                <li>The size of the data frame is limited to 8 bits</li>
-                            </td>
-                        </tr>
-                    </table>
+                    <div style="overflow-x : auto">
+                        <table>
+                            <tr>
+                                <td>Wires used</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Maximum speed</td>
+                                <td>100kbps - 5Mbps</td>
+                            </tr>
+                            <tr>
+                                <td>Synchronous or Asynchronous</td>
+                                <td>Synchronous</td>
+                            </tr>
+                            <tr>
+                                <td>Advantages</td>
+                                <td>
+                                    <ul>
+                                        <li>Only uses two wires</li>
+                                        <li>Supports multiple masters and multiple slaves</li>
+                                        <li>ACK/NACK bit gives confirmation that each frame is transferred successfully</li>
+                                        <li>Hardware is less complicated than with UARTs</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Disadvantages</td>
+                                <td>
+                                    <ul>
+                                        <li>Slower data transfer rate than SPI</li>
+                                        <li>The size of the data frame is limited to 8 bits</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
             </ul>
             <mat-divider></mat-divider>
         </div>

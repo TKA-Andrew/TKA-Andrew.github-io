@@ -73,71 +73,73 @@
             <p>In C++ or Java, when you declare an array, you need to specify the length of the array.
                 On the other hand, in Python or Javascript, you do not need to specify the length of an array.</p>
             <p>The follwing are some array's standard operations and their corresponding time complexities:</p>
-            <table>
-                <tr>
-                    <th style="width: 50%;">Operation</th>
-                    <th style="width: 25%;">Time Complexity</th>
-                    <th style="width: 25%;">Space Complexity</th>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Accessing a value at a given index</td>
-                    <td style="width: 25%;">O(1)</td>
-                    <td style="width: 25%;">O(1)</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Updating a value at a given index</td>
-                    <td style="width: 25%;">O(1)</td>
-                    <td style="width: 25%;">O(1)</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Inserting a value at the beginning</td>
-                    <td style="width: 25%;">O(n)</td>
-                    <td style="width: 25%;">
-                        <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Inserting a value in the middle</td>
-                    <td style="width: 25%;">O(n)</td>
-                    <td style="width: 25%;">
-                        <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Inserting a value at the end</td>
-                    <td style="width: 25%;">
-                        <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
-                    </td>
-                    <td style="width: 25%;">
-                        <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Removing a value at the beginning</td>
-                    <td style="width: 25%;">O(n)</td>
-                    <td style="width: 25%;">O(1)</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Removing a value in the middle</td>
-                    <td style="width: 25%;">O(n)</td>
-                    <td style="width: 25%;">O(1)</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Removing a value at the end</td>
-                    <td style="width: 25%;">O(1)</td>
-                    <td style="width: 25%;">O(1)</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Copying the array</td>
-                    <td style="width: 25%;">O(n)</td>
-                    <td style="width: 25%;">O(n)</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%;">Traversing the array</td>
-                    <td style="width: 25%;">O(n)</td>
-                    <td style="width: 25%;">O(1)</td>
-                </tr>
-            </table>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th style="width: 50%;">Operation</th>
+                        <th style="width: 25%;">Time Complexity</th>
+                        <th style="width: 25%;">Space Complexity</th>
+                    </tr>
+                    <tr>
+                        <td>Accessing a value at a given index</td>
+                        <td>O(1)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Updating a value at a given index</td>
+                        <td>O(1)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Inserting a value at the beginning</td>
+                        <td>O(n)</td>
+                        <td>
+                            <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Inserting a value in the middle</td>
+                        <td>O(n)</td>
+                        <td>
+                            <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Inserting a value at the end</td>
+                        <td>
+                            <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
+                        </td>
+                        <td>
+                            <span>Dynamic Array: O(1) or O(n)<br>Static Array: O(1)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Removing a value at the beginning</td>
+                        <td>O(n)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Removing a value in the middle</td>
+                        <td>O(n)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Removing a value at the end</td>
+                        <td>O(1)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Copying the array</td>
+                        <td>O(n)</td>
+                        <td>O(n)</td>
+                    </tr>
+                    <tr>
+                        <td>Traversing the array</td>
+                        <td>O(n)</td>
+                        <td>O(1)</td>
+                    </tr>
+                </table>
+            </div>
             <p>Side Notes:</p>
             <ul>
                 <li>For Dynamic Array, time complexity of inserting a value at the end will take O(1) if it has enough
@@ -173,48 +175,50 @@ null &lt;- 2 &lt;-> 5 &lt;-> 3 &lt;-> 6 &lt;-> null
         </pre>
         <p>Other than that, the way a linked list is stored in memory is different from an array. Unlike arrays, linked lists are not stored back-to-back. Because of this, some operations in linked lists are faster than arrays.
             The time complexities of these operations also depend on whether the linked lists have the tail and head declared.</p>
-        <table>
-            <tr>
-                <th style="width: 40%">Operation</th>
-                <th style="width: 40%">Time Complexity</th>
-                <th style="width: 20%">Space Complexity</th>
-            </tr>
-            <tr>
-                <td style="width: 40%">Accessing the head</td>
-                <td style="width: 40%">O(1)</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-            <tr>
-                <td style="width: 40%">Accessing the tail</td>
-                <td style="width: 40%">O(1) if tail is defined; else O(n)</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-            <tr>
-                <td style="width: 40%">Accessing a middle node</td>
-                <td style="width: 40%">O(i), where i is the index of the node</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-            <tr>
-                <td style="width: 40%">Inserting/Removing the head</td>
-                <td style="width: 40%">O(1)</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-            <tr>
-                <td style="width: 40%">Inserting/Removing the tail</td>
-                <td style="width: 40%">O(1) if tail is defined; else O(n)</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-            <tr>
-                <td style="width: 40%">Inserting/Removing a middle node</td>
-                <td style="width: 40%">O(i), where i is the index of the node</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-            <tr>
-                <td style="width: 40%">Searching for a value</td>
-                <td style="width: 40%">O(n)</td>
-                <td style="width: 20%">O(1)</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th style="width: 40%">Operation</th>
+                    <th style="width: 40%">Time Complexity</th>
+                    <th style="width: 20%">Space Complexity</th>
+                </tr>
+                <tr>
+                    <td>Accessing the head</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Accessing the tail</td>
+                    <td>O(1) if tail is defined; else O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Accessing a middle node</td>
+                    <td>O(i), where i is the index of the node</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Inserting/Removing the head</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Inserting/Removing the tail</td>
+                    <td>O(1) if tail is defined; else O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Inserting/Removing a middle node</td>
+                    <td>O(i), where i is the index of the node</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Searching for a value</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+            </table>
+        </div>
         <p>Another special linked list is circular linked list, which doesn't have clear "tail" and "head"</p>
         <mat-divider></mat-divider>
     </div>
@@ -276,55 +280,59 @@ const monthRecord = &#123;
     </div>
     <div id="stacksAndQueues">
         <h2>Stacks And Queues</h2>
-        <table>
-            <tr>
-                <th>Stack</th>
-                <th>Queue</th>
-            </tr>
-            <tr>
-                <td>An array-like data structure whose elements follow the Last In First Out (LIFO) rule</td>
-                <td>An array-like data structure whose elements follow the First In First Out (FIFO) rule</td>
-            </tr>
-            <tr>
-                <td>Similar to a stack of book, the last book will always be the first one to be removed from the stack.</td>
-                <td>Similar to a group of people queueing to buy something, and the first one in the queue will be the first one 
-                    to be served and get out of the queue.
-                </td>
-            </tr>
-            <tr>
-                <td>Typically implemented with a dynamic array or singly linked list</td>
-                <td>Typically implemented with a doubly linked list</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>Stack</th>
+                    <th>Queue</th>
+                </tr>
+                <tr>
+                    <td>An array-like data structure whose elements follow the Last In First Out (LIFO) rule</td>
+                    <td>An array-like data structure whose elements follow the First In First Out (FIFO) rule</td>
+                </tr>
+                <tr>
+                    <td>Similar to a stack of book, the last book will always be the first one to be removed from the stack.</td>
+                    <td>Similar to a group of people queueing to buy something, and the first one in the queue will be the first one 
+                        to be served and get out of the queue.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Typically implemented with a dynamic array or singly linked list</td>
+                    <td>Typically implemented with a doubly linked list</td>
+                </tr>
+            </table>
+        </div>
         <p>Both stack and queue have the same time complexity for the following operations,
             take note of the difference in naming used for "insert" and "remove" operations:</p>
-        <table>
-            <tr>
-                <th>Stack</th>
-                <th>Queue</th>
-                <th>Time Complexity</th>
-            </tr>
-            <tr>
-                <td>Pushing an element onto the stack</td>
-                <td>Enqueueing an element into the queue</td>
-                <td>O(1)</td>
-            </tr>
-            <tr>
-                <td>Popping an element off the stack</td>
-                <td>Dequeueing an element out of the queue</td>
-                <td>O(1)</td>
-            </tr>
-            <tr>
-                <td>Peeking at the element on the top of the stack</td>
-                <td>Peeking at the element at the front of the queue</td>
-                <td>O(1)</td>
-            </tr>
-            <tr>
-                <td>Searching for an element in the stack</td>
-                <td>Searching for an element in the queue</td>
-                <td>O(n)</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>Stack</th>
+                    <th>Queue</th>
+                    <th>Time Complexity</th>
+                </tr>
+                <tr>
+                    <td>Pushing an element onto the stack</td>
+                    <td>Enqueueing an element into the queue</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Popping an element off the stack</td>
+                    <td>Dequeueing an element out of the queue</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Peeking at the element on the top of the stack</td>
+                    <td>Peeking at the element at the front of the queue</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Searching for an element in the stack</td>
+                    <td>Searching for an element in the queue</td>
+                    <td>O(n)</td>
+                </tr>
+            </table>
+        </div>
         <p>The space complexity of the operations are basically O(1) space, except copying.</p>
         <mat-divider></mat-divider>
     </div>
@@ -332,28 +340,30 @@ const monthRecord = &#123;
         <h2>Strings</h2>
         <p>Strings are implemented differently depending on the programming languages.</p>
         <p>Strings are basically an array of integers which are mapped to the characters of the string via character-enconding standard such as ASCII.</p>
-        <table>
-            <tr>
-                <th>Operation</th>
-                <th>Time Complexity</th>
-                <th>Space Complexity</th>
-            </tr>
-            <tr>
-                <td>Traverse a string</td>
-                <td>O(n)</td>
-                <td>O(1)</td>
-            </tr>
-            <tr>
-                <td>Copying a string</td>
-                <td>O(n)</td>
-                <td>O(n)</td>
-            </tr>
-            <tr>
-                <td>Accessing a character at a given index</td>
-                <td>O(1)</td>
-                <td>O(1)</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>Operation</th>
+                    <th>Time Complexity</th>
+                    <th>Space Complexity</th>
+                </tr>
+                <tr>
+                    <td>Traverse a string</td>
+                    <td>O(n)</td>
+                    <td>O(1)</td>
+                </tr>
+                <tr>
+                    <td>Copying a string</td>
+                    <td>O(n)</td>
+                    <td>O(n)</td>
+                </tr>
+                <tr>
+                    <td>Accessing a character at a given index</td>
+                    <td>O(1)</td>
+                    <td>O(1)</td>
+                </tr>
+            </table>
+        </div>
         <p>In most programming languages (except C++), strings are immutable, means they cannot be edited after creation.
             Hence, simple operations such as appending a character to a string is much expensivex than they might appear.
         This is because when we want to edit immutable strings, we are basically creating new strings.</p>
@@ -375,36 +385,38 @@ Space-Time complexity: O(n+m) where the n is due to copying the string and the m
         <p>Graphs are collection of nodes that might or might not connected to one another. 
             The nodes are called <span style="font-style: italic;">vertices</span> and the arrows or connections between the vertices are called <span style="font-style: italic;">edges</span>.</p>
         <p>Some terms and definitions:</p>
-        <table>
-            <tr>
-                <th>Term</th>
-                <th>Definition</th>
-            </tr>
-            <tr>
-                <td>Graph Cycle</td>
-                <td>A closed loop formed by vertices</td>
-            </tr>
-            <tr>
-                <td>Acyclic Graph</td>
-                <td>A graph that has no cycles</td>
-            </tr>
-            <tr>
-                <td>Cyclic Graph</td>
-                <td>A graph that has at least one cycle</td>
-            </tr>
-            <tr>
-                <td>Directed Graph</td>
-                <td>A graph with directed edges, and can only be traversed in one direction</td>
-            </tr>
-            <tr>
-                <td>Undirected Graph</td>
-                <td>A graph with undirected edges, and can be traversed in both directions</td>
-            </tr>
-            <tr>
-                <td>Connected Graph</td>
-                <td>A graph that has one or more edges in every pair of vertices.</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                </tr>
+                <tr>
+                    <td>Graph Cycle</td>
+                    <td>A closed loop formed by vertices</td>
+                </tr>
+                <tr>
+                    <td>Acyclic Graph</td>
+                    <td>A graph that has no cycles</td>
+                </tr>
+                <tr>
+                    <td>Cyclic Graph</td>
+                    <td>A graph that has at least one cycle</td>
+                </tr>
+                <tr>
+                    <td>Directed Graph</td>
+                    <td>A graph with directed edges, and can only be traversed in one direction</td>
+                </tr>
+                <tr>
+                    <td>Undirected Graph</td>
+                    <td>A graph with undirected edges, and can be traversed in both directions</td>
+                </tr>
+                <tr>
+                    <td>Connected Graph</td>
+                    <td>A graph that has one or more edges in every pair of vertices.</td>
+                </tr>
+            </table>
+        </div>
         <p>Two types of traversing method: Depth-first Search & Breadth-first Search</p>
         <p>Traversing the graph will need O(V+E) Space-Time Complexity, where V is number of vertices and E is number edges.</p>
         <mat-divider></mat-divider>
@@ -420,46 +432,48 @@ Space-Time complexity: O(n+m) where the n is due to copying the string and the m
             whereas the <span style="font-style: italic;">depth </span> <span style="text-decoration: underline;">of a node</span> is its distance from the root node. 
             <a>For illustarion</a></p>
         <p>There are many types of trees:</p>
-        <table>
-            <tr>
-                <th>Tree</th>
-                <th>Definition</th>
-            </tr>
-            <tr>
-                <td>Binary Tree</td>
-                <td>A tree whose nodes have up to 2 child nodes</td>
-            </tr>
-            <tr>
-                <td>K-ary Tree</td>
-                <td>A tree whose nodes have up to k child nodes</td>
-            </tr>
-            <tr>
-                <td>Heaps</td>
-                <td>Min-Heaps and Max-Heaps are also Binary Heaps where every node in the tree satisfies the Min or Max Heap property</td>
-            </tr>
-            <tr>
-                <td>Tries</td>
-                <td>A tree-like data structure that stores characters in a string</td>
-            </tr>
-            <tr>
-                <td>Perfect Binary Tree</td>
-                <td>A tree with all nodes having 2 child nodes, and all leaf nodes have the same depth.</td>
-            </tr>
-            <tr>
-                <td>Complete Binary Tree</td>
-                <td>A binary tree that is almost perfect, with all nodes having 2 child nodes, but the leaf nodes don't necessarily have the same depth.
-                    More importantly, the nodes in the last level are as far as possible.
-                </td>
-            </tr>
-            <tr>
-                <td>Balanced Binary Tree</td>
-                <td>A binary tree with left and right subtrees of all nodes having height difference not more than 1.</td>
-            </tr>
-            <tr>
-                <td>Full Binary Tree</td>
-                <td>A binary tree with nodes having either zero child nodes or 2 child nodes</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>Tree</th>
+                    <th>Definition</th>
+                </tr>
+                <tr>
+                    <td>Binary Tree</td>
+                    <td>A tree whose nodes have up to 2 child nodes</td>
+                </tr>
+                <tr>
+                    <td>K-ary Tree</td>
+                    <td>A tree whose nodes have up to k child nodes</td>
+                </tr>
+                <tr>
+                    <td>Heaps</td>
+                    <td>Min-Heaps and Max-Heaps are also Binary Heaps where every node in the tree satisfies the Min or Max Heap property</td>
+                </tr>
+                <tr>
+                    <td>Tries</td>
+                    <td>A tree-like data structure that stores characters in a string</td>
+                </tr>
+                <tr>
+                    <td>Perfect Binary Tree</td>
+                    <td>A tree with all nodes having 2 child nodes, and all leaf nodes have the same depth.</td>
+                </tr>
+                <tr>
+                    <td>Complete Binary Tree</td>
+                    <td>A binary tree that is almost perfect, with all nodes having 2 child nodes, but the leaf nodes don't necessarily have the same depth.
+                        More importantly, the nodes in the last level are as far as possible.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Balanced Binary Tree</td>
+                    <td>A binary tree with left and right subtrees of all nodes having height difference not more than 1.</td>
+                </tr>
+                <tr>
+                    <td>Full Binary Tree</td>
+                    <td>A binary tree with nodes having either zero child nodes or 2 child nodes</td>
+                </tr>
+            </table>
+        </div>
         <mat-divider></mat-divider>
     </div>
     <div id="heaps">

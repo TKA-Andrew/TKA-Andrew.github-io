@@ -19,84 +19,88 @@
         </div>
         <div>
             <h3>Some useful ROS packages</h3>
-            <table style="margin-top: 20px;">
-                <tr>
-                    <th>ROS package</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/usb_cam" target="_blank" rel="noopener noreferrer">usb_cam</a></td>
-                    <td>A ROS Driver for V4L USB Cameras</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/openni_camera" target="_blank" rel="noopener noreferrer">openni_camera</a></td>
-                    <td>A ROS driver for OpenNI depth (+ RGB) cameras</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/freenect_camera" target="_blank" rel="noopener noreferrer">freenect_camera</a></td>
-                    <td>A libfreenect-based ROS driver for the Microsoft Kinect</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/rplidar" target="_blank" rel="noopener noreferrer">rplidar</a></td>
-                    <td>The rplidar ros package, support rplidar A2/A1 and A3/S1</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/camera_calibration" target="_blank" rel="noopener noreferrer">camera_calibration</a></td>
-                    <td>A package used to calibrate monocular or stereo cameras</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/ar_track_alvar" target="_blank" rel="noopener noreferrer">ar_track_alvar</a></td>
-                    <td>ROS wrapper for Alvar, an open source AR tag tracking library</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/stage" target="_blank" rel="noopener noreferrer">stage</a></td>
-                    <td>A powerful and popular 2D robot simulator</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="noopener noreferrer">dynamic_reconfigure</a></td>
-                    <td>A package that allows the update of parameters at runtime without having to restart the node</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/roslint" target="_blank" rel="noopener noreferrer">roslint</a></td>
-                    <td>Ros linting package</td>
-                </tr>
-                <tr>
-                    <td><a href="http://wiki.ros.org/rostest" target="_blank" rel="noopener noreferrer">roslint</a></td>
-                    <td>Ros package for running unittests</td>
-                </tr>
-            </table>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th>ROS package</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/usb_cam" target="_blank" rel="noopener noreferrer">usb_cam</a></td>
+                        <td>A ROS Driver for V4L USB Cameras</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/openni_camera" target="_blank" rel="noopener noreferrer">openni_camera</a></td>
+                        <td>A ROS driver for OpenNI depth (+ RGB) cameras</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/freenect_camera" target="_blank" rel="noopener noreferrer">freenect_camera</a></td>
+                        <td>A libfreenect-based ROS driver for the Microsoft Kinect</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/rplidar" target="_blank" rel="noopener noreferrer">rplidar</a></td>
+                        <td>The rplidar ros package, support rplidar A2/A1 and A3/S1</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/camera_calibration" target="_blank" rel="noopener noreferrer">camera_calibration</a></td>
+                        <td>A package used to calibrate monocular or stereo cameras</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/ar_track_alvar" target="_blank" rel="noopener noreferrer">ar_track_alvar</a></td>
+                        <td>ROS wrapper for Alvar, an open source AR tag tracking library</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/stage" target="_blank" rel="noopener noreferrer">stage</a></td>
+                        <td>A powerful and popular 2D robot simulator</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="noopener noreferrer">dynamic_reconfigure</a></td>
+                        <td>A package that allows the update of parameters at runtime without having to restart the node</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/roslint" target="_blank" rel="noopener noreferrer">roslint</a></td>
+                        <td>Ros linting package</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://wiki.ros.org/rostest" target="_blank" rel="noopener noreferrer">roslint</a></td>
+                        <td>Ros package for running unittests</td>
+                    </tr>
+                </table>
+            </div>
             <mat-divider></mat-divider>
         </div>
         <div>
             <h3>ROS Communication Mechanism: Topics vs Services</h3>
             <li><a href="https://programming.vip/docs/communication-mechanism-of-ros.html">This page</a> documented what happened underlying the Communication Mechanisms.</li>
-            <table style="margin-top: 20px;">
-                <tr>
-                    <th></th>
-                    <th>Topics</th>
-                    <th>Services</th>
-                </tr>
-                <tr>
-                    <td>Synchronization</td>
-                    <td>Asynchronous</td>
-                    <td>Synchronous</td>
-                </tr>
-                <tr>
-                    <td>Communication model</td>
-                    <td>Publish/Subscribe</td>
-                    <td>Server/Client</td>
-                </tr>
-                <tr>
-                    <td>Node relationship</td>
-                    <td>Many to Many</td>
-                    <td>One to Many</td>
-                </tr>
-                <tr>
-                    <td>Use case</td>
-                    <td>Used for continuous data stream</td>
-                    <td>Used for remote procedure calls that terminate quickly</td>
-                </tr>
-            </table>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Topics</th>
+                        <th>Services</th>
+                    </tr>
+                    <tr>
+                        <td>Synchronization</td>
+                        <td>Asynchronous</td>
+                        <td>Synchronous</td>
+                    </tr>
+                    <tr>
+                        <td>Communication model</td>
+                        <td>Publish/Subscribe</td>
+                        <td>Server/Client</td>
+                    </tr>
+                    <tr>
+                        <td>Node relationship</td>
+                        <td>Many to Many</td>
+                        <td>One to Many</td>
+                    </tr>
+                    <tr>
+                        <td>Use case</td>
+                        <td>Used for continuous data stream</td>
+                        <td>Used for remote procedure calls that terminate quickly</td>
+                    </tr>
+                </table>
+            </div>
             <mat-divider></mat-divider>
         </div>
 

@@ -14,36 +14,38 @@
     <ul>
         <li>When we want to use built libraries in our package, no matter is static library or dynamic library, we will
             need to include the respective header files (.h files) as well.</li>
-        <table style="margin-top: 20px;">
-            <tr>
-                <th>Static libraries</th>
-                <th>Dynamic libraries</th>
-            </tr>
-            <tr>
-                <td>.lib (on Windows) & .a (on Linux) files</td>
-                <td>.dll (on Windows) & .so (on Linux) files</td>
-            </tr>
-            <tr>
-                <td>locked into program at compile-time</td>
-                <td>loaded into program at run-time</td>
-            </tr>
-            <tr>
-                <td>need to recompile if the code implementation changes</td>
-                <td>only need to recompile when the function declarations change</td>
-            </tr>
-            <tr>
-                <td>the executable file will be stable and untouched</td>
-                <td>the executable file will be corrupted if the dynamic library is modified and corrupted</td>
-            </tr>
-            <tr>
-                <td>faster execution time</td>
-                <td>slower execution time</td>
-            </tr>
-            <tr>
-                <td>increases the excutable file's size</td>
-                <td>doesn't have much impact on the executable file's size</td>
-            </tr>
-        </table>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>Static libraries</th>
+                    <th>Dynamic libraries</th>
+                </tr>
+                <tr>
+                    <td>.lib (on Windows) & .a (on Linux) files</td>
+                    <td>.dll (on Windows) & .so (on Linux) files</td>
+                </tr>
+                <tr>
+                    <td>locked into program at compile-time</td>
+                    <td>loaded into program at run-time</td>
+                </tr>
+                <tr>
+                    <td>need to recompile if the code implementation changes</td>
+                    <td>only need to recompile when the function declarations change</td>
+                </tr>
+                <tr>
+                    <td>the executable file will be stable and untouched</td>
+                    <td>the executable file will be corrupted if the dynamic library is modified and corrupted</td>
+                </tr>
+                <tr>
+                    <td>faster execution time</td>
+                    <td>slower execution time</td>
+                </tr>
+                <tr>
+                    <td>increases the excutable file's size</td>
+                    <td>doesn't have much impact on the executable file's size</td>
+                </tr>
+            </table>
+        </div>
     </ul>
 
     <h3>What are header-only libraries and what are the pros and cons?</h3>
@@ -536,26 +538,28 @@
             <li>The PUBLIC/PRIVATE/INTERFACE keywords are needed for include_directories() and link_libraries(),
                 here is a quick summary for these 3 keywords:
             </li>
-            <table style="margin-top: 20px;">
-                <tr>
-                    <th>Keyword</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>PUBLIC</td>
-                    <td>All the objects/directories following PUBLIC will be used for the current target and the other
-                        targets that have dependencies on the current target.</td>
-                </tr>
-                <tr>
-                    <td>PRIVATE</td>
-                    <td>All the objects/directories following PRIVATE will be used for the current target only.</td>
-                </tr>
-                <tr>
-                    <td>INTERFACE</td>
-                    <td>All the objects/directories following INTERFACE will NOT be used for the current target
-                        but will be accessible for the other targets that have dependencies on the current target.</td>
-                </tr>
-            </table>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>PUBLIC</td>
+                        <td>All the objects/directories following PUBLIC will be used for the current target and the other
+                            targets that have dependencies on the current target.</td>
+                    </tr>
+                    <tr>
+                        <td>PRIVATE</td>
+                        <td>All the objects/directories following PRIVATE will be used for the current target only.</td>
+                    </tr>
+                    <tr>
+                        <td>INTERFACE</td>
+                        <td>All the objects/directories following INTERFACE will NOT be used for the current target
+                            but will be accessible for the other targets that have dependencies on the current target.</td>
+                    </tr>
+                </table>
+            </div>
         </ul>
     </ul>
     <mat-divider></mat-divider>

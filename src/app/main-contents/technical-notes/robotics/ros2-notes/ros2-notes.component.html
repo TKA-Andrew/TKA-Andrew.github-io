@@ -76,53 +76,55 @@
 
         <div>
             <h3>ROS vs ROS2</h3>
-            <table style="margin-top: 20px;">
-                <tr>
-                    <th></th>
-                    <th>ROS</th>
-                    <th>ROS2</th>
-                </tr>
-                <tr>
-                    <td>Supported Operating System</td>
-                    <td>Linux, macOS</td>
-                    <td>Linux, macOS, Windows, RTOS</td>
-                </tr>
-                <tr>
-                    <td>Build System</td>
-                    <td>catkin</td>
-                    <td>ament & colcon</td>
-                </tr>
-                <tr>
-                    <td>Programmming Language</td>
-                    <td>C++ 03, Python2</td>
-                    <td>C++ 11/14/17, Python3.5</td>
-                </tr>
-                <tr>
-                    <td>Node Initialization</td>
-                    <td>A file can only initialize a node.</td>
-                    <td>A file can initialize multiple nodes.</td>
-                </tr>
-                <tr>
-                    <td>Requires ROS master</td>
-                    <td>Yes</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td>Type of System</td>
-                    <td>Centralized system</td>
-                    <td>Distributed system</td>
-                </tr>
-                <tr>
-                    <td>ROS parameters</td>
-                    <td>Stored in Parameter Server of ROS master as global parameters</td>
-                    <td>Each node has its own ROS parameters, no more global parameter</td>
-                </tr>
-                <tr>
-                    <td>ROS Services</td>
-                    <td>Synchronous</td>
-                    <td>Asynchronous (main thread will not be stucked), can be set to Synchronous also</td>
-                </tr>
-            </table>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>ROS</th>
+                        <th>ROS2</th>
+                    </tr>
+                    <tr>
+                        <td>Supported Operating System</td>
+                        <td>Linux, macOS</td>
+                        <td>Linux, macOS, Windows, RTOS</td>
+                    </tr>
+                    <tr>
+                        <td>Build System</td>
+                        <td>catkin</td>
+                        <td>ament & colcon</td>
+                    </tr>
+                    <tr>
+                        <td>Programmming Language</td>
+                        <td>C++ 03, Python2</td>
+                        <td>C++ 11/14/17, Python3.5</td>
+                    </tr>
+                    <tr>
+                        <td>Node Initialization</td>
+                        <td>A file can only initialize a node.</td>
+                        <td>A file can initialize multiple nodes.</td>
+                    </tr>
+                    <tr>
+                        <td>Requires ROS master</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Type of System</td>
+                        <td>Centralized system</td>
+                        <td>Distributed system</td>
+                    </tr>
+                    <tr>
+                        <td>ROS parameters</td>
+                        <td>Stored in Parameter Server of ROS master as global parameters</td>
+                        <td>Each node has its own ROS parameters, no more global parameter</td>
+                    </tr>
+                    <tr>
+                        <td>ROS Services</td>
+                        <td>Synchronous</td>
+                        <td>Asynchronous (main thread will not be stucked), can be set to Synchronous also</td>
+                    </tr>
+                </table>
+            </div>
             <mat-divider></mat-divider>
         </div>
     </div>
