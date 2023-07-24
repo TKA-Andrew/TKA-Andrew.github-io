@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-a-star-algorithm',
   templateUrl: './a-star-algorithm.component.html',
   styleUrls: ['./a-star-algorithm.component.scss']
 })
-export class AStarAlgorithmComponent implements OnInit {
+export class AStarAlgorithmComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

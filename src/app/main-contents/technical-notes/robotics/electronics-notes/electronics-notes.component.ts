@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-electronics-notes',
   templateUrl: './electronics-notes.component.html',
   styleUrls: ['./electronics-notes.component.scss']
 })
-export class ElectronicsNotesComponent implements OnInit {
+export class ElectronicsNotesComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

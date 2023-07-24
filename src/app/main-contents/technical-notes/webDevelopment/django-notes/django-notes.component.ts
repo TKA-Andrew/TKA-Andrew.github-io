@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-django-notes',
   templateUrl: './django-notes.component.html',
   styleUrls: ['./django-notes.component.scss']
 })
-export class DjangoNotesComponent implements OnInit {
+export class DjangoNotesComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

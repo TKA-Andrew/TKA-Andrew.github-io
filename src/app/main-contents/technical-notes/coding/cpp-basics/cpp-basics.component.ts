@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-cpp-basics',
   templateUrl: './cpp-basics.component.html',
   styleUrls: ['./cpp-basics.component.scss']
 })
-export class CppBasicsComponent implements OnInit {
+export class CppBasicsComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

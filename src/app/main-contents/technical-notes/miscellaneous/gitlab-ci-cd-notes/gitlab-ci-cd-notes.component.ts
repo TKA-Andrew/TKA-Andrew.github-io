@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-gitlab-ci-cd-notes',
   templateUrl: './gitlab-ci-cd-notes.component.html',
   styleUrls: ['./gitlab-ci-cd-notes.component.scss']
 })
-export class GitlabCiCdNotesComponent implements OnInit {
+export class GitlabCiCdNotesComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-backtracking',
   templateUrl: './backtracking.component.html',
   styleUrls: ['./backtracking.component.scss']
 })
-export class BacktrackingComponent implements OnInit {
+export class BacktrackingComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

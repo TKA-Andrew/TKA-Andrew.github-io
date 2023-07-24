@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-bellman-ford-algorithm',
   templateUrl: './bellman-ford-algorithm.component.html',
   styleUrls: ['./bellman-ford-algorithm.component.scss']
 })
-export class BellmanFordAlgorithmComponent implements OnInit {
+export class BellmanFordAlgorithmComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
