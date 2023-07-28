@@ -1,137 +1,136 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>ROS Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <p>This page documents some ROS notes of mine.</p>
-            <mat-divider></mat-divider>
+    <h1>ROS Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <p>This page documents some ROS notes of mine.</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Some helpful Visual Studio Code extensions</h3>
+        <ul>
+            <li>ROS (by Microsoft)</li>
+            <li>ROS Snippets (by Liews Wuttipat)</li>
+            <li>XML (by Red Hat)</li>
+            <li>XML Tools (by Josh Johnson)</li>
+            <li>vscode-icons (by VSCode Icons Team)</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Some useful ROS packages</h3>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>ROS package</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/usb_cam" target="_blank" rel="noopener noreferrer">usb_cam</a></td>
+                    <td>A ROS Driver for V4L USB Cameras</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/openni_camera" target="_blank" rel="noopener noreferrer">openni_camera</a></td>
+                    <td>A ROS driver for OpenNI depth (+ RGB) cameras</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/freenect_camera" target="_blank" rel="noopener noreferrer">freenect_camera</a></td>
+                    <td>A libfreenect-based ROS driver for the Microsoft Kinect</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/rplidar" target="_blank" rel="noopener noreferrer">rplidar</a></td>
+                    <td>The rplidar ros package, support rplidar A2/A1 and A3/S1</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/camera_calibration" target="_blank" rel="noopener noreferrer">camera_calibration</a></td>
+                    <td>A package used to calibrate monocular or stereo cameras</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/ar_track_alvar" target="_blank" rel="noopener noreferrer">ar_track_alvar</a></td>
+                    <td>ROS wrapper for Alvar, an open source AR tag tracking library</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/stage" target="_blank" rel="noopener noreferrer">stage</a></td>
+                    <td>A powerful and popular 2D robot simulator</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="noopener noreferrer">dynamic_reconfigure</a></td>
+                    <td>A package that allows the update of parameters at runtime without having to restart the node</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/roslint" target="_blank" rel="noopener noreferrer">roslint</a></td>
+                    <td>Ros linting package</td>
+                </tr>
+                <tr>
+                    <td><a href="http://wiki.ros.org/rostest" target="_blank" rel="noopener noreferrer">roslint</a></td>
+                    <td>Ros package for running unittests</td>
+                </tr>
+            </table>
         </div>
-        <div>
-            <h3>Some helpful Visual Studio Code extensions</h3>
-            <ul>
-                <li>ROS (by Microsoft)</li>
-                <li>ROS Snippets (by Liews Wuttipat)</li>
-                <li>XML (by Red Hat)</li>
-                <li>XML Tools (by Josh Johnson)</li>
-                <li>vscode-icons (by VSCode Icons Team)</li>
-            </ul>
-            <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>ROS Communication Mechanism: Topics vs Services</h3>
+        <li><a href="https://programming.vip/docs/communication-mechanism-of-ros.html">This page</a> documented what happened underlying the Communication Mechanisms.</li>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Topics</th>
+                    <th>Services</th>
+                </tr>
+                <tr>
+                    <td>Synchronization</td>
+                    <td>Asynchronous</td>
+                    <td>Synchronous</td>
+                </tr>
+                <tr>
+                    <td>Communication model</td>
+                    <td>Publish/Subscribe</td>
+                    <td>Server/Client</td>
+                </tr>
+                <tr>
+                    <td>Node relationship</td>
+                    <td>Many to Many</td>
+                    <td>One to Many</td>
+                </tr>
+                <tr>
+                    <td>Use case</td>
+                    <td>Used for continuous data stream</td>
+                    <td>Used for remote procedure calls that terminate quickly</td>
+                </tr>
+            </table>
         </div>
-        <div>
-            <h3>Some useful ROS packages</h3>
-            <div style="overflow-x : auto">
-                <table>
-                    <tr>
-                        <th>ROS package</th>
-                        <th>Description</th>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/usb_cam" target="_blank" rel="noopener noreferrer">usb_cam</a></td>
-                        <td>A ROS Driver for V4L USB Cameras</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/openni_camera" target="_blank" rel="noopener noreferrer">openni_camera</a></td>
-                        <td>A ROS driver for OpenNI depth (+ RGB) cameras</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/freenect_camera" target="_blank" rel="noopener noreferrer">freenect_camera</a></td>
-                        <td>A libfreenect-based ROS driver for the Microsoft Kinect</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/rplidar" target="_blank" rel="noopener noreferrer">rplidar</a></td>
-                        <td>The rplidar ros package, support rplidar A2/A1 and A3/S1</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/camera_calibration" target="_blank" rel="noopener noreferrer">camera_calibration</a></td>
-                        <td>A package used to calibrate monocular or stereo cameras</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/ar_track_alvar" target="_blank" rel="noopener noreferrer">ar_track_alvar</a></td>
-                        <td>ROS wrapper for Alvar, an open source AR tag tracking library</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/stage" target="_blank" rel="noopener noreferrer">stage</a></td>
-                        <td>A powerful and popular 2D robot simulator</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="noopener noreferrer">dynamic_reconfigure</a></td>
-                        <td>A package that allows the update of parameters at runtime without having to restart the node</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/roslint" target="_blank" rel="noopener noreferrer">roslint</a></td>
-                        <td>Ros linting package</td>
-                    </tr>
-                    <tr>
-                        <td><a href="http://wiki.ros.org/rostest" target="_blank" rel="noopener noreferrer">roslint</a></td>
-                        <td>Ros package for running unittests</td>
-                    </tr>
-                </table>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>ROS Communication Mechanism: Topics vs Services</h3>
-            <li><a href="https://programming.vip/docs/communication-mechanism-of-ros.html">This page</a> documented what happened underlying the Communication Mechanisms.</li>
-            <div style="overflow-x : auto">
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>Topics</th>
-                        <th>Services</th>
-                    </tr>
-                    <tr>
-                        <td>Synchronization</td>
-                        <td>Asynchronous</td>
-                        <td>Synchronous</td>
-                    </tr>
-                    <tr>
-                        <td>Communication model</td>
-                        <td>Publish/Subscribe</td>
-                        <td>Server/Client</td>
-                    </tr>
-                    <tr>
-                        <td>Node relationship</td>
-                        <td>Many to Many</td>
-                        <td>One to Many</td>
-                    </tr>
-                    <tr>
-                        <td>Use case</td>
-                        <td>Used for continuous data stream</td>
-                        <td>Used for remote procedure calls that terminate quickly</td>
-                    </tr>
-                </table>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3><a href="http://wiki.ros.org/DevelopersGuide" target="_blank" rel="noopener noreferrer">ROS developer's guide</a></h3>
-            <ul>
-                <li><a href="http://wiki.ros.org/CppStyleGuide" target="_blank" rel="noopener noreferrer">ROS C++ Style Guide</a></li>
-                <li><a href="http://wiki.ros.org/PyStyleGuide" target="_blank" rel="noopener noreferrer">ROS Python Style Guide</a></li>
-                <li><a href="http://wiki.ros.org/ROS/Patterns/Conventions#Naming_ROS_Resources" target="_blank" rel="noopener noreferrer">ROS Naming Conventions</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3><a href="http://wiki.ros.org/DevelopersGuide" target="_blank" rel="noopener noreferrer">ROS developer's guide</a></h3>
+        <ul>
+            <li><a href="http://wiki.ros.org/CppStyleGuide" target="_blank" rel="noopener noreferrer">ROS C++ Style Guide</a></li>
+            <li><a href="http://wiki.ros.org/PyStyleGuide" target="_blank" rel="noopener noreferrer">ROS Python Style Guide</a></li>
+            <li><a href="http://wiki.ros.org/ROS/Patterns/Conventions#Naming_ROS_Resources" target="_blank" rel="noopener noreferrer">ROS Naming Conventions</a></li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Writing your own ROS Python API</h3>
-            <ul>
-                <li>Ever wonder is it possible to get number of subscribers of a topic through Python code?</li>
-                <li>You can achieve that by referring to the source code of the ros repository, more specically, the
-                    <a href="https://github.com/ros/ros_comm" target="_blank" rel="noopener noreferrer">ros_comm</a> package
-                </li>
-                <li>By looking at the source code of <a href="https://github.com/ros/ros_comm/blob/noetic-devel/tools/rostopic/src/rostopic/__init__.py" target="_blank" rel="noopener noreferrer">rostopic</a>,
-                    you will know it is possible to get "rostopic info /turtle1/pose" through Python code.</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>Writing your own ROS Python API</h3>
+        <ul>
+            <li>Ever wonder is it possible to get number of subscribers of a topic through Python code?</li>
+            <li>You can achieve that by referring to the source code of the ros repository, more specically, the
+                <a href="https://github.com/ros/ros_comm" target="_blank" rel="noopener noreferrer">ros_comm</a> package
+            </li>
+            <li>By looking at the source code of <a href="https://github.com/ros/ros_comm/blob/noetic-devel/tools/rostopic/src/rostopic/__init__.py" target="_blank" rel="noopener noreferrer">rostopic</a>,
+                you will know it is possible to get "rostopic info /turtle1/pose" through Python code.</li>
+                <pre>
+                    <code>
     import rostopic
     print(rostopic.get_info_text("/turtle1/pose"))
-                        </code>
-                    </pre>
-                <li>The following are some examples that I have written:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>The following are some examples that I have written:</li>
+                <pre>
+                    <code>
 import rostopic
 import rosgraph
 import socket
@@ -188,60 +187,60 @@ class RosPythonApi:
             return subs_list
         except socket.error:
             raise ROSTopicIOException("Unable to communicate with master!")
-                        </code>
-                    </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>rostest</h3>
-            <ul>
-                <li>Refer to my <a href="https://medium.com/@kui.an.andrew.tan/the-beginners-guide-on-rostest-e518d8bf4201" target="_blank" rel="noopener noreferrer">Medium post</a>
-                to overview how to get started with rostest.</li>
-            </ul>
-        </div>
+    <div>
+        <h3>rostest</h3>
+        <ul>
+            <li>Refer to my <a href="https://medium.com/@kui.an.andrew.tan/the-beginners-guide-on-rostest-e518d8bf4201" target="_blank" rel="noopener noreferrer">Medium post</a>
+            to overview how to get started with rostest.</li>
+        </ul>
+    </div>
 
-        <div>
-            <h3>REP (ROS Enhancement Proposals)</h3>
-            <ul>
-                <li>There are a lot of REPs listed in <a href="https://ros.org/reps/rep-0000.html" target="_blank" rel="noopener noreferrer">REP-0000</a>.</li>
-                <li>One of the most basics one is <a href="https://ros.org/reps/rep-0103.html" target="_blank" rel="noopener noreferrer">REP-0103</a> which provides a reference for the units and coordinate conventions used within ROS. 
-                    This REP-0103 should be referred when writing your URDF file.</li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>REP (ROS Enhancement Proposals)</h3>
+        <ul>
+            <li>There are a lot of REPs listed in <a href="https://ros.org/reps/rep-0000.html" target="_blank" rel="noopener noreferrer">REP-0000</a>.</li>
+            <li>One of the most basics one is <a href="https://ros.org/reps/rep-0103.html" target="_blank" rel="noopener noreferrer">REP-0103</a> which provides a reference for the units and coordinate conventions used within ROS. 
+                This REP-0103 should be referred when writing your URDF file.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>RVIZ</h3>
-            <ul>
-                <li>To run rviz in launch file together with a config file loaded</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>RVIZ</h3>
+        <ul>
+            <li>To run rviz in launch file together with a config file loaded</li>
+                <pre>
+                    <code>
     &lt;launch>
         &lt;node type="rviz" name="rviz" pkg="rviz" args="-d $(find package_name)/folder_name/config_file_name.rviz" />
     &lt;/launch>
-                        </code>
-                    </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Gazebo</h3>
-            <h4>Miscellaneous</h4>
-            <ul>
-                <li>Gazebo can be used to do modelling, but most of the models are basically in XML format of Simulation
-                    Description Format (SDF).
-                </li>
-                <li>However, the model representation in ROS is in URDF format. Gazebo is able to automatically convert URDF into SDF, but
-                    there will be problems when loading SDF models into ROS.
-                </li>
-                <li>With some open source CAD tools such as Blender, FreeCAD and Meshlab, we can actually model the objects using these softwares
-                    and then export them in .dae format or .stl format, and then import it in your urdf file. The following is an example:
-                </li>
-                <pre>
-                    <code>
+    <div>
+        <h3>Gazebo</h3>
+        <h4>Miscellaneous</h4>
+        <ul>
+            <li>Gazebo can be used to do modelling, but most of the models are basically in XML format of Simulation
+                Description Format (SDF).
+            </li>
+            <li>However, the model representation in ROS is in URDF format. Gazebo is able to automatically convert URDF into SDF, but
+                there will be problems when loading SDF models into ROS.
+            </li>
+            <li>With some open source CAD tools such as Blender, FreeCAD and Meshlab, we can actually model the objects using these softwares
+                and then export them in .dae format or .stl format, and then import it in your urdf file. The following is an example:
+            </li>
+            <pre>
+                <code>
 &lt;link name="hokuyo">
     &lt;inertial>
         &lt;mass value="1e-5"/>
@@ -261,286 +260,286 @@ class RosPythonApi:
         &lt;/geometry>
     &lt;/visual>
 &lt;/link>
-                    </code>
-                </pre>
-            </ul>
-            <h4>To check the available list of Gazebo plugins</h4>
-            <ul>
-                <li>Go to the lib folder of ROS default installation path (for example: /opt/ros/noetic/lib)</li>
-                <li>All the files with naming of libgazeboXXXX.so are the Gazebo plugins.</li>
-                <li>Sometimes run-time libraries like libhector_gazebo_ros_gpu.so and libhector_gazebo_ros_imu.so are Gazebo plugins also.</li>
-                <li>To include Gazebo plugin in URDF model:</li>
-                    <pre>
-                        <code>
+                </code>
+            </pre>
+        </ul>
+        <h4>To check the available list of Gazebo plugins</h4>
+        <ul>
+            <li>Go to the lib folder of ROS default installation path (for example: /opt/ros/noetic/lib)</li>
+            <li>All the files with naming of libgazeboXXXX.so are the Gazebo plugins.</li>
+            <li>Sometimes run-time libraries like libhector_gazebo_ros_gpu.so and libhector_gazebo_ros_imu.so are Gazebo plugins also.</li>
+            <li>To include Gazebo plugin in URDF model:</li>
+                <pre>
+                    <code>
 &lt;gazebo>
     &lt;plugin name="unique_name" filename="plugin_name.so">
         ... plugin parameters ...
     &lt;/plugin>
 &lt;/gazebo>
-                        </code>
-                    </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>URDF</h3>
-            <ul>
-                <li>If you installed the ROS extension on Visual Studio Code, you can make use of one of the feature called "Preview URDF". 
-                    Press <span class="CLI-font">Ctrl + Shift + P</span> to open the command pallete of VS Code and then type "Preview URDF" to look for that.</li>
-                <li>RVIZ and Gazebo can only use .urdf file, cannot use .xacro file</li>
-                <li>To generate urdf file from .xacro file</li>
-                    <ul>
-                        <li><span class="CLI-font">rosrun xacro xacro xacroFileName > newUrdfName</span></li>
-                        <li>For example: <span class="CLI-font">rosrun xacro explorer_bot.urdf.xacro > explorer_bot.urdf</span></li>
-                    </ul>
-                <li>To check whether a urdf file is valid</li>
-                    <ul>
-                        <li><span class="CLI-font">check_urdf urdfFileName</span></li>
-                        <li>If check_urdf command not found, then you need to install: <span class="CLI-font">sudo apt install liburdfdom-tools</span></li>
-                    </ul>
-                <li>If you want to use xacro in launch file for robot_description, can refer to the following example:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>URDF</h3>
+        <ul>
+            <li>If you installed the ROS extension on Visual Studio Code, you can make use of one of the feature called "Preview URDF". 
+                Press <span class="CLI-font">Ctrl + Shift + P</span> to open the command pallete of VS Code and then type "Preview URDF" to look for that.</li>
+            <li>RVIZ and Gazebo can only use .urdf file, cannot use .xacro file</li>
+            <li>To generate urdf file from .xacro file</li>
+                <ul>
+                    <li><span class="CLI-font">rosrun xacro xacro xacroFileName > newUrdfName</span></li>
+                    <li>For example: <span class="CLI-font">rosrun xacro explorer_bot.urdf.xacro > explorer_bot.urdf</span></li>
+                </ul>
+            <li>To check whether a urdf file is valid</li>
+                <ul>
+                    <li><span class="CLI-font">check_urdf urdfFileName</span></li>
+                    <li>If check_urdf command not found, then you need to install: <span class="CLI-font">sudo apt install liburdfdom-tools</span></li>
+                </ul>
+            <li>If you want to use xacro in launch file for robot_description, can refer to the following example:</li>
+                <pre>
+                    <code>
     &lt;arg name="robotXacro" default="$(find explorer_bot)/urdf/explorer_bot.urdf.xacro"/>
     &lt;param name="robot_description" command="$(find xacro)/xacro $(arg robotXacro)"/>
-                        </code>
-                    </pre>
-                <li>The normal material color in urdf will not work in Gazebo, to add color to your links for Gazebo, refer to the following example:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>The normal material color in urdf will not work in Gazebo, to add color to your links for Gazebo, refer to the following example:</li>
+                <pre>
+                    <code>
     &lt;gazebo reference="base_link">
         &lt;material>Gazebo/Red&lt;/material>
     &lt;/gazebo>
-                        </code>
-                    </pre>
-                <li>The moment of inertia for cuboid shown in <a href="https://en.wikipedia.org/wiki/List_of_moments_of_inertia" target="_blank" rel="noopener noreferrer">Wikipedia</a>
-                     is a little bit confusing, recommended to refer to the following image instead:</li>
-                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <img src="https://roymech.org/images/in_box.gif">
-                        <span style="font-style: italic;">Source of image: https://roymech.org/Useful_Tables/Form/Dynamics_inertia.html</span>
-                    </div>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+            <li>The moment of inertia for cuboid shown in <a href="https://en.wikipedia.org/wiki/List_of_moments_of_inertia" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+                    is a little bit confusing, recommended to refer to the following image instead:</li>
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <img src="https://roymech.org/images/in_box.gif">
+                    <span style="font-style: italic;">Source of image: https://roymech.org/Useful_Tables/Form/Dynamics_inertia.html</span>
+                </div>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>SLAM notes</h3>
-            <ul>
-                <li>For SLAM and autonomous navigation purpose, a robot needs to get the depth
-                    information of the environment. There are a few types of sensor devices can
-                    be used for this purpose:
-                </li>
-                    <ul>
-                        <li>Lidar sensor</li>
-                            <ul>
-                                <li>High accuracy</li>
-                                <li>Not affected by lighting condition</li>
-                                <li>Less data (as compared to Camera) and more ideal for SLAM</li>
-                                <li>Expensive (RPLidar costs around RM1700)</li>
-                            </ul>
-                        <li>Camera</li>
-                            <ul>
-                                <li>Monocular Camera</li>
-                                    <ul>
-                                        <li>Possible to estimate distance when the robot is moving around</li>
-                                        <li>Complicated to implement</li>
-                                    </ul>
-                                <li>Stereo Camera</li>
-                                    <ul>
-                                        <li>Can estiamted distance in both static and dynamic states</li>
-                                        <li>Not ideal for SLAM because need to process a lot of image data</li>
-                                    </ul>
-                            </ul>
-                        <li>RGB-D Camera</li>
-                            <ul>
-                                <li>Have both RGB image and depth image</li>
-                                <li>Can get depth informatin of every pixel</li>
-                                <li>Lower cost</li>
-                                <li>Examples: Microsoft Kinect, Asus Xtion Pro</li>
-                            </ul>
-                    </ul>
-                <li>The RGB-D camera provides 3D point cloud data, but most of the ROS packages require 2D laserscan data.
-                    To cope with this, ROS provides a package called depthimage_to_laserscan and this can be included in launch file.
-                    For example:
-                </li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>SLAM notes</h3>
+        <ul>
+            <li>For SLAM and autonomous navigation purpose, a robot needs to get the depth
+                information of the environment. There are a few types of sensor devices can
+                be used for this purpose:
+            </li>
+                <ul>
+                    <li>Lidar sensor</li>
+                        <ul>
+                            <li>High accuracy</li>
+                            <li>Not affected by lighting condition</li>
+                            <li>Less data (as compared to Camera) and more ideal for SLAM</li>
+                            <li>Expensive (RPLidar costs around RM1700)</li>
+                        </ul>
+                    <li>Camera</li>
+                        <ul>
+                            <li>Monocular Camera</li>
+                                <ul>
+                                    <li>Possible to estimate distance when the robot is moving around</li>
+                                    <li>Complicated to implement</li>
+                                </ul>
+                            <li>Stereo Camera</li>
+                                <ul>
+                                    <li>Can estiamted distance in both static and dynamic states</li>
+                                    <li>Not ideal for SLAM because need to process a lot of image data</li>
+                                </ul>
+                        </ul>
+                    <li>RGB-D Camera</li>
+                        <ul>
+                            <li>Have both RGB image and depth image</li>
+                            <li>Can get depth informatin of every pixel</li>
+                            <li>Lower cost</li>
+                            <li>Examples: Microsoft Kinect, Asus Xtion Pro</li>
+                        </ul>
+                </ul>
+            <li>The RGB-D camera provides 3D point cloud data, but most of the ROS packages require 2D laserscan data.
+                To cope with this, ROS provides a package called depthimage_to_laserscan and this can be included in launch file.
+                For example:
+            </li>
+                <pre>
+                    <code>
     &lt;node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
         &lt;remap from="image" to="/camera/depth/image_raw"/>
         &lt;remap from="camera_info" to="/camera/depth/camera_info"/>
         &lt;remap from="scan" to="/scan"/>
         &lt;remap from="output_frame_id" to="/camera_link"/>
     &lt;/node>
-                        </code>
-                    </pre>
-                <li>ROS has a rosmsg type called sensor_msgs/LaserScan, which is used to store laserscan data.</li>
-                <li>ROS also has nav_msgs/Odometry which mainly consists of Pose and Twist message type. 
-                    Odometry data is commonly subscribed by ROS navigation packages.
-                </li>
-                <li>Navigation packages are more ideal for differential wheeled robots, and assuming the robots can be 
-                    directly controlled using geometry_msgs/Twist which consists of linear x,y,z and angular x,y,z speed.
-                </li>
-                <li>Navigation packages are developed based on square or circular robot model, hence the navigation
-                    performance for other strange shaped robot might not be ideal.
-                </li>
-                <li>Types of SLAM approaches</li>
-                    <ul>
-                        <li>gmapping</li>
-                            <ul>
-                                <li>This is the most commonly used SLAM package</li>
-                                <li>There are many parameters can be configured. If you are new to SLAM, you may use the default values.</li>
-                                <li>However, there are 2 parameters that you need to take note:</li>
-                                    <ul>
-                                        <li>the odom_frame must be matched with the robot's frame</li>
-                                        <li>gmapping package is subscribing to "/scan" topic, if your laserScan data is 
-                                            published to different topic, remember to &lt;remap> it in launch file.
-                                        </li>
-                                    </ul>
-                            </ul>
-                        <li>hector_slam</li>
-                            <ul>
-                                <li>This package doesn't need Odom data, only need depth data.</li>
-                                <li>Hence, this package can be used for drone or hand-held device.</li>
-                                <li>However, without Odom data, the SLAM performance is slighly worse than gmapping,
-                                    especially if the robot is moving in higher speed.
-                                </li>
-                                <li>By reducing the moving speed of robot and using a higher accuracy lidar sensor,
-                                    the map generation performance could be improved.
-                                </li>
-                                <li>If RGB-D camera is used instead, the map generation performance would not be great.</li>
-                            </ul>
-                        <li>cartographer</li>
-                            <ul>
-                                <li>This package provides 2D and 3D SLAM across multiple platforms and sensor configurations.</li>
-                                <li>For more details, refer to their <a href="https://google-cartographer-ros.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener noreferrer">Official Documentation</a></li>
-                            </ul>
-                        <li>rtabmap_ros</li>
-                            <ul>
-                                <li>This is a powerful package which can be used to generate a 3D point clouds of the environment 
-                                    and/or to create a 2D occupancy grid map for navigation.</li>
-                                <li>Table 1 of <a href="https://introlab.3it.usherbrooke.ca/mediawiki-introlab/images/7/7a/Labbe18JFR_preprint.pdf" target="">this paper</a>
-                                    summarized different types of SLAM appraoches</li>
-                            </ul>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+            <li>ROS has a rosmsg type called sensor_msgs/LaserScan, which is used to store laserscan data.</li>
+            <li>ROS also has nav_msgs/Odometry which mainly consists of Pose and Twist message type. 
+                Odometry data is commonly subscribed by ROS navigation packages.
+            </li>
+            <li>Navigation packages are more ideal for differential wheeled robots, and assuming the robots can be 
+                directly controlled using geometry_msgs/Twist which consists of linear x,y,z and angular x,y,z speed.
+            </li>
+            <li>Navigation packages are developed based on square or circular robot model, hence the navigation
+                performance for other strange shaped robot might not be ideal.
+            </li>
+            <li>Types of SLAM approaches</li>
+                <ul>
+                    <li>gmapping</li>
+                        <ul>
+                            <li>This is the most commonly used SLAM package</li>
+                            <li>There are many parameters can be configured. If you are new to SLAM, you may use the default values.</li>
+                            <li>However, there are 2 parameters that you need to take note:</li>
+                                <ul>
+                                    <li>the odom_frame must be matched with the robot's frame</li>
+                                    <li>gmapping package is subscribing to "/scan" topic, if your laserScan data is 
+                                        published to different topic, remember to &lt;remap> it in launch file.
+                                    </li>
+                                </ul>
+                        </ul>
+                    <li>hector_slam</li>
+                        <ul>
+                            <li>This package doesn't need Odom data, only need depth data.</li>
+                            <li>Hence, this package can be used for drone or hand-held device.</li>
+                            <li>However, without Odom data, the SLAM performance is slighly worse than gmapping,
+                                especially if the robot is moving in higher speed.
+                            </li>
+                            <li>By reducing the moving speed of robot and using a higher accuracy lidar sensor,
+                                the map generation performance could be improved.
+                            </li>
+                            <li>If RGB-D camera is used instead, the map generation performance would not be great.</li>
+                        </ul>
+                    <li>cartographer</li>
+                        <ul>
+                            <li>This package provides 2D and 3D SLAM across multiple platforms and sensor configurations.</li>
+                            <li>For more details, refer to their <a href="https://google-cartographer-ros.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener noreferrer">Official Documentation</a></li>
+                        </ul>
+                    <li>rtabmap_ros</li>
+                        <ul>
+                            <li>This is a powerful package which can be used to generate a 3D point clouds of the environment 
+                                and/or to create a 2D occupancy grid map for navigation.</li>
+                            <li>Table 1 of <a href="https://introlab.3it.usherbrooke.ca/mediawiki-introlab/images/7/7a/Labbe18JFR_preprint.pdf" target="">this paper</a>
+                                summarized different types of SLAM appraoches</li>
+                        </ul>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Autonomous Navigation notes</h3>
-            <ul>
-                <li>The key parts of autonomous navigation are localization and path planning. ROS provides
-                    the following 2 packages for both of these:
-                    <ul>
-                        <li>move_base - for path planning</li>
-                        <li>amcl - for 2D map localization</li>
-                    </ul>
-                </li>
-                <li>move_base</li>
-                    <ul>
-                        <li><b>global_planner</b> is responsible for planning the overall path from starting point
-                        to destination.</li>
-                        <li><b>local_planner</b> is responsible for planning sub-path in order to avoid obstacles.</li>
-                    </ul>
-                <li>amcl</li>
-                    <ul>
-                        <li>Since Odometry can also help in robot localization, what is the difference between
-                            odometry and amcl?
-                        </li>
-                            <ul>
-                                <li>Odometry only handles TF transformation between /odom and /base</li>
-                                <li>amcl estimates the localtion of the robot on the map</li>
-                            </ul>
-                    </ul>
-                <li><a href="http://wiki.ros.org/navigation/Tutorials/RobotSetup" target="_blank" rel="noopener noreferrer">Costmap Configuration</a></li>
-                    <ul>
-                        <li>common configuration</li>
-                        <li>global_costmap</li>
-                        <li>local_costmap</li>
-                    </ul>
-                <li><a href="http://wiki.ros.org/base_local_planner" target="_blank" rel="noopener noreferrer">Local Planner Configuration</a></li>
-                    <ul>
-                        <li>base_local_planner_params.yaml</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Autonomous Navigation notes</h3>
+        <ul>
+            <li>The key parts of autonomous navigation are localization and path planning. ROS provides
+                the following 2 packages for both of these:
+                <ul>
+                    <li>move_base - for path planning</li>
+                    <li>amcl - for 2D map localization</li>
+                </ul>
+            </li>
+            <li>move_base</li>
+                <ul>
+                    <li><b>global_planner</b> is responsible for planning the overall path from starting point
+                    to destination.</li>
+                    <li><b>local_planner</b> is responsible for planning sub-path in order to avoid obstacles.</li>
+                </ul>
+            <li>amcl</li>
+                <ul>
+                    <li>Since Odometry can also help in robot localization, what is the difference between
+                        odometry and amcl?
+                    </li>
+                        <ul>
+                            <li>Odometry only handles TF transformation between /odom and /base</li>
+                            <li>amcl estimates the localtion of the robot on the map</li>
+                        </ul>
+                </ul>
+            <li><a href="http://wiki.ros.org/navigation/Tutorials/RobotSetup" target="_blank" rel="noopener noreferrer">Costmap Configuration</a></li>
+                <ul>
+                    <li>common configuration</li>
+                    <li>global_costmap</li>
+                    <li>local_costmap</li>
+                </ul>
+            <li><a href="http://wiki.ros.org/base_local_planner" target="_blank" rel="noopener noreferrer">Local Planner Configuration</a></li>
+                <ul>
+                    <li>base_local_planner_params.yaml</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="noopener noreferrer">dynamic_reconfigure</a></h3>
-            <ul>
-                <li>This package provides a means to update parameters at runtime without having to restart the node.</li>
-                <li>This package has a tool called <span style="font-style: italic">dynparam</span>, it allows:</li>
-                    <ul>
-                        <li>reconfiguring parameter through command line (list, set, get, get_from_parameters)</li>
-                        <li>loading configuration from a file</li>
-                        <li>dumping configuration into a file</li>
-                    </ul>
-                <li>Refer to the official <a href="http://wiki.ros.org/dynamic_reconfigure/Tutorials" target="_blank" rel="noopener noreferrer">tutorials</a> for these:</li>
-                    <ul>
-                        <li>How to Write Your First .cfg File</li>
-                        <li>Setting up Dynamic Reconfigure for a Node (python)</li>
-                        <li>Setting up Dynamic Reconfigure for a Node(cpp)</li>
-                        <li>Using the Dynamic Reconfigure Python Client</li>
-                    </ul>
-                    
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="noopener noreferrer">dynamic_reconfigure</a></h3>
+        <ul>
+            <li>This package provides a means to update parameters at runtime without having to restart the node.</li>
+            <li>This package has a tool called <span style="font-style: italic">dynparam</span>, it allows:</li>
+                <ul>
+                    <li>reconfiguring parameter through command line (list, set, get, get_from_parameters)</li>
+                    <li>loading configuration from a file</li>
+                    <li>dumping configuration into a file</li>
+                </ul>
+            <li>Refer to the official <a href="http://wiki.ros.org/dynamic_reconfigure/Tutorials" target="_blank" rel="noopener noreferrer">tutorials</a> for these:</li>
+                <ul>
+                    <li>How to Write Your First .cfg File</li>
+                    <li>Setting up Dynamic Reconfigure for a Node (python)</li>
+                    <li>Setting up Dynamic Reconfigure for a Node(cpp)</li>
+                    <li>Using the Dynamic Reconfigure Python Client</li>
+                </ul>
+                
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Problems that ROS1 faces</h3>
-            <ul>
-                <li>Multi-robot system</li>
-                    <ul>
-                        <li>There is no standard approach for building multi-robot systems. The ones available
-                            right now are considered a hack on top of the single-master structure of ROS.
-                        </li>
-                    </ul>
-                <li>Cross platform</li>
-                    <ul>
-                        <li>ROS1 is mainly based on Linux systems, and the usage of ROS on other platforms
-                            such as Windows, MacOS, RTOS etc is quite limited.
-                        </li>
-                    </ul>
-                <li>Real-time systems</li>
-                    <ul>
-                        <li>ROS1 is not capable to achieve hard real-time which is required in some 
-                            industrial applications.
-                        </li>
-                    </ul>
-                <li>Network connection</li>
-                    <ul>
-                        <li>ROS1 requires very good network condition in order to ensure completeness of 
-                            data transfer. There is also some security issue in catching data published 
-                            or received by the ROS nodes due to network security issues.
-                        </li>
-                    </ul>
-                <li>Production environment</li>
-                    <ul>
-                        <li>The stability of ROS1 is not good, and not perfect for production environment.</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Problems that ROS1 faces</h3>
+        <ul>
+            <li>Multi-robot system</li>
+                <ul>
+                    <li>There is no standard approach for building multi-robot systems. The ones available
+                        right now are considered a hack on top of the single-master structure of ROS.
+                    </li>
+                </ul>
+            <li>Cross platform</li>
+                <ul>
+                    <li>ROS1 is mainly based on Linux systems, and the usage of ROS on other platforms
+                        such as Windows, MacOS, RTOS etc is quite limited.
+                    </li>
+                </ul>
+            <li>Real-time systems</li>
+                <ul>
+                    <li>ROS1 is not capable to achieve hard real-time which is required in some 
+                        industrial applications.
+                    </li>
+                </ul>
+            <li>Network connection</li>
+                <ul>
+                    <li>ROS1 requires very good network condition in order to ensure completeness of 
+                        data transfer. There is also some security issue in catching data published 
+                        or received by the ROS nodes due to network security issues.
+                    </li>
+                </ul>
+            <li>Production environment</li>
+                <ul>
+                    <li>The stability of ROS1 is not good, and not perfect for production environment.</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Miscellaneous</h3>
-            <h4>Working with multiple catkin workspaces</h4>
-            <ul>
-                <li>There is no best practice of saying whether you should only have one or multiple catkin workspaces.</li>
-                <li>My personal opinion is use a same workspace for your personal development and testing, 
-                    and create a new workspace if only you are working on something that needs to be delivered to others</li>
-                <li>Important Note: You can't run multiple catkin workspaces on the same session. The last to be sourced is the one to be activated.</li>
-            </ul>
-            <h4>To start or shutdown a launch file in script</h4>
-            <ul>
-                <li><a href="https://answers.ros.org/question/263862/if-it-possible-to-launch-a-launch-file-from-python/
-                    http://wiki.ros.org/roslaunch/API%20Usage" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>Code Snippet Example:</li>
-                <pre>
-                    <code>
+    <div>
+        <h3>Miscellaneous</h3>
+        <h4>Working with multiple catkin workspaces</h4>
+        <ul>
+            <li>There is no best practice of saying whether you should only have one or multiple catkin workspaces.</li>
+            <li>My personal opinion is use a same workspace for your personal development and testing, 
+                and create a new workspace if only you are working on something that needs to be delivered to others</li>
+            <li>Important Note: You can't run multiple catkin workspaces on the same session. The last to be sourced is the one to be activated.</li>
+        </ul>
+        <h4>To start or shutdown a launch file in script</h4>
+        <ul>
+            <li><a href="https://answers.ros.org/question/263862/if-it-possible-to-launch-a-launch-file-from-python/
+                http://wiki.ros.org/roslaunch/API%20Usage" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>Code Snippet Example:</li>
+            <pre>
+                <code>
     #!/usr/bin/env python
     import rospy
     import roslaunch
@@ -577,41 +576,40 @@ class RosPythonApi:
     
         except Exception as e:
             rospy.logerr(e)
-                    </code>
-                </pre>
-            </ul>
-            <h4>To check whether a ROS package is installed</h4>
-            <ul>
-                <li><span class="CLI-font">rospack find [package-name]</span></li>
-            </ul>
-            <h4>Possible reason of why your "rospy.sleep" is not working</h4>
-            <ul>
-                <li><a href="https://answers.ros.org/question/11761/rospysleep-doesnt-get-awaken/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>This might be due to your /use_sim_time parameter was set to true, and it might be due to you opened gazebo recently.</li>
-                <li>When /use_sim_time is set and no time provider is running, all ROS sleep methods will just block infinitely.</li>
-                <li>To set it back to false: <span class="CLI-font">rosparam set use_sim_time false</span></li>
-            </ul>
-            <h4>Editing map generated</h4>
-            <ul>
-                <li>Sometimes the map generated might not be perfect and need some touch-ups. For this, we can use image editor such as GIMP to edit the map.</li>
-                <li>Some simple guidelines:</li>
-                    <ol>
-                        <li>Install GIMP</li>
-                        <li>To get the colour of the background of the map, use the Color Pickup Tool
-                            in the Toolbox, then set PickMode as Set foreground color, and click on the
-                            background</li>
-                        <li>To draw straight lines, click on the image with paintbrush tool, then hold the [Shift] key and move your mouse around.</li>
-                        <li>Export the file as .pgm format</li>
-                        <li>Go to the directory where you saved your map, you should see a file with the same name as your .pgm image, but in .yaml format.</li>
-                        <li>Modify the value of 'image' key and replace with absolute path of your pgm file, for example:</li>
-                            <pre>
-                                <code>
+                </code>
+            </pre>
+        </ul>
+        <h4>To check whether a ROS package is installed</h4>
+        <ul>
+            <li><span class="CLI-font">rospack find [package-name]</span></li>
+        </ul>
+        <h4>Possible reason of why your "rospy.sleep" is not working</h4>
+        <ul>
+            <li><a href="https://answers.ros.org/question/11761/rospysleep-doesnt-get-awaken/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>This might be due to your /use_sim_time parameter was set to true, and it might be due to you opened gazebo recently.</li>
+            <li>When /use_sim_time is set and no time provider is running, all ROS sleep methods will just block infinitely.</li>
+            <li>To set it back to false: <span class="CLI-font">rosparam set use_sim_time false</span></li>
+        </ul>
+        <h4>Editing map generated</h4>
+        <ul>
+            <li>Sometimes the map generated might not be perfect and need some touch-ups. For this, we can use image editor such as GIMP to edit the map.</li>
+            <li>Some simple guidelines:</li>
+                <ol>
+                    <li>Install GIMP</li>
+                    <li>To get the colour of the background of the map, use the Color Pickup Tool
+                        in the Toolbox, then set PickMode as Set foreground color, and click on the
+                        background</li>
+                    <li>To draw straight lines, click on the image with paintbrush tool, then hold the [Shift] key and move your mouse around.</li>
+                    <li>Export the file as .pgm format</li>
+                    <li>Go to the directory where you saved your map, you should see a file with the same name as your .pgm image, but in .yaml format.</li>
+                    <li>Modify the value of 'image' key and replace with absolute path of your pgm file, for example:</li>
+                        <pre>
+                            <code>
     image: /home/andrew/catkin_ws/src/help_me_carry_2017/src/maps/HMC2017map.pgm
-                                </code>
-                            </pre>
-                    </ol>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                            </code>
+                        </pre>
+                </ol>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

@@ -1,154 +1,152 @@
 <div class="flexContainer">
-    <div fxLayout="column">
+    <div>
+        <h1>UNIX / UNIX-Like Notes</h1>
+        <h2>Introduction</h2>
+        <ul>
+            <li>There always confusion about UNIX, Linux, Ubuntu etc. Hopefully this note can clear your doubts.</li>
+            <li>Most of the content here are my notes along the way experiencing with UNIX/Linux.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2><a href="https://swcarpentry.github.io/shell-novice/reference.html#filesystem-hierarchy"
+            target="_blank" rel="noopener noreferrer">UNIX Filesystem Hierarchy</a></h2>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>Linux File System</h2>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://ars.els-cdn.com/content/image/3-s2.0-B9780128112779000031-f03-10-9780128112779.jpg" style="max-height: 500px;">
+            <span style="font-style: italic;">Source of image: https://www.sciencedirect.com/topics/computer-science/linux-file-system</span>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>UNIX vs Linux</h2>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th>UNIX</th>
+                    <th>Linux</th>
+                </tr>
+                <tr>
+                    <td>proprietary</td>
+                    <td>open-source</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>UNIX in itself is a complete OS as everything (all required applications tied together) comes from a single vendor.</p></td>
+                    <td>
+                        <p>Linux is a UNIX clone but it is just a kernel, not the complete OS.
+                        <br>This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>macOS</li>
+                            <li>Solaris</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Debian</li>
+                            <li>Ubuntu (based on Debian)</li>
+                            <li>Alpine</li>
+                            <li>Fedora</li>
+                            <li>CentOS</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default shell is Bash</td>
+                    <td>Default shell is Bourne Shell (sh)</td>
+                </tr>
+                <tr>
+                    <td>Not portable</td>
+                    <td>Portable and is booted from a USB Stick</td>
+                </tr>
+            </table>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>Linux-based OS Architecture</h2>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/Screen-Shot-2018-01-04-at-10.44.39-AM.png" style="max-height: 600px;">
+            <span style="font-style: italic;">Source of image: https://www.softwaretestinghelp.com/unix-vs-linux/</span>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>apt vs apt-get vs dpkg</h2>
+        <ul>
+            <li>As compared to apt-get, apt is newer and has less features, but it is more user friendly
+                and provides all necessary features.</li>
+            <li>In Linux, we have a package database, and normally we need to run <span class="CLI-font">apt update</span>
+                to update the package database before we install a package using <span class="CLI-font">apt install</span></li>
+            <li>For details about apt vs apt-get, refer to <a href="https://itsfoss.com/apt-vs-apt-get-difference/" target="_blank"
+                rel="noopener noreferrer">this tutorial</a>.</li>
+            <li>
+                <div style="overflow-x : auto">
+                    <table>
+                        <tr>
+                            <th>APT</th>
+                            <th>DPKG</th>
+                        </tr>
+                        <tr>
+                            <td>APT (Advanced Package Tool) is a free software user interface for Debian and Debian-based Linux distributions 
+                                that interacts with core libraries to handle program installation and removal.</td>
+                            <td>The package management system of the free operating system Debian and its many variations is based on the program DPKG.</td>
+                        </tr>
+                        <tr>
+                            <td>Packages from external repositories can be downloaded.</td>
+                            <td>Packages from external repositories cannot be downloaded.</td>
+                        </tr>
+                        <tr>
+                            <td>Has the ability to resolve dependencies</td>
+                            <td>Doesn’t have such ability.</td>
+                        </tr>
+                        <tr>
+                            <td>If you try to install a package whose dependencies are missing, APT downloads the dependencies.</td>
+                            <td>Dpkg will terminate and report missing dependencies if you try to install a package with it’s dependencies missing.</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+            <li>In short, apt is "higher-level" package management tool whereas dkpg is "lower-level".</li>
+
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>UNIX / UNIX-like OS commands</h2>
         <div>
-            <h1>UNIX / UNIX-Like Notes</h1>
-            <h2>Introduction</h2>
-            <ul>
-                <li>There always confusion about UNIX, Linux, Ubuntu etc. Hopefully this note can clear your doubts.</li>
-                <li>Most of the content here are my notes along the way experiencing with UNIX/Linux.</li>
+            <h3>sed</h3>
+            <ul>    
+                <li>SED command in UNIX stands for stream editor.</li>
+                <li>It can perform lots of functions on file like searching, find and replace, insertion or deletion.</li>
             </ul>
-            <mat-divider></mat-divider>
         </div>
+        <mat-divider></mat-divider>
+    </div>
 
+    <div>
+        <h2>Bash commands</h2>
         <div>
-            <h2><a href="https://swcarpentry.github.io/shell-novice/reference.html#filesystem-hierarchy"
-                target="_blank" rel="noopener noreferrer">UNIX Filesystem Hierarchy</a></h2>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>Linux File System</h2>
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <img src="https://ars.els-cdn.com/content/image/3-s2.0-B9780128112779000031-f03-10-9780128112779.jpg" style="max-height: 500px;">
-                <span style="font-style: italic;">Source of image: https://www.sciencedirect.com/topics/computer-science/linux-file-system</span>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>UNIX vs Linux</h2>
-            <div style="overflow-x : auto">
-                <table>
-                    <tr>
-                        <th>UNIX</th>
-                        <th>Linux</th>
-                    </tr>
-                    <tr>
-                        <td>proprietary</td>
-                        <td>open-source</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>UNIX in itself is a complete OS as everything (all required applications tied together) comes from a single vendor.</p></td>
-                        <td>
-                            <p>Linux is a UNIX clone but it is just a kernel, not the complete OS.
-                            <br>This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <ul>
-                                <li>macOS</li>
-                                <li>Solaris</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <ul>
-                                <li>Debian</li>
-                                <li>Ubuntu (based on Debian)</li>
-                                <li>Alpine</li>
-                                <li>Fedora</li>
-                                <li>CentOS</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Default shell is Bash</td>
-                        <td>Default shell is Bourne Shell (sh)</td>
-                    </tr>
-                    <tr>
-                        <td>Not portable</td>
-                        <td>Portable and is booted from a USB Stick</td>
-                    </tr>
-                </table>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>Linux-based OS Architecture</h2>
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/Screen-Shot-2018-01-04-at-10.44.39-AM.png" style="max-height: 600px;">
-                <span style="font-style: italic;">Source of image: https://www.softwaretestinghelp.com/unix-vs-linux/</span>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>apt vs apt-get vs dpkg</h2>
-            <ul>
-                <li>As compared to apt-get, apt is newer and has less features, but it is more user friendly
-                    and provides all necessary features.</li>
-                <li>In Linux, we have a package database, and normally we need to run <span class="CLI-font">apt update</span>
-                    to update the package database before we install a package using <span class="CLI-font">apt install</span></li>
-                <li>For details about apt vs apt-get, refer to <a href="https://itsfoss.com/apt-vs-apt-get-difference/" target="_blank"
-                    rel="noopener noreferrer">this tutorial</a>.</li>
-                <li>
-                    <div style="overflow-x : auto">
-                        <table>
-                            <tr>
-                                <th>APT</th>
-                                <th>DPKG</th>
-                            </tr>
-                            <tr>
-                                <td>APT (Advanced Package Tool) is a free software user interface for Debian and Debian-based Linux distributions 
-                                    that interacts with core libraries to handle program installation and removal.</td>
-                                <td>The package management system of the free operating system Debian and its many variations is based on the program DPKG.</td>
-                            </tr>
-                            <tr>
-                                <td>Packages from external repositories can be downloaded.</td>
-                                <td>Packages from external repositories cannot be downloaded.</td>
-                            </tr>
-                            <tr>
-                                <td>Has the ability to resolve dependencies</td>
-                                <td>Doesn’t have such ability.</td>
-                            </tr>
-                            <tr>
-                                <td>If you try to install a package whose dependencies are missing, APT downloads the dependencies.</td>
-                                <td>Dpkg will terminate and report missing dependencies if you try to install a package with it’s dependencies missing.</td>
-                            </tr>
-                        </table>
-                    </div>
-                </li>
-                <li>In short, apt is "higher-level" package management tool whereas dkpg is "lower-level".</li>
-
+            <h3>set</h3>
+            <ul>    
+                <li>The set command in Bash allows you to control the behavior of your scripts by managing specific flags and properties.</li>
+                <li><a href="https://linuxhint.com/set-command-bash/#:~:text=The%20set%20command%20in%20Bash,behavior%20does%20not%20cause%20problems."
+                        target="_blank" rel="noopener noreferrer">Reference</a></li>
             </ul>
-            <mat-divider></mat-divider>
         </div>
-
-        <div>
-            <h2>UNIX / UNIX-like OS commands</h2>
-            <div>
-                <h3>sed</h3>
-                <ul>    
-                    <li>SED command in UNIX stands for stream editor.</li>
-                    <li>It can perform lots of functions on file like searching, find and replace, insertion or deletion.</li>
-                </ul>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>Bash commands</h2>
-            <div>
-                <h3>set</h3>
-                <ul>    
-                    <li>The set command in Bash allows you to control the behavior of your scripts by managing specific flags and properties.</li>
-                    <li><a href="https://linuxhint.com/set-command-bash/#:~:text=The%20set%20command%20in%20Bash,behavior%20does%20not%20cause%20problems."
-                         target="_blank" rel="noopener noreferrer">Reference</a></li>
-                </ul>
-            </div>
-            <mat-divider></mat-divider>
-        </div>
+        <mat-divider></mat-divider>
     </div>
 </div>

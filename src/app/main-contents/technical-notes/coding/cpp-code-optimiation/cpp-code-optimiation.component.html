@@ -1,18 +1,17 @@
 <div class="flexContainer">
-    <div fxLayout="column">
-        <div>
-            <h1>C++ Code Optimization</h1>
-            <h2>Introduction</h2>
-            <ul>
-                <li>This page introduces some code optimization techniques.</li>
-                <li>However, take note that modern compilers sometimes do perform some of the optimization techniques automatically,
-                    hence you might not need to implement some of them for better code readability.
-                </li>
-                <li>Despite knowing these techniques, you should always test the performance before and after each optimization.</li>
-                <li>You may profile the time taken for your function by using the following template (from Udacity's Intro to 
-                    Self-Driving Cars Nanodegree):</li>
-                    <pre>
-                        <code>
+    <div>
+        <h1>C++ Code Optimization</h1>
+        <h2>Introduction</h2>
+        <ul>
+            <li>This page introduces some code optimization techniques.</li>
+            <li>However, take note that modern compilers sometimes do perform some of the optimization techniques automatically,
+                hence you might not need to implement some of them for better code readability.
+            </li>
+            <li>Despite knowing these techniques, you should always test the performance before and after each optimization.</li>
+            <li>You may profile the time taken for your function by using the following template (from Udacity's Intro to 
+                Self-Driving Cars Nanodegree):</li>
+                <pre>
+                    <code>
     #include &lt;ctime>
 
     std::clock_t start;
@@ -25,82 +24,82 @@
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     
     std::cout &lt;&lt; "this function took: " &lt;&lt; 1000 * duration &lt;&lt; " milliseconds \n";
-                        </code>
-                    </pre>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Perform inline expansion on small functions</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/inline-functions/" target="_blank" ref="noopener noreferrer">Reference</a></li>
-                <li>Every time a function is called, there is a certain amount of performance overhead that occurs.</li>
-                <li>For functions that are large and/or perform complex tasks, the overhead of the function call is typically insignificant compared to the amount of time the function takes to run.</li>
-                <li>However, for small functions, the overhead costs can be larger than the time needed to actually execute the function’s code.</li>
-                <li>To resolve this issue, we can use the <b>inline</b> keyword to perform inline expansion, where the function call will be replaced by the code.</li>
-                <li>For detailed explanation and examples, refer to the reference link above.</li>
-                <li>HOWEVER, modern optimizing compilers are typically very good at determining which functions should be made inline -- better than humans in most cases.
-                    Hence, you may IGNORE this optimization technique.
-                </li>
-            </ul>
-        </div>
+    <div>
+        <h3>Perform inline expansion on small functions</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/inline-functions/" target="_blank" ref="noopener noreferrer">Reference</a></li>
+            <li>Every time a function is called, there is a certain amount of performance overhead that occurs.</li>
+            <li>For functions that are large and/or perform complex tasks, the overhead of the function call is typically insignificant compared to the amount of time the function takes to run.</li>
+            <li>However, for small functions, the overhead costs can be larger than the time needed to actually execute the function’s code.</li>
+            <li>To resolve this issue, we can use the <b>inline</b> keyword to perform inline expansion, where the function call will be replaced by the code.</li>
+            <li>For detailed explanation and examples, refer to the reference link above.</li>
+            <li>HOWEVER, modern optimizing compilers are typically very good at determining which functions should be made inline -- better than humans in most cases.
+                Hence, you may IGNORE this optimization technique.
+            </li>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Loop unrolling/ Loop unwinding</h3>
-            <ul>
-                <li><a href="https://en.wikipedia.org/wiki/Loop_unrolling" target="_blank" ref="noopener noreferrer">Reference</a></li>
-                <li>Loop unrolling is a space-time tradeoff as it optimizes a program's execution time but increases its binary size due
-                    to increased code size.
-                </li>
-                <li>Loop unrolling can increase a program's speed because it reduces the instructions that control the loop, such as 
-                    pointer arithmetic and "end of loop" tests on each iteration; reducing branch penalties; as well as hiding latencies, 
-                    including the delay in reading data from memory.</li>
-                <li>Example</li>
-                    <div style="overflow-x : auto">
-                        <table>
-                            <tr>
-                                <th>Original code</th>
-                                <th>After loop unrolling</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <pre>
-                                        <code style="text-align: left">
+    <div>
+        <h3>Loop unrolling/ Loop unwinding</h3>
+        <ul>
+            <li><a href="https://en.wikipedia.org/wiki/Loop_unrolling" target="_blank" ref="noopener noreferrer">Reference</a></li>
+            <li>Loop unrolling is a space-time tradeoff as it optimizes a program's execution time but increases its binary size due
+                to increased code size.
+            </li>
+            <li>Loop unrolling can increase a program's speed because it reduces the instructions that control the loop, such as 
+                pointer arithmetic and "end of loop" tests on each iteration; reducing branch penalties; as well as hiding latencies, 
+                including the delay in reading data from memory.</li>
+            <li>Example</li>
+                <div style="overflow-x : auto">
+                    <table>
+                        <tr>
+                            <th>Original code</th>
+                            <th>After loop unrolling</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code style="text-align: left">
     for (int i=0; i&lt;3; i++)
     &#123;
         std::cout&lt;&lt;"hello world!\n";
     }
+                                </code>
+                            </pre>
+                        </td>
+                        <td>
+                            <pre>
+                                <code style="text-align: left">
+    std::cout&lt;&lt;"hello world!\n";
+    std::cout&lt;&lt;"hello world!\n";
+    std::cout&lt;&lt;"hello world!\n";
                                     </code>
                                 </pre>
                             </td>
-                            <td>
-                                <pre>
-                                    <code style="text-align: left">
-    std::cout&lt;&lt;"hello world!\n";
-    std::cout&lt;&lt;"hello world!\n";
-    std::cout&lt;&lt;"hello world!\n";
-                                        </code>
-                                    </pre>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-            </ul>
-        </div>
+                        </tr>
+                    </table>
+                </div>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Removing Dead Code</h3>
-            <ul>
-                <li>Dead code is extra code that no longer serves a purpose, and can be removed without affecting the
-                    functionality.
-                </li>
-                <li>Although dead code doesn't affect the functionality, but it does somehow impact the performance as 
-                    some unnecessary codes are being executed.
-                </li>
-                <li>Redundant code and unreachable code can be considered as dead code as well.</li>
-                <li>Example of <b>redundant code</b>:
-                    <pre>
-                        <code>
+    <div>
+        <h3>Removing Dead Code</h3>
+        <ul>
+            <li>Dead code is extra code that no longer serves a purpose, and can be removed without affecting the
+                functionality.
+            </li>
+            <li>Although dead code doesn't affect the functionality, but it does somehow impact the performance as 
+                some unnecessary codes are being executed.
+            </li>
+            <li>Redundant code and unreachable code can be considered as dead code as well.</li>
+            <li>Example of <b>redundant code</b>:
+                <pre>
+                    <code>
     int x = 10;
     if (x > 5) &#123;
         return true;
@@ -108,30 +107,30 @@
     else &#123;
         return false;
     }
-                        </code>
-                    </pre>
-                    The code above is considered redundant as it can be simply replaced by
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                The code above is considered redundant as it can be simply replaced by
+                <pre>
+                    <code>
     int x = 10;
     return x > 5;
-                        </code>
-                    </pre>
-                </li>
-                <li>Another example of <b>redundant code</b>, the x >= 10 below is redundant</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </li>
+            <li>Another example of <b>redundant code</b>, the x >= 10 below is redundant</li>
+                <pre>
+                    <code>
     if (x &lt; 10) &#123;
             x = x + 1;
     }
     else if (x >= 10 && x &lt; 20) &#123;
         x = x + 2;
     }
-                        </code>
-                    </pre>
-                <li>An example of <b>unreachable code</b>: the else bracket below is unreachable because unsigned int is always greater than 0</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>An example of <b>unreachable code</b>: the else bracket below is unreachable because unsigned int is always greater than 0</li>
+                <pre>
+                    <code>
     unsigned int x;
     // do something
     if (x >= 0) &#123;
@@ -139,21 +138,21 @@
     } else &#123;
         // do something
     }
-                        </code>
-                    </pre>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+    </div>
 
-        <div>
-            <h3>If Statements Optimization</h3>
-            <ul>
-                <li>Many compilers nowadays help you to optimize if statements.</li>
-                <li>However, it is still better if we could avoid too many if branches being executed by
-                    putting the most common case on a higher branch.
-                </li>
-                <li>For example,</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>If Statements Optimization</h3>
+        <ul>
+            <li>Many compilers nowadays help you to optimize if statements.</li>
+            <li>However, it is still better if we could avoid too many if branches being executed by
+                putting the most common case on a higher branch.
+            </li>
+            <li>For example,</li>
+                <pre>
+                    <code>
     for (int i = 0; i &lt; 100; i++) &#123;
         if (i > 0 && i &lt;= 10) &#123;
             cout &lt;&lt;  "super rare \n";
@@ -165,11 +164,11 @@
             cout &lt;&lt; "common \n";
         }
     }
-                        </code>
-                    </pre>
-                    The code above could be optimized by putting the most common case on top:
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                The code above could be optimized by putting the most common case on top:
+                <pre>
+                    <code>
     for (int i = 0; i &lt; 100; i++) &#123;
         if ( i > 40 ) &#123;
             cout &lt;&lt; "common \n";
@@ -181,17 +180,17 @@
             cout &lt;&lt; "super rare \n";
         }
     }
-                        </code>
-                    </pre>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Avoid unnecessary nested for loop if possible</h3>
-            <ul>
-                <li>For example, initialization of a 2D vector:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>Avoid unnecessary nested for loop if possible</h3>
+        <ul>
+            <li>For example, initialization of a 2D vector:</li>
+                <pre>
+                    <code>
     std::vector &lt; std::vector&lt;int> > matrix;
     std::vector&lt;int> new_row;
     int initial_value = 1;
@@ -203,88 +202,88 @@
         }
         matrix.push_back(new_row);
     }
-                        </code>
-                    </pre>
-                The code above considered a unnecessary for loop as we can straight away initialize the 2D vector:
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            The code above considered a unnecessary for loop as we can straight away initialize the 2D vector:
+                <pre>
+                    <code>
     int initial_value = 1;
     std::vector &lt; std::vector&lt;int> > matrix(num_rows, std::vector&lt;int> (num_cols, initial_value));
-                        </code>
-                    </pre>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Remove unnecessary intermediate variables</h3>
-            <ul>
-                <li>Intermediate variables could be considered as redundant code.</li>
-                <li>For example:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>Remove unnecessary intermediate variables</h3>
+        <ul>
+            <li>Intermediate variables could be considered as redundant code.</li>
+            <li>For example:</li>
+                <pre>
+                    <code>
     std::vector&lt;int> x(4, 0);
     for (int i = 0; i &lt; 5; i++) &#123;
         int new_element = x[i] + i;
         x[i] = new_element;
     }
-                        </code>
-                    </pre>
-                    The "new_element" variable above is considered intermediate variable as the code above
-                    could be simplified to:
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                The "new_element" variable above is considered intermediate variable as the code above
+                could be simplified to:
+                <pre>
+                    <code>
     std::vector&lt;int> x(4, 0);
     for (int i = 0; i &lt; 5; i++) &#123;
         x[i] = x[i] + i;
     }
-                        </code>
-                    </pre>
-                <li>However, in most of cases, these intermediate variables are actually acceptable as those fundamental 
-                    variable types (such as float, int and char) are relatively efficient, and we probably won't notice
-                    the difference as the compiler might have optimized it.
-                </li>
-                <li>Hence, avoid intermediate variables unless they are critical for code readability, and also avoid 
-                    adding intermediate variables for non-fundamental variable types such as vector, queue etc unless necessary.
-                </li>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+            <li>However, in most of cases, these intermediate variables are actually acceptable as those fundamental 
+                variable types (such as float, int and char) are relatively efficient, and we probably won't notice
+                the difference as the compiler might have optimized it.
+            </li>
+            <li>Hence, avoid intermediate variables unless they are critical for code readability, and also avoid 
+                adding intermediate variables for non-fundamental variable types such as vector, queue etc unless necessary.
+            </li>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Reserve Vector Memory Storage</h3>
-            <ul>
-                <li>When we declare a vector, we don't need to specify a vector's length, so the compiler will
-                    not know ahead of time how much memory to allocate.
-                </li>
-                <li>When a vector is initialized, there is some initial allocated memory. And since vector is dynamic
-                    array, we can keep adding elements to the vector. But what happens when the vector's length goes
-                    beyond the initial allocated memory? It will actually need to find another address with enough 
-                    length of memory and then move the entire vector to the new address, and this is an O(N) operation.
-                </li>
-                <li>Therefore, if we know the length of our vector variable, we can reserve it earlier to avoid the
-                    unnecessary O(N) operations above.
-                </li>
-                <li>For example:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>Reserve Vector Memory Storage</h3>
+        <ul>
+            <li>When we declare a vector, we don't need to specify a vector's length, so the compiler will
+                not know ahead of time how much memory to allocate.
+            </li>
+            <li>When a vector is initialized, there is some initial allocated memory. And since vector is dynamic
+                array, we can keep adding elements to the vector. But what happens when the vector's length goes
+                beyond the initial allocated memory? It will actually need to find another address with enough 
+                length of memory and then move the entire vector to the new address, and this is an O(N) operation.
+            </li>
+            <li>Therefore, if we know the length of our vector variable, we can reserve it earlier to avoid the
+                unnecessary O(N) operations above.
+            </li>
+            <li>For example:</li>
+                <pre>
+                    <code>
     std::vector&lt;int> v;
     int maxNumOfElements = 50;
     v.reserve(maxNumOfElements);
-                        </code>
-                    </pre>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Pass variables by reference</h3>
-            <ul>
-                <li>Again, those C++ fundamental data types are relatively fast enough and efficient enough, so you
-                    do not need to implement this technique on fundamental data types. However, for non-fundamental 
-                    data types such as arrays and vectors, the difference will be obvious.
-                </li>
-                <li>Every time when we pass by value, actually the input variables are copied into memory</li>
-                <li>For example:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>Pass variables by reference</h3>
+        <ul>
+            <li>Again, those C++ fundamental data types are relatively fast enough and efficient enough, so you
+                do not need to implement this technique on fundamental data types. However, for non-fundamental 
+                data types such as arrays and vectors, the difference will be obvious.
+            </li>
+            <li>Every time when we pass by value, actually the input variables are copied into memory</li>
+            <li>For example:</li>
+                <pre>
+                    <code>
     void printVector(std::vector&lt;int> v) &#123;
         int N = v.size();
         for (int i; i &lt; N; ++i)
@@ -298,34 +297,34 @@
         printVector(my_vector);
         return 0;
     }
-                        </code>
-                    </pre>
-                    The my_vector is actually copied into another memory address and if we modify the "v" in the printVector, it will not
-                    affect the my_vector in main() function. However, in this case where we don't need to modify the vector, and also
-                    only reading the vector's element, we can optimize the printVector() function into:
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                The my_vector is actually copied into another memory address and if we modify the "v" in the printVector, it will not
+                affect the my_vector in main() function. However, in this case where we don't need to modify the vector, and also
+                only reading the vector's element, we can optimize the printVector() function into:
+                <pre>
+                    <code>
     void printVector(const std::vector&lt;int> &v) &#123;
         for (const auto &element : v)
         &#123;
             std::cout&lt;&lt;element&lt;&lt;'\n';
         }
     }
-                        </code>
-                    </pre>
-                    The const added above is a kind of defensive programming, just to make sure it is not modified in the function.
-            </ul>
-        </div>
+                    </code>
+                </pre>
+                The const added above is a kind of defensive programming, just to make sure it is not modified in the function.
+        </ul>
+    </div>
 
-        <div>
-            <h3>Declaring static variable</h3>
-            <ul>
-                <li>When a static variable is declared, it is actually placed in the same area of RAM as global variables. But the main difference is 
-                    global variables are in global scope but static variables remain in function scope.
-                </li>
-                <li>This is a simple (but I think is not practical) example just for demonstration purpose:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>Declaring static variable</h3>
+        <ul>
+            <li>When a static variable is declared, it is actually placed in the same area of RAM as global variables. But the main difference is 
+                global variables are in global scope but static variables remain in function scope.
+            </li>
+            <li>This is a simple (but I think is not practical) example just for demonstration purpose:</li>
+                <pre>
+                    <code>
     float getDoubledVariance(float deviation) &#123;
         int variance&#123; deviation*2 };
         return variance*2;
@@ -335,23 +334,23 @@
     for (int i = 0; i &lt; 10; ++i) &#123;
         std::cout&lt;&lt;getDoubledVariance(STANDARD_DEVIATION)&lt;&lt;'\n';
     }
-                        </code>
-                    </pre>
-                    For the strange use case above, if let's say the STANDARD_DEVIATION is const, means actually
-                    the variance actually only need to use the input variable once, and means we don't need to
-                    reinitialize the variance variable everytime. Hence, FOR THIS STRANGE USE CASE, we can make
-                    the variance variable static:
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                For the strange use case above, if let's say the STANDARD_DEVIATION is const, means actually
+                the variance actually only need to use the input variable once, and means we don't need to
+                reinitialize the variance variable everytime. Hence, FOR THIS STRANGE USE CASE, we can make
+                the variance variable static:
+                <pre>
+                    <code>
     float getDoubledVariance(float deviation) &#123;
         static int variance&#123; deviation*2 }; // this only initialized at the first time
         return variance*2;
     }
-                        </code>
-                    </pre>
-                <li>A proper use case of static local variable (not related to optimization):</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>A proper use case of static local variable (not related to optimization):</li>
+                <pre>
+                    <code>
     #include &lt;iostream>
 
     int generateID() &#123;
@@ -366,24 +365,23 @@
         }
         return 0;
     }
-                        </code>
-                    </pre>
-                <li>Notice that you need to declare and define the variable simultaneously. You cannot define a variable with the static keyword without giving the variable a value.</li>
-            </ul>
-        </div>
+                    </code>
+                </pre>
+            <li>Notice that you need to declare and define the variable simultaneously. You cannot define a variable with the static keyword without giving the variable a value.</li>
+        </ul>
+    </div>
 
-        <div>
-            <h3>Miscellaneous</h3>
-            <ul>
-                <li><a href="https://stackoverflow.com/questions/24886/is-there-a-performance-difference-between-i-and-i-in-c" 
-                    target="_blank" rel="noopener noreferrer">Reference</a>: i++ could potentially be slower than ++i, since the old 
-                    value of i might need to be saved for later use, but in practice all modern compilers will optimize this away.
-                </li>
-                <li><a href="https://stackoverflow.com/questions/25109552/what-is-the-best-way-to-improve-the-performance-of-iterating-through-a-stdvect"
-                    target="_blank" rel="noopener noreferrer">Reference</a>: storing the my_vector.size() as a variable, or iterating the
-                    vector using iterator, or using the <span class="script-font">for (const auto &element : my_vector)</span> could be 
-                    considered as an optimization as compared to calling my_vector.size() into loop every time.</li>
-            </ul>
-        </div>
+    <div>
+        <h3>Miscellaneous</h3>
+        <ul>
+            <li><a href="https://stackoverflow.com/questions/24886/is-there-a-performance-difference-between-i-and-i-in-c" 
+                target="_blank" rel="noopener noreferrer">Reference</a>: i++ could potentially be slower than ++i, since the old 
+                value of i might need to be saved for later use, but in practice all modern compilers will optimize this away.
+            </li>
+            <li><a href="https://stackoverflow.com/questions/25109552/what-is-the-best-way-to-improve-the-performance-of-iterating-through-a-stdvect"
+                target="_blank" rel="noopener noreferrer">Reference</a>: storing the my_vector.size() as a variable, or iterating the
+                vector using iterator, or using the <span class="script-font">for (const auto &element : my_vector)</span> could be 
+                considered as an optimization as compared to calling my_vector.size() into loop every time.</li>
+        </ul>
     </div>
 </div>

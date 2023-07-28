@@ -1,131 +1,129 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>ROS2 Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <p>This page documents some ROS2 notes of mine.</p>
-            <mat-divider></mat-divider>
-        </div>
+    <h1>ROS2 Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <p>This page documents some ROS2 notes of mine.</p>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Some miscellaneous notes</h3>
-            <ul>
-                <li>Beginners are recommended to <a href="https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html" 
-                    target="_blank" rel="noopener noreferrer">Install ROS2 via Debian Packages</a></li>
-                <li>If you installed ROS (for example, ROS noetic previously), and if you added 
-                    "source /opt/ros/noetic/setup.bash" and "source ~/catkin_ws/devel/setup.bash"
-                    in your ~/.bashrc , remember to comment them out.
-                </li>
-                <li>To ensure your current ROS environment is ROS2, run <span class="CLI-font">printenv | grep ROS</span> , and
-                    supposedly you see something like these:</li>
-                    <ul>
-                        <li>ROS_VERSION=2</li>
-                        <li>ROS_PYTHON_VERSION=3</li>
-                        <li>ROS_LOCALHOST_ONLY=0</li>
-                        <li>ROS_DISTRO=galactic</li>
-                    </ul>
-                <li>In ROS2, "nodes" are called "participants".</li>
-                <li>In ROS2, "ros2 inferface show" is used to replace "rosmsg show" and "rossrv show</li>
-                <li>According to the <a href="https://docs.ros.org/en/galactic/Tutorials/Configuring-ROS2-Environment.html"
-                    target="_blank" rel="noopener noreferrer">tutorial</a>, we need to set a ROS_DOMAIN_ID, but we cannot simply set,
-                    please read through <a href="https://docs.ros.org/en/galactic/Concepts/About-Domain-ID.html" target="_blank"
-                    rel="noopener noreferrer">this article</a> before setting your domain ID.</li>
-                <li>ROS2 workspace</li>
-                    <ul>
-                        <li>"Main workspace" in ROS2 is called "underlay" and underlying/secondary workspaces are called "overlays".</li>
-                        <li>Your underlay must contain the dependencies of all the packages in your overlay.</li>
-                        <li>Packages in your overlay will override packages in the underlay.</li>
-                        <li>The overlay takes precedence over the underlay. (The turtlesim in your workspace(overlay) will overtake the turtlesim in opt/ros (underlay))</li>
-                        <li>It’s also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays.</li>
-                        <li>Best practice is to create a new directory for every new workspace.</li>
-                        <li>Another best practice is to put any packages in your workspace into the src directory. </li>
-                        <li><b>Before sourcing the overlay, it is very important that you open a new terminal, separate from the one where you built the workspace.
-                            Sourcing an overlay in the same terminal where you built, or likewise building where an overlay is sourced, may create complex issues.</b></li>
-                        <li>local_setup.bash vs setup.bash</li>
-                            <ul>
-                                <li>Sourcing the local_setup of the overlay will only add the packages available in the overlay to your environment.</li>
-                                <li>setup sources the overlay as well as the underlay it was created in, allowing you to utilize both workspaces.</li>
-                                <li>HENCE, sourcing ROS2's setup.bash then a workspace's local_setup.bash IS EQUIVALENT TO sourcing the workspace's setup.bash</li>
-                            </ul>
-                        <li>Using overlays is recommended for working on a small number of packages, so you don’t have to put everything in the same workspace 
-                            and rebuild a huge workspace on every iteration.</li>
-                    </ul>
-                <li>Refer to <a href="http://design.ros2.org/articles/build_tool.html" target="_blank" rel="noopener noreferrer">
-                    this article</a> to roughly know catkin, ament_cmake, colcon etc.</li>
-                <li>ROS2 Package</li>
-                    <ul>
-                        <li>A single workspace can contain as many packages as you want, each in their own folder.</li>
-                        <li>You can also have packages of different build types in one workspace (CMake, Python, Ninja, etc.).</li>
-                        <li>You cannot have nested packages.</li>
-                        <li>It is possible to only colcon build specific package using this syntax: <span class="CLI-font">colcon build --packages-select &lt;package-name></span></li>
-                    </ul>
-                <li>It’s good practice to run rosdep in the root of your workspace (dev_ws) to check for missing dependencies before building:</li>
-                    <ul>
-                        <li><span class="CLI-font">rosdep install -i --from-path src --rosdistro galactic -y</span></li>
-                    </ul>
-                <li>ROS2 interfaces</li>
-                    <ul>
-                        <li>ROS applications typically communicate through interfaces of one of three types: messages, services and actions.</li>
-                        <li>ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces.</li>
-                        <li><a href="https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html" target="_blank" rel="noopener noreferrer">For more info</a></li>
-                    </ul>
-                <li></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Some miscellaneous notes</h3>
+        <ul>
+            <li>Beginners are recommended to <a href="https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html" 
+                target="_blank" rel="noopener noreferrer">Install ROS2 via Debian Packages</a></li>
+            <li>If you installed ROS (for example, ROS noetic previously), and if you added 
+                "source /opt/ros/noetic/setup.bash" and "source ~/catkin_ws/devel/setup.bash"
+                in your ~/.bashrc , remember to comment them out.
+            </li>
+            <li>To ensure your current ROS environment is ROS2, run <span class="CLI-font">printenv | grep ROS</span> , and
+                supposedly you see something like these:</li>
+                <ul>
+                    <li>ROS_VERSION=2</li>
+                    <li>ROS_PYTHON_VERSION=3</li>
+                    <li>ROS_LOCALHOST_ONLY=0</li>
+                    <li>ROS_DISTRO=galactic</li>
+                </ul>
+            <li>In ROS2, "nodes" are called "participants".</li>
+            <li>In ROS2, "ros2 inferface show" is used to replace "rosmsg show" and "rossrv show</li>
+            <li>According to the <a href="https://docs.ros.org/en/galactic/Tutorials/Configuring-ROS2-Environment.html"
+                target="_blank" rel="noopener noreferrer">tutorial</a>, we need to set a ROS_DOMAIN_ID, but we cannot simply set,
+                please read through <a href="https://docs.ros.org/en/galactic/Concepts/About-Domain-ID.html" target="_blank"
+                rel="noopener noreferrer">this article</a> before setting your domain ID.</li>
+            <li>ROS2 workspace</li>
+                <ul>
+                    <li>"Main workspace" in ROS2 is called "underlay" and underlying/secondary workspaces are called "overlays".</li>
+                    <li>Your underlay must contain the dependencies of all the packages in your overlay.</li>
+                    <li>Packages in your overlay will override packages in the underlay.</li>
+                    <li>The overlay takes precedence over the underlay. (The turtlesim in your workspace(overlay) will overtake the turtlesim in opt/ros (underlay))</li>
+                    <li>It’s also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays.</li>
+                    <li>Best practice is to create a new directory for every new workspace.</li>
+                    <li>Another best practice is to put any packages in your workspace into the src directory. </li>
+                    <li><b>Before sourcing the overlay, it is very important that you open a new terminal, separate from the one where you built the workspace.
+                        Sourcing an overlay in the same terminal where you built, or likewise building where an overlay is sourced, may create complex issues.</b></li>
+                    <li>local_setup.bash vs setup.bash</li>
+                        <ul>
+                            <li>Sourcing the local_setup of the overlay will only add the packages available in the overlay to your environment.</li>
+                            <li>setup sources the overlay as well as the underlay it was created in, allowing you to utilize both workspaces.</li>
+                            <li>HENCE, sourcing ROS2's setup.bash then a workspace's local_setup.bash IS EQUIVALENT TO sourcing the workspace's setup.bash</li>
+                        </ul>
+                    <li>Using overlays is recommended for working on a small number of packages, so you don’t have to put everything in the same workspace 
+                        and rebuild a huge workspace on every iteration.</li>
+                </ul>
+            <li>Refer to <a href="http://design.ros2.org/articles/build_tool.html" target="_blank" rel="noopener noreferrer">
+                this article</a> to roughly know catkin, ament_cmake, colcon etc.</li>
+            <li>ROS2 Package</li>
+                <ul>
+                    <li>A single workspace can contain as many packages as you want, each in their own folder.</li>
+                    <li>You can also have packages of different build types in one workspace (CMake, Python, Ninja, etc.).</li>
+                    <li>You cannot have nested packages.</li>
+                    <li>It is possible to only colcon build specific package using this syntax: <span class="CLI-font">colcon build --packages-select &lt;package-name></span></li>
+                </ul>
+            <li>It’s good practice to run rosdep in the root of your workspace (dev_ws) to check for missing dependencies before building:</li>
+                <ul>
+                    <li><span class="CLI-font">rosdep install -i --from-path src --rosdistro galactic -y</span></li>
+                </ul>
+            <li>ROS2 interfaces</li>
+                <ul>
+                    <li>ROS applications typically communicate through interfaces of one of three types: messages, services and actions.</li>
+                    <li>ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces.</li>
+                    <li><a href="https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html" target="_blank" rel="noopener noreferrer">For more info</a></li>
+                </ul>
+            <li></li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>ROS vs ROS2</h3>
-            <div style="overflow-x : auto">
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>ROS</th>
-                        <th>ROS2</th>
-                    </tr>
-                    <tr>
-                        <td>Supported Operating System</td>
-                        <td>Linux, macOS</td>
-                        <td>Linux, macOS, Windows, RTOS</td>
-                    </tr>
-                    <tr>
-                        <td>Build System</td>
-                        <td>catkin</td>
-                        <td>ament & colcon</td>
-                    </tr>
-                    <tr>
-                        <td>Programmming Language</td>
-                        <td>C++ 03, Python2</td>
-                        <td>C++ 11/14/17, Python3.5</td>
-                    </tr>
-                    <tr>
-                        <td>Node Initialization</td>
-                        <td>A file can only initialize a node.</td>
-                        <td>A file can initialize multiple nodes.</td>
-                    </tr>
-                    <tr>
-                        <td>Requires ROS master</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Type of System</td>
-                        <td>Centralized system</td>
-                        <td>Distributed system</td>
-                    </tr>
-                    <tr>
-                        <td>ROS parameters</td>
-                        <td>Stored in Parameter Server of ROS master as global parameters</td>
-                        <td>Each node has its own ROS parameters, no more global parameter</td>
-                    </tr>
-                    <tr>
-                        <td>ROS Services</td>
-                        <td>Synchronous</td>
-                        <td>Asynchronous (main thread will not be stucked), can be set to Synchronous also</td>
-                    </tr>
-                </table>
-            </div>
-            <mat-divider></mat-divider>
+    <div>
+        <h3>ROS vs ROS2</h3>
+        <div style="overflow-x : auto">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>ROS</th>
+                    <th>ROS2</th>
+                </tr>
+                <tr>
+                    <td>Supported Operating System</td>
+                    <td>Linux, macOS</td>
+                    <td>Linux, macOS, Windows, RTOS</td>
+                </tr>
+                <tr>
+                    <td>Build System</td>
+                    <td>catkin</td>
+                    <td>ament & colcon</td>
+                </tr>
+                <tr>
+                    <td>Programmming Language</td>
+                    <td>C++ 03, Python2</td>
+                    <td>C++ 11/14/17, Python3.5</td>
+                </tr>
+                <tr>
+                    <td>Node Initialization</td>
+                    <td>A file can only initialize a node.</td>
+                    <td>A file can initialize multiple nodes.</td>
+                </tr>
+                <tr>
+                    <td>Requires ROS master</td>
+                    <td>Yes</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Type of System</td>
+                    <td>Centralized system</td>
+                    <td>Distributed system</td>
+                </tr>
+                <tr>
+                    <td>ROS parameters</td>
+                    <td>Stored in Parameter Server of ROS master as global parameters</td>
+                    <td>Each node has its own ROS parameters, no more global parameter</td>
+                </tr>
+                <tr>
+                    <td>ROS Services</td>
+                    <td>Synchronous</td>
+                    <td>Asynchronous (main thread will not be stucked), can be set to Synchronous also</td>
+                </tr>
+            </table>
         </div>
+        <mat-divider></mat-divider>
     </div>
 </div>

@@ -1,6 +1,10 @@
 $flexContentSize: 0 1 auto;
 $flexRemainingSpace: 1 1 1e-9px;
 
+img {
+  max-width: 100%;
+}
+
 .app-spacer {
     flex: 1;
 }
@@ -100,3 +104,8 @@ li {
   right: 0;
   z-index: 999;
 }
+
+// Angular Flex Layout Migration
+.flex-row { display: flex; flex-direction: row; }
+.flex-col { display: flex; flex-direction: column; }
+.align-justify-center { justify-content: center; align-items: center; }

@@ -6,7 +6,6 @@ import { MainContentsComponent } from './main-contents.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -40,7 +39,6 @@ import { ProjectsComponent } from './projects/projects.component';
   imports: [
     CommonModule,
     MainContentsRoutingModule,
-    FlexLayoutModule,
     RouterModule,
     MatToolbarModule,
     MatButtonModule,

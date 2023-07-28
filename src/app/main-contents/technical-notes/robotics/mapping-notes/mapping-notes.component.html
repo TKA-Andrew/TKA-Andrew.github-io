@@ -1,102 +1,100 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Mapping Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Localization is about estimating the robot's pose with given motion control, map, and measurements: <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$P(x_{1:t} | u_{1:t}, m, z_{1:t})$'"></div>
-                </li>
-                <li>Mapping is about estimating the map with given measurements and robot's pose: <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$P(m | z_{1:t}, x_{1:t})$'"></div></li>
-                <li>Instantaneous mapping is necessary as there are always noise in sensors' measurement, and the environment might be changing as well.</li>
-                <li>Occupancy Grid Mapping Algorithm can estimate the posterior map giving the noisy measurements and known poses.</li>
-                <li>Mapping usually happens after SLAM:</li>
-                    <ul>
-                        <li>During SLAM, the robot builds a map of the environment and localize itself relative to it.</li>
-                        <li>After SLAM, the Occupancy Grid Mapping Algorithm uses the poses filtered from SLAM to generate
-                            a map. With both map and poses, the robot can perform path planning and navigation.
-                        </li>
-                    </ul>
-                <li>Forward Measurement Model vs Inverse Measurement Model</li>
-                    <ul>
-                        <li>Forward Measurement Model: <div class="matheqn" style="display: inline-block" [mathjax]="'$P(z_{1:t} | x)$'"></div></li>
-                        <li>Inverse Measurement Model: <div class="matheqn" style="display: inline-block" [mathjax]="'$P(x | z_{1:t})$'"></div></li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <h1>Mapping Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Localization is about estimating the robot's pose with given motion control, map, and measurements: <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$P(x_{1:t} | u_{1:t}, m, z_{1:t})$'"></div>
+            </li>
+            <li>Mapping is about estimating the map with given measurements and robot's pose: <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$P(m | z_{1:t}, x_{1:t})$'"></div></li>
+            <li>Instantaneous mapping is necessary as there are always noise in sensors' measurement, and the environment might be changing as well.</li>
+            <li>Occupancy Grid Mapping Algorithm can estimate the posterior map giving the noisy measurements and known poses.</li>
+            <li>Mapping usually happens after SLAM:</li>
+                <ul>
+                    <li>During SLAM, the robot builds a map of the environment and localize itself relative to it.</li>
+                    <li>After SLAM, the Occupancy Grid Mapping Algorithm uses the poses filtered from SLAM to generate
+                        a map. With both map and poses, the robot can perform path planning and navigation.
+                    </li>
+                </ul>
+            <li>Forward Measurement Model vs Inverse Measurement Model</li>
+                <ul>
+                    <li>Forward Measurement Model: <div class="matheqn" style="display: inline-block" [mathjax]="'$P(z_{1:t} | x)$'"></div></li>
+                    <li>Inverse Measurement Model: <div class="matheqn" style="display: inline-block" [mathjax]="'$P(x | z_{1:t})$'"></div></li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>Occupancy Grid Mapping</h2>
-            <h3>Introduction</h3>
-            <ul>
-                <li>Free Reference: <a href="https://studylib.net/doc/5718332/binary-bayes-filters-and-occupancy-grid-maps" target="_blank" rel="noopener noreferrer">
-                    https://studylib.net/doc/5718332/binary-bayes-filters-and-occupancy-grid-maps</a></li>
-                <li>Occupancy Grid Map estimates the probability that a location is occupied by an obstacle.</li>
-                <li>Key assumptions of Occupancy Grid Map:</li>
-                    <ul>
-                        <li>Occupancy of individual cells is independent</li>
-                        <li>Robot positions are known</li>
-                        <li>Map is static (assuming environment not keep changing when map is generated)</li>
-                    </ul>
-                <li>Log odds ratio representation: <div class="matheqn" style="display: inline-block" [mathjax]="'$log\\frac{P(X)}{1-P(X)}$'"></div></li>                    
-                <li>The use of log odds ratio representation is to avoid probability instabilities near 0 or 1.</li>
-                <li>Binary Bayes Filter Algorithm:
-                    <div class="matheqn" [mathjax]="'$$l_t= l_{t-1} + log\\frac{p(x|z_t)}{1-p(x|z_t)} - log\\frac{p(x)}{1-p(x)}$$'"></div>
-                    where:
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$l_t\\text{ : new belief}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$l_{t-1}\\text{ : previous belief}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$log\\frac{p(x|z_t)}{1-p(x|z_t)}\\text{ : log odd of the Inverse Measurement Model}$'"></div>
-                    <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$log\\frac{p(x)}{1-p(x)}\\text{ : initial belief}$'"></div>
-                </li>
-            </ul>
+    <div>
+        <h2>Occupancy Grid Mapping</h2>
+        <h3>Introduction</h3>
+        <ul>
+            <li>Free Reference: <a href="https://studylib.net/doc/5718332/binary-bayes-filters-and-occupancy-grid-maps" target="_blank" rel="noopener noreferrer">
+                https://studylib.net/doc/5718332/binary-bayes-filters-and-occupancy-grid-maps</a></li>
+            <li>Occupancy Grid Map estimates the probability that a location is occupied by an obstacle.</li>
+            <li>Key assumptions of Occupancy Grid Map:</li>
+                <ul>
+                    <li>Occupancy of individual cells is independent</li>
+                    <li>Robot positions are known</li>
+                    <li>Map is static (assuming environment not keep changing when map is generated)</li>
+                </ul>
+            <li>Log odds ratio representation: <div class="matheqn" style="display: inline-block" [mathjax]="'$log\\frac{P(X)}{1-P(X)}$'"></div></li>                    
+            <li>The use of log odds ratio representation is to avoid probability instabilities near 0 or 1.</li>
+            <li>Binary Bayes Filter Algorithm:
+                <div class="matheqn" [mathjax]="'$$l_t= l_{t-1} + log\\frac{p(x|z_t)}{1-p(x|z_t)} - log\\frac{p(x)}{1-p(x)}$$'"></div>
+                where:
+                <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$l_t\\text{ : new belief}$'"></div>
+                <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$l_{t-1}\\text{ : previous belief}$'"></div>
+                <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$log\\frac{p(x|z_t)}{1-p(x|z_t)}\\text{ : log odd of the Inverse Measurement Model}$'"></div>
+                <div class="matheqn-small" style="margin-left: 40px;" [mathjax]="'$log\\frac{p(x)}{1-p(x)}\\text{ : initial belief}$'"></div>
+            </li>
+        </ul>
 
-            <h3>Inverse Sensor Model</h3>
-            <ul>
-                <li>Inverse Sensor Model is the function that determines whether a grid cell should be labelled as unknown, freespace or obstacle with given the
-                    following parameters:
-                </li>
-                    <ul>
-                        <li><div class="matheqn-small" [mathjax]="'$x\\text{ : current x coordinate of robot }$'"></div></li>
-                        <li><div class="matheqn-small" [mathjax]="'$y\\text{ : current y coordinate of robot }$'"></div></li>
-                        <li><div class="matheqn-small" [mathjax]="'$\\theta\\text{ : current theta of robot }$'"></div></li>
-                        <li><div class="matheqn-small" [mathjax]="'$x_i\\text{ : x coordinate of grid cell being computing }$'"></div></li>
-                        <li><div class="matheqn-small" [mathjax]="'$y_i\\text{ : y coordinate of grid cell being computing }$'"></div></li>
-                        <li><div class="matheqn-small" [mathjax]="'$sensorData[]\\text{ : an array of sensor data that provides the measurements }z_k$'"></div></li>
-                    </ul>
-                <li>Regarding the algorithm, refer to Udacity's course.</li>
-            </ul>
+        <h3>Inverse Sensor Model</h3>
+        <ul>
+            <li>Inverse Sensor Model is the function that determines whether a grid cell should be labelled as unknown, freespace or obstacle with given the
+                following parameters:
+            </li>
+                <ul>
+                    <li><div class="matheqn-small" [mathjax]="'$x\\text{ : current x coordinate of robot }$'"></div></li>
+                    <li><div class="matheqn-small" [mathjax]="'$y\\text{ : current y coordinate of robot }$'"></div></li>
+                    <li><div class="matheqn-small" [mathjax]="'$\\theta\\text{ : current theta of robot }$'"></div></li>
+                    <li><div class="matheqn-small" [mathjax]="'$x_i\\text{ : x coordinate of grid cell being computing }$'"></div></li>
+                    <li><div class="matheqn-small" [mathjax]="'$y_i\\text{ : y coordinate of grid cell being computing }$'"></div></li>
+                    <li><div class="matheqn-small" [mathjax]="'$sensorData[]\\text{ : an array of sensor data that provides the measurements }z_k$'"></div></li>
+                </ul>
+            <li>Regarding the algorithm, refer to Udacity's course.</li>
+        </ul>
 
-            <h3>Multi sensor fusion</h3>
-            <ul>
-                <li>With a combination of different sensors, such as LIDAR sensor + RBGD sensor, we can get a more precise map.</li>
-                <li>The best approach to the multi sensor fusion problem is by building separating map for each sensor, and then integrate them
-                    using the formula below:
-                    <br>For each cell at x,y of the new map, m3:
-                    <div class="matheqn" [mathjax]="'$$m3[x][y]= 1 - (1-m1[x][y]) * (1-m2[x][y])$$'"></div>
-                </li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+        <h3>Multi sensor fusion</h3>
+        <ul>
+            <li>With a combination of different sensors, such as LIDAR sensor + RBGD sensor, we can get a more precise map.</li>
+            <li>The best approach to the multi sensor fusion problem is by building separating map for each sensor, and then integrate them
+                using the formula below:
+                <br>For each cell at x,y of the new map, m3:
+                <div class="matheqn" [mathjax]="'$$m3[x][y]= 1 - (1-m1[x][y]) * (1-m2[x][y])$$'"></div>
+            </li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>3D Mapping</h2>
-            <ul>
-                <li>Here are some desired charateristics of an optimal representation:</li>
-                    <ul>
-                        <li>Probabilistic data representations can be used to accommodate for sensor noise and dynamic environments</li>
-                        <li>Able to distinguish free space and unknown space</li>
-                        <li>Memory efficient</li>
-                    </ul>
-                <li>There are different types of 3D representations, such as:</li>
-                    <ul>
-                        <li>Point Clouds</li>
-                        <li>Voxels</li>
-                        <li>Octrees</li>
-                    </ul>
-                <li>There is an open source C++ library and ROS package called <a href="http://wiki.ros.org/octomap" target="_blank" rel="noopener noreferrer">octomap</a> which can
-                    generate a 3D map based on octrees. However, it is not a 3D SLAM solution, it is only a mapping framework and requires a pose estimate.</li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h2>3D Mapping</h2>
+        <ul>
+            <li>Here are some desired charateristics of an optimal representation:</li>
+                <ul>
+                    <li>Probabilistic data representations can be used to accommodate for sensor noise and dynamic environments</li>
+                    <li>Able to distinguish free space and unknown space</li>
+                    <li>Memory efficient</li>
+                </ul>
+            <li>There are different types of 3D representations, such as:</li>
+                <ul>
+                    <li>Point Clouds</li>
+                    <li>Voxels</li>
+                    <li>Octrees</li>
+                </ul>
+            <li>There is an open source C++ library and ROS package called <a href="http://wiki.ros.org/octomap" target="_blank" rel="noopener noreferrer">octomap</a> which can
+                generate a 3D map based on octrees. However, it is not a 3D SLAM solution, it is only a mapping framework and requires a pose estimate.</li>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

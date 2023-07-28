@@ -1,20 +1,19 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Backtracking</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Backtracking is actually a kind of brute-force solution.</li>
-                <li>DFS can be deemed as a kind of backtracking algorithm.</li>
-                <li>When using backtracking algorithm, there are 3 questions you need to think of:</li>
-                    <ul>
-                        <li>What is your <b>track</b>?</li>
-                        <li>What are the available <b>choices</b> for each track?</li>
-                        <li>What is the <b>termination condition</b>?</li>
-                    </ul>
-                <li>The following is the framework of backtracking algorithm:</li>
-                    <pre>
-                        <code>
+    <h1>Backtracking</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Backtracking is actually a kind of brute-force solution.</li>
+            <li>DFS can be deemed as a kind of backtracking algorithm.</li>
+            <li>When using backtracking algorithm, there are 3 questions you need to think of:</li>
+                <ul>
+                    <li>What is your <b>track</b>?</li>
+                    <li>What are the available <b>choices</b> for each track?</li>
+                    <li>What is the <b>termination condition</b>?</li>
+                </ul>
+            <li>The following is the framework of backtracking algorithm:</li>
+                <pre>
+                    <code>
 all_tracks = [];
 def backtrack(track)
 &#123;
@@ -27,38 +26,37 @@ def backtrack(track)
         backtrack(track)
         remove choice from track
 }
-                        </code>
-                    </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>List of relevant LeetCode Questions</h2>
-            <ul>
-                <li><a href="https://leetcode.com/problems/all-paths-from-source-to-target/" target="_blank" rel="noopener noreferrer">
-                    [medium] 797. All Paths From Source to Target</a></li>
-                <li><a href="https://leetcode.com/problems/n-queens/" target="_blank" rel="noopener noreferrer">
-                    [hard] 51. N-Queens</a></li>    
-                <li><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="noopener noreferrer">
-                    [hard] 37. Sudoku Solver</a></li>
-            </ul>
-            
-            <h3>LeetCode 797. All Paths From Source to Target</h3>
-            <ul>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode797.AllPathsFromSourceToTarget_backtrack.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
+                    </code>
+                </pre>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>List of relevant LeetCode Questions</h2>
+        <ul>
+            <li><a href="https://leetcode.com/problems/all-paths-from-source-to-target/" target="_blank" rel="noopener noreferrer">
+                [medium] 797. All Paths From Source to Target</a></li>
+            <li><a href="https://leetcode.com/problems/n-queens/" target="_blank" rel="noopener noreferrer">
+                [hard] 51. N-Queens</a></li>    
+            <li><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="noopener noreferrer">
+                [hard] 37. Sudoku Solver</a></li>
+        </ul>
+        
+        <h3>LeetCode 797. All Paths From Source to Target</h3>
+        <ul>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode797.AllPathsFromSourceToTarget_backtrack.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
 
-            <h3>LeetCode 51. N-Queens</h3>
-            <ul>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode51.N-Queens_Backtrack.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
-            
-            <h3>LeetCode 37. Sudoku Solver</h3>
-            <ul>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode37.SudokuSolver_backtrack.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
+        <h3>LeetCode 51. N-Queens</h3>
+        <ul>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode51.N-Queens_Backtrack.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
+        
+        <h3>LeetCode 37. Sudoku Solver</h3>
+        <ul>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode37.SudokuSolver_backtrack.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
 
-            <mat-divider></mat-divider>
-        </div>
+        <mat-divider></mat-divider>
     </div>
 </div>

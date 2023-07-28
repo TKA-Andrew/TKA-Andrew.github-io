@@ -1,23 +1,23 @@
-<div class="flexContainer" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="background-image: url('assets/images/scott-webb-OxHPDs4WV8Y-unsplash.jpeg');   background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%; overflow: auto;" appBackgroundImageLoaded (imageLoaded)="loaded()">
-    <div fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayoutGap.lt-md="5px">
-        <div fxLayout="column" fxLayout.lt-md="row" fxLayoutAlign="center center" fxLayoutGap="40px">
-            <a style="text-decoration: none; color:black" href="mailto: kui.an.andrew.tan@gmail.com" rel="noopener noreferrer">
+<div class="flexContainer align-justify-center" style="min-width: fit-content; background-image: url('assets/images/scott-webb-OxHPDs4WV8Y-unsplash.jpeg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;" appBackgroundImageLoaded (imageLoaded)="loaded()">
+    <div class="home-div flex-row align-justify-center">
+        <div class="flex-col icon-div" style="gap: 40px">
+            <a style="color:black" href="mailto: kui.an.andrew.tan@gmail.com" rel="noopener noreferrer">
                 <fa-icon [icon]="faEnvelope" size="3x"></fa-icon>
             </a>
-            <a style="text-decoration: none; color:black" href="https://www.linkedin.com/in/kui-an-andrew-tan/" target="_blank" rel="noopener noreferrer">
+            <a style="color:black" href="https://www.linkedin.com/in/kui-an-andrew-tan/" target="_blank" rel="noopener noreferrer">
                 <fa-icon [icon]="faLinkedin" size="3x"></fa-icon>
             </a>
-            <a style="text-decoration: none; color:black" href="https://github.com/TKA-Andrew" target="_blank" rel="noopener noreferrer">
+            <a style="color:black" href="https://github.com/TKA-Andrew" target="_blank" rel="noopener noreferrer">
                 <fa-icon [icon]="faGithub" size="3x"></fa-icon>
             </a>
         </div>
-        <img  [ngStyle.lt-md]="{width: '200px'}" style="border-radius: 40%; width: 300px; height: auto;" src="assets/images/myNewProfilePic.jpg">
-        <div fxLayout="column" fxLayoutAlign="center center">
-            <p style="color: black; font-size: 50px; align-items: center; margin:0px; max-width: 400px; margin-left: 10px; margin-right: 10px;" [ngStyle.lt-md]="{'font-size': '30px'}">About Me</p>
-            <p style="color: black; font-size: 22px; align-self: center; text-align: justify; max-width: 400px; margin-left: 10px; margin-right: 10px;" [ngStyle.lt-md]="{'font-size': '15px'}">
+        <img id="profile-img" src="assets/images/myNewProfilePic.jpg">
+        <div class="flex-col align-justify-center">
+            <p id="about-me-title">About Me</p>
+            <p id="about-me-description">
                 A robotics enthusiast with education background in Mechatronics and working experience as Software Engineer in a Robotics Company.
-
                 <br><br>Looking forward to keep improving myself and becoming a top-tier Robotics Software Engineer.
+            </p>
         </div>
     </div>
 </div>

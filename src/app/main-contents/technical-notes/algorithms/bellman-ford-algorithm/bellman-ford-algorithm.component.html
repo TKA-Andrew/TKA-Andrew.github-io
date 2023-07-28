@@ -1,60 +1,59 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Bellman-Ford Algorithm</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Bellman-Ford Algorithm is an algorithm for Single Source Shortest Path problems.</li>
-                <li>Bellman-Ford Algorithm has time complexity of O(EV) and whereas Dijkstra's Algorithm
-                    has time complexity of O((E+V)logV) with the help of priority queue.
-                </li>
-                <li>Hence, generally Dijkstra's Algorithm is preferred, unless there are negative edges in
-                    the graph which Dijkstra's Algorithm cannot handle.
-                </li>
-                <li>This is a <a href="https://www.youtube.com/watch?v=FtN3BYH2Zes" target="_blank" rel="noopener noreferrer">Youtube video</a>
-                    explaining some of the main ideas regarding Bellman-Ford algorithm.</li>
-                <li>From the video above, you will notice actually Bellman-Ford algorithm is about trying all edges for a number of trials
-                    when you are given the list of edges and their respective travel costs. You will see the impact of keeping trying when
-                    the edges are not given in correct order (pay attention to 4:40 of the video above, the travel cost at node5 is updated
-                    first before the travel cost at node 3).
-                </li>
-                <li>This <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
-                    shows how we can implement Bellman-Ford if our problem is limited by number of steps.</li>
-                <li><b>Bellman-Ford Algorithm</b> for the second video</li>
-                    <ol>
-                        <li>Construct a vector called <span style="font-style: italic;">minTravelCost</span> with default elements set to INT_MAX</li>
-                            <pre>
-                                <code>
+    <h1>Bellman-Ford Algorithm</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Bellman-Ford Algorithm is an algorithm for Single Source Shortest Path problems.</li>
+            <li>Bellman-Ford Algorithm has time complexity of O(EV) and whereas Dijkstra's Algorithm
+                has time complexity of O((E+V)logV) with the help of priority queue.
+            </li>
+            <li>Hence, generally Dijkstra's Algorithm is preferred, unless there are negative edges in
+                the graph which Dijkstra's Algorithm cannot handle.
+            </li>
+            <li>This is a <a href="https://www.youtube.com/watch?v=FtN3BYH2Zes" target="_blank" rel="noopener noreferrer">Youtube video</a>
+                explaining some of the main ideas regarding Bellman-Ford algorithm.</li>
+            <li>From the video above, you will notice actually Bellman-Ford algorithm is about trying all edges for a number of trials
+                when you are given the list of edges and their respective travel costs. You will see the impact of keeping trying when
+                the edges are not given in correct order (pay attention to 4:40 of the video above, the travel cost at node5 is updated
+                first before the travel cost at node 3).
+            </li>
+            <li>This <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
+                shows how we can implement Bellman-Ford if our problem is limited by number of steps.</li>
+            <li><b>Bellman-Ford Algorithm</b> for the second video</li>
+                <ol>
+                    <li>Construct a vector called <span style="font-style: italic;">minTravelCost</span> with default elements set to INT_MAX</li>
+                        <pre>
+                            <code>
     std::vector&lt;int> minTravelCost(n, INT_MAX);
-                                </code>
-                            </pre>
-                        <li>Set <span style="font-style: italic;">minTravelCost</span> of starting vertex to 0</li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                    <li>Set <span style="font-style: italic;">minTravelCost</span> of starting vertex to 0</li>
+                        <pre>
+                            <code>
     minTravelCost[startingVertex] = 0;
-                                </code>
-                            </pre>     
-                        <li>Determine the <span style="font-style: italic;">maxNumOfTrials</span> you need.</li>
-                            <ul>
-                                <li>For example, if you are given 5 vertices, 
-                                    the maximum number of edges that you might need to go through
-                                    when finding shortest path will be 4.</li>
-                                <li>If you try LeetCode 787, then your maximum number of trials is limited the input variable k. 
-                                    Refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
-                                    if you would like to understand better.
-                                </li>
-                            </ul>
-                        <li><span class="script-font">for (int i = 0; i &lt; maxNumOfTrials; i++) &#123;</span></li>
-                            <ul>
-                                <li>copy the value of <span style="font-style: italic;">minTravelCost</span> to a <span style="font-style: italic;">temp</span> vector</li>
-                                    <pre>
-                                        <code>
+                            </code>
+                        </pre>     
+                    <li>Determine the <span style="font-style: italic;">maxNumOfTrials</span> you need.</li>
+                        <ul>
+                            <li>For example, if you are given 5 vertices, 
+                                the maximum number of edges that you might need to go through
+                                when finding shortest path will be 4.</li>
+                            <li>If you try LeetCode 787, then your maximum number of trials is limited the input variable k. 
+                                Refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>
+                                if you would like to understand better.
+                            </li>
+                        </ul>
+                    <li><span class="script-font">for (int i = 0; i &lt; maxNumOfTrials; i++) &#123;</span></li>
+                        <ul>
+                            <li>copy the value of <span style="font-style: italic;">minTravelCost</span> to a <span style="font-style: italic;">temp</span> vector</li>
+                                <pre>
+                                    <code>
     std::vector&lt;int> temp(minTravelCost);
-                                        </code>
-                                    </pre>
-                                <li>for each pair of edges</li>
-                                    <pre>
-                                        <code>
+                                    </code>
+                                </pre>
+                            <li>for each pair of edges</li>
+                                <pre>
+                                    <code>
     // assuming edges = &#123;&#123;u, v, travelCost}...}
     for (auto edge : edges) &#123;
         int u = edge[0];
@@ -67,37 +66,35 @@
             temp[v] = minTravelCost[u] + travelCost;
         }
     }
-                                        </code>
-                                    </pre>
-                                <li>Update <span class="script-font">minTravelCost</span></li>
-                                    <pre>
-                                        <code>
+                                    </code>
+                                </pre>
+                            <li>Update <span class="script-font">minTravelCost</span></li>
+                                <pre>
+                                    <code>
     minTravelCost = temp;
-                                        </code>
-                                    </pre>
-                            </ul>
-                    </ol>
-                <li><b>Bellman-Ford Algorithm</b> for the first video basically is the algorithm above without the temp vector only.</li>
-            </ul>   
-            <mat-divider></mat-divider>
-        </div>
+                                    </code>
+                                </pre>
+                        </ul>
+                </ol>
+            <li><b>Bellman-Ford Algorithm</b> for the first video basically is the algorithm above without the temp vector only.</li>
+        </ul>   
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>List of Bellman-Ford LeetCode Questions</h2>
-            <ul>
-                <li><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener noreferrer">
-                    [medium] 787. Cheapest Flights Within K Stops</a></li>
-                <li>PS: Basically every question related to Dijkstra's Algorithm can be solved using Bellman-Ford Algorithm.</li>
-            </ul>
+    <div>
+        <h2>List of Bellman-Ford LeetCode Questions</h2>
+        <ul>
+            <li><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener noreferrer">
+                [medium] 787. Cheapest Flights Within K Stops</a></li>
+            <li>PS: Basically every question related to Dijkstra's Algorithm can be solved using Bellman-Ford Algorithm.</li>
+        </ul>
 
-            <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
-            <ul>
-                <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>.</li>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode787.CheapestFlightWithinKStops_Bellman-Ford.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
+        <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
+        <ul>
+            <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=5eIK3zUdYmE" target="_blank" rel="noopener noreferrer">Youtube video</a>.</li>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode787.CheapestFlightWithinKStops_Bellman-Ford.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
 
-            <mat-divider></mat-divider>
-        </div>
-
+        <mat-divider></mat-divider>
     </div>
 </div>

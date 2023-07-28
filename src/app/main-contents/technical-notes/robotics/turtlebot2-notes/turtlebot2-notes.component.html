@@ -1,73 +1,72 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>TurtleBot2 Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <p>This page documents some notes I jotted when I played with TurtleBot2 during my university years.</p>
-            <p>These notes were also used to transfer knowledge to my juniors.</p>
-            <p>The development environment was Ubuntu 14.04 with ROS Indigo.</p>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Simultaneous Localization & Mapping (SLAM) using gmapping</h2>
-            <ol>
-                <li>Run the following commands in your terminal:</li>
-                    <ul>
-                        <li><span class="CLI-font">roslaunch turtlebot_bringup minimal.launch</span></li>
-                        <li><span class="CLI-font">roslaunch turtlebot_navigation gmapping_demo.launch</span></li>
-                        <li><span class="CLI-font">roslaunch turtlebot_rviz_launchers view_navigation.launch</span></li>
-                    </ul>
-                    <br>
-                    <b>OR</b>
-                    Simply create a .launch file with the following content and then roslaunch it:
-                    <pre>
-                        <code>
+    <h1>TurtleBot2 Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <p>This page documents some notes I jotted when I played with TurtleBot2 during my university years.</p>
+        <p>These notes were also used to transfer knowledge to my juniors.</p>
+        <p>The development environment was Ubuntu 14.04 with ROS Indigo.</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Simultaneous Localization & Mapping (SLAM) using gmapping</h2>
+        <ol>
+            <li>Run the following commands in your terminal:</li>
+                <ul>
+                    <li><span class="CLI-font">roslaunch turtlebot_bringup minimal.launch</span></li>
+                    <li><span class="CLI-font">roslaunch turtlebot_navigation gmapping_demo.launch</span></li>
+                    <li><span class="CLI-font">roslaunch turtlebot_rviz_launchers view_navigation.launch</span></li>
+                </ul>
+                <br>
+                <b>OR</b>
+                Simply create a .launch file with the following content and then roslaunch it:
+                <pre>
+                    <code>
     &lt;launch>
         &lt;include file="$(find turtlebot_bringup)/launch/minimal.launch" />
         &lt;include file="$(find turtlebot_navigation)/launch/gmapping_demo.launch" />
         &lt;include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch"/>
     &lt;/launch>
-                        </code>
-                    </pre>
-                <li>You should see that RVIZ is opened, you can now navigate your turtlebot around the
-                    unknown map using the keyboard teleoperation.</li>
-                    <ul>
-                        <li><span class="CLI-font">roslaunch turtlebot_teleop keyboard_teleop.launch</span></li>
-                    </ul>
-                    <p style="font-style: italic;">Side Note: If you have another computer and WiFi connection, 
-                        you can control your robot remotely by running keyboard_teleop on the second computer. 
-                        Refer to this <a href="http://learn.turtlebot.com/2015/02/01/7/" target="_blank" rel="noopener noreferrer">tutorial</a> regarding this.</p>
-                <li>Navigate the turtlebot around and you should see the map is generated on RVIZ at the same time.</li>
-                <li>Once you’re done building a map, save it with the following command:</li>
-                    <ul>
-                        <li><span class="CLI-font">rosrun map_server map_saver -f /DIRECTORY/YOUR_FILE_NAME</span></li>
-                        <li>For example: <span class="CLI-font">rosrun map_server map_saver -f /home/tka-andrew/my_map</span></li>
-                    </ul>
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+            <li>You should see that RVIZ is opened, you can now navigate your turtlebot around the
+                unknown map using the keyboard teleoperation.</li>
+                <ul>
+                    <li><span class="CLI-font">roslaunch turtlebot_teleop keyboard_teleop.launch</span></li>
+                </ul>
+                <p style="font-style: italic;">Side Note: If you have another computer and WiFi connection, 
+                    you can control your robot remotely by running keyboard_teleop on the second computer. 
+                    Refer to this <a href="http://learn.turtlebot.com/2015/02/01/7/" target="_blank" rel="noopener noreferrer">tutorial</a> regarding this.</p>
+            <li>Navigate the turtlebot around and you should see the map is generated on RVIZ at the same time.</li>
+            <li>Once you’re done building a map, save it with the following command:</li>
+                <ul>
+                    <li><span class="CLI-font">rosrun map_server map_saver -f /DIRECTORY/YOUR_FILE_NAME</span></li>
+                    <li>For example: <span class="CLI-font">rosrun map_server map_saver -f /home/tka-andrew/my_map</span></li>
+                </ul>
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>Getting position and orientation of robot/destination</h2>
-            <ol>
-                <li>Run the following commands in your terminal:</li>
-                    <ul>
-                        <li><span class="CLI-font">roslaunch turtlebot_bringup minimal.launch</span></li>
-                        <li><span class="CLI-font">roslaunch turtlebot_navigation amcl_demo.launch
-                            map_file:=/DIRECTORY/YOUR_FILE_NAME.yaml</span></li>
-                        <li><span class="CLI-font">roslaunch turtlebot_rviz_launchers view_navigation.launch</span></li>
-                    </ul>
-                <li>Your map will come up on the screen, you should calibrate the current position of
-                    Turtlebot by selecting 2D pose estimate on the upper tab.</li>
-                <li>Using keyboard_teleop, you can freely navigate your turtlebot around the map to any
-                    position in the map. This will furher make the position and orientation more accurate.</li>
-                <li>Navigate your turtlebot to your desired spot, and run the command below to obtain your
-                    Turtlebot’s current pose information.</li>
-                    <ul>
-                        <li><span class="CLI-font">rostopic echo /amcl_pose</span></li>
-                    </ul>
-                <li>Then you will see something like this:</li>
-                    <pre>
+    <div>
+        <h2>Getting position and orientation of robot/destination</h2>
+        <ol>
+            <li>Run the following commands in your terminal:</li>
+                <ul>
+                    <li><span class="CLI-font">roslaunch turtlebot_bringup minimal.launch</span></li>
+                    <li><span class="CLI-font">roslaunch turtlebot_navigation amcl_demo.launch
+                        map_file:=/DIRECTORY/YOUR_FILE_NAME.yaml</span></li>
+                    <li><span class="CLI-font">roslaunch turtlebot_rviz_launchers view_navigation.launch</span></li>
+                </ul>
+            <li>Your map will come up on the screen, you should calibrate the current position of
+                Turtlebot by selecting 2D pose estimate on the upper tab.</li>
+            <li>Using keyboard_teleop, you can freely navigate your turtlebot around the map to any
+                position in the map. This will furher make the position and orientation more accurate.</li>
+            <li>Navigate your turtlebot to your desired spot, and run the command below to obtain your
+                Turtlebot’s current pose information.</li>
+                <ul>
+                    <li><span class="CLI-font">rostopic echo /amcl_pose</span></li>
+                </ul>
+            <li>Then you will see something like this:</li>
+                <pre>
     header:
       seq: 81
         stamp:
@@ -90,212 +89,212 @@
         -0.0006793180004454058, 0.003341409476325552, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
         0.0012125460173182706]
-                    </pre>
-                <li>Take note of the position: x, y, z and the orientation x, y, z, w information.
-                    They can be used to define the coordinates (including the direction that you want the robot to face at) or some destinations for your robot to navigate to.
-                </li>
-                <li>For example,in your program, you can do something like this:</li>
-                    <pre>
-                        <code>
+                </pre>
+            <li>Take note of the position: x, y, z and the orientation x, y, z, w information.
+                They can be used to define the coordinates (including the direction that you want the robot to face at) or some destinations for your robot to navigate to.
+            </li>
+            <li>For example,in your program, you can do something like this:</li>
+                <pre>
+                    <code>
     self.locations=dict()
     self.locations['entrance'] = Pose(Point(9.80078141749, 10.1593017222, 0.00), Quaternion(0.0, 0.0, -0.947977094188, 0.31833854447))
     self.locations['diningRoom'] = Pose(Point(9.08485224219, 6.66043600217, 0.00), Quaternion(0.0, 0.0, -0.522699385045, 0.852517068963))
     self.locations['livingRoom'] = Pose(Point(5.70034961596, 4.2081211737, 0.00), Quaternion(0.0, 0.0, -0.244048159012, 0.969763113385))
-                        </code>
-                    </pre>
-                <li>Simply replace the values of Point() with position x, y, z and the values of Quaternion() coordinates with orientation x, y, z, w.</li>
-                <li>Then, you can further use these poses to define the initial position of robot or some goals for the robot to navigate to.</li>
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+            <li>Simply replace the values of Point() with position x, y, z and the values of Quaternion() coordinates with orientation x, y, z, w.</li>
+            <li>Then, you can further use these poses to define the initial position of robot or some goals for the robot to navigate to.</li>
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>Setting initial position in launch file</h2>
-            <ol>
-                <li>From the previous section you already know how to get the orientation and position of robot. 
-                    Now you can make use of it to get the initial position that you want, and then set it in your launch file.</li>
-                <li>Copy the amcl_demo.launch in opt/ros/indigo/share/turtlebot_navigation/launch</li>
-                <li>If you look at the launch file, there are three lines that defined the initial pose:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h2>Setting initial position in launch file</h2>
+        <ol>
+            <li>From the previous section you already know how to get the orientation and position of robot. 
+                Now you can make use of it to get the initial position that you want, and then set it in your launch file.</li>
+            <li>Copy the amcl_demo.launch in opt/ros/indigo/share/turtlebot_navigation/launch</li>
+            <li>If you look at the launch file, there are three lines that defined the initial pose:</li>
+                <pre>
+                    <code>
     &lt;arg name="initial_pose_x" default="0.0"/>
     &lt;arg name="initial_pose_y" default="0.0"/>
     &lt;arg name="initial_pose_a" default="0.0"/>  
-                        </code>
-                    </pre>
-                <li>To set the value of initial_pose_x and initial_pose_y, refer to the pose.position.x and pose.position.y.</li>
-                <li>To set the value of initial_pose_a, refer to the section “How to get initial_pose_a from
-                    quaternion” below</li>
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
-        
-        <div>
-            <h2>How to get initial pose_a from quaternion</h2>
-            <ol>
-                <li>References:</li>
-                    <ul>
-                        <li><a href="http://wiki.ros.org/amcl" target="_blank" rel="noopener noreferrer">http://wiki.ros.org/amcl</a></li>
-                        <li><a href="https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles</a></li>
-                    </ul>
-                <li>According to the first link, the initial pose_a is actually yaw(rotation about z-axis in unit
-                    radian).</li>
-                <li>Note that roll, pitch, yaw are the elements of Euler Angles whereas the “orientation” we
-                    get from /amcl_pose rostopic is actually Quaternion.</li>
-                <li>In the second reference link, the wikipedia declare component w of Quaternion as q0, x
-                    as q1, y as q2 and z as q3</li>
-                    <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_01.png">
-                <li>In the section “Euler Angles to Quaternion Conversion”</li>
-                    <img style="width: 70%;" src="assets/images/Turtlebot2/turtlebot2_02.png">
-                <li>Therefore, according to number 4 and 5, the first element of the matrix is Qw, followed
-                    by Qx, Qy and Qz.</li>
-                <li>The following explains what the symbols in number 5 represent. Actually, the bank is
-                    roll, attitude is pitch and heading is yaw</li>
-                    <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_03.png">
-                <li>For our case, our roll and pitch will be zero because our robot doesnt rotate about x and y
-                    axis. Therefore, we only concern on the yaw, which is our initial_pose_a value.
-                    According to number 5, we can get the value of yaw if we know Qz or Qw. But after a
-                    few trials, we noticed that Qz is more accurate compared to Qw, dont know why.</li>
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+            <li>To set the value of initial_pose_x and initial_pose_y, refer to the pose.position.x and pose.position.y.</li>
+            <li>To set the value of initial_pose_a, refer to the section “How to get initial_pose_a from
+                quaternion” below</li>
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
+    
+    <div>
+        <h2>How to get initial pose_a from quaternion</h2>
+        <ol>
+            <li>References:</li>
+                <ul>
+                    <li><a href="http://wiki.ros.org/amcl" target="_blank" rel="noopener noreferrer">http://wiki.ros.org/amcl</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles</a></li>
+                </ul>
+            <li>According to the first link, the initial pose_a is actually yaw(rotation about z-axis in unit
+                radian).</li>
+            <li>Note that roll, pitch, yaw are the elements of Euler Angles whereas the “orientation” we
+                get from /amcl_pose rostopic is actually Quaternion.</li>
+            <li>In the second reference link, the wikipedia declare component w of Quaternion as q0, x
+                as q1, y as q2 and z as q3</li>
+                <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_01.png">
+            <li>In the section “Euler Angles to Quaternion Conversion”</li>
+                <img style="width: 70%;" src="assets/images/Turtlebot2/turtlebot2_02.png">
+            <li>Therefore, according to number 4 and 5, the first element of the matrix is Qw, followed
+                by Qx, Qy and Qz.</li>
+            <li>The following explains what the symbols in number 5 represent. Actually, the bank is
+                roll, attitude is pitch and heading is yaw</li>
+                <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_03.png">
+            <li>For our case, our roll and pitch will be zero because our robot doesnt rotate about x and y
+                axis. Therefore, we only concern on the yaw, which is our initial_pose_a value.
+                According to number 5, we can get the value of yaw if we know Qz or Qw. But after a
+                few trials, we noticed that Qz is more accurate compared to Qw, dont know why.</li>
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>How to navigate out of built map</h2>
-            <ol>
-                <li>The robot can navigate out of the map without changing any setting, as long as the robot is
-                    not outside of the maximum size of a map.</li>
-                <li>If you bring the robot out of the maximum map(the gray area), the robot will not be able
-                    to do autonomous navigation.</li>
-                <li>The robot will be able to perform autonomous navigation within the gray area, although the area is not scanned.</li>
-                <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_04.png">
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h2>How to navigate out of built map</h2>
+        <ol>
+            <li>The robot can navigate out of the map without changing any setting, as long as the robot is
+                not outside of the maximum size of a map.</li>
+            <li>If you bring the robot out of the maximum map(the gray area), the robot will not be able
+                to do autonomous navigation.</li>
+            <li>The robot will be able to perform autonomous navigation within the gray area, although the area is not scanned.</li>
+            <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_04.png">
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>How to edit the size of map before building the map</h2>
-            <ol>
-                <li>This is for those building map with SLAM only. If you are using SLAM in this tutorial to
-                    build map, the package that you use will be turtlebot_navigation and the launch file that you use
-                    will be gmapping_demo.launch. And if you are using kinect to build map, the file that controls
-                    all the settings of the map will be kinect_gmapping.launch.xml</li>
-                <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_05.png">
-                    
-                <li>According to the directory above, find out the kinect_gmapping.launch.xml file and open
-                    it with gedit. Then you will see that the default map size as below:</li>
-                    <pre>
+    <div>
+        <h2>How to edit the size of map before building the map</h2>
+        <ol>
+            <li>This is for those building map with SLAM only. If you are using SLAM in this tutorial to
+                build map, the package that you use will be turtlebot_navigation and the launch file that you use
+                will be gmapping_demo.launch. And if you are using kinect to build map, the file that controls
+                all the settings of the map will be kinect_gmapping.launch.xml</li>
+            <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_05.png">
+                
+            <li>According to the directory above, find out the kinect_gmapping.launch.xml file and open
+                it with gedit. Then you will see that the default map size as below:</li>
+                <pre>
     &lt;param name="xmin" value="-1.0"/>
     &lt;param name="ymin" value="-1.0"/>
     &lt;param name="xmax" value="1.0"/>
     &lt;param name="ymax" value="1.0"/>
-                    </pre>
-                <li>You may try to increase the map size:</li>
-                    <pre>
+                </pre>
+            <li>You may try to increase the map size:</li>
+                <pre>
     &lt;param name="xmin" value="-50.0"/>
     &lt;param name="ymin" value="-50.0"/>
     &lt;param name="xmax" value="50.0"/>
     &lt;param name="ymax" value="50.0"/>
-                    </pre>
-                <li>&lt;param name="delta" value="0.04"/> the value for delta is better is less than 0.05,
-                    recommended 0.04.</li>
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+                </pre>
+            <li>&lt;param name="delta" value="0.04"/> the value for delta is better is less than 0.05,
+                recommended 0.04.</li>
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>How to add map server into launch file</h2>
-            <ol>
-                <li>If you write your own launch file, you need to add this to your launch file also, so that the
-                    map can be loaded.</li>
-                <li>By refering to the amcl_demo.launch in opt/ros/indigo/share/turtlebot_navigation/launch,
-                    you will see the mapserver part. Simply copy the whole map server part into your own
-                    launch file.</li>
-                <li>And you will see this line:</li>
-                    <pre>
-    &lt;arg name="map_file" default="$(env TURTLEBOT_MAP_FILE)"/>
-                    </pre>
-                <li>If you want to use a default map file, you may declare it in your .bashrc. The following is an example:</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_14.png">
-            </ol>
-            <mat-divider>If you write your own launch file, you need to add this to your launch file also, so that the
+    <div>
+        <h2>How to add map server into launch file</h2>
+        <ol>
+            <li>If you write your own launch file, you need to add this to your launch file also, so that the
+                map can be loaded.</li>
+            <li>By refering to the amcl_demo.launch in opt/ros/indigo/share/turtlebot_navigation/launch,
+                you will see the mapserver part. Simply copy the whole map server part into your own
+                launch file.</li>
+            <li>And you will see this line:</li>
+                <pre>
+&lt;arg name="map_file" default="$(env TURTLEBOT_MAP_FILE)"/>
+                </pre>
+            <li>If you want to use a default map file, you may declare it in your .bashrc. The following is an example:</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_14.png">
+        </ol>
+        <mat-divider>If you write your own launch file, you need to add this to your launch file also, so that the
 map can be loaded.</mat-divider>
-        </div>
+    </div>
 
-        <div>
-            <h2>How to identify different kinects when more than one kinect is used</h2>
-            <ol>
-                <li>To use two kinects, you need to have two launch files for two respective kinect.</li>
-                <li>For example, I write a HMC_basicNodes.launch that launch all basic things necessary. In
-                    this basicNodes.launch, i included the following launch files that launch the 2 different
-                    3dsensor.launch</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_06.png">
-                <li>Note that I define the argument “camera” as “camera2” to let the system to differentiate
-                    it. Regarding other settings, you need to discover by yourselves. You need to copy the
-                    default 3dsensor.launch and modify it.</li>
-                <li>For each 3dsensor.launch, you need to have a folder for it, and the folder i mean is the
-                    following:</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_07.png">
-                    <p>Therefore, for 3dsensor_move_base and 3dsensor_follower, you need to copy the folder
-                        above and rename it as well.</p>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_08.png">
-                <li>Inside the 3dsensor folder, there is a document called kinect.launch.xml, open it and edit
-                    the device id:</li>
-                    <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_09.png">
-                <li>If you don't know the device id of the kinect, just simply connect the kinect to your
-                    laptop and launch 3dsensor bringup</li>
-                    <ul>
-                        <li><span class="CLI-font">roslaunch turtlebot_bringup 3dsensor.launch</span></li>
-                    </ul>
-                <li>Then you might see something like this and you will know the device id of the sensor:
-                    ERROR: 1. device on bus 002:08 is a SensorKinect (2ae) from PrimeSense (45e) with serial id
-                    'A00364911499111A'</li>
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h2>How to identify different kinects when more than one kinect is used</h2>
+        <ol>
+            <li>To use two kinects, you need to have two launch files for two respective kinect.</li>
+            <li>For example, I write a HMC_basicNodes.launch that launch all basic things necessary. In
+                this basicNodes.launch, i included the following launch files that launch the 2 different
+                3dsensor.launch</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_06.png">
+            <li>Note that I define the argument “camera” as “camera2” to let the system to differentiate
+                it. Regarding other settings, you need to discover by yourselves. You need to copy the
+                default 3dsensor.launch and modify it.</li>
+            <li>For each 3dsensor.launch, you need to have a folder for it, and the folder i mean is the
+                following:</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_07.png">
+                <p>Therefore, for 3dsensor_move_base and 3dsensor_follower, you need to copy the folder
+                    above and rename it as well.</p>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_08.png">
+            <li>Inside the 3dsensor folder, there is a document called kinect.launch.xml, open it and edit
+                the device id:</li>
+                <img style="width: 90%;" src="assets/images/Turtlebot2/turtlebot2_09.png">
+            <li>If you don't know the device id of the kinect, just simply connect the kinect to your
+                laptop and launch 3dsensor bringup</li>
+                <ul>
+                    <li><span class="CLI-font">roslaunch turtlebot_bringup 3dsensor.launch</span></li>
+                </ul>
+            <li>Then you might see something like this and you will know the device id of the sensor:
+                ERROR: 1. device on bus 002:08 is a SensorKinect (2ae) from PrimeSense (45e) with serial id
+                'A00364911499111A'</li>
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>How to set priority if there are more than one velocity
-                publishers that publish to different topic</h2>
-            <ol>
-                <li>It is important especially when you want to use emergency button. When emergency
-                    button is pressed, the node should publish a zero velocity to the highest priority topic to stop the
-                    movement.</li>
-                <li>Open gedit with sudo</li>
-                    <ul>
-                        <li><span class="CLI-font">sudo gedit</span></li>
-                    </ul>
-                <li>Open this document with the gedit</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_10.png">
-                <li>The following are the default ones</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_11.png">
-                <li>Now you know there are different topics with different priorities for the velocity topic. So don't
-                    simply copy and paste the topic when you doing a velocity publisher. The higher the number, the
-                    higher the priority.</li>
-                <li>The following are the changes that I made:</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_12.png">                
-                <li>The following are the examples of velocity publishers that make use of the concept of priority:</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_13.png">                
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h2>How to set priority if there are more than one velocity
+            publishers that publish to different topic</h2>
+        <ol>
+            <li>It is important especially when you want to use emergency button. When emergency
+                button is pressed, the node should publish a zero velocity to the highest priority topic to stop the
+                movement.</li>
+            <li>Open gedit with sudo</li>
+                <ul>
+                    <li><span class="CLI-font">sudo gedit</span></li>
+                </ul>
+            <li>Open this document with the gedit</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_10.png">
+            <li>The following are the default ones</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_11.png">
+            <li>Now you know there are different topics with different priorities for the velocity topic. So don't
+                simply copy and paste the topic when you doing a velocity publisher. The higher the number, the
+                higher the priority.</li>
+            <li>The following are the changes that I made:</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_12.png">                
+            <li>The following are the examples of velocity publishers that make use of the concept of priority:</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_13.png">                
+        </ol>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>How to implement emergency button on Turtlebot2</h2>
-            <ol>
-                <li>According to <a href="http://kobuki.yujinrobot.com/wiki/online-user-guide/" target="_blank" rel="noopener noreferrer">
-                    Kobuki online user guide</a>, the following are the pinouts of Kobuki's expansion port:</li>
-                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_15.png">                
-                        <span style="font-style: italic;">Source of image: http://kobuki.yujinrobot.com/wiki/online-user-guide/</span>
-                    </div>
-                <li>The following is the active low circuit for the emergency button, the resistor we used is 10k
-                    ohm. The emergency button is just like normal push button, you need to find out which 2
-                    legs are connected and which 2 legs are not connected:</li>
-                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_16.png">                
-                <li>The following is code snippet that you might need:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h2>How to implement emergency button on Turtlebot2</h2>
+        <ol>
+            <li>According to <a href="http://kobuki.yujinrobot.com/wiki/online-user-guide/" target="_blank" rel="noopener noreferrer">
+                Kobuki online user guide</a>, the following are the pinouts of Kobuki's expansion port:</li>
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_15.png">                
+                    <span style="font-style: italic;">Source of image: http://kobuki.yujinrobot.com/wiki/online-user-guide/</span>
+                </div>
+            <li>The following is the active low circuit for the emergency button, the resistor we used is 10k
+                ohm. The emergency button is just like normal push button, you need to find out which 2
+                legs are connected and which 2 legs are not connected:</li>
+                <img style="width: 80%;" src="assets/images/Turtlebot2/turtlebot2_16.png">                
+            <li>The following is code snippet that you might need:</li>
+                <pre>
+                    <code>
     #publisher for emergency button, you need to have the velocity topic in your mux.yaml
     self.emergency_vel_pub = rospy.Publisher('cmd_vel_mux/input/emergency_button', Twist, queue_size=10)
 
@@ -321,11 +320,10 @@ map can be loaded.</mat-divider>
             rospy.loginfo("EMERGENCY BUTTON pressed !!!")
         elif digital_in[0] == False: # emergency button not pressed
             self.emergency_stop=0
-                        </code>
-                    </pre>
-                    
-            </ol>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+                
+        </ol>
+        <mat-divider></mat-divider>
     </div>
 </div>

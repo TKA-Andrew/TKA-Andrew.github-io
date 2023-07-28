@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 
 import { NotFoundComponent } from './not-found.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { provideRoutes } from '@angular/router';
 
 
@@ -13,7 +12,6 @@ import { provideRoutes } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule,
     MatCardModule
   ],
   providers: [

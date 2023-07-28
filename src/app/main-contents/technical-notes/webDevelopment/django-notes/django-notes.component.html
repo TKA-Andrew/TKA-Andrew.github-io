@@ -1,115 +1,114 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Django Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Django is a free and open-source framework for building web apps with Python.</li>
-                <li>Django has a few amazing features, and hence we don't need to code most of them from scratch:</li>
-                    <ul>
-                        <li>The admin site</li>
-                        <li>Object-relational mapper(ORM)</li>
-                        <li>Authentication</li>
-                        <li>Caching</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Getting Started</h2>
-            <h3>Setting up the Development Environment</h3>
-            <ul>
-                <li>Pre-requisites:</li>
-                    <ul>
-                        <li>Python installed</li>
-                        <li>pipenv installed</li>
-                    </ul>
-                <li>Creating a virtual environment for the django application</li>
-                    <ul>
-                        <li>Make a directory and change directory into it</li>
-                        <li><span class="CLI-font">pipenv install django</span></li>
-                        <li>After installing django into the virtual env, you should see
-                            a Pipfile and Pipfile.lock in the directory. You can have a look
-                            at the Pipfile.
-                        </li>
-                        <li>From the terminal output, you should also be able to see the
-                            path of the virtual environment.
-                        </li>
-                    </ul>
-            </ul>
+    <h1>Django Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Django is a free and open-source framework for building web apps with Python.</li>
+            <li>Django has a few amazing features, and hence we don't need to code most of them from scratch:</li>
+                <ul>
+                    <li>The admin site</li>
+                    <li>Object-relational mapper(ORM)</li>
+                    <li>Authentication</li>
+                    <li>Caching</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Getting Started</h2>
+        <h3>Setting up the Development Environment</h3>
+        <ul>
+            <li>Pre-requisites:</li>
+                <ul>
+                    <li>Python installed</li>
+                    <li>pipenv installed</li>
+                </ul>
+            <li>Creating a virtual environment for the django application</li>
+                <ul>
+                    <li>Make a directory and change directory into it</li>
+                    <li><span class="CLI-font">pipenv install django</span></li>
+                    <li>After installing django into the virtual env, you should see
+                        a Pipfile and Pipfile.lock in the directory. You can have a look
+                        at the Pipfile.
+                    </li>
+                    <li>From the terminal output, you should also be able to see the
+                        path of the virtual environment.
+                    </li>
+                </ul>
+        </ul>
 
-            <h3>Creating a Django project</h3>
-            <ul>
-                <li>Use <span class="CLI-font">pipenv shell</span> to run PIP env shell</li>
-                <li><span class="CLI-font">django-admin startproject core-app-name .</span></li>
-                <li>The last argument '.' above is to ask django to use current directory as project directory.</li>
-                <li>With the command line above, it will generate the following files:</li>
-                    <ul>
-                        <li>core-app-name</li>
-                            <ul>
-                                <li>__init__.py</li>
-                                <li>asgi.py</li>
-                                <li>settings.py</li>
-                                <li>urls.py</li>
-                                <li>wsgi.py</li>
-                            </ul>
-                        <li>manage.py</li>
-                    </ul>
-                <li>The __init__.py defines the core-app-name as a package.</li>
-                <li>The settings.py defines the application settings.</li>
-                <li>The urls.py module defines the URLs of the application.</li>
-                <li>The asgi.py and wsgi.py are used for deployment.</li>
-                <li>The manage.py is a wrapper around <span class="CLI-font">django-admin</span>.</li>
-                <li>The manage.py will be mainly used as it can read the settings of our application.
-                    For example, if you straight away use <span class="CLI-font">django-admin runserver</span>
-                    you will get an error saying settings are not configured.
-                </li>
-                <li>To run the django application: <span class="CLI-font">python manage.py runserver 8080</span></li>
-                <li>The 8080 above is just to provide a port number, its default is 8000.</li>
-            </ul>
+        <h3>Creating a Django project</h3>
+        <ul>
+            <li>Use <span class="CLI-font">pipenv shell</span> to run PIP env shell</li>
+            <li><span class="CLI-font">django-admin startproject core-app-name .</span></li>
+            <li>The last argument '.' above is to ask django to use current directory as project directory.</li>
+            <li>With the command line above, it will generate the following files:</li>
+                <ul>
+                    <li>core-app-name</li>
+                        <ul>
+                            <li>__init__.py</li>
+                            <li>asgi.py</li>
+                            <li>settings.py</li>
+                            <li>urls.py</li>
+                            <li>wsgi.py</li>
+                        </ul>
+                    <li>manage.py</li>
+                </ul>
+            <li>The __init__.py defines the core-app-name as a package.</li>
+            <li>The settings.py defines the application settings.</li>
+            <li>The urls.py module defines the URLs of the application.</li>
+            <li>The asgi.py and wsgi.py are used for deployment.</li>
+            <li>The manage.py is a wrapper around <span class="CLI-font">django-admin</span>.</li>
+            <li>The manage.py will be mainly used as it can read the settings of our application.
+                For example, if you straight away use <span class="CLI-font">django-admin runserver</span>
+                you will get an error saying settings are not configured.
+            </li>
+            <li>To run the django application: <span class="CLI-font">python manage.py runserver 8080</span></li>
+            <li>The 8080 above is just to provide a port number, its default is 8000.</li>
+        </ul>
 
-            <h3>Creating Your First App</h3>
-            <ul>
-                <li>A django project can contain multiple apps, and each app has its own responsibility.</li>
-                <li>If you look at the INSTALLED_APPS of settings.py, you will see by default there are some django apps
-                    being included in the project:
-                </li>
-                    <ul>
-                        <li>django.contrib.admin</li>
-                        <li>django.contrib.auth</li>
-                        <li>django.contrib.contenttypes</li>
-                        <li>django.contrib.sessions</li>
-                        <li>django.contrib.messages</li>
-                        <li>django.contrib.staticfiles</li>
-                    </ul>
-                <li>To create an app: <span class="CLI-font">python manage.py startapp your_app_name</span></li>
-                <li>Then you will see a folder of your_app_name is created. Inside the folder, have these files:</li>
-                    <ul>
-                        <li>admin.py</li>
-                            <ul>
-                                <li>a place to define admin interface for this app</li>
-                            </ul>
-                        <li>apps.py</li>
-                            <ul>
-                                <li>a place to <b>configure</b> this app</li>
-                            </ul>
-                        <li>models.py</li>
-                            <ul>
-                                <li>a place to define model classes which pull out data from database</li>
-                            </ul>
-                        <li>tests.py</li>
-                            <ul>
-                                <li>a place to write unit test</li>
-                            </ul>
-                        <li>views.py</li>
-                            <ul>
-                                <li>a place to write <b>request handler</b></li>
-                            </ul>
-                    </ul>
-                <li>Since we added new app to the project, we need to add the AppConfig class of the app into the INSTALLED_APPS in settings.py also.
-                    For example:
-                    <pre>
-                        <code>
+        <h3>Creating Your First App</h3>
+        <ul>
+            <li>A django project can contain multiple apps, and each app has its own responsibility.</li>
+            <li>If you look at the INSTALLED_APPS of settings.py, you will see by default there are some django apps
+                being included in the project:
+            </li>
+                <ul>
+                    <li>django.contrib.admin</li>
+                    <li>django.contrib.auth</li>
+                    <li>django.contrib.contenttypes</li>
+                    <li>django.contrib.sessions</li>
+                    <li>django.contrib.messages</li>
+                    <li>django.contrib.staticfiles</li>
+                </ul>
+            <li>To create an app: <span class="CLI-font">python manage.py startapp your_app_name</span></li>
+            <li>Then you will see a folder of your_app_name is created. Inside the folder, have these files:</li>
+                <ul>
+                    <li>admin.py</li>
+                        <ul>
+                            <li>a place to define admin interface for this app</li>
+                        </ul>
+                    <li>apps.py</li>
+                        <ul>
+                            <li>a place to <b>configure</b> this app</li>
+                        </ul>
+                    <li>models.py</li>
+                        <ul>
+                            <li>a place to define model classes which pull out data from database</li>
+                        </ul>
+                    <li>tests.py</li>
+                        <ul>
+                            <li>a place to write unit test</li>
+                        </ul>
+                    <li>views.py</li>
+                        <ul>
+                            <li>a place to write <b>request handler</b></li>
+                        </ul>
+                </ul>
+            <li>Since we added new app to the project, we need to add the AppConfig class of the app into the INSTALLED_APPS in settings.py also.
+                For example:
+                <pre>
+                    <code>
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -119,29 +118,29 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_app.apps.MyAppConfig'
 ]
-                        </code>
-                    </pre>
-                </li>
-            </ul>
-                
-            <h3>Writing View Functions & Mapping them to urls</h3>
-            <ul>
-                <li>As mentioned earlier, views.py is a place to write request handlers (view functions).</li>
-                <li>A view function is a function that takes a request and returns a response.</li>
-                <li>An example of simple view function is as below:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </li>
+        </ul>
+            
+        <h3>Writing View Functions & Mapping them to urls</h3>
+        <ul>
+            <li>As mentioned earlier, views.py is a place to write request handlers (view functions).</li>
+            <li>A view function is a function that takes a request and returns a response.</li>
+            <li>An example of simple view function is as below:</li>
+                <pre>
+                    <code>
     from django.shortcuts import render
     from django.http import HttpResponse
 
     def say_hello(request):
         return HttpResponse('Hello World')                   
-                        </code>
-                    </pre>
-                <li>Now we need to map this request handler to an url. Create a file called urls.py in your app directory.</li>
-                <li>Update the content of the urls.py:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>Now we need to map this request handler to an url. Create a file called urls.py in your app directory.</li>
+            <li>Update the content of the urls.py:</li>
+                <pre>
+                    <code>
     from django.urls import path
     from .views import say_hello
     
@@ -149,13 +148,13 @@ INSTALLED_APPS = [
     urlpatterns = [
         path('hello/', say_hello)
     ]
-                        </code>
-                    </pre>
-                <li>Take note that what we did above is just writing urls for the app above. To include it into the django project,
-                    we need to include it into the urls.py of django project:
-                </li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>Take note that what we did above is just writing urls for the app above. To include it into the django project,
+                we need to include it into the urls.py of django project:
+            </li>
+                <pre>
+                    <code>
     from django.contrib import admin
     from django.urls import path, include
     
@@ -163,62 +162,62 @@ INSTALLED_APPS = [
         path('admin/', admin.site.urls),
         path('playground/', include('playground.urls'))
     ]
-                        </code>
-                    </pre>
-                <li>With the configuration above, the url now is "playground/hello"</li>
-            </ul>
+                    </code>
+                </pre>
+            <li>With the configuration above, the url now is "playground/hello"</li>
+        </ul>
 
-            <h3>Writing templates</h3>
-            <ul>
-                <li>Templates in django is the html views</li>
-                <li>Add a folder called 'templates' into your app directory.</li>
-                <li>Put your html files into the templates folder.</li>
-                <li>In the views.py snippet above, we returned a plain HttpResponse for the say_hello view function.
-                    In order to return an html response, we need to use the 'render' function, and it is also 
-                    where we render our templates:
-                </li>
-                    <pre>
-                        <code>
+        <h3>Writing templates</h3>
+        <ul>
+            <li>Templates in django is the html views</li>
+            <li>Add a folder called 'templates' into your app directory.</li>
+            <li>Put your html files into the templates folder.</li>
+            <li>In the views.py snippet above, we returned a plain HttpResponse for the say_hello view function.
+                In order to return an html response, we need to use the 'render' function, and it is also 
+                where we render our templates:
+            </li>
+                <pre>
+                    <code>
     from django.shortcuts import render
     from django.http import HttpResponse
 
     def say_hello(request):
         return render(request, 'hello.html')
-                        </code>
-                    </pre>
-                <li>We can also pass a dictionary to the render function, and then the html will be able to use the 
-                    data in the dictionary. For example:
-                </li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>We can also pass a dictionary to the render function, and then the html will be able to use the 
+                data in the dictionary. For example:
+            </li>
+                <pre>
+                    <code>
     def say_hello(request):
         return render(request, 'hello.html', &#123;'name': 'Andrew'})
-                        </code>
-                    </pre>
-                <li>Then your hello.html can be something like:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>Then your hello.html can be something like:</li>
+                <pre>
+                    <code>
     &#123;% if name %}
     &lt;h1>Hello &#123; &#123; name } }&lt;/h1>
     &#123;% else %}
     &lt;h1>Hello World&lt;/h1>
     &#123;% endif %}
-                        </code>
-                    </pre>
-                <li>For more about django template language, refer to 
-                    <a href="https://docs.djangoproject.com/en/4.1/ref/templates/language/#templates" target="_blank" rel="noopener noreferrer">this</a>
-                </li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Views, Routing and URLs</h2>
+                    </code>
+                </pre>
+            <li>For more about django template language, refer to 
+                <a href="https://docs.djangoproject.com/en/4.1/ref/templates/language/#templates" target="_blank" rel="noopener noreferrer">this</a>
+            </li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Views, Routing and URLs</h2>
+        <ul>
+            <li>Dynamic Routing Example:</li>
             <ul>
-                <li>Dynamic Routing Example:</li>
-                <ul>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.http.response import HttpResponse, Http404
 
 articles = &#123;
@@ -232,25 +231,25 @@ def news_view(request, topic):
         return HttpResponse(articles[topic])
     except:
         raise Http404("404 Generic Error")
-                        </code>
-                    </pre>
-                    <li>urls.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>urls.py</li>
+                <pre>
+                    <code>
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('&lt;topic>', views.news_view),
 ]
-                        </code>
-                    </pre>
-                </ul>
-                <li>Using path converter in urls</li>
-                <ul>
-                    <li>urls.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>Using path converter in urls</li>
+            <ul>
+                <li>urls.py</li>
+                <pre>
+                    <code>
 from django.urls import path
 from . import views
 
@@ -259,25 +258,25 @@ urlpatterns = [
     path('add/&lt;int:num1>/&lt;int:num2>', views.addition_view),
     path('profile/&lt;uuid:user_uuid>', views.user_view),
 ]
-                        </code>
-                    </pre>
-                </ul>
-                <li>Using reverse() function to redirect url</li>
-                <ul>
-                    <li>urls.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>Using reverse() function to redirect url</li>
+            <ul>
+                <li>urls.py</li>
+                <pre>
+                    <code>
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('&lt;str:topic>', views.news_view, name='topic-page'),
 ]
-                        </code>
-                    </pre>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.urls import reverse
 from django.http.response import HttpResponse, HttpResponseRedirect
 
@@ -295,22 +294,22 @@ def num_page_view(request, num_page):
     topic = topics_list[num_page]
     return HttpResponseRedirect(reverse('topic-page', args=[topic]))
 
-                        </code>
-                    </pre>
-                </ul>
+                    </code>
+                </pre>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Templates</h2>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Templates</h2>
+        <ul>
+            <li><a href="https://docs.djangoproject.com/en/4.1/ref/templates/builtins/"
+                target="_blank" rel="noopener noreferrer">Django Template filters and tags</a></li>
+            <li>Using URL Names in Templates</li>
             <ul>
-                <li><a href="https://docs.djangoproject.com/en/4.1/ref/templates/builtins/"
-                    target="_blank" rel="noopener noreferrer">Django Template filters and tags</a></li>
-                <li>Using URL Names in Templates</li>
-                <ul>
-                    <li>urls.py</li>
-                    <pre>
-                        <code>
+                <li>urls.py</li>
+                <pre>
+                    <code>
 from django.urls import path
 from . import views
 
@@ -324,23 +323,23 @@ urlpatterns = [
     path('', views.sample_view, name='example'),
     path('variable/', views.variable_view, name='variable'),
 ]
-                        </code>
-                    </pre>
-                    <li>example.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>example.html</li>
+                <pre>
+                    <code>
 &lt;body>
     &lt;h1>HELLLOOOO&lt;/h1>
     &lt;h1>&lt;a href="&#123;% url 'my_app:variable' %}">Click me to go variable page&lt;/a>&lt;/h1>
 &lt;/body>
-                        </code>
-                    </pre>
-                </ul>
-                <li>Template Inheritance</li>
-                <ul>
-                    <li>base.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>Template Inheritance</li>
+            <ul>
+                <li>base.html</li>
+                <pre>
+                    <code>
 &lt;html lang="en">
 &lt;head>
     &lt;meta charset="UTF-8">
@@ -356,66 +355,66 @@ urlpatterns = [
     &lt;h1>This is footer&lt;/h1>
 &lt;/body>
 &lt;/html>
-                        </code>
-                    </pre>
-                    <li>example.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>example.html</li>
+                <pre>
+                    <code>
 &#123;% extends 'base.html' %}
 
 &#123;% block my_base_block %}
 &lt;h1>HELLLOOOO&lt;/h1>
 &lt;h1>&lt;a href="&#123;% url 'my_app:variable' %}">Click me to go variable page&lt;/a>&lt;/h1>
 &#123;% endblock %}
-                        </code>
-                    </pre>
-                    <li>variable.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>variable.html</li>
+                <pre>
+                    <code>
 &#123;% extends 'base.html' %}
 
 &#123;% block my_base_block %}
 &lt;h1>Variable page&lt;/h1>
 &#123;% endblock %}
-                        </code>
-                    </pre>
-                </ul>
-                <li>Custom 404 Template</li>
-                <ul>
-                    <li>Instead of adding try except in each view, we should generalize some templates
-                        such as responses for status 404.
-                    </li>
-                    <li>Add a custom html file, for example: my_custom_404.html</li>
-                    <li>In views.py of main project, write a function view that renders that html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>Custom 404 Template</li>
+            <ul>
+                <li>Instead of adding try except in each view, we should generalize some templates
+                    such as responses for status 404.
+                </li>
+                <li>Add a custom html file, for example: my_custom_404.html</li>
+                <li>In views.py of main project, write a function view that renders that html</li>
+                <pre>
+                    <code>
 from django.shortcuts import render
 
 def my_custom_not_found_view(request, exception):
     return render(request, 'my_custom_404.html', status=404)
-                        </code>
-                    </pre>
-                    <li>Add the following lines in urls.py of main project</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>Add the following lines in urls.py of main project</li>
+                <pre>
+                    <code>
 # this handler404 is a specific variable that Django looks for
 # there are more specific handlers such as handler500, handler403, handler400 etc
 handler404 = 'my_site.views.my_custom_not_found_view'
-                        </code>
-                    </pre>
-                    <li>Make sure you close the Debug mode in settings.py and also updated the DIR and ALLOW_HOST
-                        in order to view it in Development mode.
-                    </li>
-                </ul>
+                    </code>
+                </pre>
+                <li>Make sure you close the Debug mode in settings.py and also updated the DIR and ALLOW_HOST
+                    in order to view it in Development mode.
+                </li>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Models, Databases, Queries</h2>
-            <ul>
-                <li>Example of models.py</li>
-                <pre>
-                    <code>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Models, Databases, Queries</h2>
+        <ul>
+            <li>Example of models.py</li>
+            <pre>
+                <code>
     from django.db import models
 
     class Patient(models.Model):
@@ -427,104 +426,104 @@ handler404 = 'my_site.views.my_custom_not_found_view'
 
         def __str__(self):
             return f"&#123;self.first_name} &#123;self.last_name} - &#123;self.age} years old"
-                    </code>
-                </pre>
-                <li><a href="https://docs.djangoproject.com/en/4.1/ref/models/fields/"
-                    target="_blank" rel="noopener noreferrer">Model fields reference</a></li>
-                <li><a href="https://docs.djangoproject.com/en/4.1/ref/validators/#maxvaluevalidator"
-                    target="_blank" rel="noopener noreferrer">Django validators</a></li>
-                <li><span class="CLI-font">python manage.py makemigrations</span> creates the set of 
-                    instructions that will apply changes to the database.</li>
-                <li><span class="CLI-font">python manage.py migrate</span> runs any existing migrations.</li>
-                <li><span class="CLI-font">python manage.py sqlmigrate [app-name] [migration-file-name]</span> doesn't actually
-                run any migrations, it only shows the SQL code of the migration files.</li>
-                <li>3 methods of creating new data entries with a model:</li>
-                <ul>
-                    <li>Create Object and .save()</li>
-                    <pre>
-                        <code>
+                </code>
+            </pre>
+            <li><a href="https://docs.djangoproject.com/en/4.1/ref/models/fields/"
+                target="_blank" rel="noopener noreferrer">Model fields reference</a></li>
+            <li><a href="https://docs.djangoproject.com/en/4.1/ref/validators/#maxvaluevalidator"
+                target="_blank" rel="noopener noreferrer">Django validators</a></li>
+            <li><span class="CLI-font">python manage.py makemigrations</span> creates the set of 
+                instructions that will apply changes to the database.</li>
+            <li><span class="CLI-font">python manage.py migrate</span> runs any existing migrations.</li>
+            <li><span class="CLI-font">python manage.py sqlmigrate [app-name] [migration-file-name]</span> doesn't actually
+            run any migrations, it only shows the SQL code of the migration files.</li>
+            <li>3 methods of creating new data entries with a model:</li>
+            <ul>
+                <li>Create Object and .save()</li>
+                <pre>
+                    <code>
 from first_app.models import Patient
 carl = Patient(first_name='carl', last_name='smith', age=24)
 carl.save()
-                        </code>
-                    </pre>
-                    <li>objects.create()</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>objects.create()</li>
+                <pre>
+                    <code>
 from first_app.models import Patient
 Patient.objects.create(first_name='Sam', last_name='Lim', age=24)
-                        </code>
-                    </pre>
-                    <li>objects.bulk_create()</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>objects.bulk_create()</li>
+                <pre>
+                    <code>
 from first_app.models import Patient
 p_list = [Patient(first_name='brian', last_name='smith', age=20), Patient(first_name='garfield', last_name='smith', age=27)]
 Patient.objects.bulk_create(p_list)
-                        </code>
-                    </pre>                 
-                </ul>
-                <li>Something like "MyModels.objects" is a kind of Django Model Manager.</li>
-                <ul>
-                    <li>.all() returns the full list of objects</li>
-                    <li>.get() can only return a single object, it will prompt error if there are multiple objects returned</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>                 
+            </ul>
+            <li>Something like "MyModels.objects" is a kind of Django Model Manager.</li>
+            <ul>
+                <li>.all() returns the full list of objects</li>
+                <li>.get() can only return a single object, it will prompt error if there are multiple objects returned</li>
+                <pre>
+                    <code>
 Patient.objects.get(pk=1)
-                        </code>
-                    </pre>
-                    <li>.filter()</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>.filter()</li>
+                <pre>
+                    <code>
 Patient.objects.filter(last_name='smith').all()
 Patient.objects.filter(last_name='smith').filter(age=30).all()
 
 from django.db.models import Q
 Patient.objects.filter(Q(last_name='smith') & Q(age=30)).all()
-                        </code>
-                    </pre>
-                </ul>
-                <li><a href="https://docs.djangoproject.com/en/4.1/ref/models/querysets/#field-lookups"
-                    target="_blank" rel="noopener noreferrer">Field lookups</a></li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li><a href="https://docs.djangoproject.com/en/4.1/ref/models/querysets/#field-lookups"
+                target="_blank" rel="noopener noreferrer">Field lookups</a></li>
+                <pre>
+                    <code>
 Patient.objects.filter(last_name__startswith='s').all()
 Patient.objects.filter(age__in=[20,24,30]).all()
 Patient.objects.filter(age__gte=20).all()
-                        </code>
-                    </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Django Admin</h2>
+                    </code>
+                </pre>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Django Admin</h2>
+        <ul>
+            <li>To create a superuser: <span class="CLI-font">python manage.py createsuperuser</span></li>
+            <li>Superuser is needed to access the Django adminstration page through /admin url.</li>
+            <li>By default, the Django administration page already has the Authentication And Authorization
+                setting for you to configure the usergroups and users.
+            </li>
+            <li>To register your model to the Django adminstration page (so that superusers can edit the 
+                models/database through admin page):
+            </li>
             <ul>
-                <li>To create a superuser: <span class="CLI-font">python manage.py createsuperuser</span></li>
-                <li>Superuser is needed to access the Django adminstration page through /admin url.</li>
-                <li>By default, the Django administration page already has the Authentication And Authorization
-                    setting for you to configure the usergroups and users.
-                </li>
-                <li>To register your model to the Django adminstration page (so that superusers can edit the 
-                    models/database through admin page):
-                </li>
-                <ul>
-                    <li>admin.py in first_app</li>
-                    <pre>
-                        <code>
+                <li>admin.py in first_app</li>
+                <pre>
+                    <code>
 from django.contrib import admin
 from first_app.models import Patient
 
 admin.site.register(Patient)
-                        </code>
-                    </pre>
-                </ul>
-                <li>For more advanced use case such as you want to modify the orders of fields displayed in
-                    the django admin page:
-                </li>
-                <ul>
-                    <li>admin.py in first_app</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>For more advanced use case such as you want to modify the orders of fields displayed in
+                the django admin page:
+            </li>
+            <ul>
+                <li>admin.py in first_app</li>
+                <pre>
+                    <code>
 from django.contrib import admin
 from first_app.models import Patient
 
@@ -532,14 +531,14 @@ class PatientAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name']
 
 admin.site.register(Patient, PatientAdmin)
-                        </code>
-                    </pre>
-                </ul>
-                <li>Or even if you want to make the fields grouped in to different categories:</li>
-                <ul>
-                    <li>admin.py in first_app</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>Or even if you want to make the fields grouped in to different categories:</li>
+            <ul>
+                <li>admin.py in first_app</li>
+                <pre>
+                    <code>
 from django.contrib import admin
 from first_app.models import Patient
 
@@ -550,68 +549,68 @@ class PatientAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Patient, PatientAdmin)
-                        </code>
-                    </pre>
-                </ul>
-                <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/"
-                    target="_blank" rel="noopener noreferrer">More detailed reference</a></li>
+                    </code>
+                </pre>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Django Forms</h2>
+            <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/"
+                target="_blank" rel="noopener noreferrer">More detailed reference</a></li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Django Forms</h2>
+        <ul>
+            <li>HTML forms require a lot of processing to connect with Django,
+                especially when we want to later connect these inputs to Models.
+            </li>
+            <li>Fortunately, Django comes with a built-in Forms class which can be
+                used with Django and Python to create forms and then send that form 
+                to the template through a simple tag call &#123; &#123; form } }
+            </li>
+            <li>When you create an HTML form, by default it is going to send GET
+                request.
+            </li>
+            <li>CSRF (Cross-Site Request Forgery)</li>
             <ul>
-                <li>HTML forms require a lot of processing to connect with Django,
-                    especially when we want to later connect these inputs to Models.
+                <li>CSRF, also known as one-click attack or session riding, is a type of
+                    malicious exploit of a website where unauthroized command are transmitted
+                    from a user that the website trusts.
                 </li>
-                <li>Fortunately, Django comes with a built-in Forms class which can be
-                    used with Django and Python to create forms and then send that form 
-                    to the template through a simple tag call &#123; &#123; form } }
-                </li>
-                <li>When you create an HTML form, by default it is going to send GET
-                    request.
-                </li>
-                <li>CSRF (Cross-Site Request Forgery)</li>
+                <li>Example:</li>
                 <ul>
-                    <li>CSRF, also known as one-click attack or session riding, is a type of
-                        malicious exploit of a website where unauthroized command are transmitted
-                        from a user that the website trusts.
+                    <li>Let's say a hacker creates a duplicate of bank's money transfer
+                        form. And the form is edited so that the POST request of the form will
+                        ask the bank's web server to transfer money to the hacker.
                     </li>
-                    <li>Example:</li>
-                    <ul>
-                        <li>Let's say a hacker creates a duplicate of bank's money transfer
-                            form. And the form is edited so that the POST request of the form will
-                            ask the bank's web server to transfer money to the hacker.
-                        </li>
-                        <li>And then, the hacker send some phishing email to an authenticated user
-                            to ask him to click on the button, where the button is actually the 
-                            submit button of the fake form.
-                        </li>
-                        <li>Once the user clicks it (provided that the user already signed in to
-                            the bank's website and hence the user is considered authenticated from the
-                            perspective of the bank's webserver), the bank's webserver receives the HTTP POST
-                            request and thought that the form is submitted by the authenticated user
-                            and hence proceed with transferring money to the hacker.
-                        </li>
-                        <li>This type of CSRF attack is more common on social media where hackers simply
-                            post a link and if someone clicks it, it will share something together with
-                            that link, and if some other people click it also, the attack spreads.
-                        </li>
-                    </ul>
-                    <li>To prevent CSRF attack:</li>
-                    <ul>
-                        <li>We could generate a random cryptographic token with every form during each session.</li>
-                        <li>The server could then confirms if the token matches with the current session.</li>
-                    </ul>
-                    <li>Django creates these CSRF tokens for us automatically with a
-                        simple tag call: <span class="CLI-font">&#123;% csrf_token %}</span>
+                    <li>And then, the hacker send some phishing email to an authenticated user
+                        to ask him to click on the button, where the button is actually the 
+                        submit button of the fake form.
+                    </li>
+                    <li>Once the user clicks it (provided that the user already signed in to
+                        the bank's website and hence the user is considered authenticated from the
+                        perspective of the bank's webserver), the bank's webserver receives the HTTP POST
+                        request and thought that the form is submitted by the authenticated user
+                        and hence proceed with transferring money to the hacker.
+                    </li>
+                    <li>This type of CSRF attack is more common on social media where hackers simply
+                        post a link and if someone clicks it, it will share something together with
+                        that link, and if some other people click it also, the attack spreads.
                     </li>
                 </ul>
-                <li>To use Django Form:</li>
+                <li>To prevent CSRF attack:</li>
                 <ul>
-                    <li>forms.py</li>
-                    <pre>
-                        <code>
+                    <li>We could generate a random cryptographic token with every form during each session.</li>
+                    <li>The server could then confirms if the token matches with the current session.</li>
+                </ul>
+                <li>Django creates these CSRF tokens for us automatically with a
+                    simple tag call: <span class="CLI-font">&#123;% csrf_token %}</span>
+                </li>
+            </ul>
+            <li>To use Django Form:</li>
+            <ul>
+                <li>forms.py</li>
+                <pre>
+                    <code>
     from django import forms
 
     class ReviewForm(forms.Form):
@@ -619,11 +618,11 @@ admin.site.register(Patient, PatientAdmin)
         last_name = forms.CharField(label='Last Name', max_length=100)
         email = forms.EmailField(label='Email')
         review = forms.CharField(label='Please write your review here')
-                        </code>
-                    </pre>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>views.py</li>
+                <pre>
+                    <code>
     from django.shortcuts import render, redirect
     from django.urls import reverse
     from .forms import ReviewForm
@@ -639,11 +638,11 @@ admin.site.register(Patient, PatientAdmin)
     
     def thank_you(request):
         return render(request, 'cars/thankyou.html')
-                        </code>
-                    </pre>
-                    <li>rentalreview.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>rentalreview.html</li>
+                <pre>
+                    <code>
 &#123;% extends 'base.html' %}
 
 &#123;% block my_form_block %}
@@ -654,37 +653,37 @@ admin.site.register(Patient, PatientAdmin)
         &lt;input type="submit">
     &lt;/form>
 &#123;% endblock %}
-                        </code>
-                    </pre>
-                </ul>
-                <li>More examples of customizing forms:</li>
-                <ul>
-                    <li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>More examples of customizing forms:</li>
+            <ul>
+                <li>
+                <pre>
+                    <code>
     &lt;form method="POST">
         &#123;% csrf_token %}
         &#123; &#123;form.as_p} }
         &lt;input type="submit">
     &lt;/form>
-                        </code>
-                    </pre>
-                    </li>
-                    <li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                </li>
+                <li>
+                <pre>
+                    <code>
     &lt;form method="POST">
         &#123;% csrf_token %}
         &#123; &#123;form.first_name.label_tag} } &#123; &#123;form.first_name} }
         &#123; &#123;form.last_name.label_tag} } &#123; &#123;form.last_name} }
         &lt;input type="submit">
     &lt;/form>
-                        </code>
-                    </pre>
-                    </li>
-                    <li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                </li>
+                <li>
+                <pre>
+                    <code>
     &lt;form method="POST">
         &#123;% csrf_token %}
         &#123; for field in form }
@@ -694,18 +693,18 @@ admin.site.register(Patient, PatientAdmin)
         &#123; endfor %}
         &lt;input type="submit">
     &lt;/form>
-                        </code>
-                    </pre>
-                    </li>
-                </ul>
-                <li>Styling Form Widgets with CSS</li>
-                <ul>
-                    <li>Pre-requisites: <a href="https://docs.djangoproject.com/en/4.0/howto/static-files/#how-to-manage-static-files-e-g-images-javascript-css"
-                        target="_blank" rel="noopener noreferrer">How to manage static files</a></li>
-                    <li>Once you have your css ready, you can edit the forms.py to define the class attributes
-                        or even other attributes of the form widgets. For example:
-                        <pre>
-                            <code>
+                    </code>
+                </pre>
+                </li>
+            </ul>
+            <li>Styling Form Widgets with CSS</li>
+            <ul>
+                <li>Pre-requisites: <a href="https://docs.djangoproject.com/en/4.0/howto/static-files/#how-to-manage-static-files-e-g-images-javascript-css"
+                    target="_blank" rel="noopener noreferrer">How to manage static files</a></li>
+                <li>Once you have your css ready, you can edit the forms.py to define the class attributes
+                    or even other attributes of the form widgets. For example:
+                    <pre>
+                        <code>
 class ReviewForm(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=100)
     last_name = forms.CharField(label='Last Name', max_length=100)
@@ -713,16 +712,16 @@ class ReviewForm(forms.Form):
     review = forms.CharField(label='Please write your review here',
                                 widget=forms.Textarea(attrs=&#123;'class': 'myform',
                                 'rows': '2', 'columns':'10'}))
-                            </code>
-                        </pre>
-                    </li>
-                </ul>
-                <li>You can even use <a href="https://docs.djangoproject.com/en/4.1/topics/forms/modelforms/"
-                    target="_blank" rel="noopener noreferrer">ModelForm</a> to straight away create form based on your model:</li>
-                <ul>
-                    <li>forms.py</li>
-                    <pre>
-                        <code>
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <li>You can even use <a href="https://docs.djangoproject.com/en/4.1/topics/forms/modelforms/"
+                target="_blank" rel="noopener noreferrer">ModelForm</a> to straight away create form based on your model:</li>
+            <ul>
+                <li>forms.py</li>
+                <pre>
+                    <code>
 from .models import Review
 from django.forms import ModelForm
 
@@ -730,12 +729,12 @@ class ReviewForm(ModelForm):
     class Meta:
         model = Review
         fields = ['first_name', 'last_name', 'stars']
-                        </code>
-                    </pre>
-                    <li>To add save the new query, use form.save() in views.py when the form.is_valid()</li>
-                    <li>You can further configure the meta class of the model form:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>To add save the new query, use form.save() in views.py when the form.is_valid()</li>
+                <li>You can further configure the meta class of the model form:</li>
+                <pre>
+                    <code>
 from .models import Review
 from django.forms import ModelForm
 
@@ -754,39 +753,39 @@ class ReviewForm(ModelForm):
                 'max_value': "Hey! Max value is 6",
             }
         }
-                        </code>
-                    </pre>
-                    <li>To display the error_messages returned by Validators used in ModelField, use &#123; &#123; form.errors } }
-                        in your html template.
-                    </li>
-                </ul>
-                <li>References:</li>
-                <ul>
-                    <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/" 
-                        target="_blank" rel="noopener noreferrer">Working with forms</a></li>
-                    <li><a href="https://docs.djangoproject.com/en/4.1/ref/forms/fields/" 
-                        target="_blank" rel="noopener noreferrer">Form Fields</a></li>
-                </ul>
+                    </code>
+                </pre>
+                <li>To display the error_messages returned by Validators used in ModelField, use &#123; &#123; form.errors } }
+                    in your html template.
+                </li>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>Django Class Based Views</h2>
+            <li>References:</li>
             <ul>
-                <li>Template View</li>
-                <ul>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/" 
+                    target="_blank" rel="noopener noreferrer">Working with forms</a></li>
+                <li><a href="https://docs.djangoproject.com/en/4.1/ref/forms/fields/" 
+                    target="_blank" rel="noopener noreferrer">Form Fields</a></li>
+            </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>Django Class Based Views</h2>
+        <ul>
+            <li>Template View</li>
+            <ul>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
     template_name = 'classroom/home.html'
-                        </code>
-                    </pre>
-                    <li>urls.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>urls.py</li>
+                <pre>
+                    <code>
 from django.urls import path
 from .views import HomeView
 
@@ -795,14 +794,14 @@ app_name = 'classroom'
 urlpatterns = [
     path('home', HomeView.as_view(), name = 'home')
 ]
-                        </code>
-                    </pre>
-                </ul>
-                <li>FormView</li>
-                <ul>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>FormView</li>
+            <ul>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from classroom.forms import ContactForm
@@ -818,17 +817,17 @@ class ContactFormView(FormView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
-                        </code>
-                    </pre>
-                </ul>
-                <li>Create View</li>
-                <ul>
-                    <li>Create View will automatically run .save() function when user clicks submit button</li>
-                    <li>Auto lookup of template name pattern: [your_model_name]_form.html</li>
-                    <li>The default success_url is to reverse to [your_model_name]_detail.</li>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>Create View</li>
+            <ul>
+                <li>Create View will automatically run .save() function when user clicks submit button</li>
+                <li>Auto lookup of template name pattern: [your_model_name]_form.html</li>
+                <li>The default success_url is to reverse to [your_model_name]_detail.</li>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from classroom.models import Teacher
@@ -840,28 +839,28 @@ class TeacherCreateView(CreateView):
 
     fields = "__all__"
     success_url = reverse_lazy('classroom:home')
-                        </code>
-                    </pre>
-                    <li>teacher_form.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>teacher_form.html</li>
+                <pre>
+                    <code>
 &lt;h1>Teacher Form&lt;/h1>
 &lt;form method="post">
     &#123; % csrf_token % }
     &#123; &#123;form.as_p } }
     &lt;input type="submit" value="Submit">
 &lt;/form>
-                        </code>
-                    </pre>
-                </ul>
-                <li>ListView</li>
-                <ul>
-                    <li>Auto lookup of template name pattern: [your_model_name]_list.html</li>
-                    <li>The default context_object_name is object_list, but you can change it.</li>
-                    <li>The default query is to query all objects in the model, you can also change the queryset.</li>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>ListView</li>
+            <ul>
+                <li>Auto lookup of template name pattern: [your_model_name]_list.html</li>
+                <li>The default context_object_name is object_list, but you can change it.</li>
+                <li>The default query is to query all objects in the model, you can also change the queryset.</li>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import ListView
 from classroom.models import Teacher
 
@@ -873,35 +872,35 @@ class TeacherListView(ListView):
 
     # default queryset is Teacher.objects.all()
     queryset = Teacher.objects.order_by('last_name')
-                        </code>
-                    </pre>
-                    <li>teacher_list.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>teacher_list.html</li>
+                <pre>
+                    <code>
 &lt;h1>List of teachers&lt;/h1>
 &lt;ul>
     &#123;% for teacher in teacher_list %}
         &lt;li>&#123; &#123;teacher.first_name}} &#123;&#123;teacher.last_name} }&lt;/li>
     &#123;% endfor %}
 &lt;/ul>
-                        </code>
-                    </pre>
-                </ul>
-                <li>DetailView</li>
-                <ul>
-                    <li>Auto lookup of template name pattern: [your_model_name]_detail.html</li>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>DetailView</li>
+            <ul>
+                <li>Auto lookup of template name pattern: [your_model_name]_detail.html</li>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import DetailView
 from classroom.models import Teacher
 class TeacherDetailView(DetailView):
     model = Teacher
-                        </code>
-                    </pre>
-                    <li>urls.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>urls.py</li>
+                <pre>
+                    <code>
 from django.urls import path
 from .views import HomeView, TeacherListView, TeacherDetailView
 
@@ -912,25 +911,24 @@ urlpatterns = [
     path('teacher_list', TeacherListView.as_view(), name='teacher_list'),
     path('teacher_detail/&lt;int:pk>', TeacherDetailView.as_view(), name='teacher_detail'),
 ]
-
-                        </code>
-                    </pre>
-                    <li>teacher_list.html</li>
-                    <li>teacher_detail.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>teacher_list.html</li>
+                <li>teacher_detail.html</li>
+                <pre>
+                    <code>
 &lt;h1>Detail View of teacher&lt;/h1>
 &#123; &#123;teacher}}
-                        </code>
-                    </pre>
-                </ul>
-                <li>UpdateView</li>
-                <ul>
-                    <li>UpdateView will be using the template view used by CreateView</li>
-                    <li>Similar like DetailView, this UpdateView requires a unique key as well.</li>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>UpdateView</li>
+            <ul>
+                <li>UpdateView will be using the template view used by CreateView</li>
+                <li>Similar like DetailView, this UpdateView requires a unique key as well.</li>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
 from classroom.models import Teacher
@@ -939,16 +937,16 @@ class TeacherUpdateView(UpdateView):
     model = Teacher
     fields = "__all__"
     success_url = reverse_lazy('classroom:teacher_list')
-                        </code>
-                    </pre>
-                </ul>
-                <li>DeleteView</li>
-                <ul>
-                    <li>Auto lookup of template name pattern: [your_model_name]_confirm_delete.html</li>
-                    <li>Similar like DetailView and UpdateView, this DeleteView requires a unique key as well.</li>
-                    <li>views.py</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            </ul>
+            <li>DeleteView</li>
+            <ul>
+                <li>Auto lookup of template name pattern: [your_model_name]_confirm_delete.html</li>
+                <li>Similar like DetailView and UpdateView, this DeleteView requires a unique key as well.</li>
+                <li>views.py</li>
+                <pre>
+                    <code>
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy
 from classroom.models import Teacher
@@ -956,83 +954,82 @@ from classroom.models import Teacher
 class TeacherDeleteView(DeleteView):
     model = Teacher
     success_url = reverse_lazy('classroom:teacher_list')
-                        </code>
-                    </pre>
-                    <li>teacher_confirm_delete.html</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <li>teacher_confirm_delete.html</li>
+                <pre>
+                    <code>
 &lt;h1>Are you sure you want to delete this teacher?&lt;/h1>
 &lt;h2>&#123; &#123;teacher}}&lt;/h2>
 &lt;form method="post">
     &#123;% csrf_token%}
     &lt;input type="submit" value="Confirm Delete">
 &lt;/form>
-                        </code>
-                    </pre>
-                </ul>
+                    </code>
+                </pre>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h2>User Authentication and Sessions</h2>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h2>User Authentication and Sessions</h2>
+        <ul>
+            <li>In the project-level urls.py, add this path: path('accounts/', include('django.contrib.auth.urls'))</li>
+            <li>The path above will add the following paths:</li>
+                <ul>
+                    <li>accounts/login/ [name='login']</li>
+                    <li>accounts/logout/ [name='logout']</li>
+                    <li>accounts/password_change/ [name='password_change']</li>
+                    <li>etc</li>
+                </ul>
+            <li>Although the views and urls are added, we need to provide the templates.</li>
+            <li>The views above will automatically look for /templates/registration/ directory
+                at project level.
+            </li>
+            <li>Since the templates are added at the project level, we should configure the 
+                TEMPLATES 'DIR' in settings.py to include os.path.join(BASE_DIR, 'templates/')
+            </li>
+            <li>The template name that is lookup by the Authentication views are:</li>
             <ul>
-                <li>In the project-level urls.py, add this path: path('accounts/', include('django.contrib.auth.urls'))</li>
-                <li>The path above will add the following paths:</li>
-                    <ul>
-                        <li>accounts/login/ [name='login']</li>
-                        <li>accounts/logout/ [name='logout']</li>
-                        <li>accounts/password_change/ [name='password_change']</li>
-                        <li>etc</li>
-                    </ul>
-                <li>Although the views and urls are added, we need to provide the templates.</li>
-                <li>The views above will automatically look for /templates/registration/ directory
-                    at project level.
-                </li>
-                <li>Since the templates are added at the project level, we should configure the 
-                    TEMPLATES 'DIR' in settings.py to include os.path.join(BASE_DIR, 'templates/')
-                </li>
-                <li>The template name that is lookup by the Authentication views are:</li>
-                <ul>
-                    <li>templates/registration/login.html</li>
-                    <li>templates/registration/logged_out.html</li>
-                </ul>
-                <li>The Authentication system automatically return a 'next' variable, which is returned
-                    if the users are not authenticated or they don't have permission to view
-                    the page.
-                </li>
-                <li>The Authentication system also returns a user object, which has several methods:</li>
-                <ul>
-                    <li>is_authenticated</li>
-                </ul>
-                <li>By default, after login, it will redirect to /accounts/profile. We can change this default
-                    by setting the LOGIN_REDIRECT_URL in settings.py
-                </li>
-                <li>An example to add permission control to function based view:</li>
-                <pre>
-                    <code>
+                <li>templates/registration/login.html</li>
+                <li>templates/registration/logged_out.html</li>
+            </ul>
+            <li>The Authentication system automatically return a 'next' variable, which is returned
+                if the users are not authenticated or they don't have permission to view
+                the page.
+            </li>
+            <li>The Authentication system also returns a user object, which has several methods:</li>
+            <ul>
+                <li>is_authenticated</li>
+            </ul>
+            <li>By default, after login, it will redirect to /accounts/profile. We can change this default
+                by setting the LOGIN_REDIRECT_URL in settings.py
+            </li>
+            <li>An example to add permission control to function based view:</li>
+            <pre>
+                <code>
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def my_view(request):
     return render(request, 'catalog/my_view.html')
-                    </code>
-                </pre>
-                <li>An example to add permission control to class based view:</li>
-                <pre>
-                    <code>
+                </code>
+            </pre>
+            <li>An example to add permission control to class based view:</li>
+            <pre>
+                <code>
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class BookCreateView(LoginRequiredMixin, CreateView):
     model = Book
     fields = '__all__'
-                    </code>
-                </pre>
-                <li>There are also some built-in forms that we can used such as:</li>
-                <ul>
-                    <li>from django.contrib.auth.forms import UserCreationForm</li>
-                </ul>
+                </code>
+            </pre>
+            <li>There are also some built-in forms that we can used such as:</li>
+            <ul>
+                <li>from django.contrib.auth.forms import UserCreationForm</li>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

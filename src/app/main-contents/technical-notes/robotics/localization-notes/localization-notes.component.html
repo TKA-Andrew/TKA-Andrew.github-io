@@ -1,183 +1,182 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Localization Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Localization is about determining the robot's pose in a mapped environment.</li>
-                <li>Probabilistic algorithms are normally used to track or estimate a robot's position and orientation.</li>
-                <li>There are 4 popular Localization algorithms:</li>
-                    <ul>
-                        <li>Extended Kalman Filter</li>
-                        <li>Markov Localization</li>
-                        <li>Grid Localization</li>
-                        <li>Monte Carlo Localization</li>
-                    </ul>
-                <li>There are 3 types of Localization problems:</li>
-                    <ul>
-                        <li>Position Tracking / Local Localization</li>
-                            <ul>
-                                <li>The robot knows its initial pose</li>
-                                <li>The challenge of this problem is the uncertainty of the environments (for example, 
-                                    a robot might experience wheel slip when moving on a carpet)
-                                </li>
-                            </ul>
-                        <li>Global Localization</li>
-                            <ul>
-                                <li>The robot doesnt know its initial pose</li>
-                                <li>The robot needs to determine its pose relative to the ground truth map</li>
-                            </ul>
-                        <li>Kipnapped Robot</li>
-                            <ul>
-                                <li>This problem is similar to Global Localization problem, except that
-                                    the robot may be kipnapped (moved) to a new position at any time.
-                                </li>
-                            </ul>
-                    </ul>
-                <li>There are 2 types of environments need to be considered: static environment and dynamic environment</li>
-                <li>Dynamic environment is more difficult to localize in.</li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>Probability</h2>
-            <h3>Introduction</h3>
-            <ul>
-                <li>Despite having lots of sensors, there is always uncertainty in robotics as there are always noises and disturbances
-                    due to inaccurate sensors, wheel slip, etc. Hence, 
-                    <a href="https://books.google.com.my/books/about/Probabilistic_Robotics.html?id=2Zn6AQAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&redir_esc=y#v=onepage&q&f=false" target="_blank" rel="noopener noreferrer">Probabilistic Robatics</a> 
-                    is a common topic in Robotic.
-                </li>
-                <li>The content of this section is mainly based on this <a href="https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373"
-                    target="_blank" rel="noopener noreferrer">free Udacity course</a>.</li>
-            </ul>
-
-            <h3>Basics</h3>
-            <ul>
-                <li>Probability Function</li>
+    <h1>Localization Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Localization is about determining the robot's pose in a mapped environment.</li>
+            <li>Probabilistic algorithms are normally used to track or estimate a robot's position and orientation.</li>
+            <li>There are 4 popular Localization algorithms:</li>
                 <ul>
-                    <li>A probabilty function, P(X) has its value bounded between 0 and 1.</li>
-                    <li>The 'X' here represents an event. Let's say X is representing 
-                        the event of robot located at position (0,0), and let's say P(X) = 0.3, then
-                        P(X') will be 0.7
-                    </li>
+                    <li>Extended Kalman Filter</li>
+                    <li>Markov Localization</li>
+                    <li>Grid Localization</li>
+                    <li>Monte Carlo Localization</li>
                 </ul>
-                <li>Conditional Probability Function</li>
+            <li>There are 3 types of Localization problems:</li>
                 <ul>
-                    <li>P(X|Y) means the probability of event X given that you already have event Y. For example, it is raining outside,
-                        the probability of I go jogging is P(jog|raining) = 0.2 </li>
-                    <li>P(X|Y) = P(X&#8745;Y) / P(Y)</li>
-                </ul>
-                <li><b>Belief</b></li>
-                <ul>
-                    <li>Let's say a robot is on a map with grid of 1x4, and there is a landmark 'X' on the third cell: [0, 0, 'X', 0] </li>
-                    <li>Assuming the robot has uniform belief of its location initially,
-                        then the probability of the robot at &#123;0,0}, &#123;0,1} etc are all the same: [0,25, 0.25, 0.25, 0.25]</li>
-                </ul>
-                <li><b>Measurement Update</b></li>
-                <ul>
-                    <li>Now, let's say the robot has sensor to detect the landmark.</li>
-                    <li>Let's say the sensor accuracy is 80%, meaning pHit = 0.8, pMiss = 0.2;</li>
-                        <div style="overflow-x : auto">
-                            <table>
-                                <tr>
-                                    <th></th>
-                                    <th>Robot on landmark</th>
-                                    <th>Robot not on landmark</th>
-                                </tr>
-                                <tr>
-                                    <td><b>Landmark sensed</b></td>
-                                    <td style="background-color: #43ec70;">pHit</td>
-                                    <td style="background-color: #e96e31;">pMiss</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Landmark not sensed</b></td>
-                                    <td style="background-color: #e96e31;">pMiss</td>
-                                    <td style="background-color: #43ec70;">pHit</td>
-                                </tr>
-                            </table>
-                        </div>
-                    <li>If now the sensor sensed the landmark, the vector of belief will become: [0.05, 0.05, 0.2, 0.05]</li>
-                    <li>If the sensor didnt sense the landmark, it will be in another way round: [0.2, 0.2, 0.05, 0.2]</li>
-                    <li>No matter whether the sensor sensed the landmark or not, as you can see, the sum of probabilities no longer equal to one
-                        after the measurememt update.</li>
-                    <li>A probability distribution always have to add up to 1. Hence, we shoud normalize them by dividing each of the probabilty with the
-                        sum of all probabilities, and then we will get: [0.1429, 0.1429, 0.5714, 0.1429] for the case of the sensor sensed the landmark.
-                    </li>
-                    <li>Side note: If let's say the sensor is not returning true false any more, let's say lidar sensor which gives
-                        us the distance, then we will need to determine the threshold for Hit and Miss. For example, let's say 
-                        if the lidar sensed an object within 2m, it is considered as a hit.
-                    </li>
-                </ul>
-                <li><b>Motion Update</b></li>
-                <ul>
-                    <li>Every time the robot moves, there should be a motion update. However, considering that the robot might be overshoot or undershoot,
-                        we should update the vector of probability according to probability of undershoot and overshoot.
-                    </li>
-                    <li>Let's say the initial belief of a robot is [0,1,0,0].</li>
-                    <li>Let's say the probability of exact motion is 0.8, probabilities of undershoot and overshoot are both 0.1.</li>
-                    <li>If the motion update is to move towards right for 1 step, then the updated probability will be [0, 0.1, 0.8, 0.1]</li>
-                    <li>The belief of robot at each cell, X<sub>i</sub> is calculated in such way:</li>
+                    <li>Position Tracking / Local Localization</li>
                         <ul>
-                            <li><div class="matheqn-small" [mathjax]="'$$P(X_i) = P(X_i - U + 1) * pUndershoot + P(X_i - U) * pExact + P(X_i - U - 1) * pOvershoot$$'"></div></li>
-                            <li>U = the number of steps in motion</li>
-                            <li>pUndershoot = probability of undershoot</li>
-                            <li>pOvershoot = probability of overshoot</li>
-                            <li>pExact = probability of exact motion</li>
-                            <li>The equation above assumes the overshoot and undershoot are only 1 cell difference</li>
+                            <li>The robot knows its initial pose</li>
+                            <li>The challenge of this problem is the uncertainty of the environments (for example, 
+                                a robot might experience wheel slip when moving on a carpet)
+                            </li>
+                        </ul>
+                    <li>Global Localization</li>
+                        <ul>
+                            <li>The robot doesnt know its initial pose</li>
+                            <li>The robot needs to determine its pose relative to the ground truth map</li>
+                        </ul>
+                    <li>Kipnapped Robot</li>
+                        <ul>
+                            <li>This problem is similar to Global Localization problem, except that
+                                the robot may be kipnapped (moved) to a new position at any time.
+                            </li>
                         </ul>
                 </ul>
-            </ul>
+            <li>There are 2 types of environments need to be considered: static environment and dynamic environment</li>
+            <li>Dynamic environment is more difficult to localize in.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-            <h3>Total Probability (for Motion Update)</h3>
-            <ul>
-                <li><div class="matheqn-small" [mathjax]="'$$P(X) = \\Sigma_i P(X&#8745;Y_i) = \\Sigma_i P(X|Y_i) P(Y_i)$$'"></div></li>
-                <li>The equation above basically is a convolution process.</li>
-            </ul>
+    <div>
+        <h2>Probability</h2>
+        <h3>Introduction</h3>
+        <ul>
+            <li>Despite having lots of sensors, there is always uncertainty in robotics as there are always noises and disturbances
+                due to inaccurate sensors, wheel slip, etc. Hence, 
+                <a href="https://books.google.com.my/books/about/Probabilistic_Robotics.html?id=2Zn6AQAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&redir_esc=y#v=onepage&q&f=false" target="_blank" rel="noopener noreferrer">Probabilistic Robatics</a> 
+                is a common topic in Robotic.
+            </li>
+            <li>The content of this section is mainly based on this <a href="https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373"
+                target="_blank" rel="noopener noreferrer">free Udacity course</a>.</li>
+        </ul>
 
-            <h3>Bayes Rule (for Measurement Update)</h3>
+        <h3>Basics</h3>
+        <ul>
+            <li>Probability Function</li>
             <ul>
-                <li><div class="matheqn-small" [mathjax]="'$$P(X|Z) = \\frac {P(X&#8745;Z)}{P(Z)} = \\frac {P(Z|X) P(X)}{P(Z)}$$'"></div></li>
-                <li>An Example:</li>
+                <li>A probabilty function, P(X) has its value bounded between 0 and 1.</li>
+                <li>The 'X' here represents an event. Let's say X is representing 
+                    the event of robot located at position (0,0), and let's say P(X) = 0.3, then
+                    P(X') will be 0.7
+                </li>
+            </ul>
+            <li>Conditional Probability Function</li>
+            <ul>
+                <li>P(X|Y) means the probability of event X given that you already have event Y. For example, it is raining outside,
+                    the probability of I go jogging is P(jog|raining) = 0.2 </li>
+                <li>P(X|Y) = P(X&#8745;Y) / P(Y)</li>
+            </ul>
+            <li><b>Belief</b></li>
+            <ul>
+                <li>Let's say a robot is on a map with grid of 1x4, and there is a landmark 'X' on the third cell: [0, 0, 'X', 0] </li>
+                <li>Assuming the robot has uniform belief of its location initially,
+                    then the probability of the robot at &#123;0,0}, &#123;0,1} etc are all the same: [0,25, 0.25, 0.25, 0.25]</li>
+            </ul>
+            <li><b>Measurement Update</b></li>
+            <ul>
+                <li>Now, let's say the robot has sensor to detect the landmark.</li>
+                <li>Let's say the sensor accuracy is 80%, meaning pHit = 0.8, pMiss = 0.2;</li>
+                    <div style="overflow-x : auto">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Robot on landmark</th>
+                                <th>Robot not on landmark</th>
+                            </tr>
+                            <tr>
+                                <td><b>Landmark sensed</b></td>
+                                <td style="background-color: #43ec70;">pHit</td>
+                                <td style="background-color: #e96e31;">pMiss</td>
+                            </tr>
+                            <tr>
+                                <td><b>Landmark not sensed</b></td>
+                                <td style="background-color: #e96e31;">pMiss</td>
+                                <td style="background-color: #43ec70;">pHit</td>
+                            </tr>
+                        </table>
+                    </div>
+                <li>If now the sensor sensed the landmark, the vector of belief will become: [0.05, 0.05, 0.2, 0.05]</li>
+                <li>If the sensor didnt sense the landmark, it will be in another way round: [0.2, 0.2, 0.05, 0.2]</li>
+                <li>No matter whether the sensor sensed the landmark or not, as you can see, the sum of probabilities no longer equal to one
+                    after the measurememt update.</li>
+                <li>A probability distribution always have to add up to 1. Hence, we shoud normalize them by dividing each of the probabilty with the
+                    sum of all probabilities, and then we will get: [0.1429, 0.1429, 0.5714, 0.1429] for the case of the sensor sensed the landmark.
+                </li>
+                <li>Side note: If let's say the sensor is not returning true false any more, let's say lidar sensor which gives
+                    us the distance, then we will need to determine the threshold for Hit and Miss. For example, let's say 
+                    if the lidar sensed an object within 2m, it is considered as a hit.
+                </li>
+            </ul>
+            <li><b>Motion Update</b></li>
+            <ul>
+                <li>Every time the robot moves, there should be a motion update. However, considering that the robot might be overshoot or undershoot,
+                    we should update the vector of probability according to probability of undershoot and overshoot.
+                </li>
+                <li>Let's say the initial belief of a robot is [0,1,0,0].</li>
+                <li>Let's say the probability of exact motion is 0.8, probabilities of undershoot and overshoot are both 0.1.</li>
+                <li>If the motion update is to move towards right for 1 step, then the updated probability will be [0, 0.1, 0.8, 0.1]</li>
+                <li>The belief of robot at each cell, X<sub>i</sub> is calculated in such way:</li>
                     <ul>
-                        <li>Notations:</li>
-                            <ul>
-                                <li>P(X) = Probability of robot on landmark X</li>
-                                <li>P(X') = Probability of robot on landmark X</li>
-                                <li>P(Sensed | X) = Probability of sensing landmark given that robot is on landmark X</li>
-                                <li>P(Sensed | X') = Probability of sensing landmark given that robot is not on landmark X</li>
-                            </ul>
-                        <li>Notations:</li>
-                            <ul>
-                                <li>P(X) = 0.25</li>
-                                <li>P(X') = 0.75</li>
-                                <li>P(Sensed | X) = 0.8</li>
-                                <li>P(Sensed | X') = 0.2</li>
-                            </ul>
-                        <li>Find P(X | Sensed), which represents the probabilty of the robot is on landmark X given that the landmark is sensed by sensor</li>
-                        <li>Solution:</li>
-                            <ul>
-                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {P(Sensed | X) P(X)}{P(Sensed)}$$'"></div></li>
-                                <li>By applying Total Probability Theorem, P(Sensed) = P(Sensed | X) * P(X) + P(Sensed | X') * P(X')</li>
-                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {P(Sensed | X) P(X)}{P(Sensed | X) P(X) + P(Sensed | X\') P(X\')}$$'"></div></li>
-                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {0.8 * 0.25}{0.8 * 0.25 + 0.75 * 0.2}$$'"></div></li>
-                                <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = 0.5714$$'"></div></li>
-                            </ul>
+                        <li><div class="matheqn-small" [mathjax]="'$$P(X_i) = P(X_i - U + 1) * pUndershoot + P(X_i - U) * pExact + P(X_i - U - 1) * pOvershoot$$'"></div></li>
+                        <li>U = the number of steps in motion</li>
+                        <li>pUndershoot = probability of undershoot</li>
+                        <li>pOvershoot = probability of overshoot</li>
+                        <li>pExact = probability of exact motion</li>
+                        <li>The equation above assumes the overshoot and undershoot are only 1 cell difference</li>
                     </ul>
             </ul>
+        </ul>
 
-            <h3>Solution for Problem Set 1 of <a href="https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373"
-                target="_blank" rel="noopener noreferrer">Udacity Free Course: Artificial Intelligence For Robotics</a></h3>
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            localizationProgram.py
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <pre>
-                            <code>
+        <h3>Total Probability (for Motion Update)</h3>
+        <ul>
+            <li><div class="matheqn-small" [mathjax]="'$$P(X) = \\Sigma_i P(X&#8745;Y_i) = \\Sigma_i P(X|Y_i) P(Y_i)$$'"></div></li>
+            <li>The equation above basically is a convolution process.</li>
+        </ul>
+
+        <h3>Bayes Rule (for Measurement Update)</h3>
+        <ul>
+            <li><div class="matheqn-small" [mathjax]="'$$P(X|Z) = \\frac {P(X&#8745;Z)}{P(Z)} = \\frac {P(Z|X) P(X)}{P(Z)}$$'"></div></li>
+            <li>An Example:</li>
+                <ul>
+                    <li>Notations:</li>
+                        <ul>
+                            <li>P(X) = Probability of robot on landmark X</li>
+                            <li>P(X') = Probability of robot on landmark X</li>
+                            <li>P(Sensed | X) = Probability of sensing landmark given that robot is on landmark X</li>
+                            <li>P(Sensed | X') = Probability of sensing landmark given that robot is not on landmark X</li>
+                        </ul>
+                    <li>Notations:</li>
+                        <ul>
+                            <li>P(X) = 0.25</li>
+                            <li>P(X') = 0.75</li>
+                            <li>P(Sensed | X) = 0.8</li>
+                            <li>P(Sensed | X') = 0.2</li>
+                        </ul>
+                    <li>Find P(X | Sensed), which represents the probabilty of the robot is on landmark X given that the landmark is sensed by sensor</li>
+                    <li>Solution:</li>
+                        <ul>
+                            <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {P(Sensed | X) P(X)}{P(Sensed)}$$'"></div></li>
+                            <li>By applying Total Probability Theorem, P(Sensed) = P(Sensed | X) * P(X) + P(Sensed | X') * P(X')</li>
+                            <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {P(Sensed | X) P(X)}{P(Sensed | X) P(X) + P(Sensed | X\') P(X\')}$$'"></div></li>
+                            <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = \\frac {0.8 * 0.25}{0.8 * 0.25 + 0.75 * 0.2}$$'"></div></li>
+                            <li><div class="matheqn-small" [mathjax]="'$$P(X | Sensed) = 0.5714$$'"></div></li>
+                        </ul>
+                </ul>
+        </ul>
+
+        <h3>Solution for Problem Set 1 of <a href="https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373"
+            target="_blank" rel="noopener noreferrer">Udacity Free Course: Artificial Intelligence For Robotics</a></h3>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        localizationProgram.py
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <pre>
+                        <code>
 # The function localize takes the following arguments:
 #
 # colors:
@@ -309,108 +308,108 @@ motions = [[0,0],[0,1],[1,0],[1,0],[0,1]]
 p = localize(colors,measurements,motions,sensor_right = 0.7, p_move = 0.8)
 
 show(p) # displays your answer                                    
-                            </code>
-                        </pre>
-                </mat-expansion-panel>
-            </mat-accordion>
+                        </code>
+                    </pre>
+            </mat-expansion-panel>
+        </mat-accordion>
 
-            <mat-divider></mat-divider>
-        </div>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>Kalman Filter</h2>
-            <h3>Introduction to Kalman Filter</h3>
-            <ul>
-                <li>Kalman Filter is a very prominent estimation algorithm that is used to estimate the value of a variable
-                    in real-time as the data is being collected.
-                </li>
-                <li>Advantages of Kalman Filter algorithm:</li>
-                    <ul>
-                        <li>can provide a very accurate estimate of the real value</li>
-                        <li>can quickly perform the estimation with just a few sensor measurements</li>
-                        <li>can consider sensor fusion to provide a more accurate estimation</li>
-                    </ul>
-                <li>Kalman Filter algorithm is an iteration of 2 steps, prior with an initial estimate:</li>
-                    <ul>
-                        <li>State Prediction</li>
-                        <li>Measurement Update</li>
-                    </ul>
-                <li>Even with an awful initial guess (as long as the mean is logical and not too over), the Kalman Filter algorithm
-                    will still be able to estimate the state very quickly and accurately.</li>
-                <li>There are few types of Kalman Filters:</li>
-                    <ul>
-                        <li>KF - linear</li>
-                        <li>Extended KF - nonlinear</li>
-                        <li><a href="http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam05-ukf.pdf" target="_blank" rel="noopener noreferrer">Unscented KF</a> - highly nonlinear</li>
-                    </ul>
-                <li>The basis of Kalman Filter is the Gaussian Distribution.</li>
-            </ul>
+    <div>
+        <h2>Kalman Filter</h2>
+        <h3>Introduction to Kalman Filter</h3>
+        <ul>
+            <li>Kalman Filter is a very prominent estimation algorithm that is used to estimate the value of a variable
+                in real-time as the data is being collected.
+            </li>
+            <li>Advantages of Kalman Filter algorithm:</li>
+                <ul>
+                    <li>can provide a very accurate estimate of the real value</li>
+                    <li>can quickly perform the estimation with just a few sensor measurements</li>
+                    <li>can consider sensor fusion to provide a more accurate estimation</li>
+                </ul>
+            <li>Kalman Filter algorithm is an iteration of 2 steps, prior with an initial estimate:</li>
+                <ul>
+                    <li>State Prediction</li>
+                    <li>Measurement Update</li>
+                </ul>
+            <li>Even with an awful initial guess (as long as the mean is logical and not too over), the Kalman Filter algorithm
+                will still be able to estimate the state very quickly and accurately.</li>
+            <li>There are few types of Kalman Filters:</li>
+                <ul>
+                    <li>KF - linear</li>
+                    <li>Extended KF - nonlinear</li>
+                    <li><a href="http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam05-ukf.pdf" target="_blank" rel="noopener noreferrer">Unscented KF</a> - highly nonlinear</li>
+                </ul>
+            <li>The basis of Kalman Filter is the Gaussian Distribution.</li>
+        </ul>
 
-            <h3>1D Kalman Filter</h3>
-            <h4>1D Gaussian</h4>
-            <ul>
-                <li>Formula: <div class="matheqn" [mathjax]="'$$p(x) = \\frac {1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$'"></div>
-                   
+        <h3>1D Kalman Filter</h3>
+        <h4>1D Gaussian</h4>
+        <ul>
+            <li>Formula: <div class="matheqn" [mathjax]="'$$p(x) = \\frac {1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$'"></div>
                 
-                    where:
-                    <div class="matheqn-small" [mathjax]="'$\\mu\\text{ : mean}$'"></div>
-                    <div class="matheqn-small" [mathjax]="'$\\sigma\\text{ : standard deviation}$'"></div>
-                    <div class="matheqn-small" [mathjax]="'$\\sigma^2\\text{ : variance}$'"></div>
-                </li>
-                <li>Code: </li>
-                    <pre>
-                        <code>
+            
+                where:
+                <div class="matheqn-small" [mathjax]="'$\\mu\\text{ : mean}$'"></div>
+                <div class="matheqn-small" [mathjax]="'$\\sigma\\text{ : standard deviation}$'"></div>
+                <div class="matheqn-small" [mathjax]="'$\\sigma^2\\text{ : variance}$'"></div>
+            </li>
+            <li>Code: </li>
+                <pre>
+                    <code>
 double gaussian1D(double mu, double sigma, double x)
 &#123;
     double prob = 1.0 / (sigma * sqrt(2.0 * M_PI)) * exp(-0.5 * pow((x - mu), 2.0) / pow(sigma, 2.0));
     return prob;
 }
-                        </code>
-                    </pre>
-            </ul>
+                    </code>
+                </pre>
+        </ul>
 
-            <h4>Naming Conventions</h4>
-            <ul>
-                <li><div class="matheqn-small" [mathjax]="'$x_t\\text{ : state}$'"></div></li>
-                <li><div class="matheqn-small" [mathjax]="'$z_t\\text{ : measurement}$'"></div></li>
-                <li><div class="matheqn-small" [mathjax]="'$u_t\\text{ : control action}$'"></div></li>
-            </ul>
-            <h4>Measurement Update</h4>
-            <ul>
-                <li>In the first iteration of the algorithm, our initial guess (which is also a gaussian distribution with mean and variance) will become our prior belief.</li>
-                <li>Then, we will get a measurement (which is also a gaussian distribution with mean and variance).</li>
-                <li>With this 2 gaussian distrbutions, we can estimate the posterior belief by getting the new mean and new variance:
-                    <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\frac {r^2\\mu + \\sigma^2v}{r^2 + \\sigma^2}$$'"></div>
-                    <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = \\frac {1}{\\frac {1}{r^2} + \\frac {1}{\\sigma^2}}$$'"></div>
-                    where:
-                    <div class="matheqn-small" [mathjax]="'$\\mu\\text{ : mean of prior belief}$'"></div>
-                    <div class="matheqn-small" [mathjax]="'$\\sigma^2\\text{ : variance of prior belief}$'"></div>
-                    <div class="matheqn-small" [mathjax]="'$v\\text{ : mean of measurement}$'"></div>
-                    <div class="matheqn-small" [mathjax]="'$r^2\\text{ : variance of measurement}$'"></div>
-                </li>
-            </ul>
+        <h4>Naming Conventions</h4>
+        <ul>
+            <li><div class="matheqn-small" [mathjax]="'$x_t\\text{ : state}$'"></div></li>
+            <li><div class="matheqn-small" [mathjax]="'$z_t\\text{ : measurement}$'"></div></li>
+            <li><div class="matheqn-small" [mathjax]="'$u_t\\text{ : control action}$'"></div></li>
+        </ul>
+        <h4>Measurement Update</h4>
+        <ul>
+            <li>In the first iteration of the algorithm, our initial guess (which is also a gaussian distribution with mean and variance) will become our prior belief.</li>
+            <li>Then, we will get a measurement (which is also a gaussian distribution with mean and variance).</li>
+            <li>With this 2 gaussian distrbutions, we can estimate the posterior belief by getting the new mean and new variance:
+                <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\frac {r^2\\mu + \\sigma^2v}{r^2 + \\sigma^2}$$'"></div>
+                <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = \\frac {1}{\\frac {1}{r^2} + \\frac {1}{\\sigma^2}}$$'"></div>
+                where:
+                <div class="matheqn-small" [mathjax]="'$\\mu\\text{ : mean of prior belief}$'"></div>
+                <div class="matheqn-small" [mathjax]="'$\\sigma^2\\text{ : variance of prior belief}$'"></div>
+                <div class="matheqn-small" [mathjax]="'$v\\text{ : mean of measurement}$'"></div>
+                <div class="matheqn-small" [mathjax]="'$r^2\\text{ : variance of measurement}$'"></div>
+            </li>
+        </ul>
 
-            <h4>State prediction</h4>
-            <ul>
-                <li>Now, the new mean and new variance that we calculated in the Measurement Update process are now referrerd to as the prior belief.</li>
-                <li>State prediction is the estimation that takes place after an inevitably uncertain motion.</li>
-                <li>The motion is also a gaussian distribution with a mean and variance.</li>
-                <li>To get the next gaussian distribution (which represents the state), simply sum up the mean and variance from both prior belief
-                    and motion:
-                    <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\mu_1 + \\mu_2$$'"></div>
-                    <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = {\\sigma^2}_{1} + {\\sigma^2}_{2}$$'"></div>
-                </li>
-            </ul>
+        <h4>State prediction</h4>
+        <ul>
+            <li>Now, the new mean and new variance that we calculated in the Measurement Update process are now referrerd to as the prior belief.</li>
+            <li>State prediction is the estimation that takes place after an inevitably uncertain motion.</li>
+            <li>The motion is also a gaussian distribution with a mean and variance.</li>
+            <li>To get the next gaussian distribution (which represents the state), simply sum up the mean and variance from both prior belief
+                and motion:
+                <div class="matheqn" [mathjax]="'$$\\mu_{new} = \\mu_1 + \\mu_2$$'"></div>
+                <div class="matheqn" [mathjax]="'$${\\sigma^2}_{new} = {\\sigma^2}_{1} + {\\sigma^2}_{2}$$'"></div>
+            </li>
+        </ul>
 
-            <h4>Implementation of 1D Kalman Filter</h4>
-            <ul>
-                <li>You might ask how to get the mean and variance for the measurements and motions in actual. 
-                    Well, actually we can assume the measurement we get is the mean, and we can set the variance
-                    by ourselves accordingly.
-                </li>
-                <li>Code example:
-                    <pre>
-                        <code>
+        <h4>Implementation of 1D Kalman Filter</h4>
+        <ul>
+            <li>You might ask how to get the mean and variance for the measurements and motions in actual. 
+                Well, actually we can assume the measurement we get is the mean, and we can set the variance
+                by ourselves accordingly.
+            </li>
+            <li>Code example:
+                <pre>
+                    <code>
     #include &lt;iostream>
     #include &lt;math.h>
     #include &lt;tuple>
@@ -456,149 +455,148 @@ double gaussian1D(double mu, double sigma, double x)
     
         return 0;
     }                                
-                        </code>
-                    </pre>
-                </li>
-            </ul>
-        </div>
-        
-        <div>
-            <h3>Multi-Dimensional Kalman Filter</h3>
-            <h4>Multivariate Gaussian</h4>
+                    </code>
+                </pre>
+            </li>
+        </ul>
+    </div>
+    
+    <div>
+        <h3>Multi-Dimensional Kalman Filter</h3>
+        <h4>Multivariate Gaussian</h4>
+        <ul>
+            <li>Multivariate Gaussian can be 2D, 3D, 4D etc. Depending on how many dimensions or variables there are, the mean and 
+                covariance will have different size. The following are the mean and covariance of 2D Gaussians.
+            </li>
+            <li>Mean</li>
+                <div class="matheqn" [mathjax]="'$$\\mu = \\begin{bmatrix}
+                \\mu_x \\\\
+                \\mu_y
+                \\end{bmatrix}$$'"></div>
+            <li>Covariance</li>
+                <div class="matheqn" [mathjax]="'$$\\Sigma = \\begin{bmatrix}
+                \\sigma_x^2 & \\sigma_x\\sigma_y \\\\
+                \\sigma_y\\sigma_x & \\sigma_y^2
+                \\end{bmatrix}$$'"></div>
+            <li>Formula for the multivariate Gaussian</li>
+                <div class="matheqn" [mathjax]="'$$p(x) = \\frac {1}{(2\\pi)^{\\frac{1}{2}}|\\Sigma|^{\\frac{1}{2}}} e^{-\\frac{1}{2} (x-\\mu)^T \\Sigma^{-1} (x-\\mu)}$$'"></div>
+        </ul>
+
+        <h4>Kalman Filter Equations</h4>
+        <ul>
+            <li>State Prediction:</li>
             <ul>
-                <li>Multivariate Gaussian can be 2D, 3D, 4D etc. Depending on how many dimensions or variables there are, the mean and 
-                    covariance will have different size. The following are the mean and covariance of 2D Gaussians.
-                </li>
-                <li>Mean</li>
-                    <div class="matheqn" [mathjax]="'$$\\mu = \\begin{bmatrix}
-                    \\mu_x \\\\
-                    \\mu_y
-                    \\end{bmatrix}$$'"></div>
-                <li>Covariance</li>
-                    <div class="matheqn" [mathjax]="'$$\\Sigma = \\begin{bmatrix}
-                    \\sigma_x^2 & \\sigma_x\\sigma_y \\\\
-                    \\sigma_y\\sigma_x & \\sigma_y^2
-                    \\end{bmatrix}$$'"></div>
-                <li>Formula for the multivariate Gaussian</li>
-                    <div class="matheqn" [mathjax]="'$$p(x) = \\frac {1}{(2\\pi)^{\\frac{1}{2}}|\\Sigma|^{\\frac{1}{2}}} e^{-\\frac{1}{2} (x-\\mu)^T \\Sigma^{-1} (x-\\mu)}$$'"></div>
-            </ul>
-
-            <h4>Kalman Filter Equations</h4>
-            <ul>
-                <li>State Prediction:</li>
-                <ul>
-                    <li>Take note that this X is equivalent to the &mu; above</li>
-                        <div class="matheqn" [mathjax]="'$$X^{\'} = FX$$'"></div>
-                        where:
-                        <div class="matheqn-small" [mathjax]="'$X^{\'}\\text{ : posterior state}$'"></div>
-                        <div class="matheqn-small" [mathjax]="'$\\text{F : state transition function}$'"></div>
-                        <div class="matheqn-small" [mathjax]="'$\\text{X : prior state}$'"></div>
-                        <br>The state transition function and state are depending on your application.
-                        <br>For example, if the state is about displacement and velocity, and we assume velocity is always constant:
-                        <div class="matheqn" [mathjax]="'$$X = \\begin{bmatrix}
-                        x_x \\\\
-                        \\dot{x}
-                        \\end{bmatrix}$$'"></div>
-                        <div class="matheqn" [mathjax]="'$$F = \\begin{bmatrix}
-                        1 & \\delta t \\\\
-                        0 & 1
-                        \\end{bmatrix}$$'"></div>
-                    <li>To calculate the posterior covariance, the prior covariance P is multiplied by F squared, and added Q as process noise</li>
-                        <div class="matheqn" [mathjax]="'$$P^{\'} = FPF^{T} + Q$$'"></div>
-                        where:
-                        <div class="matheqn-small" [mathjax]="'$P^{\'}\\text{ : posterior covariance}$'"></div>
-                        <div class="matheqn-small" [mathjax]="'$FF^{T}\\text{ : }F^2$'"></div>
-                        <div class="matheqn-small" [mathjax]="'$\\text{P : prior covariance}$'"></div>
-                        <div class="matheqn-small" [mathjax]="'$\\text{Q : process noise}$'"></div>
-                </ul>
-
-                <li>Measurement Update</li>
-                <ul>
-                    <li>Symbol z is used to represent the matrix of measurement.</li>
-                    <li>There is a measurement function, called H, which demonstrates how to map state(x) to observation(z).</li>
-                    <li>For example, let's say the state X is about displacement and velocity, but our measurement is only measuring displacement, then
-                        the measurement function is:
-                        <div class="matheqn" [mathjax]="'$$H = \\begin{bmatrix}
-                        1 \\ 
-                        0
-                        \\end{bmatrix}$$'"></div>
-                    </li>
-                    <li>The measurement residual (difference between measurement and expected measurement) also need to be calculated:</li>
-                    <div class="matheqn" [mathjax]="'$$y = z - HX^{\'}$$'"></div>
-                    <li>There is also another equation S, which considers measurement noise (R) and will be used in calculating Kalman Gain later:</li>
-                    <div class="matheqn" [mathjax]="'$$S = HP^{\'}H^T+R$$'"></div>
-                </ul>
-
-                <li>Calculation of Kalman Gain</li>
-                <ul>
-                    <li><div class="matheqn" [mathjax]="'$$K = P^{\'}H^TS^{-1}$$'"></div></li>
-                </ul>
-
-                <li>To further calculate posterior state and posterior covariance</li>
-                <ul>
-                    <li><div class="matheqn" [mathjax]="'$$X = X^{\'}+Ky$$'"></div></li>
-                    <li><div class="matheqn" [mathjax]="'$$P = (I - KH)P^{\'}$$'"></div></li>
-                </ul>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Extended Kalman Filter</h3>
-            <h4>Introduction</h4>
-            <ul>
-                <li>When using Kalman Filter, there are 2 assumptions made:</li>
-                    <ul>
-                        <li>Motion and measurement models are linear</li>
-                        <li>State space can be represented by a unimodal Gaussian Distribution</li>
-                    </ul>
-                <li>The Kalman Filter cannot be used when the measurement and/or state transition functions are nonlinear, since this would result in a non-Gaussian distribution.</li>
-                <li>For example, if let's say we are tracking the x and y coordinates of a robot, our state will be:
+                <li>Take note that this X is equivalent to the &mu; above</li>
+                    <div class="matheqn" [mathjax]="'$$X^{\'} = FX$$'"></div>
+                    where:
+                    <div class="matheqn-small" [mathjax]="'$X^{\'}\\text{ : posterior state}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\text{F : state transition function}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\text{X : prior state}$'"></div>
+                    <br>The state transition function and state are depending on your application.
+                    <br>For example, if the state is about displacement and velocity, and we assume velocity is always constant:
                     <div class="matheqn" [mathjax]="'$$X = \\begin{bmatrix}
-                    x \\\\
-                    y
+                    x_x \\\\
+                    \\dot{x}
                     \\end{bmatrix}$$'"></div>
-                    and let's say our sensor only measures the distance from the robot to the object, r, as well as the angle between r and the x-axis, θ, our measurement will be:
-                    <div class="matheqn" [mathjax]="'$$Z = \\begin{bmatrix}
-                    r \\\\
-                    \\theta
+                    <div class="matheqn" [mathjax]="'$$F = \\begin{bmatrix}
+                    1 & \\delta t \\\\
+                    0 & 1
                     \\end{bmatrix}$$'"></div>
-                    Unlike the previous example that shows linear state transition function between displacement and velocity, we can't compute a linear F for this.
-                    <br>The measurement function is also no longer linear because:
-                    <div class="matheqn" [mathjax]="'$$r = \\sqrt{x^2 + y^2}$$'"></div>
-                    <div class="matheqn" [mathjax]="'$$\\theta = tan^{-1}\\frac{y}{x}$$'"></div>
-                </li>
-                
+                <li>To calculate the posterior covariance, the prior covariance P is multiplied by F squared, and added Q as process noise</li>
+                    <div class="matheqn" [mathjax]="'$$P^{\'} = FPF^{T} + Q$$'"></div>
+                    where:
+                    <div class="matheqn-small" [mathjax]="'$P^{\'}\\text{ : posterior covariance}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$FF^{T}\\text{ : }F^2$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\text{P : prior covariance}$'"></div>
+                    <div class="matheqn-small" [mathjax]="'$\\text{Q : process noise}$'"></div>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
-        
-        <div>
-            <h2>Monte Carlo Localization</h2>
-            <h3>Introduction</h3>
+
+            <li>Measurement Update</li>
             <ul>
-                <li>Monte Carlo Localization (MCL) can only solve Local and Global localization problems, it cannot solve kipnapped robot problem.</li>
-                <li>As compared to EKF, MCL has some advantages:</li>
-                    <ul>
-                        <li>Easier to implement/code</li>
-                        <li>Can handle global localization problem (EKF can only handle local localization problem</li>
-                        <li>MCL is not limited to Gaussian Distribution</li>
-                    </ul>
-                <li>MCL uses particles to localize the robot.</li>
-                <li>The algorithm of MCL:</li>
-                    <ul>
-                        <li>Randomly and uniformly place N numbers of particles on the map.</li>
-                        <li>Each particle has four private members: x, y, theta, weight</li>
-                        <li>There will be few landmarks on the map, which will be later used to estimate the position of the particles and robot.</li>
-                        <li>When the robot moves, for example, rotate clockwise 90 degreen and move forward 2m, the same action should be
-                            updated on all particles.
-                        </li>
-                        <li>Get robot's measurements (z), which are the distances of the robot from the landmarks.</li>
-                        <li>Update weight of each particle depending on the robot's measurement z and also the particle's position.</li>
-                        <li>Resample the particles with a sample probability proportional to the importance weight</li>
-                        <li>Repeat</li>
-                    </ul>
+                <li>Symbol z is used to represent the matrix of measurement.</li>
+                <li>There is a measurement function, called H, which demonstrates how to map state(x) to observation(z).</li>
+                <li>For example, let's say the state X is about displacement and velocity, but our measurement is only measuring displacement, then
+                    the measurement function is:
+                    <div class="matheqn" [mathjax]="'$$H = \\begin{bmatrix}
+                    1 \\ 
+                    0
+                    \\end{bmatrix}$$'"></div>
+                </li>
+                <li>The measurement residual (difference between measurement and expected measurement) also need to be calculated:</li>
+                <div class="matheqn" [mathjax]="'$$y = z - HX^{\'}$$'"></div>
+                <li>There is also another equation S, which considers measurement noise (R) and will be used in calculating Kalman Gain later:</li>
+                <div class="matheqn" [mathjax]="'$$S = HP^{\'}H^T+R$$'"></div>
             </ul>
-            <mat-divider></mat-divider>
-        </div>
+
+            <li>Calculation of Kalman Gain</li>
+            <ul>
+                <li><div class="matheqn" [mathjax]="'$$K = P^{\'}H^TS^{-1}$$'"></div></li>
+            </ul>
+
+            <li>To further calculate posterior state and posterior covariance</li>
+            <ul>
+                <li><div class="matheqn" [mathjax]="'$$X = X^{\'}+Ky$$'"></div></li>
+                <li><div class="matheqn" [mathjax]="'$$P = (I - KH)P^{\'}$$'"></div></li>
+            </ul>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Extended Kalman Filter</h3>
+        <h4>Introduction</h4>
+        <ul>
+            <li>When using Kalman Filter, there are 2 assumptions made:</li>
+                <ul>
+                    <li>Motion and measurement models are linear</li>
+                    <li>State space can be represented by a unimodal Gaussian Distribution</li>
+                </ul>
+            <li>The Kalman Filter cannot be used when the measurement and/or state transition functions are nonlinear, since this would result in a non-Gaussian distribution.</li>
+            <li>For example, if let's say we are tracking the x and y coordinates of a robot, our state will be:
+                <div class="matheqn" [mathjax]="'$$X = \\begin{bmatrix}
+                x \\\\
+                y
+                \\end{bmatrix}$$'"></div>
+                and let's say our sensor only measures the distance from the robot to the object, r, as well as the angle between r and the x-axis, θ, our measurement will be:
+                <div class="matheqn" [mathjax]="'$$Z = \\begin{bmatrix}
+                r \\\\
+                \\theta
+                \\end{bmatrix}$$'"></div>
+                Unlike the previous example that shows linear state transition function between displacement and velocity, we can't compute a linear F for this.
+                <br>The measurement function is also no longer linear because:
+                <div class="matheqn" [mathjax]="'$$r = \\sqrt{x^2 + y^2}$$'"></div>
+                <div class="matheqn" [mathjax]="'$$\\theta = tan^{-1}\\frac{y}{x}$$'"></div>
+            </li>
+            
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    
+    <div>
+        <h2>Monte Carlo Localization</h2>
+        <h3>Introduction</h3>
+        <ul>
+            <li>Monte Carlo Localization (MCL) can only solve Local and Global localization problems, it cannot solve kipnapped robot problem.</li>
+            <li>As compared to EKF, MCL has some advantages:</li>
+                <ul>
+                    <li>Easier to implement/code</li>
+                    <li>Can handle global localization problem (EKF can only handle local localization problem</li>
+                    <li>MCL is not limited to Gaussian Distribution</li>
+                </ul>
+            <li>MCL uses particles to localize the robot.</li>
+            <li>The algorithm of MCL:</li>
+                <ul>
+                    <li>Randomly and uniformly place N numbers of particles on the map.</li>
+                    <li>Each particle has four private members: x, y, theta, weight</li>
+                    <li>There will be few landmarks on the map, which will be later used to estimate the position of the particles and robot.</li>
+                    <li>When the robot moves, for example, rotate clockwise 90 degreen and move forward 2m, the same action should be
+                        updated on all particles.
+                    </li>
+                    <li>Get robot's measurements (z), which are the distances of the robot from the landmarks.</li>
+                    <li>Update weight of each particle depending on the robot's measurement z and also the particle's position.</li>
+                    <li>Resample the particles with a sample probability proportional to the importance weight</li>
+                    <li>Repeat</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

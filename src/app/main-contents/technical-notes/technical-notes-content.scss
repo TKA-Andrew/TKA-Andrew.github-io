@@ -50,36 +50,6 @@ p {
     padding-bottom: 5px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .listItem:hover {
-        background-color: $hoverBackgroundColor;
-        color: $hoverTextColor;
-        font-style: italic;
-    }
-}
-
-mat-drawer {
-    width: 300px;
-}
-
-#sideDrawerControl {
-    width: 100%;
-    text-align: center;
-    padding-top: 3px;
-}
-
-@media screen and (max-width: 420px) {
-    #sideDrawer {
-        width: 200px !important;
-    }
-}
-
-.technicalNotesRouterLinkActive {
-    background-color: $routerActiveBackgroundColor;
-    color: $routerActiveColor;
-    font-weight: bold;
-}
-
 table {
     border-collapse: collapse;
     font-family: arial, sans-serif;
@@ -119,8 +89,4 @@ li {
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
     cursor: pointer;
-}
-
-img {
-    max-width: 100%;
 }

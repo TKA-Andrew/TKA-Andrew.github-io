@@ -1,63 +1,62 @@
 <div class="flexContainer">
-    <div fxLayout="column">
-        <div>
-            <h1>C++ Intermediate</h1>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Most of the references are from <a href="https://www.learncpp.com/" target="_blank" rel="noopener noreferrer">learncpp.com</a>.</li>
-                <li>The notes here are mostly for intermediate levels, yet commonly used in open source projects.</li>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+    <div>
+        <h1>C++ Intermediate</h1>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Most of the references are from <a href="https://www.learncpp.com/" target="_blank" rel="noopener noreferrer">learncpp.com</a>.</li>
+            <li>The notes here are mostly for intermediate levels, yet commonly used in open source projects.</li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="stackAndHeap">
-            <h3>Stack & Heap</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/the-stack-and-the-heap/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>There are different segments of memory that a program uses:</li>
-                    <ul>
-                        <li>code segment (where compiled program stored)</li>
-                        <li>bss segment (where uninitialized global and static variables stored)</li>
-                        <li>data segment (where initialized global and static variables stored)</li>
-                        <li>heap (where dynamically allocated variables are allocated from)</li>
-                        <li>call stack (where function parameters, local variables stored)</li>
-                    </ul>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+    <div id="stackAndHeap">
+        <h3>Stack & Heap</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/the-stack-and-the-heap/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>There are different segments of memory that a program uses:</li>
+                <ul>
+                    <li>code segment (where compiled program stored)</li>
+                    <li>bss segment (where uninitialized global and static variables stored)</li>
+                    <li>data segment (where initialized global and static variables stored)</li>
+                    <li>heap (where dynamically allocated variables are allocated from)</li>
+                    <li>call stack (where function parameters, local variables stored)</li>
+                </ul>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="typesOfContainers">
-            <h3>Types of C++ Containers</h3>
-            <ul>
-                <li>Sequential Container</li>
-                    <ul>
-                        <li>Represents a linear data structure such as arrays, vectors, and linked lists</li>
-                    </ul>
-                <li>Associative containers</li>
-                    <ul>
-                        <li>Represents a nonlinear data structure with the capability to quickly locate elements stored in the container.</li>
-                        <li>Stores values as key-value pairs.</li>
-                        <li>Examples: map, multimap, set, etc</li>
-                    </ul>
-                <li>Container Adapter</li>
-                    <ul>
-                        <li>Containers with some constraints in the storage and retrieval process of the elements</li>
-                        <li>It does not support iterators.</li>
-                        <li>Adapter container classes provide functions like <span style="font-style: italic;">push</span> and <span style="font-style: italic;">pop</span> that insert and retrieve an element into the storage</li>
-                        <li>Examples: stack, queue, priority_queue</li>
-                    </ul>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+    <div id="typesOfContainers">
+        <h3>Types of C++ Containers</h3>
+        <ul>
+            <li>Sequential Container</li>
+                <ul>
+                    <li>Represents a linear data structure such as arrays, vectors, and linked lists</li>
+                </ul>
+            <li>Associative containers</li>
+                <ul>
+                    <li>Represents a nonlinear data structure with the capability to quickly locate elements stored in the container.</li>
+                    <li>Stores values as key-value pairs.</li>
+                    <li>Examples: map, multimap, set, etc</li>
+                </ul>
+            <li>Container Adapter</li>
+                <ul>
+                    <li>Containers with some constraints in the storage and retrieval process of the elements</li>
+                    <li>It does not support iterators.</li>
+                    <li>Adapter container classes provide functions like <span style="font-style: italic;">push</span> and <span style="font-style: italic;">pop</span> that insert and retrieve an element into the storage</li>
+                    <li>Examples: stack, queue, priority_queue</li>
+                </ul>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="priorityQueueAndMinHeap">
-            <h3>Priority Queue, Max Heap & Min Heap</h3>
-            <ul>
-                <li>C++ STL has a container adapter called <a href="https://en.cppreference.com/w/cpp/container/priority_queue" target="_blank" rel="noopener noreferrer">priority queue</a>,
-                    which by default representing a Max Heap</li>
-                <li>The output of the following code will be "10 5 1"</li>
-                    <pre>
-                        <code>
+    <div id="priorityQueueAndMinHeap">
+        <h3>Priority Queue, Max Heap & Min Heap</h3>
+        <ul>
+            <li>C++ STL has a container adapter called <a href="https://en.cppreference.com/w/cpp/container/priority_queue" target="_blank" rel="noopener noreferrer">priority queue</a>,
+                which by default representing a Max Heap</li>
+            <li>The output of the following code will be "10 5 1"</li>
+                <pre>
+                    <code>
     #include &lt;queue>
     #include &lt;iostream>
     
@@ -76,22 +75,22 @@
         
         return 0;
     }
-                        </code>
-                    </pre>
-                <li>The following is the default template of priority_queue:</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>The following is the default template of priority_queue:</li>
+                <pre>
+                    <code>
     template&lt;
         class T,
         class Container = std::vector&lt;T>,
         class Compare = std::less&lt;typename Container::value_type>
     > class priority_queue;
-                        </code>
-                    </pre>
-                <li>The default Compare is std::less function. Hence, if we change it to std::greater, we will get a Min Heap.</li>
-                <li>Now, the following code will output "1 5 10"</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>The default Compare is std::less function. Hence, if we change it to std::greater, we will get a Min Heap.</li>
+            <li>Now, the following code will output "1 5 10"</li>
+                <pre>
+                    <code>
     #include &lt;queue>
     #include &lt;iostream>
     
@@ -110,37 +109,37 @@
         
         return 0;
     }
-                        </code>
-                    </pre>
-                <li>The time complexity for priority queue to add or remove element is O(nlogn), hence, it is more efficient as compared to finding maximum or maximum from vector.</li>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                    </code>
+                </pre>
+            <li>The time complexity for priority queue to add or remove element is O(nlogn), hence, it is more efficient as compared to finding maximum or maximum from vector.</li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="oopFundamentals">
-            <h3>C++ OOP Fundamentals</h3>
-            <ul>
-                <li>Functions defined inside of a class are called <b>member functions</b> (or sometimes <b>methods</b>).</li>
-                <li>Member functions can be defined inside or outside of the class definition.</li>
-                <li>Members (variables and functions) of a class are accessed using the <b>member selector operator</b> (.)</li>
-                <li>Struct is quite similar to class. But the best practice is: Use the struct keyword for data-only structures. 
-                    Use the class keyword for objects that have both data and functions.</li>
-                <li><b>Public members</b> are members of a struct or class that can be accessed directly by anyone, including from code that exists outside the struct or class.</li>
-                <li><b>Private members</b> are members of a class that can only be accessed by other members of the class (not by the public)</li>
-                <li>Members of a struct are public by default, whereas members of a class is private by default.</li>
-                <li>In object-oriented programming, <b>Encapsulation</b> is the process of keeping the details about how an object is implemented hidden away from users of the object.</li>
-                <li>A <b>constructor</b> is the class member function that is automatically called when an object of that class is created.</li>
-                <li>Rule of constructors:</li>
-                    <ul>
-                        <li>Constructors must have the exact same name as the class</li>
-                        <li>Constructors have no return type (not even void)</li>
-                    </ul>
-                <li>We can have multiple constructors due to function overloading.</li>
-                <li>There are <a href="https://www.learncpp.com/cpp-tutorial/constructors/" target="_blank" rel="noopener noreferrer">
-                    different ways to initialize member variables</a>. HOWEVER, it is RECOMMENDED to use <b>member initializer lists</b>.</li>
-                <li>The following is an example of a class having multiple constructors, and using member initializer list</li>
-                    <pre>
-                        <code>
+    <div id="oopFundamentals">
+        <h3>C++ OOP Fundamentals</h3>
+        <ul>
+            <li>Functions defined inside of a class are called <b>member functions</b> (or sometimes <b>methods</b>).</li>
+            <li>Member functions can be defined inside or outside of the class definition.</li>
+            <li>Members (variables and functions) of a class are accessed using the <b>member selector operator</b> (.)</li>
+            <li>Struct is quite similar to class. But the best practice is: Use the struct keyword for data-only structures. 
+                Use the class keyword for objects that have both data and functions.</li>
+            <li><b>Public members</b> are members of a struct or class that can be accessed directly by anyone, including from code that exists outside the struct or class.</li>
+            <li><b>Private members</b> are members of a class that can only be accessed by other members of the class (not by the public)</li>
+            <li>Members of a struct are public by default, whereas members of a class is private by default.</li>
+            <li>In object-oriented programming, <b>Encapsulation</b> is the process of keeping the details about how an object is implemented hidden away from users of the object.</li>
+            <li>A <b>constructor</b> is the class member function that is automatically called when an object of that class is created.</li>
+            <li>Rule of constructors:</li>
+                <ul>
+                    <li>Constructors must have the exact same name as the class</li>
+                    <li>Constructors have no return type (not even void)</li>
+                </ul>
+            <li>We can have multiple constructors due to function overloading.</li>
+            <li>There are <a href="https://www.learncpp.com/cpp-tutorial/constructors/" target="_blank" rel="noopener noreferrer">
+                different ways to initialize member variables</a>. HOWEVER, it is RECOMMENDED to use <b>member initializer lists</b>.</li>
+            <li>The following is an example of a class having multiple constructors, and using member initializer list</li>
+                <pre>
+                    <code>
         #include &lt;iostream>
         #include &lt;string>
         
@@ -182,12 +181,12 @@
             
             return 0;
         }
-                        </code>
-                    </pre>
-                <li>Constructors are allowed to call other constructors from the same class. This process is called <b>delegating constructors</b> (or <b>constructor chaining</b>).
-                    This is useful to avoid duplicated code.</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>Constructors are allowed to call other constructors from the same class. This process is called <b>delegating constructors</b> (or <b>constructor chaining</b>).
+                This is useful to avoid duplicated code.</li>
+                <pre>
+                    <code>
         #include &lt;iostream>
         #include &lt;string>
         
@@ -220,24 +219,24 @@
             Robot jarvis&#123;3, "Jarvis"};  // Hi, my name is Jarvis. I am 3 years old.
             return 0;
         }
-                        </code>
-                    </pre>
-                <li>If we want to reset an object back to default state, you can simply create a public function 
-                    which will create a new object and overwrite the implicit object
-                </li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>If we want to reset an object back to default state, you can simply create a public function 
+                which will create a new object and overwrite the implicit object
+            </li>
+                <pre>
+                    <code>
         void reset() &#123;
             *this = Robot(); // create a new object, and use assignment to overwrite our implicit object
         }     
-                        </code>
-                    </pre>
-                <li>It is good to separate the "declaration" portion and "implementation" portion of a class through .h and .cpp files,
-                    so that .h file is users of the library only need to understand the public interface in order to use it.
-                    Take note that default parameters for member functions should be declared in the class definition (in the header file).
-                </li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>It is good to separate the "declaration" portion and "implementation" portion of a class through .h and .cpp files,
+                so that .h file is users of the library only need to understand the public interface in order to use it.
+                Take note that default parameters for member functions should be declared in the class definition (in the header file).
+            </li>
+                <pre>
+                    <code>
         // calc.h
         class Calc
         &#123;
@@ -251,10 +250,10 @@
     
             int getValue() &#123; return m_value; }
         };
-                        </code>
-                    </pre>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+                <pre>
+                    <code>
         // calc.cpp
         Calc::Calc(int value): m_value(value)
         &#123;
@@ -264,11 +263,11 @@
         &#123;
             m_value += value;
         }
-                        </code>
-                    </pre>
-                <li>Another best practice is to make any member function that does not modify the state of the class object const, so that it can be called by const objects.</li>
-                    <pre>
-                        <code>
+                    </code>
+                </pre>
+            <li>Another best practice is to make any member function that does not modify the state of the class object const, so that it can be called by const objects.</li>
+                <pre>
+                    <code>
         class Something
         &#123;
         public:
@@ -286,33 +285,33 @@
         &#123;
             return m_value;
         }
-                        </code>
-                    </pre>
-                <li>C++ classes also support <a href="https://www.learncpp.com/cpp-tutorial/static-member-variables/" target="_blank" rel="noopener noreferrer">static member variavles</a>
-                    and <a href="https://www.learncpp.com/cpp-tutorial/static-member-functions/" target="_blank" rel="noopener noreferrer">static member functions</a></li>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                    </code>
+                </pre>
+            <li>C++ classes also support <a href="https://www.learncpp.com/cpp-tutorial/static-member-variables/" target="_blank" rel="noopener noreferrer">static member variavles</a>
+                and <a href="https://www.learncpp.com/cpp-tutorial/static-member-functions/" target="_blank" rel="noopener noreferrer">static member functions</a></li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="destructors">
-            <h3>Destructors</h3>
+    <div id="destructors">
+        <h3>Destructors</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/destructors-c/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>A destructor is a member function which is called automatically when:</li>
             <ul>
-                <li><a href="https://www.geeksforgeeks.org/destructors-c/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>A destructor is a member function which is called automatically when:</li>
+                <li>the function ends </li>
+                <li>the program ends</li>
+                <li>a block containing local variables ends </li>
+                <li>a delete operator is called</li>
+            </ul>
+            <li>Compiler does create a default destructor for us, so when do we need to write a user-defined destructor?</li>
                 <ul>
-                    <li>the function ends </li>
-                    <li>the program ends</li>
-                    <li>a block containing local variables ends </li>
-                    <li>a delete operator is called</li>
+                    <li>When a class contains a pointer to memory allocated in class, we should write a destructor to release memory before the class instance is destroyed.</li>
+                    <li>This must be done to avoid memory leak.</li>
                 </ul>
-                <li>Compiler does create a default destructor for us, so when do we need to write a user-defined destructor?</li>
-                    <ul>
-                        <li>When a class contains a pointer to memory allocated in class, we should write a destructor to release memory before the class instance is destroyed.</li>
-                        <li>This must be done to avoid memory leak.</li>
-                    </ul>
-                    <li>An example:</li>
-                    <pre>
-                        <code>                
+                <li>An example:</li>
+                <pre>
+                    <code>                
         class String &#123;
             private:
             char* s;
@@ -330,29 +329,29 @@
             strcpy(s, c);
         }
         String::~String() &#123; delete[] s; }
-                        </code>
-                    </pre>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                    </code>
+                </pre>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="virtualFunctions">
-            <h3>Virtual Functions</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/virtual-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>A <b>virtual function</b> is a special type of function that, when called, resolves to the most-derived version of the function that exists between the base and derived class.</li>
-                <li>This capability is known as <b>polymorphism</b>.</li>
-                <li>However, NEVER call virtual functions from constructors or destructors.</li>
-                <li>The downside of virtual funcions is it's inefficient --  resolving a virtual function call takes longer than resolving a regular one. 
-                    Hence, use virtual functions only when necessary.</li>
-                <li>One best practice of using virtual functions is: Use the <b>virtual</b> keyword on virtual functions in a base class. Use the <b>override</b> specifier (but not the virtual keyword) on override functions in derived classes.
-                    This is to let compiler raise error if something is wrong with the override functions</li>
-                <li>If we want to avoid a virtual function being override or we want to avoid a class being inherited, we can Use
-                    the <b>final</b> specifier.
-                </li>
-                <li>An example of using override and final specifiers</li>
-                    <pre>
-                        <code>
+    <div id="virtualFunctions">
+        <h3>Virtual Functions</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/virtual-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>A <b>virtual function</b> is a special type of function that, when called, resolves to the most-derived version of the function that exists between the base and derived class.</li>
+            <li>This capability is known as <b>polymorphism</b>.</li>
+            <li>However, NEVER call virtual functions from constructors or destructors.</li>
+            <li>The downside of virtual funcions is it's inefficient --  resolving a virtual function call takes longer than resolving a regular one. 
+                Hence, use virtual functions only when necessary.</li>
+            <li>One best practice of using virtual functions is: Use the <b>virtual</b> keyword on virtual functions in a base class. Use the <b>override</b> specifier (but not the virtual keyword) on override functions in derived classes.
+                This is to let compiler raise error if something is wrong with the override functions</li>
+            <li>If we want to avoid a virtual function being override or we want to avoid a class being inherited, we can Use
+                the <b>final</b> specifier.
+            </li>
+            <li>An example of using override and final specifiers</li>
+                <pre>
+                    <code>
         class A
         &#123;
         public:
@@ -377,28 +376,28 @@
         public:
             std::string_view getName() override &#123; return "C"; }
         };
-                        </code>
-                    </pre>
-                <li>Whenever you are dealing with inheritance, you SHOULD ALWAYS 
-                    <a href="https://www.learncpp.com/cpp-tutorial/virtual-destructors-virtual-assignment-and-overriding-virtualization/" target="_blank" rel="noopener noreferrer">make your destructors virtual</a>.</li>
-                <li><b>Pure virtual function & Abstract base class</b></li>
-                    <ul>
-                        <li>To create a pure virtual function, rather than define a body for the function, we simply assign the function the value 0.
-                            <br>For example: <span class="script-font">virtual int getValue() const = 0;</span>
-                        </li>
-                        <li>With pure virtual function, the base class will be <b>abstract base class</b>,
-                            and force the derived classes to provide their own implementations.</li>
-                        <li>A pure virtual function can be given a body, but the class will still be considered as abstract base class
-                            and the derived class needs to provide its own definition for that function as well.
-                        </li>
-                    </ul>
-                <li><b>Interface classes</b></li>
-                    <ul>
-                        <li>An <b>interface class</b> is a class that has no member variables, and where all of the functions are pure virtual!</li>
-                        <li>Interface classes are often named beginning with an I. </li>
-                        <li>Example:</li>
-                            <pre>
-                                <code>
+                    </code>
+                </pre>
+            <li>Whenever you are dealing with inheritance, you SHOULD ALWAYS 
+                <a href="https://www.learncpp.com/cpp-tutorial/virtual-destructors-virtual-assignment-and-overriding-virtualization/" target="_blank" rel="noopener noreferrer">make your destructors virtual</a>.</li>
+            <li><b>Pure virtual function & Abstract base class</b></li>
+                <ul>
+                    <li>To create a pure virtual function, rather than define a body for the function, we simply assign the function the value 0.
+                        <br>For example: <span class="script-font">virtual int getValue() const = 0;</span>
+                    </li>
+                    <li>With pure virtual function, the base class will be <b>abstract base class</b>,
+                        and force the derived classes to provide their own implementations.</li>
+                    <li>A pure virtual function can be given a body, but the class will still be considered as abstract base class
+                        and the derived class needs to provide its own definition for that function as well.
+                    </li>
+                </ul>
+            <li><b>Interface classes</b></li>
+                <ul>
+                    <li>An <b>interface class</b> is a class that has no member variables, and where all of the functions are pure virtual!</li>
+                    <li>Interface classes are often named beginning with an I. </li>
+                    <li>Example:</li>
+                        <pre>
+                            <code>
         class IErrorLog
         &#123;
         public:
@@ -409,32 +408,32 @@
     
             virtual ~IErrorLog() &#123;} // make a virtual destructor in case we delete an IErrorLog pointer, so the proper derived destructor is called
         };
-                                </code>
-                            </pre>
-                    </ul>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                            </code>
+                        </pre>
+                </ul>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="lambdas">
-            <h3>Lambdas (anonymous functions)</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/introduction-to-lambdas-anonymous-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>A <b>lambda expression</b> allows us to define an anonymous function inside another function.</li>
-                <li>The following is the syntax of lambda (which is quite weird):</li>
-                <pre>
-                    <code>
+    <div id="lambdas">
+        <h3>Lambdas (anonymous functions)</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/introduction-to-lambdas-anonymous-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>A <b>lambda expression</b> allows us to define an anonymous function inside another function.</li>
+            <li>The following is the syntax of lambda (which is quite weird):</li>
+            <pre>
+                <code>
         [ captureClause ] ( parameters ) -> returnType
         &#123;
             statements;
         }
-                    </code>
-                </pre>
-                <li>The captureClause, parameters and returnType are optional if they are not needed. If returnType is omitted, 
-                    <span class="script-font">auto</span> will be assumed.</li>
-                <li>An example of lambda usage without captureClause and returnType:</li>
-                <pre>
-                    <code>
+                </code>
+            </pre>
+            <li>The captureClause, parameters and returnType are optional if they are not needed. If returnType is omitted, 
+                <span class="script-font">auto</span> will be assumed.</li>
+            <li>An example of lambda usage without captureClause and returnType:</li>
+            <pre>
+                <code>
         #include &lt;iostream>
         #include &lt;algorithm> // for std::all_of
         
@@ -444,11 +443,11 @@
             // OUTPUT: 1
             return 0;
         }               
-                    </code>
-                </pre>
-                <li>To make it more readable, we can store the lambda function in a named variable:</li>
-                <pre>
-                    <code>
+                </code>
+            </pre>
+            <li>To make it more readable, we can store the lambda function in a named variable:</li>
+            <pre>
+                <code>
         #include &lt;iostream>
         #include &lt;algorithm> // for std::all_of
         
@@ -466,54 +465,54 @@
             // OUTPUT: 1
             return 0;
         }                        
-                    </code>
-                </pre>
-                <li>What is the use of capture clause?</li>
-                    <ul>
-                        <li>Unlike regular nested blocks (which can access identifier defined at outer block), 
-                            lambda can only access to global identifiers.</li>
-                        <li>Hence, <b>capture clause</b> is for us to "pass variables" to the lambda so that it
-                            can access them.</li>
-                        <li>However, the lambda only captures a constant copy of the outer scope variable, which means that 
-                            the lambda is not allowed to modify them.
-                        </li>
-                        <li>To allow modifications, we can mark the lambda as mutable using the <b>mutable</b> keyword.</li>
-                        <li>You can also make the lambda capture the variables by reference.</li>
-                        <li>For more details, refer to the reference link.</li>
-                    </ul>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                </code>
+            </pre>
+            <li>What is the use of capture clause?</li>
+                <ul>
+                    <li>Unlike regular nested blocks (which can access identifier defined at outer block), 
+                        lambda can only access to global identifiers.</li>
+                    <li>Hence, <b>capture clause</b> is for us to "pass variables" to the lambda so that it
+                        can access them.</li>
+                    <li>However, the lambda only captures a constant copy of the outer scope variable, which means that 
+                        the lambda is not allowed to modify them.
+                    </li>
+                    <li>To allow modifications, we can mark the lambda as mutable using the <b>mutable</b> keyword.</li>
+                    <li>You can also make the lambda capture the variables by reference.</li>
+                    <li>For more details, refer to the reference link.</li>
+                </ul>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="voidPointer">
-            <h3>Void Pointer</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/void-pointer-c-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>A void pointer is a pointer that has no associated data type with it.</li>
-                <li>A void pointer can hold address of any type and can be typcasted to any type.</li>
-                <li>Example:</li>
-                <pre>
-                    <code>
+    <div id="voidPointer">
+        <h3>Void Pointer</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/void-pointer-c-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>A void pointer is a pointer that has no associated data type with it.</li>
+            <li>A void pointer can hold address of any type and can be typcasted to any type.</li>
+            <li>Example:</li>
+            <pre>
+                <code>
         int a = 10;
         char b = 'x';
         
         void *p = &#38;a;  // void pointer holds address of int 'a'
         p = &#38;b; // void pointer holds address of char 'b'
-                    </code>
-                </pre>
-                <li>However, take note that void pointers <b>cannot</b> be dereferenced since it has no associated data type with it.</li>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                </code>
+            </pre>
+            <li>However, take note that void pointers <b>cannot</b> be dereferenced since it has no associated data type with it.</li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="functionPointers">
-            <h3>Function Pointers & reinterpret_cast</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/function-pointers/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>Function pointers are pointers that point to functions.</li>
-                <li>Examples</li>
-                <pre>
-                    <code>
+    <div id="functionPointers">
+        <h3>Function Pointers & reinterpret_cast</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/function-pointers/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>Function pointers are pointers that point to functions.</li>
+            <li>Examples</li>
+            <pre>
+                <code>
         #include &lt;iostream>
     
         int foo() // code starts at memory address 0x7ff77df71530
@@ -541,17 +540,17 @@
     
             return 0;
         }
-                    </code>
-                </pre>
-                <li>Take note that default parameters won't work for functions called through function pointers:</li>
-                    <ul>
-                        <li>Default parameters are resolved at compile-time</li>
-                        <li>Function pointers are resolved at run-time</li>
-                        <li>Hence, the compiler doesn't know what value to substitute when the functions are called through function pointers</li>
-                    </ul>
-                    <li>Using std::function for better readability</li>
-                    <pre>
-                        <code>
+                </code>
+            </pre>
+            <li>Take note that default parameters won't work for functions called through function pointers:</li>
+                <ul>
+                    <li>Default parameters are resolved at compile-time</li>
+                    <li>Function pointers are resolved at run-time</li>
+                    <li>Hence, the compiler doesn't know what value to substitute when the functions are called through function pointers</li>
+                </ul>
+                <li>Using std::function for better readability</li>
+                <pre>
+                    <code>
         #include &lt;iostream>
         #include &lt;functional> // for std::function
         
@@ -574,12 +573,12 @@
         
             return 0;
         }
-                        </code>
-                    </pre>
-                <li>One of the most useful things to do with function pointers is pass a function as an argument to another function,
-                     the functions being passed are sometimes called callback functions.</li>
-                <pre>
-                    <code>
+                    </code>
+                </pre>
+            <li>One of the most useful things to do with function pointers is pass a function as an argument to another function,
+                    the functions being passed are sometimes called callback functions.</li>
+            <pre>
+                <code>
         #include &lt;iostream>
     
         int add(int x, int y) &#123; return x+y;}
@@ -593,93 +592,93 @@
             calculateAndDisplay(add, 5, 3);     // RESULT: 8
             calculateAndDisplay(minus, 5, 3);   // RESULT: 2
         }
-                    </code>
-                </pre>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+                </code>
+            </pre>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="smartPointer">
-            <h3>Smart Pointer</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/smart-pointers-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>When we do dynamic memory allocation using the <span class="script-font">new</span> operator, it will lead to memory leak if we forget to deallocate a pointer 
-                    (using <span class="script-font">delete</span> operator and set the pointer to nullptr) when the pointer is going to out of scope.</li>
-                <li>Hence, C++11 comes up with Smart Pointer, which frees the memory automatically when the object is destoryed. </li>
-                <li>There are different types of Smart Pointers:</li>
-                    <ul>
-                        <li>unique_ptr</li>
-                            <ul>
-                                <li>Used when you want to make sure there is no second pointer pointing to the same resource</li>
-                            </ul>
-                        <li>shared_ptr</li>
-                            <ul>
-                                <li>Used when you want to have multiple pointers pointing to same resource</li>
-                                <li>shared_ptr has a use_count() function that can be used to get the number of references to a resource</li>
-                            </ul>
-                        <li>weak_ptr</li>
-                    </ul>
-                <li>These pointers are declared in the &lt;memory> header file.</li>
-                <li>For detailed explanations, refer to <a href="https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+    <div id="smartPointer">
+        <h3>Smart Pointer</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/smart-pointers-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>When we do dynamic memory allocation using the <span class="script-font">new</span> operator, it will lead to memory leak if we forget to deallocate a pointer 
+                (using <span class="script-font">delete</span> operator and set the pointer to nullptr) when the pointer is going to out of scope.</li>
+            <li>Hence, C++11 comes up with Smart Pointer, which frees the memory automatically when the object is destoryed. </li>
+            <li>There are different types of Smart Pointers:</li>
+                <ul>
+                    <li>unique_ptr</li>
+                        <ul>
+                            <li>Used when you want to make sure there is no second pointer pointing to the same resource</li>
+                        </ul>
+                    <li>shared_ptr</li>
+                        <ul>
+                            <li>Used when you want to have multiple pointers pointing to same resource</li>
+                            <li>shared_ptr has a use_count() function that can be used to get the number of references to a resource</li>
+                        </ul>
+                    <li>weak_ptr</li>
+                </ul>
+            <li>These pointers are declared in the &lt;memory> header file.</li>
+            <li>For detailed explanations, refer to <a href="https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/" target="_blank" rel="noopener noreferrer">this tutorial</a>.</li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="headerOnlyLibraries">
-            <h3>What are header-only libraries and what are the pros and cons?</h3>
-            <ul>
-                <li>Header-only libraries are libraries where the entire library is implemented using header files only (no .lib and .dll files will be provided)</li>
-                <li>What are the advantages?</li>
-                    <ul>
-                        <li>Header-only library is the only choice when dealing with C++ templates, because the compiler needs to know the full definition of the templates in order to instantiate.</li>
-                        <li>We do not need to build the library, and user doesn't need to compile our library before using it</li>
-                    </ul>
-                <li>What are the disadvantages?</li>
-                    <ul>
-                        <li>Most probably will have increased compilation time</li>
-                        <li>if you change anything about the code in the header, then you’ll need to recompile every file that includes that header</li>
-                        <li>Source code implementation is visible to user as it is written in the header file</li>
-                    </ul>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
+    <div id="headerOnlyLibraries">
+        <h3>What are header-only libraries and what are the pros and cons?</h3>
+        <ul>
+            <li>Header-only libraries are libraries where the entire library is implemented using header files only (no .lib and .dll files will be provided)</li>
+            <li>What are the advantages?</li>
+                <ul>
+                    <li>Header-only library is the only choice when dealing with C++ templates, because the compiler needs to know the full definition of the templates in order to instantiate.</li>
+                    <li>We do not need to build the library, and user doesn't need to compile our library before using it</li>
+                </ul>
+            <li>What are the disadvantages?</li>
+                <ul>
+                    <li>Most probably will have increased compilation time</li>
+                    <li>if you change anything about the code in the header, then you’ll need to recompile every file that includes that header</li>
+                    <li>Source code implementation is visible to user as it is written in the header file</li>
+                </ul>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
 
-        <div id="externC">
-            <h3>What is extern "C"</h3>
-            <ul>
-                <li><span class="script-font">extern "C"</span> makes a function-name in C++ have C linkage so that client C code can link to (use) your function using a C compatible header file</li>
-                <li>Since C++ has overloading of function names and C does not, the C++ compiler cannot just use the function name as a unique id to link to, so it mangles the name by adding information about the arguments.</li>
-                <li>When you state that a function has <span class="script-font">extern "C"</span> linkage in C++, the C++ compiler does not add argument/parameter type information to the name used for linkage 
-                    (so that it can be used by client C code, but at the same time the overloading of function name does not work anymore).</li>
-            </ul>
-        </div>
-        <mat-divider></mat-divider>
-        
-        <div id="crossPlatformHeaderFile">
-            <h3>Writing a cross-platform header file</h3>
-            <ul>
-                <li><a href="https://www.codetd.com/en/article/13087876" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>A cross-platform header file is needed in order to handle the following situations:</li>
-                    <ul>
-                        <li>Some people want to use it under Linux system, some people want to use it under Windows system</li>
-                        <li>Some people use C language for development, some people prefer C++ for development</li>
-                        <li>Some people want to use the library as a static library, some people might want to dynamically link it due to license issue such as LGPLv3</li>
-                    </ul>
-                <li>First of all, we need to aware that there are a lot of <a href="https://sourceforge.net/p/predef/wiki/Home/" target="_blank" rel="noopener noreferrer">predefined compiler macros</a> out there, such as:</li>
-                    <ul>
-                        <li><a href="https://sourceforge.net/p/predef/wiki/Standards/" target="_blank" rel="noopener noreferrer">Predefined macros for different Language Standards</a></li>
-                        <li><a href="https://sourceforge.net/p/predef/wiki/OperatingSystems/" target="_blank" rel="noopener noreferrer">Predefined macros for different Operating Systems</a></li>
-                        <li><a href="https://sourceforge.net/p/predef/wiki/Architectures/" target="_blank" rel="noopener noreferrer">Predefined macros for different Architectures</a></li>
-                        <li><a href="https://sourceforge.net/p/predef/wiki/Compilers/" target="_blank" rel="noopener noreferrer">Predefined macros for different Compilers</a></li>
-                    </ul>
-                <li>For Windows, there are a lot of <a href="https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-140#microsoft-specific-predefined-macros" target="_blank" rel="noopener noreferrer">Microsoft-specific predefined macros</a> as well,
-                    and there are some minor differences when the OS version is different. However, to determine whether the compilation target is Windows, 
-                    we basically will check whether _WIN32 is defined. <br>Take note that _WIN32 is defined when compilation target is 32-bit ARM, 64-bit ARM, x86, or x64. 
-                </li>
-                <li>By knowing the predefined macros, we can make our header file flexible according to OS, architecture, compiler etc.</li>
-                <li>Example in GenTL.h</li>
-                <pre>
-                    <code>
+    <div id="externC">
+        <h3>What is extern "C"</h3>
+        <ul>
+            <li><span class="script-font">extern "C"</span> makes a function-name in C++ have C linkage so that client C code can link to (use) your function using a C compatible header file</li>
+            <li>Since C++ has overloading of function names and C does not, the C++ compiler cannot just use the function name as a unique id to link to, so it mangles the name by adding information about the arguments.</li>
+            <li>When you state that a function has <span class="script-font">extern "C"</span> linkage in C++, the C++ compiler does not add argument/parameter type information to the name used for linkage 
+                (so that it can be used by client C code, but at the same time the overloading of function name does not work anymore).</li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
+    
+    <div id="crossPlatformHeaderFile">
+        <h3>Writing a cross-platform header file</h3>
+        <ul>
+            <li><a href="https://www.codetd.com/en/article/13087876" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>A cross-platform header file is needed in order to handle the following situations:</li>
+                <ul>
+                    <li>Some people want to use it under Linux system, some people want to use it under Windows system</li>
+                    <li>Some people use C language for development, some people prefer C++ for development</li>
+                    <li>Some people want to use the library as a static library, some people might want to dynamically link it due to license issue such as LGPLv3</li>
+                </ul>
+            <li>First of all, we need to aware that there are a lot of <a href="https://sourceforge.net/p/predef/wiki/Home/" target="_blank" rel="noopener noreferrer">predefined compiler macros</a> out there, such as:</li>
+                <ul>
+                    <li><a href="https://sourceforge.net/p/predef/wiki/Standards/" target="_blank" rel="noopener noreferrer">Predefined macros for different Language Standards</a></li>
+                    <li><a href="https://sourceforge.net/p/predef/wiki/OperatingSystems/" target="_blank" rel="noopener noreferrer">Predefined macros for different Operating Systems</a></li>
+                    <li><a href="https://sourceforge.net/p/predef/wiki/Architectures/" target="_blank" rel="noopener noreferrer">Predefined macros for different Architectures</a></li>
+                    <li><a href="https://sourceforge.net/p/predef/wiki/Compilers/" target="_blank" rel="noopener noreferrer">Predefined macros for different Compilers</a></li>
+                </ul>
+            <li>For Windows, there are a lot of <a href="https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-140#microsoft-specific-predefined-macros" target="_blank" rel="noopener noreferrer">Microsoft-specific predefined macros</a> as well,
+                and there are some minor differences when the OS version is different. However, to determine whether the compilation target is Windows, 
+                we basically will check whether _WIN32 is defined. <br>Take note that _WIN32 is defined when compilation target is 32-bit ARM, 64-bit ARM, x86, or x64. 
+            </li>
+            <li>By knowing the predefined macros, we can make our header file flexible according to OS, architecture, compiler etc.</li>
+            <li>Example in GenTL.h</li>
+            <pre>
+                <code>
         #ifndef GC_TLI_CLIENT_H_
         #define GC_TLI_CLIENT_H_ 1
         
@@ -705,101 +704,101 @@
         #  else
                 typedef uint8_t bool8_t;
         #  endif
-                    </code>
-                </pre>
-            </ul>
-        </div>
+                </code>
+            </pre>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div id="PImpl">
+        <h3>PImpl(Pointer to IMPLementation) Idiom in C++</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/pimpl-idiom-in-c-with-examples/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        </ul>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div>
+        <h3>Stringizing operator (#) & Token-pasting operator (##)</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/and-operators-in-c/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        </ul>
         <mat-divider></mat-divider>
-
-        <div id="PImpl">
-            <h3>PImpl(Pointer to IMPLementation) Idiom in C++</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/pimpl-idiom-in-c-with-examples/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-            </ul>
-        </div>
+    </div>
+    
+    <div>
+        <h3>Predefined macros for portable C++ code</h3>
+        <ul>
+            <li><a href="https://blog.kowalczyk.info/article/j/guide-to-predefined-macros-in-c-compilers-gcc-clang-msvc-etc..html" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        </ul>
         <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Stringizing operator (#) & Token-pasting operator (##)</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/and-operators-in-c/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-        
-        <div>
-            <h3>Predefined macros for portable C++ code</h3>
-            <ul>
-                <li><a href="https://blog.kowalczyk.info/article/j/guide-to-predefined-macros-in-c-compilers-gcc-clang-msvc-etc..html" target="_blank" rel="noopener noreferrer">Reference</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Static Member Functions</h3>
+        <ul>
+            <li>Public member functions of a class can only be called through the object instantiated from a class.</li>
+            <li>However, static member functions are not attached to any particular object, hence we can call static member functions 
+                without instantiation of object.
+            </li>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/static-member-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Static Member Functions</h3>
-            <ul>
-                <li>Public member functions of a class can only be called through the object instantiated from a class.</li>
-                <li>However, static member functions are not attached to any particular object, hence we can call static member functions 
-                    without instantiation of object.
-                </li>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/static-member-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Inline functions</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/inline-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Inline functions</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/inline-functions/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-    
-        <div>
-            <h3>Unnamed namespace</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/namespace-in-c-set-2-extending-namespace-and-unnamed-namespace/?ref=lbp" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>used for declaring unique identifiers</li>
-                <li>The unnamed namespaces you have created will only be accessible within the file you created it in</li>
-                <li>Unnamed namespaces are the replacement for the static declaration of variables.</li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-    
-        <div>
-            <h3>Forbidden constructors</h3>
-            <ul>
-                <li><a href="https://stackoverflow.com/questions/6077143/disable-copy-constructor" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>We can disable or forbidden certain constructors such as copy constructor or default constructor by
-                    making them private and don't provide any implementation for them.
-                </li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Unnamed namespace</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/namespace-in-c-set-2-extending-namespace-and-unnamed-namespace/?ref=lbp" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>used for declaring unique identifiers</li>
+            <li>The unnamed namespaces you have created will only be accessible within the file you created it in</li>
+            <li>Unnamed namespaces are the replacement for the static declaration of variables.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>std::transform() in C++ STL</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/transform-c-stl-perform-operation-elements/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>std::transform() is normally used to perform an operation on all elements.</li>
-            </ul>
-        </div>
+    <div>
+        <h3>Forbidden constructors</h3>
+        <ul>
+            <li><a href="https://stackoverflow.com/questions/6077143/disable-copy-constructor" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>We can disable or forbidden certain constructors such as copy constructor or default constructor by
+                making them private and don't provide any implementation for them.
+            </li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Functors</h3>
-            <ul>
-                <li><a href="https://www.geeksforgeeks.org/functors-in-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-            </ul>
-        </div>
-    
-        <div>
-            <h3>Stream classes for strings</h3>
-            <ul>
-                <li><a href="https://www.learncpp.com/cpp-tutorial/stream-classes-for-strings/" target="_blank" rel="noopener noreferrer">Reference</a></li>
-                <li>stringstream is useful for us to convert strings to numbers or vice versa</li>
-                <li>For example:</li>
-                    <pre>
-                        <code>
+    <div>
+        <h3>std::transform() in C++ STL</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/transform-c-stl-perform-operation-elements/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>std::transform() is normally used to perform an operation on all elements.</li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Functors</h3>
+        <ul>
+            <li><a href="https://www.geeksforgeeks.org/functors-in-cpp/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Stream classes for strings</h3>
+        <ul>
+            <li><a href="https://www.learncpp.com/cpp-tutorial/stream-classes-for-strings/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+            <li>stringstream is useful for us to convert strings to numbers or vice versa</li>
+            <li>For example:</li>
+                <pre>
+                    <code>
     std::stringstream os;
 
     int nValue&#123; 12345 };
@@ -814,43 +813,41 @@
     os.str(""); // erase the buffer
     os &lt;&lt; "Hello World!";
     std::cout &lt;&lt; os.str();
-                        </code>
-                    </pre>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                    </code>
+                </pre>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Friend Class</h3>
-            <ul>
-                <li>Normally we cannot access the private members of a class, but a friend class can.</li>
-                <li>In the code snippet below, the Robot declares RobotController class as its friend, so RobotController class
-                    can access the private members of Robot, but RobotController doesnt declare Robot class as friend, so Robot class
-                    cannot access the private members of RobotController.
-                </li>
-                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/friend_class_example.cpp" target="_blank" rel="noopener noreferrer">Code example implementing Friend Class</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h3>Friend Class</h3>
+        <ul>
+            <li>Normally we cannot access the private members of a class, but a friend class can.</li>
+            <li>In the code snippet below, the Robot declares RobotController class as its friend, so RobotController class
+                can access the private members of Robot, but RobotController doesnt declare Robot class as friend, so Robot class
+                cannot access the private members of RobotController.
+            </li>
+            <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/friend_class_example.cpp" target="_blank" rel="noopener noreferrer">Code example implementing Friend Class</a></li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h3>Multi-threaded programming (mutex, recursive_mutex, lock, lock_guard)</h3>
-            <ul>
-                <li>References</li>
-                    <ul>
-                        <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11.php" target="_blank" rel="noopener noreferrer">Part A</a></li>
-                        <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11B.php" target="_blank" rel="noopener noreferrer">Part B</a></li>
-                    </ul>
-                <li>Mutex stands for Mutual Exclusion.</li>
-                <li>Calling join() will block until the thread is finished.</li>
-                <li>Calling detach() will leave the thread to run in the background.</li>
-                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/multithreaded_example.cpp" target="_blank" rel="noopener noreferrer">Code example for multithreaded program</a></li>
-                <li>Race condition is a condition where multiple threads are trying to change the same variable at the same time.</li>
-                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/race_condition_example.cpp" target="_blank" rel="noopener noreferrer">Race Condition Example</a></li>
-                <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/mutex_lock_unlock_example.cpp" target="_blank" rel="noopener noreferrer">Code example for resolving race condition using lock() and unlock()</a></li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-
+    <div>
+        <h3>Multi-threaded programming (mutex, recursive_mutex, lock, lock_guard)</h3>
+        <ul>
+            <li>References</li>
+                <ul>
+                    <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11.php" target="_blank" rel="noopener noreferrer">Part A</a></li>
+                    <li><a href="https://www.bogotobogo.com/cplusplus/multithreaded4_cplusplus11B.php" target="_blank" rel="noopener noreferrer">Part B</a></li>
+                </ul>
+            <li>Mutex stands for Mutual Exclusion.</li>
+            <li>Calling join() will block until the thread is finished.</li>
+            <li>Calling detach() will leave the thread to run in the background.</li>
+            <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/multithreaded_example.cpp" target="_blank" rel="noopener noreferrer">Code example for multithreaded program</a></li>
+            <li>Race condition is a condition where multiple threads are trying to change the same variable at the same time.</li>
+            <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/race_condition_example.cpp" target="_blank" rel="noopener noreferrer">Race Condition Example</a></li>
+            <li><a href="https://github.com/tka-andrew/learning_cpp/blob/master/src/mutex_lock_unlock_example.cpp" target="_blank" rel="noopener noreferrer">Code example for resolving race condition using lock() and unlock()</a></li>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

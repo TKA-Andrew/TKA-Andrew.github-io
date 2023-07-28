@@ -1,211 +1,209 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Path Planning Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Path finding algorithm:</li>
-                    <ul>
-                        <li>Input</li>
-                            <ul>
-                                <li>Environment Geometry</li>
-                                <li>Robot Geometry</li>
-                                <li>Start pose of robot</li>
-                                <li>Goal pose of robot</li>
-                            </ul>
-                        <li>Output</li>
-                            <ul>
-                                <li>Path from start to goal</li>
-                            </ul>
-                    </ul>
-                <li>Terminology</li>
-                    <ul>
-                        <li>Complete - whether it is able to find a path between the start pose and goal pose</li>
-                        <li>Optimal - whether it is able to find the best solution (in terms of risk or time taken etc)</li>
-                    </ul>
-                <li>Approaches to Path Planning</li>
-                    <ul>
-                        <li>Discrete/Combinatorial Path Planning</li>
-                        <li>Sample-based Path Planning</li>
-                        <li>Probabilistic Path Planning</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-
-        <div>
-            <h2>Discrete Planning / Combinatorial Planning</h2>
-            <h3>Introduction</h3>
-            <ul>
-                <li>Steps:</li>
-                    <ul>
-                        <li>Develop a convenient <b>continuous representation</b> by representing the problem space as the configuration space</li>
-                        <li>The configuration space is <b>discretized</b> into a simpler representation and represented by a graph</li>
-                        <li>A <b>search algorithm</b> is applied to the graph to find the best path</li>
-                    </ul>
-                <li>Discrete Planning is best suited for low-dimensional problems, and it can be very computationally expensive for high-dimensional problems.</li>
-            </ul>
-            
-            <h3>Continuous Representation & Minkowski Sum</h3>
-            <ul>
-                <li>To ensure the robot can pass through the planned path, obstacles in the workspace are inflated to create a new
-                    space called the configuration space (C-Space).
-                </li>
-                <li>With the obstacles inflated by the radius of the robot, the robot can be treated as a point, and then
-                    the path finding will be as usual.
-                </li>
-                <li>Minkowski Sum</li>
-                    <ul>
-                        <li>Minkowski Sum is a mathematical property that can be used to compute the configuration space given an obstacle geometry and robot geometry.</li>
-                        <li>The image b) below shows the configuration space after computing the Minkowski sum of the robot and the obstacles.</li>
-                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="http://motion.cs.illinois.edu/RoboticSystems/figures/planning/disk_cobstacle.svg" width="60%">
-                                <span style="font-style: italic;">Source of image: http://motion.cs.illinois.edu/RoboticSystems/GeometricMotionPlanning.html</span>
-                            </div>
-                        <li>You may refer to this <a href="https://github.com/udacity/RoboND-MinkowskiSum" target="_blank" rel="noopener noreferrer">Github repo</a> for the implementation of Minkowski Sum.</li>
-                        <li>Take note that the shape of the robot in the example above is a circle, what if the robot is in triangle shape? There might be some possible 
-                            paths for the robot if the robot rotates to a certain degree. Normally, bounding circle of the robot is used for the Minkowski Sum computation, this
-                            will ensure all worst cases are covered, but might abandon some possible paths that the robot is able to pass through if it rotates a bit.
-                        </li>
-                        <li>Since the configuration space changes depending on the robot's rotation, we need to add one more dimension to the configuration space, thus results
-                            in a 3D configuraiton space that covers configuration space at every angle of robot's rotation. This results in a helix shaped configuration space.</li>
-                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="https://dl.acm.org/cms/asset/fc32abdf-9c67-4106-bcd4-1bdf9d05db17/2261250.2261313.key.jpg" width="25%">
-                                <span style="font-style: italic;">Source of image: https://dl.acm.org/doi/abs/10.1145/2261250.2261313</span>
-                            </div>
-                        <li>You may look at <a href="https://www.youtube.com/watch?v=SBFwgR4K1Gk" target="_blank" rel="noopener noreferrer">this</a> video for the amazing visualization of a 3D configuration space.
-                        </li>
-                    </ul>
-            </ul>
-
-            <h3>Discretization</h3>
-            <ul>
-                <li>The main purpose of discretization is to simply (reduce the size) of configuration space by separating the space into discrete segments,so that the amount of time
-                    taken to apply a search algorithm is reasonable.
-                </li>
-                <li>3 methods of discretization:</li>
-                    <ul>
-                        <li>Roadmap</li>
-                        <li>Cell Decomposition</li>
-                        <li>Gradient Field</li>
-                    </ul>
-                <li>Roadmap</li>
-                    <ul>
-                        <li>Roadmap methods are implemented in 2 phases:</li>
-                            <ul>
-                                <li>Construction phase - builds up a graph based on configuration space</li>
-                                <li>Query phase - finds a path from start to goal using the constructed graph</li>
-                            </ul>
-                        <li>Examples of Roadmap methods:</li>
-                            <ul>
-                                <li>Visibility Graph</li>
-                                    <ul>
-                                        <li>Builds a roadmap by connecting the start node, all of the obstacles' vertices
-                                            and goal nodes to each other as long as the connections do not collide with obstacles
-                                        </li>
-                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                <img src="https://ayorho.files.wordpress.com/2011/01/visibility-graphs1.jpg" width="60%">
-                                                <span style="font-style: italic;">Source of image: https://ayorho.wordpress.com/2011/01/03/ltc2-ans/</span>
-                                            </div>
-                                        <li>Advantages</li>
-                                            <ul>
-                                                <li>The visibility graph is complete.</li>
-                                                <li>Search algorithms will be able to find an optimal path.</li>
-                                            </ul>
-                                        <li>Disadvantages</li>
-                                            <ul>
-                                                <li>A robot traversing the optimal path would have to pass incredibly close to obstacles, increasing the risk of collision significantly.</li>
-                                            </ul>
-                                    </ul>
-                                <li>Voronoi Diagram</li>
-                                    <ul>
-                                        <li>A Voronoi Diagram is a graph whose edges bisect the free space in between obstacles. Every edge lies equidistant from each obstacle around it - with the greatest amount of clearance possible.</li>
-                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                <img src="https://ayorho.files.wordpress.com/2011/01/voronoi-diagram1.jpg?w=300&h=207" width="60%">
-                                                <span style="font-style: italic;">Source of image: https://ayorho.wordpress.com/2011/01/03/ltc2-ans/</span>
-                                            </div>
-                                        <li>Advantages</li>
-                                            <ul>
-                                                <li>The Voronoi Diagram is complete.</li>
-                                                <li>More tolerance for error/collision.</li>
-                                            </ul>
-                                        <li>Disadvantages</li>
-                                            <ul>
-                                                <li>The path will not be optimal.</li>
-                                            </ul>    
-                                    </ul>
-                            </ul>
-                    </ul>
-
-                <li>Cell Decomposition</li>
-                    <ul>
-                        <li>Cell Decomposition divides the space into discrete cells, where each cell is a node and adjacent cells are connected with edges.</li>
-                        <li>Types of Cell Decomposition:</li>
-                            <ul>
-                                <li>Exact Cell Decomposition</li>
-                                <li>Approximate Cell Decomposition</li>
-                            </ul>
-                        <li>Exact Cell Decomposition</li>
-                            <ul>
-                                <li>Exact Cell Decomposition adds vertical line segments at every obstacle's vertex, results in a lot of non-overlapping cells.</li>
-                                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                        <img src="https://www.researchgate.net/profile/Fares-Abu-Dakka/publication/235929101/figure/fig3/AS:669473468055566@1536626321216/Exact-Cell-Decomposition-Latombe-1991.png" width="60%">
-                                        <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/Exact-Cell-Decomposition-Latombe-1991_fig3_235929101</span>
-                                    </div>
-                                <li>Advantages</li>
-                                    <ul>
-                                        <li>It is complete.</li>
-                                        <li>Search algorithms will be able to find an optimal path.</li>
-                                    </ul>
-                                <li>Disadvantages</li>
-                                    <ul>
-                                        <li>Difficult to compute the decomposition if the obstacles are not polygonal.</li>
-                                    </ul>    
-                            </ul>
-                        <li>Approximate Cell Decomposition</li>
+    <h1>Path Planning Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Path finding algorithm:</li>
+                <ul>
+                    <li>Input</li>
                         <ul>
-                            <li>Approximate cell decomposition divides a configuration space into discrete cells of simple, regular shapes - such as rectangles and squares.</li>
-                            <li>There are 2 types of approximage cell decomposition:</li>
+                            <li>Environment Geometry</li>
+                            <li>Robot Geometry</li>
+                            <li>Start pose of robot</li>
+                            <li>Goal pose of robot</li>
+                        </ul>
+                    <li>Output</li>
+                        <ul>
+                            <li>Path from start to goal</li>
+                        </ul>
+                </ul>
+            <li>Terminology</li>
+                <ul>
+                    <li>Complete - whether it is able to find a path between the start pose and goal pose</li>
+                    <li>Optimal - whether it is able to find the best solution (in terms of risk or time taken etc)</li>
+                </ul>
+            <li>Approaches to Path Planning</li>
+                <ul>
+                    <li>Discrete/Combinatorial Path Planning</li>
+                    <li>Sample-based Path Planning</li>
+                    <li>Probabilistic Path Planning</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div>
+        <h2>Discrete Planning / Combinatorial Planning</h2>
+        <h3>Introduction</h3>
+        <ul>
+            <li>Steps:</li>
+                <ul>
+                    <li>Develop a convenient <b>continuous representation</b> by representing the problem space as the configuration space</li>
+                    <li>The configuration space is <b>discretized</b> into a simpler representation and represented by a graph</li>
+                    <li>A <b>search algorithm</b> is applied to the graph to find the best path</li>
+                </ul>
+            <li>Discrete Planning is best suited for low-dimensional problems, and it can be very computationally expensive for high-dimensional problems.</li>
+        </ul>
+        
+        <h3>Continuous Representation & Minkowski Sum</h3>
+        <ul>
+            <li>To ensure the robot can pass through the planned path, obstacles in the workspace are inflated to create a new
+                space called the configuration space (C-Space).
+            </li>
+            <li>With the obstacles inflated by the radius of the robot, the robot can be treated as a point, and then
+                the path finding will be as usual.
+            </li>
+            <li>Minkowski Sum</li>
+                <ul>
+                    <li>Minkowski Sum is a mathematical property that can be used to compute the configuration space given an obstacle geometry and robot geometry.</li>
+                    <li>The image b) below shows the configuration space after computing the Minkowski sum of the robot and the obstacles.</li>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="http://motion.cs.illinois.edu/RoboticSystems/figures/planning/disk_cobstacle.svg" width="60%">
+                            <span style="font-style: italic;">Source of image: http://motion.cs.illinois.edu/RoboticSystems/GeometricMotionPlanning.html</span>
+                        </div>
+                    <li>You may refer to this <a href="https://github.com/udacity/RoboND-MinkowskiSum" target="_blank" rel="noopener noreferrer">Github repo</a> for the implementation of Minkowski Sum.</li>
+                    <li>Take note that the shape of the robot in the example above is a circle, what if the robot is in triangle shape? There might be some possible 
+                        paths for the robot if the robot rotates to a certain degree. Normally, bounding circle of the robot is used for the Minkowski Sum computation, this
+                        will ensure all worst cases are covered, but might abandon some possible paths that the robot is able to pass through if it rotates a bit.
+                    </li>
+                    <li>Since the configuration space changes depending on the robot's rotation, we need to add one more dimension to the configuration space, thus results
+                        in a 3D configuraiton space that covers configuration space at every angle of robot's rotation. This results in a helix shaped configuration space.</li>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="https://dl.acm.org/cms/asset/fc32abdf-9c67-4106-bcd4-1bdf9d05db17/2261250.2261313.key.jpg" width="25%">
+                            <span style="font-style: italic;">Source of image: https://dl.acm.org/doi/abs/10.1145/2261250.2261313</span>
+                        </div>
+                    <li>You may look at <a href="https://www.youtube.com/watch?v=SBFwgR4K1Gk" target="_blank" rel="noopener noreferrer">this</a> video for the amazing visualization of a 3D configuration space.
+                    </li>
+                </ul>
+        </ul>
+
+        <h3>Discretization</h3>
+        <ul>
+            <li>The main purpose of discretization is to simply (reduce the size) of configuration space by separating the space into discrete segments,so that the amount of time
+                taken to apply a search algorithm is reasonable.
+            </li>
+            <li>3 methods of discretization:</li>
+                <ul>
+                    <li>Roadmap</li>
+                    <li>Cell Decomposition</li>
+                    <li>Gradient Field</li>
+                </ul>
+            <li>Roadmap</li>
+                <ul>
+                    <li>Roadmap methods are implemented in 2 phases:</li>
+                        <ul>
+                            <li>Construction phase - builds up a graph based on configuration space</li>
+                            <li>Query phase - finds a path from start to goal using the constructed graph</li>
+                        </ul>
+                    <li>Examples of Roadmap methods:</li>
+                        <ul>
+                            <li>Visibility Graph</li>
                                 <ul>
-                                    <li>Simple Decomposition</li>
+                                    <li>Builds a roadmap by connecting the start node, all of the obstacles' vertices
+                                        and goal nodes to each other as long as the connections do not collide with obstacles
+                                    </li>
+                                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                            <img src="https://ayorho.files.wordpress.com/2011/01/visibility-graphs1.jpg" width="60%">
+                                            <span style="font-style: italic;">Source of image: https://ayorho.wordpress.com/2011/01/03/ltc2-ans/</span>
+                                        </div>
+                                    <li>Advantages</li>
                                         <ul>
-                                            <li>This decomposes a 2D configuration space into a grid of rectangular cells.</li>
-                                            <li>For each cell, if there is presence of obstacle (even if it only occupy 1% of the grid size), the grid cell will be marked as occupied.</li>
-                                                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                    <img src="https://www.researchgate.net/profile/Mehdi-Mekni-2/publication/220505167/figure/fig1/AS:317245721989159@1452648682637/The-two-common-cell-decomposition-techniques-used-to-represent-environments.png" width="60%">
-                                                    <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/The-two-common-cell-decomposition-techniques-used-to-represent-environments_fig1_220505167</span>
-                                                </div>
-                                            <li>Advantages</li>
-                                                <ul>
-                                                    <li>It is complete.</li>
-                                                </ul>
-                                            <li>Disadvantages</li>
-                                                <ul>
-                                                    <li>Not optimal (but actually quite acceptable) due to grid cells are considered occupied even if the obstacle only occupy 1% of the grid cell.</li>
-                                                </ul>  
+                                            <li>The visibility graph is complete.</li>
+                                            <li>Search algorithms will be able to find an optimal path.</li>
                                         </ul>
-                                    <li>Iterative Decomposition</li>
+                                    <li>Disadvantages</li>
                                         <ul>
-                                            <li>Also called as quadtree decomposition</li>
-                                            <li>This recursively decompose mixed cells until they find a sequence of free cells from start to goal.</li>
-                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                                <img src="https://video.udacity-data.com/topher/2018/April/5ad27861_c5-l2-67-exact-cell-decomposition-applied-v4/c5-l2-67-exact-cell-decomposition-applied-v4.png" width="60%">
-                                                <span style="font-style: italic;">Source of image: Udacity Nanodegree - Robotics Software Engineer</span>
-                                            </div>
-                                            <li>Advantages</li>
-                                                <ul>
-                                                    <li>With enough computation, it approaches completeness.</li>
-                                                </ul>
-                                            <li>Disadvantages</li>
-                                                <ul>
-                                                    <li>Not optimal because obvious (wide/open) paths are found first.</li>
-                                                </ul>  
+                                            <li>A robot traversing the optimal path would have to pass incredibly close to obstacles, increasing the risk of collision significantly.</li>
                                         </ul>
                                 </ul>
+                            <li>Voronoi Diagram</li>
+                                <ul>
+                                    <li>A Voronoi Diagram is a graph whose edges bisect the free space in between obstacles. Every edge lies equidistant from each obstacle around it - with the greatest amount of clearance possible.</li>
+                                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                            <img src="https://ayorho.files.wordpress.com/2011/01/voronoi-diagram1.jpg?w=300&h=207" width="60%">
+                                            <span style="font-style: italic;">Source of image: https://ayorho.wordpress.com/2011/01/03/ltc2-ans/</span>
+                                        </div>
+                                    <li>Advantages</li>
+                                        <ul>
+                                            <li>The Voronoi Diagram is complete.</li>
+                                            <li>More tolerance for error/collision.</li>
+                                        </ul>
+                                    <li>Disadvantages</li>
+                                        <ul>
+                                            <li>The path will not be optimal.</li>
+                                        </ul>    
+                                </ul>
                         </ul>
+                </ul>
+
+            <li>Cell Decomposition</li>
+                <ul>
+                    <li>Cell Decomposition divides the space into discrete cells, where each cell is a node and adjacent cells are connected with edges.</li>
+                    <li>Types of Cell Decomposition:</li>
+                        <ul>
+                            <li>Exact Cell Decomposition</li>
+                            <li>Approximate Cell Decomposition</li>
+                        </ul>
+                    <li>Exact Cell Decomposition</li>
+                        <ul>
+                            <li>Exact Cell Decomposition adds vertical line segments at every obstacle's vertex, results in a lot of non-overlapping cells.</li>
+                                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <img src="https://www.researchgate.net/profile/Fares-Abu-Dakka/publication/235929101/figure/fig3/AS:669473468055566@1536626321216/Exact-Cell-Decomposition-Latombe-1991.png" width="60%">
+                                    <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/Exact-Cell-Decomposition-Latombe-1991_fig3_235929101</span>
+                                </div>
+                            <li>Advantages</li>
+                                <ul>
+                                    <li>It is complete.</li>
+                                    <li>Search algorithms will be able to find an optimal path.</li>
+                                </ul>
+                            <li>Disadvantages</li>
+                                <ul>
+                                    <li>Difficult to compute the decomposition if the obstacles are not polygonal.</li>
+                                </ul>    
+                        </ul>
+                    <li>Approximate Cell Decomposition</li>
+                    <ul>
+                        <li>Approximate cell decomposition divides a configuration space into discrete cells of simple, regular shapes - such as rectangles and squares.</li>
+                        <li>There are 2 types of approximage cell decomposition:</li>
+                            <ul>
+                                <li>Simple Decomposition</li>
+                                    <ul>
+                                        <li>This decomposes a 2D configuration space into a grid of rectangular cells.</li>
+                                        <li>For each cell, if there is presence of obstacle (even if it only occupy 1% of the grid size), the grid cell will be marked as occupied.</li>
+                                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                                <img src="https://www.researchgate.net/profile/Mehdi-Mekni-2/publication/220505167/figure/fig1/AS:317245721989159@1452648682637/The-two-common-cell-decomposition-techniques-used-to-represent-environments.png" width="60%">
+                                                <span style="font-style: italic;">Source of image: https://www.researchgate.net/figure/The-two-common-cell-decomposition-techniques-used-to-represent-environments_fig1_220505167</span>
+                                            </div>
+                                        <li>Advantages</li>
+                                            <ul>
+                                                <li>It is complete.</li>
+                                            </ul>
+                                        <li>Disadvantages</li>
+                                            <ul>
+                                                <li>Not optimal (but actually quite acceptable) due to grid cells are considered occupied even if the obstacle only occupy 1% of the grid cell.</li>
+                                            </ul>  
+                                    </ul>
+                                <li>Iterative Decomposition</li>
+                                    <ul>
+                                        <li>Also called as quadtree decomposition</li>
+                                        <li>This recursively decompose mixed cells until they find a sequence of free cells from start to goal.</li>
+                                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                            <img src="https://video.udacity-data.com/topher/2018/April/5ad27861_c5-l2-67-exact-cell-decomposition-applied-v4/c5-l2-67-exact-cell-decomposition-applied-v4.png" width="60%">
+                                            <span style="font-style: italic;">Source of image: Udacity Nanodegree - Robotics Software Engineer</span>
+                                        </div>
+                                        <li>Advantages</li>
+                                            <ul>
+                                                <li>With enough computation, it approaches completeness.</li>
+                                            </ul>
+                                        <li>Disadvantages</li>
+                                            <ul>
+                                                <li>Not optimal because obvious (wide/open) paths are found first.</li>
+                                            </ul>  
+                                    </ul>
+                            </ul>
                     </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

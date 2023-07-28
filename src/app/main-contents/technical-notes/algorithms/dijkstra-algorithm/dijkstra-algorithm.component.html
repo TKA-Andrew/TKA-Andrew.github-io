@@ -1,52 +1,51 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Dijkstra's Algorithm</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>Dijkstra's algorithm is an algorithm for finding the shortest path between the nodes in a graph.</li>
-                <li>There are 2 variants of Dijkstra's Algorithm</li>
-                    <ul>
-                        <li>Original variant: With starting point and destination defined, find the shortest path/distance from between this 2 points</li>
-                        <li>Another variant: With starting point defined, find the shortest path from start to all vertices</li>
-                    </ul>
-                <li>Excellent Youtube videos</li>
-                    <ul>
-                        <li><a href="https://www.youtube.com/watch?v=EFg3u_E6eHU" target="_blank" ref="noopener noreferrer">Overview</a></li>
-                        <li><a href="https://www.youtube.com/watch?v=pLElbKBc4RU&t=0s" target="_blank" ref="noopener noreferrer">Dijkstra's Algorithm walkthrough</a></li>
-                        <li><a href="https://www.youtube.com/watch?v=OHJpOGa_L34" target="_blank" ref="noopener noreferrer">LeetCode Questions walkthrough</a></li>
-                    </ul>
-                <li>If the problem has the following characteristics, it is most likely can be solved using Dijkstra's algorihm:</li>
-                    <ul>
-                        <li>There is a starting point</li>
-                        <li>Finding minimum path (can be maximum also, see LeetCode1514) with the starting point as reference</li>
-                    </ul>
-                <li>There are a few things to take note:</li>
-                    <ul>
-                        <li>Are the edges directed or undirected?</li>
-                            <ul>
-                                <li>This will determine whether our graphs variable need to store 2 way direction info</li>
-                                
-                            </ul>
-                        <li>Is there any negative edge?</li>
-                            <ul>
-                                <li>If yes, we need to consider other algorithms such as Bellman-Ford’s algorithm</li>
-                            </ul>
-                        <li>Is the problem asking for path or only distance?</li>
-                            <ul>
-                                <li>If path is needed, we need to keep track the previous vertex when we update
-                                    the minDistances vector.
-                                </li>
-                            </ul>
-                    </ul>
-                <li><b>Algorithm according to first video</b></li>
-                    <ol>
-                        <li>Construct a <span style="font-style: italic;">graph</span> variable</li>
-                            <ul>
-                                <li>Need to take note whether graph is directed or undirected.</li>
-                                <li>Example of undirected graph construction:</li>
-                                    <pre>
-                                        <code>
+    <h1>Dijkstra's Algorithm</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>Dijkstra's algorithm is an algorithm for finding the shortest path between the nodes in a graph.</li>
+            <li>There are 2 variants of Dijkstra's Algorithm</li>
+                <ul>
+                    <li>Original variant: With starting point and destination defined, find the shortest path/distance from between this 2 points</li>
+                    <li>Another variant: With starting point defined, find the shortest path from start to all vertices</li>
+                </ul>
+            <li>Excellent Youtube videos</li>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=EFg3u_E6eHU" target="_blank" ref="noopener noreferrer">Overview</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=pLElbKBc4RU&t=0s" target="_blank" ref="noopener noreferrer">Dijkstra's Algorithm walkthrough</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=OHJpOGa_L34" target="_blank" ref="noopener noreferrer">LeetCode Questions walkthrough</a></li>
+                </ul>
+            <li>If the problem has the following characteristics, it is most likely can be solved using Dijkstra's algorihm:</li>
+                <ul>
+                    <li>There is a starting point</li>
+                    <li>Finding minimum path (can be maximum also, see LeetCode1514) with the starting point as reference</li>
+                </ul>
+            <li>There are a few things to take note:</li>
+                <ul>
+                    <li>Are the edges directed or undirected?</li>
+                        <ul>
+                            <li>This will determine whether our graphs variable need to store 2 way direction info</li>
+                            
+                        </ul>
+                    <li>Is there any negative edge?</li>
+                        <ul>
+                            <li>If yes, we need to consider other algorithms such as Bellman-Ford’s algorithm</li>
+                        </ul>
+                    <li>Is the problem asking for path or only distance?</li>
+                        <ul>
+                            <li>If path is needed, we need to keep track the previous vertex when we update
+                                the minDistances vector.
+                            </li>
+                        </ul>
+                </ul>
+            <li><b>Algorithm according to first video</b></li>
+                <ol>
+                    <li>Construct a <span style="font-style: italic;">graph</span> variable</li>
+                        <ul>
+                            <li>Need to take note whether graph is directed or undirected.</li>
+                            <li>Example of undirected graph construction:</li>
+                                <pre>
+                                    <code>
     // GIVEN edges = [[1,2,1],[2,3,2],[1,3,1]]; 
     // where each element represents &#123;source, destination, travelCost}
 
@@ -58,40 +57,40 @@
         graph[edges[i][0]].push_back(&#123;edges[i][1],edges[i][2]});
         graph[edges[i][1]].push_back(&#123;edges[i][0],edges[i][2]}); // if the graph is undirected
     }
-                                        </code>
-                                    </pre>
-                            </ul>
-                        <li>Declare a <span style="font-style: italic;">minTravelCost</span> vector</li>
-                            <ul>
-                                <li>To keep track minimum Travel cost from starting point to the rest of the vertices</li>
-                            </ul>
-                        <li>Declare a <span style="font-style: italic;">visited</span> std::set</li>
-                            <ul>
-                                <li>To keep track the vertices that have been visited</li>
-                            </ul>
-                        <li>Declare one more vector called <span style="font-style: italic;">prev</span> if needed to keep track the shortest path</li>
-                        <li><span class="script-font">minTravelCost[startingPoint] = 0</span></li>
-                        <li>While not all vertices visited</li>
-                            <ul>
-                                <li>Find unvisited vertex with minimum travel cost among the rest of unvisited vertices</li>
-                                <li>Add that <span style="font-style: italic;">curVertex</span> into visited std::set</li>
-                                <li>Foreach neighbouring vertices:</li>
-                                    <ul>
-                                        <li>If visited, continue</li>
-                                        <li>Calculate <span style="font-style: italic;">newTravelCost</span></li>
-                                        <li>If <span style="font-style: italic;">newTravelCost</span> is lower than <span style="font-style: italic;">minTravelCost[curVertex]</span></li>
-                                            <ul>
-                                                <li><span class="script-font">minTravelCost[curVertex] = newTravelCost;</span></li>
-                                                <li><span class="script-font">prev[nextVertex] = curVertex;</span></li>
-                                            </ul>
-                                    </ul>
-                            </ul>
-                    </ol>
-                <li><b>Algorithm according to second video</b>, the following is my modified version:</li>
-                    <ul>
-                        <li><b>Original Variant</b> (with starting point and destination defined)</li>
-                            <pre>
-                                <code>
+                                    </code>
+                                </pre>
+                        </ul>
+                    <li>Declare a <span style="font-style: italic;">minTravelCost</span> vector</li>
+                        <ul>
+                            <li>To keep track minimum Travel cost from starting point to the rest of the vertices</li>
+                        </ul>
+                    <li>Declare a <span style="font-style: italic;">visited</span> std::set</li>
+                        <ul>
+                            <li>To keep track the vertices that have been visited</li>
+                        </ul>
+                    <li>Declare one more vector called <span style="font-style: italic;">prev</span> if needed to keep track the shortest path</li>
+                    <li><span class="script-font">minTravelCost[startingPoint] = 0</span></li>
+                    <li>While not all vertices visited</li>
+                        <ul>
+                            <li>Find unvisited vertex with minimum travel cost among the rest of unvisited vertices</li>
+                            <li>Add that <span style="font-style: italic;">curVertex</span> into visited std::set</li>
+                            <li>Foreach neighbouring vertices:</li>
+                                <ul>
+                                    <li>If visited, continue</li>
+                                    <li>Calculate <span style="font-style: italic;">newTravelCost</span></li>
+                                    <li>If <span style="font-style: italic;">newTravelCost</span> is lower than <span style="font-style: italic;">minTravelCost[curVertex]</span></li>
+                                        <ul>
+                                            <li><span class="script-font">minTravelCost[curVertex] = newTravelCost;</span></li>
+                                            <li><span class="script-font">prev[nextVertex] = curVertex;</span></li>
+                                        </ul>
+                                </ul>
+                        </ul>
+                </ol>
+            <li><b>Algorithm according to second video</b>, the following is my modified version:</li>
+                <ul>
+                    <li><b>Original Variant</b> (with starting point and destination defined)</li>
+                        <pre>
+                            <code>
     typedef std::priority_queue &lt;std::pair&lt;int, int>, std::vector&lt;std::pair&lt;int, int>>, std::greater&lt;std::pair&lt;int, int>>> MinHeap;
 
     std::pair&lt;int, std::vector&lt;int>> dijkstraSingleTarget(Graph& graph, int source, int target, int n) &#123;
@@ -135,11 +134,11 @@
         return &#123;minTravelCost[target], prev};
         
     }
-                                </code>
-                            </pre>
-                        <li><b>Another variant</b> (with only starting point defined)</li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                    <li><b>Another variant</b> (with only starting point defined)</li>
+                        <pre>
+                            <code>
     typedef std::priority_queue &lt;std::pair&lt;int, int>, std::vector&lt;std::pair&lt;int, int>>, std::greater&lt;std::pair&lt;int, int>>> MinHeap;
 
     std::pair&lt;std::vector&lt;int>, std::vector&lt;int>> dijkstra(Graph& graph, int source, int n) &#123;
@@ -178,12 +177,12 @@
         return &#123;minTravelCost, prev};
         
     }
-                                </code>
-                            </pre>
-                        <li>The difference between the two variants above are only the ending condition and the return part.</li>
-                        <li>The functions above require Graph as input, hence you need to do Graph construction before using the functions.</li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                    <li>The difference between the two variants above are only the ending condition and the return part.</li>
+                    <li>The functions above require Graph as input, hence you need to do Graph construction before using the functions.</li>
+                        <pre>
+                            <code>
     typedef std::unordered_map&lt;int,std::vector&lt;std::pair&lt;int, int>>> Graph;
 
     // assuming given edges = [[1,2,1],[2,3,2],[1,3,1]]; 
@@ -195,82 +194,80 @@
         graph[edges[i][0]].push_back(&#123;edges[i][1],edges[i][2]});
         graph[edges[i][1]].push_back(&#123;edges[i][0],edges[i][2]}); // if the graph is undirected
     }
-                                </code>
-                            </pre>
-                        <li>The functions above might not be applicable to certain problems, you might need to modify the data types
-                            and some internal parts of the functions, or even simplify them.</li>
-                        <li>The functions above assume the nodes numbering start from 0, if your numbering starts from 1, 
-                            you should modify the function accordingly.</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                            </code>
+                        </pre>
+                    <li>The functions above might not be applicable to certain problems, you might need to modify the data types
+                        and some internal parts of the functions, or even simplify them.</li>
+                    <li>The functions above assume the nodes numbering start from 0, if your numbering starts from 1, 
+                        you should modify the function accordingly.</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
 
-        <div>
-            <h2>List of Dijkstra's LeetCode Questions</h2>
-            <ul>
-                <li><a href="https://leetcode.com/problems/network-delay-time/" target="_blank" rel="noopener noreferrer">
-                    [medium] 743. Network Delay Time</a></li>    
-                <li><a href="https://leetcode.com/problems/path-with-maximum-probability/" target="_blank" rel="noopener noreferrer">
-                    [medium] 1514. Path with Maximum Probability</a></li>
-                <li><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener noreferrer">
-                    [medium] 787. Cheapest Flights Within K Stops</a></li>
-                <li><a href="https://leetcode.com/problems/path-with-minimum-effort/" target="_blank" rel="noopener noreferrer">
-                    [medium] 1631. Path With Minimum Effort</a></li>
-                <li><a href="https://leetcode.com/problems/swim-in-rising-water/" target="_blank" rel="noopener noreferrer">
-                    [hard] 778. Swim in Rising Water</a></li>
-                <!-- <li><a href="https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/" target="_blank" rel="noopener noreferrer">
-                    [medium] 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance</a></li> -->
-            </ul>
-            
-            <h3>LeetCode 743. Network Delay Time</h3>
-            <ul>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode743.NetworkDelayTime_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">This</a> is the simple solution which is not yet optimized using priority queue, 
-                    but sufficient for demonstrating Dijkstra's Algorithm.
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode743.NetworkDelayTime_Dijkstra'sAlgorithm02.cpp" target="_blank" rel="noopener noreferrer">This</a> is the optimized solution with the help of MinHeap:</li>
-            </ul>
-
-            <h3>LeetCode 1514. Path with Maximum Probability</h3>
-            <ul>
-                <li>The question is a typical original variant Dijkstra's Alogrithm question, except that it finds maximum instead of 
-                    instead of minimum.
-                </li>
-                <li>Hence, the Dijkstra's Algorithm can be slightly modified to solve this question.</li>
-                <li>Tips, the following are the parts that you need to take note:</li>
-                    <ul>
-                        <li>base case</li>
-                        <li>formula of getting newTravelCost</li>
-                        <li>data type of travelCost</li>
-                        <li>you may solve it either using MinHeap or MaxHeap</li>
-                    </ul>
-                <li>Solution using MaxHeap: <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm_usingMaxHeap.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-                <li>Solution using MinHeap: <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
-
-            <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
-            <ul>
-                <li>This question is slightly different, as it has a constraint that we need to fulfill.</li>
-                <li>This question we don't need to keep track of visited vertices, as we need to consider the path as long as it is within k stops.</li>
-                <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=vWgoPTvQ3Rw&t=1s" target="_blank" ref="noopener noreferrer">video</a>.</li>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode787.CheapestFlightWithinKStops_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
-
-            <h3>LeetCode 1631. Path With Minimum Effort</h3>
-            <ul>
-                <li>This question demonstrates how Dijkstra's Algorithm can be implemented on a 2D vector.</li>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1631.PathWithMinimumEffort_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
-
-            <h3>LeetCode 778. Swim in Rising Water</h3>
-            <ul>
-                <li>This question is a little bit unique, it doesn't need MinTravelCost vector to keep track travel cost,
-                    as the element of the grid itself is the travel cost, and the new travel cost doesnt relate to previous travel cost.
-                </li>
-                <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode778.SwimInRisingWater_Dijkstra'sAlgorihtm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
-            </ul>
-
-            <mat-divider></mat-divider>
-        </div>
+    <div>
+        <h2>List of Dijkstra's LeetCode Questions</h2>
+        <ul>
+            <li><a href="https://leetcode.com/problems/network-delay-time/" target="_blank" rel="noopener noreferrer">
+                [medium] 743. Network Delay Time</a></li>    
+            <li><a href="https://leetcode.com/problems/path-with-maximum-probability/" target="_blank" rel="noopener noreferrer">
+                [medium] 1514. Path with Maximum Probability</a></li>
+            <li><a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener noreferrer">
+                [medium] 787. Cheapest Flights Within K Stops</a></li>
+            <li><a href="https://leetcode.com/problems/path-with-minimum-effort/" target="_blank" rel="noopener noreferrer">
+                [medium] 1631. Path With Minimum Effort</a></li>
+            <li><a href="https://leetcode.com/problems/swim-in-rising-water/" target="_blank" rel="noopener noreferrer">
+                [hard] 778. Swim in Rising Water</a></li>
+            <!-- <li><a href="https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/" target="_blank" rel="noopener noreferrer">
+                [medium] 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance</a></li> -->
+        </ul>
         
+        <h3>LeetCode 743. Network Delay Time</h3>
+        <ul>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode743.NetworkDelayTime_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">This</a> is the simple solution which is not yet optimized using priority queue, 
+                but sufficient for demonstrating Dijkstra's Algorithm.
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode743.NetworkDelayTime_Dijkstra'sAlgorithm02.cpp" target="_blank" rel="noopener noreferrer">This</a> is the optimized solution with the help of MinHeap:</li>
+        </ul>
+
+        <h3>LeetCode 1514. Path with Maximum Probability</h3>
+        <ul>
+            <li>The question is a typical original variant Dijkstra's Alogrithm question, except that it finds maximum instead of 
+                instead of minimum.
+            </li>
+            <li>Hence, the Dijkstra's Algorithm can be slightly modified to solve this question.</li>
+            <li>Tips, the following are the parts that you need to take note:</li>
+                <ul>
+                    <li>base case</li>
+                    <li>formula of getting newTravelCost</li>
+                    <li>data type of travelCost</li>
+                    <li>you may solve it either using MinHeap or MaxHeap</li>
+                </ul>
+            <li>Solution using MaxHeap: <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm_usingMaxHeap.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+            <li>Solution using MinHeap: <a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1514.PathWithMaximumProbability_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
+
+        <h3>LeetCode 787. Cheapest Flights Within K Stops</h3>
+        <ul>
+            <li>This question is slightly different, as it has a constraint that we need to fulfill.</li>
+            <li>This question we don't need to keep track of visited vertices, as we need to consider the path as long as it is within k stops.</li>
+            <li>For detailed explanation, refer to this <a href="https://www.youtube.com/watch?v=vWgoPTvQ3Rw&t=1s" target="_blank" ref="noopener noreferrer">video</a>.</li>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode787.CheapestFlightWithinKStops_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
+
+        <h3>LeetCode 1631. Path With Minimum Effort</h3>
+        <ul>
+            <li>This question demonstrates how Dijkstra's Algorithm can be implemented on a 2D vector.</li>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode1631.PathWithMinimumEffort_Dijkstra'sAlgorithm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
+
+        <h3>LeetCode 778. Swim in Rising Water</h3>
+        <ul>
+            <li>This question is a little bit unique, it doesn't need MinTravelCost vector to keep track travel cost,
+                as the element of the grid itself is the travel cost, and the new travel cost doesnt relate to previous travel cost.
+            </li>
+            <li><a href="https://github.com/tka-andrew/LeetCode/blob/master/Cpp/LeetCode778.SwimInRisingWater_Dijkstra'sAlgorihtm.cpp" target="_blank" rel="noopener noreferrer">View solution on GitHub</a></li>
+        </ul>
+
+        <mat-divider></mat-divider>
     </div>
 </div>

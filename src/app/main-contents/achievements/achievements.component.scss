@@ -1,6 +1,14 @@
-
 @import "~swiper/css";
 @import "~swiper/css/navigation";
+
+mgl-timeline-entry-header {
+  cursor: pointer;
+}
+
+mgl-timeline-entry-side {
+  color: white;
+}
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -38,10 +46,6 @@
 
 .imageInGallery {
     height: 500px;
-}
-
-mgl-timeline-entry-header {
-  cursor: pointer;
 }
 
 .vertical {

@@ -45,10 +45,12 @@ mat-expansion-panel {
     padding-bottom: 5px;
 }
 
-.listItem:hover {
-    background-color: $hoverBackgroundColor;
-    color: $hoverTextColor;
-    font-style: italic;
+@media (hover: hover) and (pointer: fine) {
+    .listItem:hover {
+        background-color: $hoverBackgroundColor;
+        color: $hoverTextColor;
+        font-style: italic;
+    }
 }
 
 mat-drawer {
@@ -59,11 +61,18 @@ mat-drawer {
     width: 100%;
     text-align: center;
     padding-top: 3px;
+    display: block;
 }
 
 @media screen and (max-width: 590px) {
     #sideDrawer {
-        width: 200px !important;
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #sideDrawerControl {
+        display: none;
     }
 }
 

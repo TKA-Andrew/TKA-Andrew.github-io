@@ -1,113 +1,112 @@
 <div class="flexContainer">    
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>HTML & CSS Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <ul>
-                <li>The main 3 languages of frontend web development are:</li>
-                    <ul>
-                        <li>HTML - Markup language</li>
-                        <li>CSS - Styling Language</li>
-                        <li>Javascript - Programming Language</li>
-                    </ul>
-                <li>If you are using VS Code for frontend web development, the following extensions are recommended:</li>
-                    <ul>
-                        <li>Prettier</li>
-                        <li>Live Server</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
+    <h1>HTML & CSS Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <ul>
+            <li>The main 3 languages of frontend web development are:</li>
+                <ul>
+                    <li>HTML - Markup language</li>
+                    <li>CSS - Styling Language</li>
+                    <li>Javascript - Programming Language</li>
+                </ul>
+            <li>If you are using VS Code for frontend web development, the following extensions are recommended:</li>
+                <ul>
+                    <li>Prettier</li>
+                    <li>Live Server</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2>HTML Basics</h2>
-            <ul>
-                <li>The <span class="script-font">&lt;!DOCTYPE html></span> at first line of html file tells browser that 
-                it is a HTML file.</li>
-                <li>Take note that certain types of tags are not supported by certain type or version of browsers, to check, use
-                    <a href="https://caniuse.com/" target="_blank" rel="noopener noreferer">caniuse.com</a>
-                </li>
-                <li>The html element includes a head element and a body element:</li>
-                    <ul>
-                        <li>The head element contains information about the page such as its title.</li>
-                        <li>The body element includes the structure and content of the page.</li>
-                    </ul>
-                <li>Head</li>
-                    <ul>
-                        <li>meta element - charset</li>
-                            <ul>
-                                <li>Types of charset</li>
-                                    <ul>
-                                        <li>ASCII</li>
-                                            <ul>
-                                                <li>ASCII can only represents characters in English Language</li>
-                                            </ul>
-                                        <li>UTF-8</li>
-                                            <ul>
-                                                <li>This can represent almost all characters in the world.</li>
-                                            </ul>
-                                    </ul>
-                            </ul>
-                        <li>meta element - viewport</li>
-                            <ul>
-                                <li>The viewport is the visible area of a webpage. </li>
-                                <li>Viewport element allows us to define the inital width and scale.</li>
-                                <li>The width here is referring to screen width in device independent pixels.</li>
-                                <li>Hardware pixels VS Independent device pixels VS device pixel ratio</li>
-                                    <ul>
-                                        <li>Hardware pixels are the physical pixels on the device screen.</li>
-                                        <li>Independent device pixels doesnt care how many pixels the device
-                                            has, because it will scale the resolution afterwards based on
-                                            number of hardware pixels.
-                                        </li>
-                                        <li>For example, if Device Independent Pixel is 960px and
-                                            the device has 1920 hardware pixels, the device pixel ratio
-                                            will be 2.
-                                        </li>
-                                    </ul>
-                                <li>Setting initial scale to 1 instructs the browsers to establish a 1:1 relationship
-                                    between device independent pixels and CSS pixels.
-                                </li>
-                                <li>CSS pixels are what we used to working with most of the time.</li>
-                                <li>Without setting initial-scale to 1, some browsers will keep the page width constant
-                                    when rotating to landscape mode.
-                                </li>
-                                <li>With the initial scale being set, the browsers will scale the content instead
-                                    of allowing them to reflow.
-                                </li>
-                            </ul>
-                        <li>Example:</li>
-                            <pre>
-                                <code>
+        <h2>HTML Basics</h2>
+        <ul>
+            <li>The <span class="script-font">&lt;!DOCTYPE html></span> at first line of html file tells browser that 
+            it is a HTML file.</li>
+            <li>Take note that certain types of tags are not supported by certain type or version of browsers, to check, use
+                <a href="https://caniuse.com/" target="_blank" rel="noopener noreferer">caniuse.com</a>
+            </li>
+            <li>The html element includes a head element and a body element:</li>
+                <ul>
+                    <li>The head element contains information about the page such as its title.</li>
+                    <li>The body element includes the structure and content of the page.</li>
+                </ul>
+            <li>Head</li>
+                <ul>
+                    <li>meta element - charset</li>
+                        <ul>
+                            <li>Types of charset</li>
+                                <ul>
+                                    <li>ASCII</li>
+                                        <ul>
+                                            <li>ASCII can only represents characters in English Language</li>
+                                        </ul>
+                                    <li>UTF-8</li>
+                                        <ul>
+                                            <li>This can represent almost all characters in the world.</li>
+                                        </ul>
+                                </ul>
+                        </ul>
+                    <li>meta element - viewport</li>
+                        <ul>
+                            <li>The viewport is the visible area of a webpage. </li>
+                            <li>Viewport element allows us to define the inital width and scale.</li>
+                            <li>The width here is referring to screen width in device independent pixels.</li>
+                            <li>Hardware pixels VS Independent device pixels VS device pixel ratio</li>
+                                <ul>
+                                    <li>Hardware pixels are the physical pixels on the device screen.</li>
+                                    <li>Independent device pixels doesnt care how many pixels the device
+                                        has, because it will scale the resolution afterwards based on
+                                        number of hardware pixels.
+                                    </li>
+                                    <li>For example, if Device Independent Pixel is 960px and
+                                        the device has 1920 hardware pixels, the device pixel ratio
+                                        will be 2.
+                                    </li>
+                                </ul>
+                            <li>Setting initial scale to 1 instructs the browsers to establish a 1:1 relationship
+                                between device independent pixels and CSS pixels.
+                            </li>
+                            <li>CSS pixels are what we used to working with most of the time.</li>
+                            <li>Without setting initial-scale to 1, some browsers will keep the page width constant
+                                when rotating to landscape mode.
+                            </li>
+                            <li>With the initial scale being set, the browsers will scale the content instead
+                                of allowing them to reflow.
+                            </li>
+                        </ul>
+                    <li>Example:</li>
+                        <pre>
+                            <code>
     &lt;html>
         &lt;meta charset="UTF-8"/>
         &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     &lt;/html>
-                                </code>
-                            </pre>
-                    </ul>
-                <li>Text</li>
-                    <ul>
-                        <li>Use &lt;em>&lt;/em> for emphaized text</li>
-                        <li>Use &lt;strong>&lt;/strong> for important/serious/urgent content</li>
-                        <li>&lt;b> and &lt;i> can make text bold and italic respectively, 
-                            but they should not be used as it should be the responsibilty of CSS
-                            to do the styling.
-                        </li>
-                    </ul>
-                <li>Entities</li>
-                    <ul>
-                        <li>Sometimes you might want to display some symbols, you may refer to the 
-                            <a href="https://tools.w3cub.com/html-entities" target="_blank" rel="noopener noreferrer">
-                                HTML Entities Reference Chart</a>
-                        </li>
-                    </ul>
-                <li>Hyperlink</li>
-                    <ul>
-                        <li>href can be used for relative or absolute reference to html files</li>
-                        <li>href can also be used to "scroll" to another fragment.</li>
-                        <li>Adding "download" property to a hyperlink of an image can also make it downloadable.</li>
-                        <li>Example:
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                </ul>
+            <li>Text</li>
+                <ul>
+                    <li>Use &lt;em>&lt;/em> for emphaized text</li>
+                    <li>Use &lt;strong>&lt;/strong> for important/serious/urgent content</li>
+                    <li>&lt;b> and &lt;i> can make text bold and italic respectively, 
+                        but they should not be used as it should be the responsibilty of CSS
+                        to do the styling.
+                    </li>
+                </ul>
+            <li>Entities</li>
+                <ul>
+                    <li>Sometimes you might want to display some symbols, you may refer to the 
+                        <a href="https://tools.w3cub.com/html-entities" target="_blank" rel="noopener noreferrer">
+                            HTML Entities Reference Chart</a>
+                    </li>
+                </ul>
+            <li>Hyperlink</li>
+                <ul>
+                    <li>href can be used for relative or absolute reference to html files</li>
+                    <li>href can also be used to "scroll" to another fragment.</li>
+                    <li>Adding "download" property to a hyperlink of an image can also make it downloadable.</li>
+                    <li>Example:
+                        <pre>
+                            <code>
     &lt;body>
         &lt;a href="company/about.html">About&lt;/a>
         &lt;a href="images/profile.jpg" download>Profile&lt;/a>
@@ -117,37 +116,37 @@
         &lt;h2 id="section-css">CSS&lt;/h2>
         &lt;a href="#">Jump to top&lt;/a>
     &lt;/body>
-                                </code>
-                            </pre>
-                        </li>
-                    </ul>
-                <li>Image, Video and Audio</li>
-                    <ul>
-                        <li>You may get free images from unslash.com</li>
-                        <li>You may get free videos from pexels.com</li>
-                        <li>To include video in your html, use &lt;video> tag, and you can use these properties also:</li>
-                            <ul>
-                                <li>controls</li>
-                                <li>autoplay</li>
-                                <li>loop</li>
-                            </ul>
-                        <li>For audio, use &lt;audio>, it has the same properties as video tag as well.</li>
-                    </ul>
-                <li>List</li>
-                    <ul>
-                        <li>Types of list:
-                            <ul>
-                                <li>unordered list - ul + li</li>
-                                <li>ordered list - ol + li</li>
-                                <li>description list - dl + dt + dd</li>
-                            </ul>
-                        </li>
-                    </ul>
-                <li>Table</li>
-                    <ul>
-                        <li>Example:</li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            <li>Image, Video and Audio</li>
+                <ul>
+                    <li>You may get free images from unslash.com</li>
+                    <li>You may get free videos from pexels.com</li>
+                    <li>To include video in your html, use &lt;video> tag, and you can use these properties also:</li>
+                        <ul>
+                            <li>controls</li>
+                            <li>autoplay</li>
+                            <li>loop</li>
+                        </ul>
+                    <li>For audio, use &lt;audio>, it has the same properties as video tag as well.</li>
+                </ul>
+            <li>List</li>
+                <ul>
+                    <li>Types of list:
+                        <ul>
+                            <li>unordered list - ul + li</li>
+                            <li>ordered list - ol + li</li>
+                            <li>description list - dl + dt + dd</li>
+                        </ul>
+                    </li>
+                </ul>
+            <li>Table</li>
+                <ul>
+                    <li>Example:</li>
+                        <pre>
+                            <code>
     &lt;table>
         &lt;thead>
             &lt;tr>
@@ -175,174 +174,174 @@
             &lt;/tr>
         &lt;/tfoot>
     &lt;/table>
-                                </code>
-                            </pre>
-                    </ul>
-                <li>Container</li>
-                    <ul>
-                        <li>The most common containers are &lt;div> and &lt;span> elements.</li>
-                        <li>div is block-element whereas span is inline-element.</li>
-                        <li>Block-level element always starts on a new line, and 
-                            fill up the entire available space. You may set the width through CSS to reduce its width.
-                        </li>
-                        <li>Inline element only takes up the width it needs.</li>
-                        <li>div and span are general purpose containers. Other than general purpose containers,
-                            there are also semantic elements which make the elements more descriptive.
-                        </li>
-                            <ul>
-                                <li>&lt;article></li>
-                                <li>&lt;figure></li>
-                                <li>&lt;mark></li>
-                                <li>&lt;time></li>
-                            </ul>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
+                            </code>
+                        </pre>
+                </ul>
+            <li>Container</li>
+                <ul>
+                    <li>The most common containers are &lt;div> and &lt;span> elements.</li>
+                    <li>div is block-element whereas span is inline-element.</li>
+                    <li>Block-level element always starts on a new line, and 
+                        fill up the entire available space. You may set the width through CSS to reduce its width.
+                    </li>
+                    <li>Inline element only takes up the width it needs.</li>
+                    <li>div and span are general purpose containers. Other than general purpose containers,
+                        there are also semantic elements which make the elements more descriptive.
+                    </li>
+                        <ul>
+                            <li>&lt;article></li>
+                            <li>&lt;figure></li>
+                            <li>&lt;mark></li>
+                            <li>&lt;time></li>
+                        </ul>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2>CSS Basics</h2>
-            <ul>
-                <li>Basics</li>
-                    <ul>
-                        <li>Basic selectors:</li>
-                            <ul>
-                                <li>type</li>
-                                    <ul>
-                                        <li>For example: p &#123; color: black }</li>
-                                    </ul>
-                                <li>id</li>
-                                    <ul>
-                                        <li>For example: p#special_remark &#123; color: purple }</li>
-                                    </ul>
-                                <li>class</li>
-                                    <ul>
-                                        <li>For example: p.product_description &#123; color: grey }</li>
-                                    </ul>
-                                <li>property</li>
-                                    <ul>
-                                        <li>For example: a[href^="https"][href$=".com"] &#123; color: blue } </li>
-                                    </ul>
-                            </ul>
-                        <li>There are also <a href="https://www.w3schools.com/css/css_combinators.asp" target="_blank" rel="noopener noreferrer">
-                            relation selectors</a>, they could make the markup cleaner but can be fragile as well.</li>
-                        <li><a href="https://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank" rel="noopener noreferrer">
-                            Pseudo-class Selectors & Pseudo-element Selectors</a> are very helpful too.</li>
-                            <ul>
-                                <li>Example of Pseudo-class Selectors</li>
-                                    <ul>
-                                        <li>p:hover</li>
-                                        <li>a:visited</li>
-                                        <li>tr:nth-child(odd)</li>
-                                    </ul>
-                                <li>Example of Pseudo-element Selectors</li>
-                                    <ul>
-                                        <li>::selection</li>
-                                        <li>p::first-line</li>
-                                        <li>p::first-letter</li>
-                                    </ul>
-                            </ul>
-                        <li>The level of selector specificity (Weight) is arranged as follows, from highest to lowest:</li>
-                            <ol>
-                                <li>ID Selector</li>
-                                <li>Class & property Selectors</li>
-                                <li>Element Selectors</li>
-                            </ol>
-                        <li>The level of specificity can be higher by combining the types of selectors. For example:
-                            "p .info #productID" has much higher specificity than "#productID"
-                        </li>
-                        <li>Inheritance</li>
-                            <ul>
-                                <li>Some CSS properties by default, inherit values from parents.</li>
-                                <li>To avoid inherit or force the selector the inherit, use "initial" and "inherit".
-                                    For example:
-                                </li>
-                                    <pre>
-                                        <code>
+        <h2>CSS Basics</h2>
+        <ul>
+            <li>Basics</li>
+                <ul>
+                    <li>Basic selectors:</li>
+                        <ul>
+                            <li>type</li>
+                                <ul>
+                                    <li>For example: p &#123; color: black }</li>
+                                </ul>
+                            <li>id</li>
+                                <ul>
+                                    <li>For example: p#special_remark &#123; color: purple }</li>
+                                </ul>
+                            <li>class</li>
+                                <ul>
+                                    <li>For example: p.product_description &#123; color: grey }</li>
+                                </ul>
+                            <li>property</li>
+                                <ul>
+                                    <li>For example: a[href^="https"][href$=".com"] &#123; color: blue } </li>
+                                </ul>
+                        </ul>
+                    <li>There are also <a href="https://www.w3schools.com/css/css_combinators.asp" target="_blank" rel="noopener noreferrer">
+                        relation selectors</a>, they could make the markup cleaner but can be fragile as well.</li>
+                    <li><a href="https://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank" rel="noopener noreferrer">
+                        Pseudo-class Selectors & Pseudo-element Selectors</a> are very helpful too.</li>
+                        <ul>
+                            <li>Example of Pseudo-class Selectors</li>
+                                <ul>
+                                    <li>p:hover</li>
+                                    <li>a:visited</li>
+                                    <li>tr:nth-child(odd)</li>
+                                </ul>
+                            <li>Example of Pseudo-element Selectors</li>
+                                <ul>
+                                    <li>::selection</li>
+                                    <li>p::first-line</li>
+                                    <li>p::first-letter</li>
+                                </ul>
+                        </ul>
+                    <li>The level of selector specificity (Weight) is arranged as follows, from highest to lowest:</li>
+                        <ol>
+                            <li>ID Selector</li>
+                            <li>Class & property Selectors</li>
+                            <li>Element Selectors</li>
+                        </ol>
+                    <li>The level of specificity can be higher by combining the types of selectors. For example:
+                        "p .info #productID" has much higher specificity than "#productID"
+                    </li>
+                    <li>Inheritance</li>
+                        <ul>
+                            <li>Some CSS properties by default, inherit values from parents.</li>
+                            <li>To avoid inherit or force the selector the inherit, use "initial" and "inherit".
+                                For example:
+                            </li>
+                                <pre>
+                                    <code>
     strong &#123;
         color: initial;
         border: inherit;
     }
-                                        </code>
-                                    </pre>
-                            </ul>
-                        <li>To avoid the selectors being overrided, we can use the !important keyword,
-                            but take note that this is a bad practice.
-                        </li>
-                        <li>Take note that when defining properties of a selector, the bottom one will always
-                            replace the upper one if there is conflict. For example, the bottom-top property below
-                            will be replaced by the border property:
-                        </li>
-                            <pre>
-                                <code>
+                                    </code>
+                                </pre>
+                        </ul>
+                    <li>To avoid the selectors being overrided, we can use the !important keyword,
+                        but take note that this is a bad practice.
+                    </li>
+                    <li>Take note that when defining properties of a selector, the bottom one will always
+                        replace the upper one if there is conflict. For example, the bottom-top property below
+                        will be replaced by the border property:
+                    </li>
+                        <pre>
+                            <code>
     .box &#123;
         border-top: 10px dashed blue;
         border: 5px solid red;
     }
-                                </code>
-                            </pre>
-                        <li>Colors</li>
-                            <ul>
-                                <li>rgb</li>
-                                <li>rgba</li>
-                                <li>6 digit HEX</li>
-                                <li>3 digit HEX</li>
-                                <li>hsl</li>
-                                <li>hsla</li>
-                            </ul>
-                        <li><a href="https://www.w3schools.com/css/css3_gradients.asp" target="_blank" rel="noopener noreferrer">Gradients</a></li>
-                        <li><a href="https://www.w3schools.com/css/css_border.asp" target="_blank" rel="noopener noreferrer">Borders</a></li>
-                        <li><a href="https://css-tricks.com/the-shapes-of-css/" target="_blank" rel="noopener noreferrer">Shapes</a></li>
-                        <li>To embed css style:</li>
-                            <ol>
-                                <li>Move all styles definition into a .css file</li>
-                                <li>Add this line into head of html: &lt;link rel="stylesheet" href="styles.css"/></li>
-                            </ol>
-                        <li>Normalizing css</li>
-                            <ul>
-                                <li>HTML is rendered differently in different browsers. To address this problem,
-                                    there is a css file called <a href="https://necolas.github.io/normalize.css/" target="_blank" rel="noopener noreferer">
-                                        normalize.css</a>
-                                </li>
-                                <li>Simply link the normalize.css file into your html file to use it.</li>
-                            </ul>
-                    </ul>
-                <li>img</li>
-                    <ul>
-                        <li>object-fit</li>
-                            <ul>
-                                <li>To fit image into a fixed width and height.</li>
-                                <li>Example of options are: scale-down, cover, fill</li>
-                            </ul>
-                    </ul>
-                <li>list</li>
-                    <ul>
-                        <li>list-style-types</li>
-                            <ul>
-                                <li>square</li>
-                            </ul>
-                    </ul>
-                <li>table</li>
-                    <ul>
-                        <li>border: line-width line-type line-color</li>
-                        <li>border-collapse: collapse</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
+                            </code>
+                        </pre>
+                    <li>Colors</li>
+                        <ul>
+                            <li>rgb</li>
+                            <li>rgba</li>
+                            <li>6 digit HEX</li>
+                            <li>3 digit HEX</li>
+                            <li>hsl</li>
+                            <li>hsla</li>
+                        </ul>
+                    <li><a href="https://www.w3schools.com/css/css3_gradients.asp" target="_blank" rel="noopener noreferrer">Gradients</a></li>
+                    <li><a href="https://www.w3schools.com/css/css_border.asp" target="_blank" rel="noopener noreferrer">Borders</a></li>
+                    <li><a href="https://css-tricks.com/the-shapes-of-css/" target="_blank" rel="noopener noreferrer">Shapes</a></li>
+                    <li>To embed css style:</li>
+                        <ol>
+                            <li>Move all styles definition into a .css file</li>
+                            <li>Add this line into head of html: &lt;link rel="stylesheet" href="styles.css"/></li>
+                        </ol>
+                    <li>Normalizing css</li>
+                        <ul>
+                            <li>HTML is rendered differently in different browsers. To address this problem,
+                                there is a css file called <a href="https://necolas.github.io/normalize.css/" target="_blank" rel="noopener noreferer">
+                                    normalize.css</a>
+                            </li>
+                            <li>Simply link the normalize.css file into your html file to use it.</li>
+                        </ul>
+                </ul>
+            <li>img</li>
+                <ul>
+                    <li>object-fit</li>
+                        <ul>
+                            <li>To fit image into a fixed width and height.</li>
+                            <li>Example of options are: scale-down, cover, fill</li>
+                        </ul>
+                </ul>
+            <li>list</li>
+                <ul>
+                    <li>list-style-types</li>
+                        <ul>
+                            <li>square</li>
+                        </ul>
+                </ul>
+            <li>table</li>
+                <ul>
+                    <li>border: line-width line-type line-color</li>
+                    <li>border-collapse: collapse</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2>Layouts</h2>
-            <ul>
-                <li>Box Model</li>
-                    <ul>
-                        <li>Content, Padding, Border, Margin:</li>
-                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="https://qph.cf2.quoracdn.net/main-qimg-d424c463fabd68e11736d4a7f09a14ce-pjlq" width="60%">
-                                <span style="font-style: italic;">Source of image: https://www.quora.com/What-are-the-differences-between-margin-and-padding</span>
-                            </div>
-                    </ul>
-                <li>Sizing Elements</li>
-                    <ul>
-                        <li>Imagine if you define the following html and css:</li>
-                            <pre>
-                                <code>
+        <h2>Layouts</h2>
+        <ul>
+            <li>Box Model</li>
+                <ul>
+                    <li>Content, Padding, Border, Margin:</li>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="https://qph.cf2.quoracdn.net/main-qimg-d424c463fabd68e11736d4a7f09a14ce-pjlq" width="60%">
+                            <span style="font-style: italic;">Source of image: https://www.quora.com/What-are-the-differences-between-margin-and-padding</span>
+                        </div>
+                </ul>
+            <li>Sizing Elements</li>
+                <ul>
+                    <li>Imagine if you define the following html and css:</li>
+                        <pre>
+                            <code>
     &lt;div class="box">&lt;/div>
 
     .box &#123;
@@ -352,141 +351,141 @@
         padding: 20px 10px 20px 10px; /*top right bottom left*/
         border: 10 px solid black;
     }
-                                </code>
-                            </pre>
-                            You will get a div box with size greater than 100x100.
-                        <li>This is because the default box-sizing property is content-box, so the height
-                            and weight only consider the content.
-                        </li>
-                        <li>To make the entire box including padding and border to be within 100px x 100px, 
-                            simply set the box-sizing property to border-box.
-                        </li>
-                        <li>Take note that if you use inline element (such as span), inline elements dont respect 
-                            width and height. You need to change the display property from 'inline' to 'inline-block'
-                        </li>
-                    </ul>
-                <li>Overflow</li>
-                    <ul>
-                        <li>Overflow happens when your content is bigger than your container.</li>
-                        <li>The default value of overflow property is visible.</li>
-                        <li>Some other options of values:</li>
-                            <ul>
-                                <li>hidden</li>
-                                    <ul>
-                                        <li>hide all overflow content</li>
-                                    </ul>
-                                <li>scroll</li>
-                                    <ul>
-                                        <li>display a scroll bar no matter there is overflow or not</li>
-                                    </ul>
-                                <li>auto</li>
-                                    <ul>
-                                        <li>only display scrollbar when there is overflow</li>
-                                    </ul>
-                            </ul>
-                        <li>You can control the overflow in 2 directions using overflow-x and overflow-y.</li>
-                    </ul>
-                <li>Measurement units</li>
-                    <ul>
-                        <li>Absolute measurement units</li>
-                            <ul>
-                                <li>px</li>
-                                <li>pt</li>
-                                <li>in</li>
-                                <li>cm</li>
-                                <li>mm</li>
-                            </ul>
-                        <li>Relative measurement units</li>
-                            <ul>
-                                <li>%</li>
-                                    <ul>
-                                        <li>relative to the size of the container</li>
-                                    </ul>
-                                <li>vw</li>
-                                    <ul>
-                                        <li>relative to the viewport</li>
-                                    </ul>
-                                <li>vh</li>
-                                    <ul>
-                                        <li>relative to the viewport</li>
-                                    </ul>
-                                <li>em</li>
-                                    <ul>
-                                        <li>Relative to parent element's font size</li>
-                                        <li>10em means 10 times of font size</li>
-                                    </ul>
-                                <li>rem</li>
-                                    <ul>
-                                        <li>Relative to root(HTML)font size</li>
-                                        <li>So if you wish to scale the element's size based on the root size, no matter what the parent size is, use REM.</li>
-                                    </ul>
-                            </ul>
-                        <li>By default, the body element is block element, and hence it always
-                            take up 100% width of the browser. BUT take note that, the body
-                            element does not have a height property, and hence by default the 
-                            height of body is zero. HENCE, if you want to do something relative
-                            to view port (the visible area of a webpage), you should use vw and vh.
-                        </li>
-                    </ul>
-                <li>Positioning</li>
-                    <ul>
-                        <li>By default, the value of position property is 'static', means they are not positioned.</li>
-                        <li>Other options of position property:</li>
-                            <ul>
-                                <li>relative</li>
-                                    <ul>
-                                        <li>Relative to its normal position (its static position)</li>
-                                        <li>Then, you can start to set left, right, top, bottom properties</li>
-                                        <li>The positions of other elements will not be affected by this element.</li>
-                                    </ul>
-                                <li>absolute</li>
-                                    <ul>
-                                        <li>Relative to the parent.</li>
-                                        <li>If one of your elements want to be absolute, your parent container should 
-                                            set the position property to be relatives.
-                                        </li>
-                                        <li>If a container contains an element with absolute positioning, from the 
-                                            container's point of view, the absolute element does not exist. And hence,
-                                            the absolute positioned element's positioning is relative to parent container.
-                                        </li>
-                                    </ul>
-                                <li>fixed</li>
-                                    <ul>
-                                        <li>Relative to view port</li>
-                                        <li>Hence, to have a navigation bar that is always stay on top of view port:</li>
-                                            <pre>
-                                                <code>
+                            </code>
+                        </pre>
+                        You will get a div box with size greater than 100x100.
+                    <li>This is because the default box-sizing property is content-box, so the height
+                        and weight only consider the content.
+                    </li>
+                    <li>To make the entire box including padding and border to be within 100px x 100px, 
+                        simply set the box-sizing property to border-box.
+                    </li>
+                    <li>Take note that if you use inline element (such as span), inline elements dont respect 
+                        width and height. You need to change the display property from 'inline' to 'inline-block'
+                    </li>
+                </ul>
+            <li>Overflow</li>
+                <ul>
+                    <li>Overflow happens when your content is bigger than your container.</li>
+                    <li>The default value of overflow property is visible.</li>
+                    <li>Some other options of values:</li>
+                        <ul>
+                            <li>hidden</li>
+                                <ul>
+                                    <li>hide all overflow content</li>
+                                </ul>
+                            <li>scroll</li>
+                                <ul>
+                                    <li>display a scroll bar no matter there is overflow or not</li>
+                                </ul>
+                            <li>auto</li>
+                                <ul>
+                                    <li>only display scrollbar when there is overflow</li>
+                                </ul>
+                        </ul>
+                    <li>You can control the overflow in 2 directions using overflow-x and overflow-y.</li>
+                </ul>
+            <li>Measurement units</li>
+                <ul>
+                    <li>Absolute measurement units</li>
+                        <ul>
+                            <li>px</li>
+                            <li>pt</li>
+                            <li>in</li>
+                            <li>cm</li>
+                            <li>mm</li>
+                        </ul>
+                    <li>Relative measurement units</li>
+                        <ul>
+                            <li>%</li>
+                                <ul>
+                                    <li>relative to the size of the container</li>
+                                </ul>
+                            <li>vw</li>
+                                <ul>
+                                    <li>relative to the viewport</li>
+                                </ul>
+                            <li>vh</li>
+                                <ul>
+                                    <li>relative to the viewport</li>
+                                </ul>
+                            <li>em</li>
+                                <ul>
+                                    <li>Relative to parent element's font size</li>
+                                    <li>10em means 10 times of font size</li>
+                                </ul>
+                            <li>rem</li>
+                                <ul>
+                                    <li>Relative to root(HTML)font size</li>
+                                    <li>So if you wish to scale the element's size based on the root size, no matter what the parent size is, use REM.</li>
+                                </ul>
+                        </ul>
+                    <li>By default, the body element is block element, and hence it always
+                        take up 100% width of the browser. BUT take note that, the body
+                        element does not have a height property, and hence by default the 
+                        height of body is zero. HENCE, if you want to do something relative
+                        to view port (the visible area of a webpage), you should use vw and vh.
+                    </li>
+                </ul>
+            <li>Positioning</li>
+                <ul>
+                    <li>By default, the value of position property is 'static', means they are not positioned.</li>
+                    <li>Other options of position property:</li>
+                        <ul>
+                            <li>relative</li>
+                                <ul>
+                                    <li>Relative to its normal position (its static position)</li>
+                                    <li>Then, you can start to set left, right, top, bottom properties</li>
+                                    <li>The positions of other elements will not be affected by this element.</li>
+                                </ul>
+                            <li>absolute</li>
+                                <ul>
+                                    <li>Relative to the parent.</li>
+                                    <li>If one of your elements want to be absolute, your parent container should 
+                                        set the position property to be relatives.
+                                    </li>
+                                    <li>If a container contains an element with absolute positioning, from the 
+                                        container's point of view, the absolute element does not exist. And hence,
+                                        the absolute positioned element's positioning is relative to parent container.
+                                    </li>
+                                </ul>
+                            <li>fixed</li>
+                                <ul>
+                                    <li>Relative to view port</li>
+                                    <li>Hence, to have a navigation bar that is always stay on top of view port:</li>
+                                        <pre>
+                                            <code>
     .navigation-bar &#123;
         position: fixed;
         top: 0;
     }
-                                                </code>
-                                            </pre>
-                                        <li>If you set width and height to auto, the browser will decide its
-                                            width and height.
-                                        </li>
-                                    </ul>
-                            </ul>
-                        <li>By default, z-index value is 0. Setting it to higher value means it will
-                            be "closer" to us, it can be negative value also.
-                        </li>
-                    </ul>
-                <li>Floating elements</li>
-                    <ul>
-                        <li>float property</li>
-                            <ul>
-                                <li>By setting an element to float, for example 'float: left;', it will make that element
-                                    float to left side of the container. And then all the subsequent elements will float
-                                    around it.
-                                </li>
-                                <li>However, take note that parent elements dont see floating elements.</li>
-                            </ul>
-                        <li>clear property</li>
-                            <ul>
-                                <li>clear property can be used to clear floats.</li>
-                                <li>A typical use ase is as below:</li>
-                                    <pre>
-                                        <code>
+                                            </code>
+                                        </pre>
+                                    <li>If you set width and height to auto, the browser will decide its
+                                        width and height.
+                                    </li>
+                                </ul>
+                        </ul>
+                    <li>By default, z-index value is 0. Setting it to higher value means it will
+                        be "closer" to us, it can be negative value also.
+                    </li>
+                </ul>
+            <li>Floating elements</li>
+                <ul>
+                    <li>float property</li>
+                        <ul>
+                            <li>By setting an element to float, for example 'float: left;', it will make that element
+                                float to left side of the container. And then all the subsequent elements will float
+                                around it.
+                            </li>
+                            <li>However, take note that parent elements dont see floating elements.</li>
+                        </ul>
+                    <li>clear property</li>
+                        <ul>
+                            <li>clear property can be used to clear floats.</li>
+                            <li>A typical use ase is as below:</li>
+                                <pre>
+                                    <code>
     &lt;article class="tweet clearfix">
         &lt;div class="avatar">&lt;/div>
         &lt;p>Lorem ipsum dolor sit amet.&lt;/p>
@@ -497,184 +496,184 @@
         display: block;
         clear: both;
     }
-                                        </code>
-                                    </pre>
-                            </ul>
-                    </ul>
-                <li>Flexbox (Flexible Box Layout)</li>
-                    <ul>
-                        <li>Used for laying out elements in one direction (row or column).</li>
-                        <li>To use flexbox, you need to set <span class="script-font">display: flex;</span> for the parent element.</li>
-                        <li>Even though we set <span class="script-font">display: flex;</span>, the container is still
-                            a block-level element.</li>
-                        <li>You can use flex-direction to control the direction, by default it is row.</li>
-                        <li>To use flexbox, you must know the flexbox axes:</li>
-                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <img src="https://samanthaming.gumlet.io/flexbox30/4-flexbox-axes.jpg.gz" width="60%">
-                                <span style="font-style: italic;">Source of image: https://www.samanthaming.com/flexbox30/4-flexbox-axes/</span>
-                            </div>
-                        <li>justify-content property</li>
-                            <ul>
-                                <li>To align item along the <b>main</b> axis</li>
-                                <li>Default value: flex-start</li>
-                            </ul>
-                        <li>align-items property</li>
-                            <ul>
-                                <li>To align item along the <b>cross</b> axis</li>
-                                <li>Default value: flex-start</li>
-                            </ul>
-                        <li>flex-wrap property</li>
-                            <ul>
-                                <li>Take note that, let's say you have a flex container and it contains multiple boxes, 
-                                    even if you set the width property of the boxes, their width will be modified to ensure
-                                    all the elements fit in one line.</li>
-                                <li>The default value of flex-wrap is nowrap</li>
-                                <li>If you set <span class="script-font">flex-wrap: wrap;</span>, then 
-                                    the items in the flex container can keep their own width and height.</li>
-                            </ul>
-                        <li>align-content property</li>
-                            <ul>
-                                <li>This property only works if you have multiple lines in a flex container.</li>
-                                <li>When you have multiple lines in a flex container, for example due to flex-wrap,
-                                    you can use align-content to align all the lines as a whole.
-                                </li>
-                            </ul>
-                        <li>align-self and justify-self property</li>
-                            <ul>
-                                <li>If you want override the align-items or justify-content property
-                                    set by parent container, you can use align-self or justify-self.
-                                </li>
-                            </ul>
-                        <li>Sizing items:</li>
-                            <ul>
-                                <li>The following properties can be used to size items (cannot be used for container)</li>
-                                    <ul>
-                                        <li>flex-basis property</li>
-                                            <ul>
-                                                <li>Default value is auto, which means browser sets the width and height
-                                                    based on the width and height properties.
-                                                </li>
-                                                <li>This will override width or height based on the flex main-axis:</li>
-                                                    <ul>
-                                                        <li>If flex-direction is set to row, it overrides the width</li>
-                                                        <li>If flex-direction is set to column, it overrides the height</li>
-                                                    </ul>
-                                            </ul>
-                                        <li>flex-grow property</li>
-                                            <ul>
-                                                <li>This determines the grow factor.</li>
-                                            </ul>
-                                        <li>flex-shrink property</li>
-                                            <ul>
-                                                <li>This determines the shrink factor.</li>
-                                            </ul>
-                                        <li>flex property</li>
-                                            <ul>
-                                                <li>It is a combination of flex-grow, flex-shrink and flex-basis.</li>
-                                            </ul>
-                                    </ul>
-                            </ul>
-                    </ul>
-                <li>Grid</li>
-                    <ul>
-                        <li>Flexbox allows us to lay out elements in a row or a column.</li>
-                        <li>Grid allows us to lay out elements in both rows and columns.</li>
-                        <li>To use grid, you need to set <span class="script-font">display: grid;</span> for the parent element.</li>
-                        <li>grid-template-rows</li>
-                            <ul>
-                                <li>To define the height of each grid row.</li>
-                                <li>For example: <span class="script-font">grid-template-rows: 100px 100px 100px;</span>
-                                    will define that there will be 3 rows in the grid, and each of them is 100px height.</li>
-                                <li></li>
-                            </ul>
-                        <li>grid-template-columns</li>
-                        <li>justify-items property</li>
-                            <ul>
-                                <li>To align items in <b>each grid cell</b> along the <b>horizontal</b> axis</li>
-                                <li>Default value is stretch, but it will not be applied if the item has already defined
-                                    height and width.
-                                </li>
-                            </ul>
-                        <li>align-items property</li>
-                            <ul>
-                                <li>To align items <b>in each grid cell</b> along the <b>vertical</b> axis</li>
-                                <li>Default value is stretch, but it will not be applied if the item has already defined
-                                    height and width.
-                                </li>
-                            </ul>
-                        <li>justify-content property</li>
-                            <ul>
-                                <li>To align the <b>entire grid</b> along the <b>horizontal</b> axis</li>
-                            </ul>
-                        <li>align-content property</li>
-                            <ul>
-                                <li>To align the <b>entire grid</b> along the <b>vertical</b> axis</li>
-                            </ul>
-                        <li>fr measurement unit</li>
-                            <ul>
-                                <li>Grid layout has a special relative measurement unit called 'fr', it is called fraction.</li>
-                                <li>Unlike % which is relative to the size of container, fr is relative to the size of
-                                    the remaining space.
-                                </li>
-                                <li>For example, if width of container is 200px, and the <span class="script-font">grid-template-columns: 100px 20fr 80fr</span>
-                                    means the width of second column will be 20px and width of third column will be 80px.
-                                </li>
-                                <li>Other than fr, we can also use auto to let the browser automatically fill up 
-                                    the remaining space.
-                                </li>
-                            </ul>
-                        <li>row-gap and column-gap properties</li>
-                            <ul>
-                                <li>To adjust the gaps between grid cells</li>
-                            </ul>
-                        <li>grid-column and grid-row properties</li>
-                            <ul>
-                                <li>To implicitly place the item at specific row and column.</li>
-                                <li>By default, each item takes only one cell.</li>
-                                <li>If you want it to take more than one cell, use span. 
-                                    For example: <span class="script-font">grid-column: 1 / span 2</span>
-                                </li>
-                            </ul>
-                        <li>grid-template-areas and grid-area properties</li>
-                            <ul>
-                                <li>With grid-template-areas, we can give names to each grid cell.
-                                    For example:
-                                </li>
-                                    <pre>
-                                        <code>
+                                    </code>
+                                </pre>
+                        </ul>
+                </ul>
+            <li>Flexbox (Flexible Box Layout)</li>
+                <ul>
+                    <li>Used for laying out elements in one direction (row or column).</li>
+                    <li>To use flexbox, you need to set <span class="script-font">display: flex;</span> for the parent element.</li>
+                    <li>Even though we set <span class="script-font">display: flex;</span>, the container is still
+                        a block-level element.</li>
+                    <li>You can use flex-direction to control the direction, by default it is row.</li>
+                    <li>To use flexbox, you must know the flexbox axes:</li>
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img src="https://samanthaming.gumlet.io/flexbox30/4-flexbox-axes.jpg.gz" width="60%">
+                            <span style="font-style: italic;">Source of image: https://www.samanthaming.com/flexbox30/4-flexbox-axes/</span>
+                        </div>
+                    <li>justify-content property</li>
+                        <ul>
+                            <li>To align item along the <b>main</b> axis</li>
+                            <li>Default value: flex-start</li>
+                        </ul>
+                    <li>align-items property</li>
+                        <ul>
+                            <li>To align item along the <b>cross</b> axis</li>
+                            <li>Default value: flex-start</li>
+                        </ul>
+                    <li>flex-wrap property</li>
+                        <ul>
+                            <li>Take note that, let's say you have a flex container and it contains multiple boxes, 
+                                even if you set the width property of the boxes, their width will be modified to ensure
+                                all the elements fit in one line.</li>
+                            <li>The default value of flex-wrap is nowrap</li>
+                            <li>If you set <span class="script-font">flex-wrap: wrap;</span>, then 
+                                the items in the flex container can keep their own width and height.</li>
+                        </ul>
+                    <li>align-content property</li>
+                        <ul>
+                            <li>This property only works if you have multiple lines in a flex container.</li>
+                            <li>When you have multiple lines in a flex container, for example due to flex-wrap,
+                                you can use align-content to align all the lines as a whole.
+                            </li>
+                        </ul>
+                    <li>align-self and justify-self property</li>
+                        <ul>
+                            <li>If you want override the align-items or justify-content property
+                                set by parent container, you can use align-self or justify-self.
+                            </li>
+                        </ul>
+                    <li>Sizing items:</li>
+                        <ul>
+                            <li>The following properties can be used to size items (cannot be used for container)</li>
+                                <ul>
+                                    <li>flex-basis property</li>
+                                        <ul>
+                                            <li>Default value is auto, which means browser sets the width and height
+                                                based on the width and height properties.
+                                            </li>
+                                            <li>This will override width or height based on the flex main-axis:</li>
+                                                <ul>
+                                                    <li>If flex-direction is set to row, it overrides the width</li>
+                                                    <li>If flex-direction is set to column, it overrides the height</li>
+                                                </ul>
+                                        </ul>
+                                    <li>flex-grow property</li>
+                                        <ul>
+                                            <li>This determines the grow factor.</li>
+                                        </ul>
+                                    <li>flex-shrink property</li>
+                                        <ul>
+                                            <li>This determines the shrink factor.</li>
+                                        </ul>
+                                    <li>flex property</li>
+                                        <ul>
+                                            <li>It is a combination of flex-grow, flex-shrink and flex-basis.</li>
+                                        </ul>
+                                </ul>
+                        </ul>
+                </ul>
+            <li>Grid</li>
+                <ul>
+                    <li>Flexbox allows us to lay out elements in a row or a column.</li>
+                    <li>Grid allows us to lay out elements in both rows and columns.</li>
+                    <li>To use grid, you need to set <span class="script-font">display: grid;</span> for the parent element.</li>
+                    <li>grid-template-rows</li>
+                        <ul>
+                            <li>To define the height of each grid row.</li>
+                            <li>For example: <span class="script-font">grid-template-rows: 100px 100px 100px;</span>
+                                will define that there will be 3 rows in the grid, and each of them is 100px height.</li>
+                            <li></li>
+                        </ul>
+                    <li>grid-template-columns</li>
+                    <li>justify-items property</li>
+                        <ul>
+                            <li>To align items in <b>each grid cell</b> along the <b>horizontal</b> axis</li>
+                            <li>Default value is stretch, but it will not be applied if the item has already defined
+                                height and width.
+                            </li>
+                        </ul>
+                    <li>align-items property</li>
+                        <ul>
+                            <li>To align items <b>in each grid cell</b> along the <b>vertical</b> axis</li>
+                            <li>Default value is stretch, but it will not be applied if the item has already defined
+                                height and width.
+                            </li>
+                        </ul>
+                    <li>justify-content property</li>
+                        <ul>
+                            <li>To align the <b>entire grid</b> along the <b>horizontal</b> axis</li>
+                        </ul>
+                    <li>align-content property</li>
+                        <ul>
+                            <li>To align the <b>entire grid</b> along the <b>vertical</b> axis</li>
+                        </ul>
+                    <li>fr measurement unit</li>
+                        <ul>
+                            <li>Grid layout has a special relative measurement unit called 'fr', it is called fraction.</li>
+                            <li>Unlike % which is relative to the size of container, fr is relative to the size of
+                                the remaining space.
+                            </li>
+                            <li>For example, if width of container is 200px, and the <span class="script-font">grid-template-columns: 100px 20fr 80fr</span>
+                                means the width of second column will be 20px and width of third column will be 80px.
+                            </li>
+                            <li>Other than fr, we can also use auto to let the browser automatically fill up 
+                                the remaining space.
+                            </li>
+                        </ul>
+                    <li>row-gap and column-gap properties</li>
+                        <ul>
+                            <li>To adjust the gaps between grid cells</li>
+                        </ul>
+                    <li>grid-column and grid-row properties</li>
+                        <ul>
+                            <li>To implicitly place the item at specific row and column.</li>
+                            <li>By default, each item takes only one cell.</li>
+                            <li>If you want it to take more than one cell, use span. 
+                                For example: <span class="script-font">grid-column: 1 / span 2</span>
+                            </li>
+                        </ul>
+                    <li>grid-template-areas and grid-area properties</li>
+                        <ul>
+                            <li>With grid-template-areas, we can give names to each grid cell.
+                                For example:
+                            </li>
+                                <pre>
+                                    <code>
     grid-template-areas: 
         "header     header"
         "sidebar    main"
         "footer     footer";
-                                        </code>
-                                    </pre>
-                                <li>With the names defined, you can now use grid-area property to place it 
-                                    in named areas. For example: <span class="script-font">grid-area: footer</span>
-                                </li>
-                            </ul>
-                    </ul>
-                <li>Hiding elements</li>
-                    <ul>
-                        <li>Using display property:</li>
-                            <ul>
-                                <li>If you set <span class="script-font">display: none;</span>, no 
-                                    space will be allocated for the item and it will not be displayed as well.</li>
-                            </ul>
-                        <li>Using visibility property:</li>
-                            <ul>
-                                <li>If you set <span class="script-font">visibility: hidden;</span>, the 
-                                    space will still be allocated for the item, but it is just not visible.</li>
-                            </ul>
-                    </ul>
-                <li>Media Queries</li>
-                    <ul>
-                        <li>When designing responsive web, normally people prefer to build the mobile
-                            version first, then only do adjustment for desktop version.
-                        </li>
-                        <li>With media queries, we can set different class style based on width and height.</li>
-                        <li>For example:</li>
-                            <pre>
-                                <code>
+                                    </code>
+                                </pre>
+                            <li>With the names defined, you can now use grid-area property to place it 
+                                in named areas. For example: <span class="script-font">grid-area: footer</span>
+                            </li>
+                        </ul>
+                </ul>
+            <li>Hiding elements</li>
+                <ul>
+                    <li>Using display property:</li>
+                        <ul>
+                            <li>If you set <span class="script-font">display: none;</span>, no 
+                                space will be allocated for the item and it will not be displayed as well.</li>
+                        </ul>
+                    <li>Using visibility property:</li>
+                        <ul>
+                            <li>If you set <span class="script-font">visibility: hidden;</span>, the 
+                                space will still be allocated for the item, but it is just not visible.</li>
+                        </ul>
+                </ul>
+            <li>Media Queries</li>
+                <ul>
+                    <li>When designing responsive web, normally people prefer to build the mobile
+                        version first, then only do adjustment for desktop version.
+                    </li>
+                    <li>With media queries, we can set different class style based on width and height.</li>
+                    <li>For example:</li>
+                        <pre>
+                            <code>
     .responsive-container &#123;
         display: flex;
         flex-direction: column;
@@ -686,78 +685,78 @@
             flex-direction: row;
         }
     }
-                                </code>
-                            </pre>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
+                            </code>
+                        </pre>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2>Typography</h2>
-            <ul>
-                <li>3 main types of fonts:</li>
-                    <ul>
-                        <li>Serif</li>
-                            <ul>
-                                <li>More professional and serious</li>
-                                <li>Examples:</li>
-                                    <ul>
-                                        <li>Times New Roman</li>
-                                    </ul>
-                            </ul>
-                        <li>Sans-serif</li>
-                            <ul>
-                                <li>More playful and modern</li>
-                                <li>Examples:</li>
-                                    <ul>
-                                        <li>Arial</li>
-                                        <li>Roboto</li>
-                                    </ul>
-                            </ul>
-                        <li>Monospace</li>
-                            <ul>
-                                <li>Ideal for displaying code</li>
-                                <li>Examples:</li>
-                                    <ul>
-                                        <li>Courier</li>
-                                        <li>Ubuntu</li>
-                                        <li>Consolas</li>
-                                    </ul>
-                            </ul>
-                    </ul>
-                <li>Web Safe Fonts</li>
-                    <ul>
-                        <li>Web Safe Fonts are fonts that are available on most computers out there.</li>
-                        <li></li>
-                    </ul>
-                <li>Font Stack</li>
-                    <ul>
-                        <li>A font stack consists of multiple fonts, and it will try to use the first font
-                            in the stack if it is available, else it will look for the next one. The last one
-                            in the stack should be a generic font type, such as serif, sans-serif or monospace.
-                        </li>
-                        <li>Example of setting font-family using font stack:</li>
-                            <pre>
-                                <code>
-    font-family: Georgia, 'Times New Roman', serif;
-                                </code>
-                            </pre>
-                    </ul>
-                <li>font-weight</li>
-                    <ul>
-                        <li>Range is between 100 - 900</li>
-                        <li>normal = 400</li>
-                        <li>bold = 700</li>
-                    </ul>
-                <li>font-size</li>
-                    <ul>
-                        <li>The common best practice of setting font size is by setting it relative to 
-                            root font size by using 'rem'. This applies to margin etc as well.
-                        </li>
-                        <li>This is so that we can easily scale the font size according to different 
-                            screen size. For example:
-                        </li>
-                            <pre>
-                                <code>
+        <h2>Typography</h2>
+        <ul>
+            <li>3 main types of fonts:</li>
+                <ul>
+                    <li>Serif</li>
+                        <ul>
+                            <li>More professional and serious</li>
+                            <li>Examples:</li>
+                                <ul>
+                                    <li>Times New Roman</li>
+                                </ul>
+                        </ul>
+                    <li>Sans-serif</li>
+                        <ul>
+                            <li>More playful and modern</li>
+                            <li>Examples:</li>
+                                <ul>
+                                    <li>Arial</li>
+                                    <li>Roboto</li>
+                                </ul>
+                        </ul>
+                    <li>Monospace</li>
+                        <ul>
+                            <li>Ideal for displaying code</li>
+                            <li>Examples:</li>
+                                <ul>
+                                    <li>Courier</li>
+                                    <li>Ubuntu</li>
+                                    <li>Consolas</li>
+                                </ul>
+                        </ul>
+                </ul>
+            <li>Web Safe Fonts</li>
+                <ul>
+                    <li>Web Safe Fonts are fonts that are available on most computers out there.</li>
+                    <li></li>
+                </ul>
+            <li>Font Stack</li>
+                <ul>
+                    <li>A font stack consists of multiple fonts, and it will try to use the first font
+                        in the stack if it is available, else it will look for the next one. The last one
+                        in the stack should be a generic font type, such as serif, sans-serif or monospace.
+                    </li>
+                    <li>Example of setting font-family using font stack:</li>
+                        <pre>
+                            <code>
+font-family: Georgia, 'Times New Roman', serif;
+                            </code>
+                        </pre>
+                </ul>
+            <li>font-weight</li>
+                <ul>
+                    <li>Range is between 100 - 900</li>
+                    <li>normal = 400</li>
+                    <li>bold = 700</li>
+                </ul>
+            <li>font-size</li>
+                <ul>
+                    <li>The common best practice of setting font size is by setting it relative to 
+                        root font size by using 'rem'. This applies to margin etc as well.
+                    </li>
+                    <li>This is so that we can easily scale the font size according to different 
+                        screen size. For example:
+                    </li>
+                        <pre>
+                            <code>
     body &#123;
         font-size: 1rem;
     }
@@ -769,171 +768,171 @@
             font-size: 130%;
         }
     }
-                                </code>
-                            </pre>
-                    </ul>
-                <li>line-height</li>
-                    <ul>
-                        <li>The general rule of thumb is to set the line-height to 1.5 times of font-size.</li>
-                        <li>To make it always relative to font size, no matter how we change the 
-                            font size, we can just set it to 1.5, without px without rem etc.
-                        </li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                </ul>
+            <li>line-height</li>
+                <ul>
+                    <li>The general rule of thumb is to set the line-height to 1.5 times of font-size.</li>
+                    <li>To make it always relative to font size, no matter how we change the 
+                        font size, we can just set it to 1.5, without px without rem etc.
+                    </li>
+                        <pre>
+                            <code>
     body &#123;
         font-size: 1rem;
         line-height: 1.5;
     }
-                                </code>
-                            </pre>
-                    </ul>
-                <li>text-align</li>
-                    <ul>
-                        <li>options: left, right, center, justify</li>
-                    </ul>
-                <li>text-indent</li>
-                    <ul>
-                        <li>This is to add indentation to the first line of our text.</li>
-                    </ul>
-                <li>text-decoration</li>
-                    <ul>
-                        <li>options: underline, line-through</li>
-                    </ul>
-                <li>text-transform</li>
-                    <ul>
-                        <li>options: capitalize, lowercase, uppercase</li>
-                    </ul>
-                <li>splitting text to columns</li>
-                    <ul>
-                        <li>Example:</li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                </ul>
+            <li>text-align</li>
+                <ul>
+                    <li>options: left, right, center, justify</li>
+                </ul>
+            <li>text-indent</li>
+                <ul>
+                    <li>This is to add indentation to the first line of our text.</li>
+                </ul>
+            <li>text-decoration</li>
+                <ul>
+                    <li>options: underline, line-through</li>
+                </ul>
+            <li>text-transform</li>
+                <ul>
+                    <li>options: capitalize, lowercase, uppercase</li>
+                </ul>
+            <li>splitting text to columns</li>
+                <ul>
+                    <li>Example:</li>
+                        <pre>
+                            <code>
     p &#123;
         column-count: 2;
         column-gap: 1rem;
         column-rule: 3px dotted #999;
     }
-                                </code>
-                            </pre>
-                    </ul>
-                <li>setting nowrap to long text and shows "..." at the end</li>
-                    <ul>
-                        <li>Example:</li>
-                            <pre>
-                                <code>
+                            </code>
+                        </pre>
+                </ul>
+            <li>setting nowrap to long text and shows "..." at the end</li>
+                <ul>
+                    <li>Example:</li>
+                        <pre>
+                            <code>
     p &#123;
         white-space: nowrap;
         border: solid;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-                                </code>
-                            </pre>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
+                            </code>
+                        </pre>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2>Bootstrap</h2>
-            <ul>
-                <li>Bootstrap is a type of CSS framework, it helps in reducing the amount of
-                    CSS code that we need to write from scratch, despite having a learning curve
-                    for developers to look at their documentation.
-                </li>
-                <li>There are a lot of ways that we can implement Bootstrap into our website, refer
-                    to <a href="https://getbootstrap.com/docs/5.2/getting-started/download/" 
-                    target="_blank" rel="noopener noreferrer">this page</a>.
-                </li>
-                <li>Refer to their Docs to see how to use them.</li>
-            </ul>
-            <mat-divider></mat-divider>
+        <h2>Bootstrap</h2>
+        <ul>
+            <li>Bootstrap is a type of CSS framework, it helps in reducing the amount of
+                CSS code that we need to write from scratch, despite having a learning curve
+                for developers to look at their documentation.
+            </li>
+            <li>There are a lot of ways that we can implement Bootstrap into our website, refer
+                to <a href="https://getbootstrap.com/docs/5.2/getting-started/download/" 
+                target="_blank" rel="noopener noreferrer">this page</a>.
+            </li>
+            <li>Refer to their Docs to see how to use them.</li>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2><a href="https://milligram.io/" target="_blank" rel="noopener noreferrer">Milligram</a></h2>
-            <ul>
-                <li>Milligram is also a kind of CSS framework.</li>
-                <li>It is "Specially designed for better performance and higher productivity with fewer properties to reset resulting in cleaner code."</li>
-            </ul>
-            <mat-divider></mat-divider>
+        <h2><a href="https://milligram.io/" target="_blank" rel="noopener noreferrer">Milligram</a></h2>
+        <ul>
+            <li>Milligram is also a kind of CSS framework.</li>
+            <li>It is "Specially designed for better performance and higher productivity with fewer properties to reset resulting in cleaner code."</li>
+        </ul>
+        <mat-divider></mat-divider>
 
-            <h2>Form</h2>
-            <ul>
-                <li>If you want to test your form submit, you can use <a href="https://formspree.io/" 
-                    target="_blank" rel="noopener noreferrer">formspree</a></li>
-            </ul>
+        <h2>Form</h2>
+        <ul>
+            <li>If you want to test your form submit, you can use <a href="https://formspree.io/" 
+                target="_blank" rel="noopener noreferrer">formspree</a></li>
+        </ul>
 
-            <h2>Transformation, Transition & Animation</h2>
-            <ul>
-                <li>2D Transformation</li>
-                    <ul>
-                        <li>There are some transformation functions in css:</li>
-                            <ul>
-                                <li>rotate()</li>
-                                <li>scale()</li>
-                                <li>skew()</li>
-                                <li>translate()</li>
-                            </ul>
-                        <li>Examples:</li>
-                            <ul>
-                                <li><div class="box box1">transform: rotate(-15deg);</div></li>
-                                <li><div class="box box2">transform: scale(0.5);</div></li>
-                                <li><div class="box box3">transform: skew(15deg);</div></li>
-                                <li><div class="box box4">transform: translate(10px, 10px);</div></li>
-                            </ul>
-                    </ul>
-                <li>3D Transformation</li>
-                    <ul>
-                        <li>3D Transformation is mostly about translating on z-axis, and rotating
-                            about x-axis and y-axis.
-                        </li>
-                        <li>To achieve 3D Transformation, we need to provide a perspective (either
-                            by defining the perspective property of the parent or calling perspective() function
-                            in the transform property), to define how far is the DOM away from us.
-                        </li>
-                        <li>By default, the transform-origin is center, but we can modify it also.
-                            For examples:
-                        </li>
-                            <ul>
-                                <li>transform-origin: center;</li>
-                                <li>transform-origin: top left;</li>
-                                <li>transform-origin: 20px 50px;</li>
-                                <li>transform-origin: bottom right 50px;</li>
-                            </ul>
-                        <li>The additional transformation functions for 3D transformations are:</li>
-                            <ul>
-                                <li>perspective()</li>
-                                <li>rotateX()</li>
-                                <li>rotateY()</li>
-                                <li>translateZ()</li>
-                            </ul>
-                        <li>Examples</li>
-                            <ul>
-                                <li><div class="box box5">transform: perspective(200px) translateZ(100px);</div></li>
-                                <li><div class="box box6">transform: perspective(200px) rotateY(-20deg);</div></li>
-                                <li><div class="box box7">transform: perspective(200px) rotateX(-20deg);</div></li>
-                                <li><div class="box box8">transform-origin: top left;<br>transform: perspective(200px) rotateX(-20deg);</div></li>
-                            </ul>
-                    </ul>
-                <li>Transition</li>
-                    <ul>
-                        <li>We can use transition property to display the transition of transformation,
-                            color changes, etc.
-                        </li>
-                        <li>Examples</li>
+        <h2>Transformation, Transition & Animation</h2>
+        <ul>
+            <li>2D Transformation</li>
+                <ul>
+                    <li>There are some transformation functions in css:</li>
                         <ul>
-                            <li><div class="box box9 box-transition1">transition: transform 0.5s, background 0.5s;</div></li>
-                            <li><div class="box box9 box-transition2">transition: transform 2s linear, background 2s linear;</div></li>
-                            <li><div class="box box9 box-transition3">transition: transform 2s ease-in, background 2s ease-in;</div></li>
-                            <li><div class="box box9 box-transition4">transition: transform 2s linear 1s;</div></li>
+                            <li>rotate()</li>
+                            <li>scale()</li>
+                            <li>skew()</li>
+                            <li>translate()</li>
                         </ul>
-                    </ul>
-                <li>Animation</li>
+                    <li>Examples:</li>
+                        <ul>
+                            <li><div class="box box1">transform: rotate(-15deg);</div></li>
+                            <li><div class="box box2">transform: scale(0.5);</div></li>
+                            <li><div class="box box3">transform: skew(15deg);</div></li>
+                            <li><div class="box box4">transform: translate(10px, 10px);</div></li>
+                        </ul>
+                </ul>
+            <li>3D Transformation</li>
+                <ul>
+                    <li>3D Transformation is mostly about translating on z-axis, and rotating
+                        about x-axis and y-axis.
+                    </li>
+                    <li>To achieve 3D Transformation, we need to provide a perspective (either
+                        by defining the perspective property of the parent or calling perspective() function
+                        in the transform property), to define how far is the DOM away from us.
+                    </li>
+                    <li>By default, the transform-origin is center, but we can modify it also.
+                        For examples:
+                    </li>
+                        <ul>
+                            <li>transform-origin: center;</li>
+                            <li>transform-origin: top left;</li>
+                            <li>transform-origin: 20px 50px;</li>
+                            <li>transform-origin: bottom right 50px;</li>
+                        </ul>
+                    <li>The additional transformation functions for 3D transformations are:</li>
+                        <ul>
+                            <li>perspective()</li>
+                            <li>rotateX()</li>
+                            <li>rotateY()</li>
+                            <li>translateZ()</li>
+                        </ul>
+                    <li>Examples</li>
+                        <ul>
+                            <li><div class="box box5">transform: perspective(200px) translateZ(100px);</div></li>
+                            <li><div class="box box6">transform: perspective(200px) rotateY(-20deg);</div></li>
+                            <li><div class="box box7">transform: perspective(200px) rotateX(-20deg);</div></li>
+                            <li><div class="box box8">transform-origin: top left;<br>transform: perspective(200px) rotateX(-20deg);</div></li>
+                        </ul>
+                </ul>
+            <li>Transition</li>
+                <ul>
+                    <li>We can use transition property to display the transition of transformation,
+                        color changes, etc.
+                    </li>
+                    <li>Examples</li>
                     <ul>
-                        <li>Transition is sufficient for simple animations. However, for more complex ones
-                            such as controlling a sequence of transition, we need the animate property.
-                        </li>
-                        <li>To create animation, we need to use the @keyframes to define our animation.</li>
-                        <li>The following is an example:</li>
-                            <pre>
-                                <code>
+                        <li><div class="box box9 box-transition1">transition: transform 0.5s, background 0.5s;</div></li>
+                        <li><div class="box box9 box-transition2">transition: transform 2s linear, background 2s linear;</div></li>
+                        <li><div class="box box9 box-transition3">transition: transform 2s ease-in, background 2s ease-in;</div></li>
+                        <li><div class="box box9 box-transition4">transition: transform 2s linear 1s;</div></li>
+                    </ul>
+                </ul>
+            <li>Animation</li>
+                <ul>
+                    <li>Transition is sufficient for simple animations. However, for more complex ones
+                        such as controlling a sequence of transition, we need the animate property.
+                    </li>
+                    <li>To create animation, we need to use the @keyframes to define our animation.</li>
+                    <li>The following is an example:</li>
+                        <pre>
+                            <code>
 @keyframes example01 &#123;
     0% &#123;
         transform: scale(1);
@@ -975,79 +974,78 @@
         height: 40px;
     }   
 }
-                                </code>
-                            </pre>
-                            <div style="display: flex; justify-content:center; align-items: center; width: 100%; height: 300px; border: black solid 2px;">
-                                <div id="animation-demo"></div>
-                            </div>
-                        <li>To make your animation reusable, you can create a class for your animation properties such as 
-                            animation-name, animation-duration, animation-delay, animation-iterative-count etc.
-                            <br>Then, you just apply the class to the DOM that you want to animate.
-                        </li>
-                        <li><a href="https://animate.style/" target="_blank" rel="noopener noreferrer">Animate.css</a> is a libary of
-                            animations that you may want to explore.</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-            
-            <h2>Responsive Design</h2>
-            <ul>
-                <li>CSS does allow overflow content to overflow its container if you didnt specify
-                    its width. Hence, it is recommended to set "max-width : 100%" for these 
-                    elements.
-                    <ul>
-                        <li>img</li>
-                        <li>embed</li>
-                        <li>object</li>
-                        <li>video</li>
-                    </ul>
-                </li>
-                <li>Tap targets's size should be at least 48px x 48px (such as by using 
-                    min-height and min-width properties, or by increasing the padding of 
-                    the tap targets), or else they should be far aparts 
-                    from each other if they have to be small. 
-                </li>
-                <li>Start designing websites from small (focus working on small screens,
-                    then should be less problems to work with bigger screens).
-                </li>
-                <li>Media queries are normally used to handle different screenz size.</li>
-                    <ul>
-                        <li>There are 3 ways to apply media queries:</li>
-                            <ol>
-                                <li>Using the media attribute in link style sheet</li>
-                                    <pre>
-                                        <code>
+                            </code>
+                        </pre>
+                        <div style="display: flex; justify-content:center; align-items: center; width: 100%; height: 300px; border: black solid 2px;">
+                            <div id="animation-demo"></div>
+                        </div>
+                    <li>To make your animation reusable, you can create a class for your animation properties such as 
+                        animation-name, animation-duration, animation-delay, animation-iterative-count etc.
+                        <br>Then, you just apply the class to the DOM that you want to animate.
+                    </li>
+                    <li><a href="https://animate.style/" target="_blank" rel="noopener noreferrer">Animate.css</a> is a libary of
+                        animations that you may want to explore.</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
+        
+        <h2>Responsive Design</h2>
+        <ul>
+            <li>CSS does allow overflow content to overflow its container if you didnt specify
+                its width. Hence, it is recommended to set "max-width : 100%" for these 
+                elements.
+                <ul>
+                    <li>img</li>
+                    <li>embed</li>
+                    <li>object</li>
+                    <li>video</li>
+                </ul>
+            </li>
+            <li>Tap targets's size should be at least 48px x 48px (such as by using 
+                min-height and min-width properties, or by increasing the padding of 
+                the tap targets), or else they should be far aparts 
+                from each other if they have to be small. 
+            </li>
+            <li>Start designing websites from small (focus working on small screens,
+                then should be less problems to work with bigger screens).
+            </li>
+            <li>Media queries are normally used to handle different screenz size.</li>
+                <ul>
+                    <li>There are 3 ways to apply media queries:</li>
+                        <ol>
+                            <li>Using the media attribute in link style sheet</li>
+                                <pre>
+                                    <code>
 &lt;link rel="stylesheet" href="styles.css">
 &lt;link rel="stylesheet" media="screen and (min-width:500px)" href="over500.css">
 &lt;link rel="stylesheet" media="screen and (min-width:1000px)" href="over1000.css">
-                                        </code>
-                                    </pre>
-                                <li>Using @media tag</li>
-                                    <pre>
-                                        <code>
+                                    </code>
+                                </pre>
+                            <li>Using @media tag</li>
+                                <pre>
+                                    <code>
 @media screen and (min-width: 500px) &#123;
     body &#123; background-color: green; }
 }
-                                        </code>
-                                    </pre>
-                                <li>Using @import tag</li>
-                                    <pre>
-                                        <code>
+                                    </code>
+                                </pre>
+                            <li>Using @import tag</li>
+                                <pre>
+                                    <code>
 @import url("over500.css") only screen and (min-width: 500px);
-                                        </code>
-                                    </pre>
-                            </ol>
-                        <li>For performance reasons, the @import tag should not be used as the process is pretty expensive.</li>
-                        <li>For the first option, you will have many small files, but will end up in many HTTP Requests.</li>
-                        <li>For the second option, you will have fewer HTTP requests, but the file size tends to be bigger.</li>
-                    </ul>
-                <li>Other than media queries, the following patterns are useful for maintaining responsive designs as well:</li>
-                    <ul>
-                        <li>FlexBox</li>
-                        <li>Grid (Bootstrap Grid is built with flexbox.)</li>
-                    </ul>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
+                                    </code>
+                                </pre>
+                        </ol>
+                    <li>For performance reasons, the @import tag should not be used as the process is pretty expensive.</li>
+                    <li>For the first option, you will have many small files, but will end up in many HTTP Requests.</li>
+                    <li>For the second option, you will have fewer HTTP requests, but the file size tends to be bigger.</li>
+                </ul>
+            <li>Other than media queries, the following patterns are useful for maintaining responsive designs as well:</li>
+                <ul>
+                    <li>FlexBox</li>
+                    <li>Grid (Bootstrap Grid is built with flexbox.)</li>
+                </ul>
+        </ul>
+        <mat-divider></mat-divider>
     </div>
 </div>

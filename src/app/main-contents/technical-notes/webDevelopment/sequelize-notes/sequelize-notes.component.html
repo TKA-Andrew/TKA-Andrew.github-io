@@ -1,33 +1,32 @@
 <div class="flexContainer">
-    <div fxLayout="column" fxLayoutGap="10px">
-        <h1>Sequelize Notes</h1>
-        <div>
-            <h2>Introduction</h2>
-            <p>Sequelize is a promise-based Node.js Object-Relational Mapping (ORM) for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server.</p>
-            <p>Most of the usage guides are available in <a href="https://sequelize.org/master/" target="_blank" rel="noopener noreferrer">Sequelize v6 Documentation</a>.</p>
-            <p>The following sections are my personal notes.</p>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Declaring array-type column in model declaration</h3>
-            <pre>
-                <code>
+    <h1>Sequelize Notes</h1>
+    <div>
+        <h2>Introduction</h2>
+        <p>Sequelize is a promise-based Node.js Object-Relational Mapping (ORM) for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server.</p>
+        <p>Most of the usage guides are available in <a href="https://sequelize.org/master/" target="_blank" rel="noopener noreferrer">Sequelize v6 Documentation</a>.</p>
+        <p>The following sections are my personal notes.</p>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Declaring array-type column in model declaration</h3>
+        <pre>
+            <code>
     // example
     item_ids: &#123;
         type: DataTypes.ARRAY(DataTypes.TEXT),
         defaultValue: []
     },                  
-                </code>
-            </pre>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Adding indexes to your model</h3>
-            <p>Sometimes there are some columns which we frequenly query although they are not primary keys. For such cases, 
-              it is recommended to add indexes to these columns to improve the query performance.</p>
-            <p>Take note that you should not add indexes to all columns, only add them to columns that are frequently referred.</p>
-            <pre>
-                <code>
+            </code>
+        </pre>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Adding indexes to your model</h3>
+        <p>Sometimes there are some columns which we frequenly query although they are not primary keys. For such cases, 
+            it is recommended to add indexes to these columns to improve the query performance.</p>
+        <p>Take note that you should not add indexes to all columns, only add them to columns that are frequently referred.</p>
+        <pre>
+            <code>
       // example
       sequelize.define('supplierModel', &#123;
         supplier_uuid: &#123;
@@ -52,17 +51,17 @@
           }
         ]
       })
-                </code>
-            </pre>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Declaring Postgres JSONB column type in model declaration</h3>
-            <p>Take note that PostgreSQL supporting JSONB column type doesn't mean it is a NOSQL database. If you interested to understand their differences, 
-            refer to this <a href="https://blog.couchbase.com/postgres-jsonb-and-nosql/" target="_blank" rel="noopener noreferrer">blog post</a>.</p>
-            <p>Declaring a JSONB column is simply by using DataTypes.JSONB. The CRUD operation for JSONB column also has no difference with other column types.</p>
-            <pre>
-                <code>
+            </code>
+        </pre>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Declaring Postgres JSONB column type in model declaration</h3>
+        <p>Take note that PostgreSQL supporting JSONB column type doesn't mean it is a NOSQL database. If you interested to understand their differences, 
+        refer to this <a href="https://blog.couchbase.com/postgres-jsonb-and-nosql/" target="_blank" rel="noopener noreferrer">blog post</a>.</p>
+        <p>Declaring a JSONB column is simply by using DataTypes.JSONB. The CRUD operation for JSONB column also has no difference with other column types.</p>
+        <pre>
+            <code>
     // example
     sequelize.define('itemModel', &#123;
     item_uuid: &#123;
@@ -73,14 +72,14 @@
         item_name: DataTypes.TEXT,
         item_details: DataTypes.JSONB
     }
-                </code>
-            </pre>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Finding data according to length of array of a specific column</h3>
-            <pre>
-                <code>
+            </code>
+        </pre>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Finding data according to length of array of a specific column</h3>
+        <pre>
+            <code>
     // example
     db.models.inventoryModel.findAll(&#123;
         raw: true,
@@ -92,14 +91,14 @@
             &#123; item_type: 'pen' },
         ]
     })                                 
-                </code>
-            </pre>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Finding rows that contain a certain value in an array column</h3>
-            <pre>
-                <code>
+            </code>
+        </pre>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Finding rows that contain a certain value in an array column</h3>
+        <pre>
+            <code>
     // example
     db.models.inventoryModel.findAll(&#123;
         raw: true,
@@ -107,16 +106,16 @@
             item_ids: &#123; [Op.contains]: idsOfDeletedItem }
         }
     })                                             
-                </code>
-            </pre>
-            <mat-divider></mat-divider>
-        </div>
-        <div>
-            <h3>Adding/Updating multiple rows of data at once</h3>
-            <p>The <span style="font-style: italic">bulkCreate</span> by default will create multiple new rows at once, but with
-                the <span style="font-style: italic">updateOnDuplicate</span>, it will update if the unique keys of that row already exist in the table.</p>
-            <pre>
-                <code>
+            </code>
+        </pre>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Adding/Updating multiple rows of data at once</h3>
+        <p>The <span style="font-style: italic">bulkCreate</span> by default will create multiple new rows at once, but with
+            the <span style="font-style: italic">updateOnDuplicate</span>, it will update if the unique keys of that row already exist in the table.</p>
+        <pre>
+            <code>
     // example
     const newBulk = []
     await Promise.all(itemConfigurationList.map(async (itemObject) => &#123;
@@ -135,9 +134,8 @@
     }).catch((error) => &#123;
         res.status(s500).send(&#123; message: error.message })
     })                  
-                </code>
-            </pre>
-            <mat-divider></mat-divider>
-        </div>
+            </code>
+        </pre>
+        <mat-divider></mat-divider>
     </div>
 </div>

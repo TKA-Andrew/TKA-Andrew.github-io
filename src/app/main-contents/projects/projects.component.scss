@@ -3,6 +3,10 @@
 .project-container {
   padding: 10px;
   margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
 }
 
 /* Slideshow container */
@@ -52,6 +56,7 @@
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
+  opacity: 1;
 }
 
 /* The dots/bullets/indicators */
@@ -89,4 +94,49 @@
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.project-slide-section {
+  flex:60
+}
+
+.project-text-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex:40
+}
+
+.project-title {
+  color: black;
+  font-size: 50px;
+  align-items: center;
+  margin:0px;
+  max-width: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.project-description {
+  color: black;
+  font-size: 22px;
+  align-self: center;
+  text-align: justify;
+  max-width: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 959px) {
+  .project-container {
+    flex-direction: column;
+  }
+
+  .project-title {
+    font-size: 30px;
+  }
+
+  .project-description {
+    font-size: 15px;
+  }
 }
