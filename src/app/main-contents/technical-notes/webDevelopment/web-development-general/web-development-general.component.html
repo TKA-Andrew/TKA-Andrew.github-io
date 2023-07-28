@@ -7,7 +7,6 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('how-web-works')">How the Web works</button>
-            <button mat-button class="listItem" (click)="scrollTo('AJAX')">What is AJAX?</button>
             <button mat-button class="listItem" (click)="scrollTo('jQuery')">What is jQuery?</button>
             <button mat-button class="listItem" (click)="scrollTo('D3')">What is D3?</button>
             <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
@@ -85,18 +84,19 @@
             <mat-divider></mat-divider>
         </div>
 
-        <div id="AJAX">
-            <h2><a href="https://www.w3schools.com/jquery/jquery_ajax_intro.asp"
-                target="_blank" rel="noopener noreferrer">What is AJAX?</a></h2>
-            <ul>
-                <li>With jQuery, you may not need to learn XML AJAX.</li>
-            </ul>
-            <mat-divider></mat-divider>
-        </div>
-
         <div id="jQuery">
             <h2>What is jQuery?</h2>
             <ul>
+                <li><strong>Take note that: </strong>The recent trend is towards migrating jQuery to Vanilla
+                Javascript. Vanilla Javascript here means "Core Javascript" or "Plain Javascript" without unnecessary libraries. 
+                The trend of this migration is because:
+                    <ul>
+                        <li>Whatever jQuery can do, it can be done using Javascript</li>
+                        <li>jQuery has lots of dependencies, and the browser has to load a lot of files
+                            just to do something that Javascript can do.
+                        </li>
+                    </ul>
+                </li>
                 <li>jQuery is a lightweight, "write less, do more" Javascript library.</li>
                 <li>jQuery is the most-know skill after having a basic knowledge about HTML and CSS.</li>
                 <li>jQuery is so useful that it has the folloing features:</li>
@@ -158,6 +158,7 @@
                     and then we can manipulate the DOM based on the data.
                 </li>
             </ul>
+            <mat-divider></mat-divider>
         </div>
 
         <div id="difference">
@@ -197,7 +198,7 @@
         </div>
         <div id="nodeJS">
             <h2>Node.js</h2>
-            <a href="https://nodejs.dev/learn" target="_blank" rel="noopener noreferrer">The best resources to learn Node.js</a>
+            <a href="https://nodejs.dev/en/learn" target="_blank" rel="noopener noreferrer">The best resources to learn Node.js</a>
             <p>You also need to take note of how are the files will be treated as ECMAScript modules and CommonJS modules by referring to 
                 <a href="https://keenethics.com/blog/ecmascript-modules-nodejs-v14" target="_blank" rel="noopener noreferrer">this blog post</a>.</p>
             <mat-divider></mat-divider>
