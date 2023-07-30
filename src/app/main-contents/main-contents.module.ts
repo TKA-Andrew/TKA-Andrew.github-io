@@ -21,7 +21,6 @@ import { BusyService } from '../services/busy,service';
 import { ShareFacadeService } from '../services/shareFacade.service';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { SwiperModule } from "swiper/angular";
-import { MglTimelineModule } from 'angular-mgl-timeline';
 import { ResumeComponent } from './resume/resume.component';
 import { MathjaxModule } from 'mathjax-angular';
 import { ProjectsComponent } from './projects/projects.component';
@@ -49,7 +48,6 @@ import { ProjectsComponent } from './projects/projects.component';
     MatProgressBarModule,
     FontAwesomeModule,
     SwiperModule,
-    MglTimelineModule,
     NgBusyModule.forRoot(new BusyConfig({
       template: AppBusyComponent,
       wrapperClass: 'app-busy',
