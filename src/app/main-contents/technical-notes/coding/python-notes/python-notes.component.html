@@ -10,6 +10,249 @@
         <mat-divider></mat-divider>
 
         <div>
+            <h3>Mutable & Immutable Objects in Python</h3>
+            <ul>
+                <li>In C++, we can choose to pass objects by reference or copy. But for Python, 
+                    we need to aware about mutable & immutable objects, else we might
+                    accidentally modify mutable objects.
+                </li>
+                <li>In short, mutable objects can be modifed after creation whereas immutable objects
+                    cannot be modified after creation. The only way to "modify" immutable objects is to
+                    reassign them to a new value. For example, "i = i + 5" is actually reassigning
+                    the i to a new value instead of modifying it.
+                </li>
+                <li>Some examples of immutable objects:</li>
+                    <ul>
+                        <li>Integers</li>
+                        <li>Floats</li>
+                        <li>Strings</li>
+                        <li>Tuples</li>
+                        <li>Frozen Sets (from the collections module)</li>
+                        <li>NamedTuples (from the collections module)</li>
+                        <li>Enums (from the enum module)</li>
+                    </ul>
+                <li>Some examples of mutable objects:</li>
+                    <ul>
+                        <li>Lists</li>
+                        <li>Dictionaries</li>
+                        <li>Sets</li>
+                        <li>Deques (from the collections module)</li>
+                        <li>OrderedDicts (from the collections module, Python 3.1+)</li>
+                        <li>DefaultDicts (from the collections module)</li>
+                    </ul>
+                <li>It is important to note that, mutable objects are "pass by reference" and hence
+                    we should be careful when passing mutable objects are function arguments.
+                    <pre>
+                        <code>
+    # mutable example
+    mutable_list = [1, 2, 3, 4]
+
+    # immutable example
+    immutable_tuple = (1, 2, 3, 4)
+
+    def update_list(list):
+        list.append(5)
+
+    def update_tuple(t):
+        t = t + (5, 6, 7)
+    
+    update_list(mutable_list)
+    update_tuple(immutable_tuple)
+    
+    print("mutable_list:", mutable_list)
+    print("immutable_tuple:", immutable_tuple)
+                        </code>
+                    </pre>
+                </li>
+                <li>Also, take note that, tuple is immutable container, but if its element is mutable, that element
+                    can still be modified.
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>defaultdict (from collections module)</h3>
+            <ul>
+                <li>Defaultdict is just like Python Dictionaries, just that it can help users to automatically
+                    initialize value if there is KeyError issue using its Default Factory.
+                </li>
+                <li>Example of standard dictionaries vs defaultdict
+                    <pre>
+                        <code>
+    dad_bought = &#123;"apple": 5, "pineapple": 10, "watermelon": 3}
+    mom_bought = &#123;"durian": 2, "apple": 3}
+
+    standard_dict = &#123;}
+    default_dict = defaultdict(int)
+
+    for dictionary in (dad_bought, mom_bought):
+        for key, value in dictionary.items():
+            # defaultdict handling
+            default_dict[key] += value
+
+            # standard dict handling
+            if key not in standard_dict:
+                standard_dict[key] = 0
+            standard_dict[key] += value
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>OrderedDict (from collection module)</h3>
+            <ul>
+                <li>OrderedDict is kind of dictionary that can maintain the order of the keys
+                    in the same as the order of insertion.
+                </li>
+                <li>However, in Python 3.7 and later, the standard dictionary (dict) maintains 
+                    the order of insertion by default</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>NamedTuples (from collection module)</h3>
+            <ul>
+                <li>NamedTuple is like a light weight class that creates tuple subclasses with named fields.
+                    It offers the benefits of both dictionaries and tuples.</li>
+                <li>One of its advantages is it is reusable (as it is something like a class).</li>
+                <li>Refer to the code snippet for the difference between NamedTuples vs Dictionary vs Tuple:
+                    <pre>
+                        <code>
+    from collections import namedtuple
+
+    # Define a named tuple class with complex data
+    Person = namedtuple('Person', ['name', 'age', 'hobbies'])
+    
+    person1 = Person('Alice', 25, ['reading', 'yoga'])
+    person2 = Person('Andy', 23, ['drawing', 'dancing'])
+    standard_dict1 = &#123;'name': 'Alice', 'age': 25, 'hobbies': ['reading', 'yoga']}
+    standard_dict2 = &#123;'name': 'Andy', 'age': 23, 'hobbies': ['drawing', 'dancing']}
+    standard_tuple1 = ('Alice', 25, ['reading', 'yoga'])
+    standard_tuple2 = ('Andy', 23, ['drawing', 'dancing'])
+    
+    # Access by index
+    print(person1[0])
+    print(standard_tuple2[0])
+    
+    # Access by name
+    print(person1.age)
+    print(standard_dict2["age"])
+    
+    # Using getattr()
+    print(getattr(person1, 'gender', 'Unknown'))
+    print(getattr(standard_dict2, 'gender', 'Unknown'))
+    
+    # Iteration
+    for value in person1:
+        print(value)
+    
+    for value in standard_tuple1:
+        print(value)
+    
+    for value in standard_dict2.values():
+        print(value)                            
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>Generator Functions & yield </h3>
+            <ul>
+                <li><a href="https://realpython.com/introduction-to-python-generators/" target="_blank" rel="noopener noreferrer">Reference</a></li>
+                <li>Generator functions look and act just like regular functions, but it uses 'yield' instead of 'return'.</li>
+                <li>The code below shows a simple example of regular function & generator function. They produce the same results,
+                    but for this case using generator function is more memory-efficient.
+                    <pre>
+                        <code>
+    def generate_fibonacci_regular(limit):
+        fibonacci_numbers = [0, 1]
+        while len(fibonacci_numbers) &lt; limit:
+            next_number = fibonacci_numbers[-1] + fibonacci_numbers[-2]
+            fibonacci_numbers.append(next_number)
+        return fibonacci_numbers
+    
+    def generate_fibonacci_generator(limit):
+        a, b = 0, 1
+        for _ in range(limit):
+            yield a
+            a, b = b, a + b
+    
+    for result in generate_fibonacci_regular(10):
+        print(result)
+    
+    # This is more memory-efficient as the list is not stored in memory
+    for result in generate_fibonacci_generator(10):
+        print(result)                      
+                        </code>
+                    </pre>
+                </li>
+                <li>As shown above, generator functions return a lazy iterator and do not store the contents in memory.</li>
+                <li>Generator functions can also be used to peek through an infinite sequence without actually storing it.
+                    <pre>
+                        <code>
+    def fibonacci_generator():
+        a, b = 0, 1
+        while True:
+            yield a
+            a, b = b, a + b
+
+    fibonacci_01 = fibonacci_generator()
+    fibonacci_02 = fibonacci_generator()
+    print((next(fibonacci_01)))  # 0
+    print((next(fibonacci_01)))  # 1
+    print((next(fibonacci_01)))  # 1
+    print((next(fibonacci_01)))  # 2
+    print((next(fibonacci_01)))  # 3
+    print((next(fibonacci_01)))  # 5
+    print((next(fibonacci_02)))  # 0
+                        </code>
+                    </pre>
+                </li>
+                <li>In short, generator functions or yield keyword shall be used when we want to iterate over a sequence, but don't want to store the entire sequence in memory.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
+            <h3>iter()</h3>
+            <ul>
+                <li>iter() is a Python built-in function that is used to generate an iterator object.</li>
+                <li>iter() can be used together with __next__ to turn your custom object into iterator object, for example:
+                    <pre>
+                        <code>
+    class SpecialFibonacciGenerator:
+        def __init__(self, a=0, b=1):
+            self.a = a
+            self.b = b
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            fib = self.a
+            self.a, self.b = self.b, self.a + self.b
+            return fib
+
+
+    special_fibonacci = SpecialFibonacciGenerator(10, 12)
+    for _ in range(10):
+        print(next(special_fibonacci))
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
             <h3>getattr(), setattr(), hasattr(), delattr()</h3>
             <ul>
                 <li>getattr(object, attribute, default)</li>
