@@ -253,6 +253,37 @@
         </div>
 
         <div>
+            <h3>Using * operator to unpack strings, lists, tuples</h3>
+            <ul>
+                <li>The * operator in Python is used for unpacking iterables like lists, tuples, and strings.</li>
+                <li>Let's look at the code snippet below to undertand it.</li>
+                <pre>
+                    <code>
+    # Unpacking a list using *
+    numbers = [1, 2, 3, 4, 5]
+    first, *middle, last = numbers
+    print("First:", first)      # 1
+    print("Middle:", middle)    # [2, 3, 4]
+    print("Last:", last)        # 5
+    
+    # Unpacking a tuple using *
+    pose = (4, 7, 180)
+    *coordinates, heading = pose
+    print("coordinates:", coordinates)  # [4, 7]
+    print("heading:", heading)          # 180
+    
+    # Unpacking a string using *
+    word = "Python"
+    first_letter, *remaining_letters = word
+    print("First Letter:", first_letter)            # P
+    print("Remaining Letters:", remaining_letters)  # ['y', 't', 'h', 'o', 'n']                        
+                    </code>
+                </pre>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div>
             <h3>getattr(), setattr(), hasattr(), delattr()</h3>
             <ul>
                 <li>getattr(object, attribute, default)</li>

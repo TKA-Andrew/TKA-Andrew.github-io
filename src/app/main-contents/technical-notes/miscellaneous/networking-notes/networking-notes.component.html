@@ -30,18 +30,36 @@
         <li>IP address of private network = 192.168.x.y (For example, every device that connected to the same private
             wifi network will have the same prefix)</li>
         <li>Any machine that has a distinct IP address has 2^16 ports in total (between 0 and 65535).</li>
-        <li>A port can be referred to as a logical channel through which data can be sent/received to an application.
+        <li>A port is a logical channel through which data can be sent/received to an application.</li>
+        <li>In short, the IP address determines the HTTP request should be directed to which server, and the port number
+            determines which service or program on that server it wants to use.
         </li>
-        <li>Ports 0-1023 are reserved for system ports and should not be used by user-level processes.</li>
-        <li>If a client is trying to speak to a server using HTTP protocol, it's always going to use port 80.</li>
-        <li>Some ports with pre-defined uses:</li>
+        <li>3 Categories of Port Numbers\
+            <ul>
+                <li>Ports 0-1023 are reserved for system ports and should not be used by user-level processes.</li>
+                <li>Ports 1024-49151 are called User Ports or Registered Ports. These are the ports that can be
+                    registered by companies or developers for a paticular service.
+                </li>
+                <li>Port 49152-65535 are called Dynamic/Private Ports. These are the client-side ports that are
+                    free to use.
+                </li>
+            </ul>
+        </li>
+        <li>Some ports with pre-defined (or commonly defined) uses:</li>
         <ul>
-            <li>22: Secure Shell</li>
+            <li>21: File Transfer Protocol (FTP)</li>
+            <li>22: Secure Shell (SSH)</li>
+            <li>25: SMTP (unencrypted)</li>
             <li>53: DNS lookup</li>
             <li>80: HTTP</li>
             <li>443: HTTPS</li>
-            <li>587: normally used for email servers</li>
+            <li>502: Modbus TCP</li>
+            <li>587: SMTP (encrypted - recommended for email clients)</li>
+            <li>1880: Node-RED</li>
+            <li>3306: Default port of MySQL</li>
+            <li>5432: Default port of PostgreSQL</li>
         </ul>
+        <li>For example, if a client is trying to speak to a server using HTTP protocol, it's always going to use port 80.</li>
     </ul>
 
     <h3>Public Network vs Private Network</h3>
@@ -86,6 +104,8 @@
 
     <h3>Internal Switch vs External Switch</h3>
     <ul>
+        <li>Switches allow devices on your network to communicate with each other, as well as with other networks,
+            creating a network of shared resources.</li>
         <li>An internal switch is a switch that is located inside a device such as a router, a computer, or a server.
             It is used to provide connectivity within the device and to route or switch data between internal interfaces
             or ports.</li>
@@ -126,26 +146,115 @@
         <li>Nginx is a very popular webserver that is often used as a reverse proxy and load balancer.</li>
     </ul>
 
-    <h3>Switches</h3>
+    <h3>Hub vs Switch vs Router</h3>
     <ul>
-        <li>Switches allow devices on your network to communicate with each other, as well as with other networks,
-            creating a network of shared resources.</li>
-        <li></li>
-    </ul>
-
-    <h3>Routers</h3>
-    <ul>
-        <li>Routers connect multiple networks together. They also connect computers on those networks to the Internet.
+        <li><a href="https://www.youtube.com/watch?v=1z0ULvg_pW8" target="_blank"
+            rel="noopener noreferrer">Youtube Reference</a></li>
+        <li>A Hub is not intelligent, it only detects whether a device is physically connected to it.
+            Hence, when a data packet comes into one port of the hub, the hub will just rebroadcast
+            that data packet to all other devices that connected to the rest of the ports.
         </li>
-        <li>Routers enable all networked computers to share a single Internet connection.</li>
+        <li>On the other hand, Switch does know the MAC address of the devices connected to it.
+            Hence, when a data packet is sent to a switch, it only directs the data to the intended
+            destination port.
+        </li>
+        <li>Hubs and Switches are used to exchange data within a local area network, they are not used to
+            exchange data outside their own network.
+        </li>
+        <li>To exchange data outside of the network, a device needs to be able to read IP adresses. So
+            this is where router comes in.
+        </li>
+        <li>A router is device that routes data from one network to another based on their IP addresses.</li>
     </ul>
 
-    <h3>Wireless Access Points</h3>
+    <h3>Modem vs Router</h3>
     <ul>
-        <li>An access point allows devices to connect to the wireless network without cables.</li>
-        <li>An access point acts like an amplifier for your network. While a router provides the bandwidth,
-            an access point extends that bandwidth so that the network can support many devices, and those devices can
-            access the network from farther away.</li>
+        <li><a href="https://www.youtube.com/watch?v=Mad4kQ5835Y" target="_blank"
+            rel="noopener noreferrer">Youtube Reference</a></li>
+        <li>A modem (modulator-demodulator) is a device that converts digital to analog signals and vice-versa.
+            A modem is necessary as computers only read digital signals while signals out on the internet are analog.
+        </li>
+        <li>Technically, if you only want one device to be connected to the internet, a modem is enough, you do not need
+            routers.
+        </li>
+        <li>Most routers have a built-in switch. You only need to add an additional switch if you needed more
+            wired connections for your devices.
+        </li>
+        <li>Nowadays, most wireless routers combine the functionality of a wireless AP, an Ethernet router, a basic firewall, 
+            and a small Ethernet switch.</li>
+        <li>Nowadays, when your Internet Service Provider sends you a modem, it is most likely a combination
+            of model and router and hence you do not need to buy additional routers.
+        </li>
+    </ul>
+
+    <h3>Wireless Routers vs Wireless Access Points</h3>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=OxiY4yf6GGg" target="_blank"
+            rel="noopener noreferrer">Youtube Reference</a></li>
+        <table>
+            <tr>
+                <th>Wireless Routers</th>
+                <th>Wireless Access Points</th>
+            </tr>
+            <tr>
+                <td>Mainly used to routes data to intended networks and devices.</td>
+                <td>Mainly used to extend the coverage of the network.</td>
+            </tr>
+            <tr>
+                <td>Accept connections for both wired and wireless networks</td>
+                <td>Strictly for wireless devices</td>
+            </tr>
+            <tr>
+                <td>Has firewall</td>
+                <td>Does not have a firewall</td>
+            </tr>
+            <tr>
+                <td>Has built-in DHCP service to automatically assign IP adress to devices
+                    that are connected to it.
+                </td>
+                <td>Does not have built in DHCP service, and hence WAP needs to be
+                    connected to a router.
+                </td>
+            </tr>
+            <tr>
+                <td>Has a WAN (internet) port to be connected to modem.</td>
+                <td>Does not have a internet port, and hence it cannot be connected
+                    directly to the modem.
+                </td>
+            </tr>
+        </table>
+    </ul>
+
+    <h3>Firewall</h3>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=kDEX1HXybrU" target="_blank"
+            rel="noopener noreferrer">Youtube Reference</a></li>
+        <ul>
+            <li>A firewall works by filtering incoming network based on the firewall rules.</li>
+            <li>The firewall rules can be based on:</li>
+                <ul>
+                    <li>IP Address</li>
+                    <li>Domain names</li>
+                    <li>Protocols</li>
+                    <li>Destination</li>
+                    <li>Ports</li>
+                    <li>Keywords</li>
+                </ul>
+            <li>Types of firewall:</li>
+                <ul>
+                    <li>Host-based firewall</li>
+                        <ul>
+                            <li>The software firewall installed on a computer to protect that computer only.</li>
+                        </ul>
+                    <li>Network-based firewall</li>
+                        <ul>
+                            <li>Combination of hardware & software</li>
+                            <li>Protects the entire network, acts as a safety barrier between a private
+                                network and the public internet.
+                            </li>
+                        </ul>
+                </ul>
+        </ul>
     </ul>
 
     <h3>Sockets</h3>
@@ -271,6 +380,12 @@ iface eth0 inet static
             access the devices that are within your private local-area network (LAN) and vice versa.</li>
         <li>Without port forwarding, only devices that are part of the internal network can access each other,
             and with port forwarding, anyone can</li>
+        <li>For example, let's say today your friend wants to remote control your computer, it will use the software
+            and send the request to your public IP with a specific port number (for example, 66.94.34.13:3389). 
+            When the router received the request, it wouldnt know where to forward the request. 
+            Hence, you need to configure port forwarding through the router configuration page, so that the next
+            time when it receives requests at port 3389, it will forward to your computer.
+        </li>
         <li>There are 3 types of port forwarding:</li>
         <ul>
             <li>Local port forwarding</li>
