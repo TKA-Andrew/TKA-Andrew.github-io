@@ -376,17 +376,22 @@ iface eth0 inet static
 
     <h3>Port forwarding</h3>
     <ul>
+        <li><a href="https://www.youtube.com/watch?v=AtuAdk4MwWw" target="_blank"
+            rel="noopener noreferrer">Youtube Reference 1</a></li>
+        <li><a href="https://www.youtube.com/watch?v=N8f5zv9UUMI" target="_blank"
+            rel="noopener noreferrer">Youtube Reference 2</a></li>
         <li>Port forwarding allows remote servers and devices on the internet to
             access the devices that are within your private local-area network (LAN) and vice versa.</li>
         <li>Without port forwarding, only devices that are part of the internal network can access each other,
-            and with port forwarding, anyone can</li>
+            and with port forwarding, anyone can.</li>
         <li>For example, let's say today your friend wants to remote control your computer, it will use the software
             and send the request to your public IP with a specific port number (for example, 66.94.34.13:3389). 
             When the router received the request, it wouldnt know where to forward the request. 
             Hence, you need to configure port forwarding through the router configuration page, so that the next
-            time when it receives requests at port 3389, it will forward to your computer.
+            time when it receives requests at port 3389, it will forward to your computer. (take not that this is
+            not the right way as other unauthorized requests at port 3389 will be able to pass through firewall as well)
         </li>
-        <li>There are 3 types of port forwarding:</li>
+        <li>There are 3 types of port forwarding (tunneling):</li>
         <ul>
             <li>Local port forwarding</li>
             <ul>
@@ -394,6 +399,36 @@ iface eth0 inet static
                     using an SSH connection</li>
                 <li>allows you to access services or devices on a remote network that are not directly accessible from
                     your local machine</li>
+                <li>Example: ssh -L localhost:50000:159.223.180.83:3389 pi@159.223.180.83
+                    <ul>
+                        <li>Let's say our firewall blocked requests of port 3389, 
+                            so we need to use another port, and forward request of the new port to
+                            the port 3389.
+                        </li>
+                        <li>50000 is the new port that we want to use</li>
+                        <li>-L means local port forwarding</li>
+                        <li>159.223.180.83 is the ip address and port of the server that we want to access
+                        </li>
+                        <li>pi@159.223.180.83 is username and ip address of the ssh server</li>
+                        <li>now, on our client machine, if we send request to port 50000,
+                            it will be forwarded to port 3389 of the ssh server.
+                        </li>
+                        <li>Since on the client side we are using port 50000 instead of 3389,
+                            the firewall didnt block us, then it will be able to reach port 3389.
+                        </li>
+                        <li>In short, when we use web browser to access "localhost:50000",
+                            it is actually sending a request to port 50000,
+                            and since we did port forwarding from port 50000 to 3389 of the ssh server,
+                            it is equivalent to accessing "159.223.180.83:3389" of the ssh server.
+                        </li>
+                    </ul>
+                </li>
+                <li>Another visual example from the second Youtube Reference:
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="assets/images/NetworkingNotes/local_port_forwarding.png" width="60%">
+                        <span style="font-style: italic;">Source of image: https://www.youtube.com/watch?v=N8f5zv9UUMI</span>
+                    </div>
+                </li>
             </ul>
             <li>Remote port forwarding</li>
             <ul>
@@ -401,6 +436,12 @@ iface eth0 inet static
                     using an SSH connection</li>
                 <li>allows you to make a service or device on your local network accessible to other remote machines
                     over the internet</li>
+                <li>Another visual example from the second Youtube Reference:
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="assets/images/NetworkingNotes/remote_port_forwarding.png" width="60%">
+                        <span style="font-style: italic;">Source of image: https://www.youtube.com/watch?v=N8f5zv9UUMI</span>
+                    </div>
+                </li>
             </ul>
             <li>Dynamic port forwarding (virtually an extension of the local port forwarding)</li>
             <ul>
