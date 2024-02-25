@@ -52,6 +52,7 @@ import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.compon
 import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
 import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
 import { CodingMathComponent } from './miscellaneous/coding-math/coding-math.component';
+import { MathsComponent } from './miscellaneous/maths/maths.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { CodingMathComponent } from './miscellaneous/coding-math/coding-math.com
     UnixNotesComponent,
     DjangoNotesComponent,
     HtmlCssNotesComponent,
-    CodingMathComponent],
+    CodingMathComponent,
+    MathsComponent],
   imports: [
     CommonModule,
     TechnicalNotesRoutingModule,

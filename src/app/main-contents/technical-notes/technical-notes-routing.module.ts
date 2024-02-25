@@ -40,6 +40,7 @@ import { UnixNotesComponent } from './miscellaneous/unix-notes/unix-notes.compon
 import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes.component';
 import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
 import { CodingMathComponent } from './miscellaneous/coding-math/coding-math.component';
+import { MathsComponent } from './miscellaneous/maths/maths.component';
 
 const routes: Routes = [{
   path:'',
@@ -192,6 +193,10 @@ const routes: Routes = [{
     {
       path: 'miscellaneuos/unixNotes',
       component: UnixNotesComponent
+    },
+    {
+      path: 'miscellaneuos/maths',
+      component: MathsComponent
     },
     {
       path: 'miscellaneuos/networkingNotes',

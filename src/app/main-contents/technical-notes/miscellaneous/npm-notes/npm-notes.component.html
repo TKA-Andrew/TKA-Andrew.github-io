@@ -7,6 +7,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <button mat-button class="listItem" (click)="scrollTo('packageJson')">package.json vs package-lock.json</button>
+            <button mat-button class="listItem" (click)="scrollTo('dependenciesVsDevDependencies')">--save VS --save-dev</button>
         </mat-expansion-panel>
     </mat-accordion>
     <div>
@@ -26,6 +27,17 @@
             <li>The carat (^) sign indicates that it will support any higher version within the same major version.</li>
             <li>For example, if you installed a lodash-es at version 4.17.21, then your package.json will have <span style="font-style: italic;">"lodash-es": "^4.17.21"</span>. If few months later the latest lodash-es package is 4.20.2, and when someone clones your package and run npm install, the lodash-es version installed will be 4.20.2</li>
             <li>Hence, to make sure the project is cloned and installed with exactly same dependencies, we need to have package-lock.json to lock the versions of packages we used.</li>
+        </ul>
+        <mat-divider></mat-divider>
+    </div>
+    <div id="dependenciesVsDevDependencies">
+        <h2>--save VS --save-dev</h2>
+        <ul>
+            <li>According to <a href="geeksforgeeks.org/what-is-the-meaning-of-save-for-npm-install/">this post</a>, 
+            there is no more difference between `npm install [package-name]` and `npm install [package-name] --save` after npm version 5.0.0 onwards.</li>
+            <li>Use --save-dev when you want to npm install packages that are used for development purposes only,
+                such as <a href="https://www.npmjs.com/package/jasmine-core">jasmine-cores</a> and <a href="https://www.npmjs.com/package/karma">karma</a>.
+            </li>
         </ul>
         <mat-divider></mat-divider>
     </div>
