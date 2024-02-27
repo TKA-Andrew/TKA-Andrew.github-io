@@ -9,6 +9,7 @@
             <button mat-button class="listItem" (click)="scrollTo('how-web-works')">How the Web works</button>
             <button mat-button class="listItem" (click)="scrollTo('jQuery')">What is jQuery?</button>
             <button mat-button class="listItem" (click)="scrollTo('D3')">What is D3?</button>
+            <button mat-button class="listItem" (click)="scrollTo('cash')">What is Cash?</button>
             <button mat-button class="listItem" (click)="scrollTo('difference')">Browser vs Node.js</button>
             <button mat-button class="listItem" (click)="scrollTo('nodeJS')">Node.js</button>
             <button mat-button class="listItem" (click)="scrollTo('esModules')">ES Modules</button>
@@ -148,15 +149,29 @@
             <mat-divider></mat-divider>
         </div>
 
+        <div id="cash">
+            <h2>Cash / cash-dom</h2>
+            <ul>
+                <li><a href="https://www.npmjs.com/package/cash-dom" target="_blank" rel="noopener noreferrer">Cash</a> is an absurdly small jQuery alternative for modern browsers (IE11+) that provides jQuery-style syntax for manipulating the DOM.</li>
+            </ul>
+            <mat-divider></mat-divider>
+        </div>
+
         <div id="d3">
             <h2>D3.js</h2>
             <ul>
-                <li>Once you have a basic understanding about jQuery, you should explore <a 
+                <li><a 
                     href="tutorialspoint.com/d3js/index.htm" target="_blank" rel="noopener noreferrer">
-                    D3.js</a></li>
-                <li>It is a Javascript library that allows us to bind arbitary data to DOM,
+                    D3.js</a> is a Javascript library that allows us to bind arbitary data to DOM,
                     and then we can manipulate the DOM based on the data.
                 </li>
+                <li>However, some people commented that we "should not learn" D3.js due to the following reasons:
+                </li>
+                    <ul>
+                        <li>Complexity: D3.js was deemed overly complex, leading to longer development cycles and increased maintenance efforts.</li>
+                        <li>Learning Curve: Its steep learning curve hindered onboarding of new team members and collaboration on projects.</li>
+                        <li>Alternatives: Alternative libraries offering simpler syntax and better integration with modern web development workflows were considered more suitable."</li>
+                    </ul>
             </ul>
             <mat-divider></mat-divider>
         </div>
