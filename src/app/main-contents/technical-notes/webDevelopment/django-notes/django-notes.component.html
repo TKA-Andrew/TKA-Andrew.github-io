@@ -1032,4 +1032,24 @@ class BookCreateView(LoginRequiredMixin, CreateView):
         </ul>
         <mat-divider></mat-divider>
     </div>
+
+    <div>
+        <h2>Miscellaneous</h2>
+        <ul>
+            <li>"&#123;% now 'c' %}" vs new Date()</li>
+            <ul>
+                <li>Code example: window.serverTime = "&#123;% now 'c' %}";</li>
+                    <ul>
+                        <li>"&#123;% now 'c' %}" is Django template tag that will request time from the server.</li>
+                    </ul>
+                <li>Code example: window.serverTime = new Date();</li>
+                    <ul>
+                        <li>new Date() will get the time from the client (web browser).</li>
+                    </ul>
+                <li>Hence, if your django server does log some data, then displaying server time on
+                    the html is more user friendly for users to do troubleshooting.
+                </li>
+            </ul>
+        </ul>
+    </div>
 </div>
