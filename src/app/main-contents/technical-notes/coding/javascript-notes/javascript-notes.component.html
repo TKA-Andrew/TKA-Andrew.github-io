@@ -156,5 +156,99 @@
             <p><a href="https://advancedweb.hu/how-to-use-async-functions-with-array-foreach-in-javascript/" target="_blank" rel="noopener noreferrer">This</a> is another revelant reference.</p>
             <mat-divider></mat-divider>
         </div>
+        <div id="javscript_vs_typescript">
+            <h2>Javascript VS Typescript</h2>
+            <ul>
+                <li>TypeScript is known as an Object-oriented programming language whereas JavaScript is a prototype-based language.</li>
+                <li></li>
+            </ul>
+            <div style="overflow-x : auto">
+                <table>
+                    <tr>
+                        <th style="max-width: 50%">TypeScript</th>
+                        <th style="max-width: 50%">JavaScript</th>
+                    </tr>
+                    <tr>
+                        <td>Superset of Javascript</td>
+                        <td>A scripting language used for web development.</td>
+                    </tr>
+                    <tr>
+                        <td>Supports static typing, allowing for type annotations.
+                            <pre style="text-align: left">
+                                <code>
+// Static typing
+let message: string = "Hello, TypeScript!";
+let count: number = 10;
+                                </code>
+                            </pre>
+                        </td>
+                        <td>Dynamically typed language, where types are inferred at runtime.
+                            <pre style="text-align: left">
+                                <code>
+// Dynamic typing
+let message = "Hello, JavaScript!";
+let count = 10;
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Provides better tooling and IDE support, including type checking.</td>
+                        <td>Limited tooling and IDE support compared to TypeScript.</td>
+                    </tr>
+                    <tr>
+                        <td>Class-based object-oriented language</td>
+                        <td>Prototype-based object-oriented language</td>
+                    </tr>
+                    <tr>
+                        <td>Enables the use of interfaces and advanced OOP features such as classes and inheritance.
+                            <pre>
+                                <code>
+// Interfaces and classes
+interface Person $#123;
+    name: string;
+    age: number;
+}
+
+class Student implements Person &#123;
+    constructor(public name: string, public age: number) &#123;}
+}
+
+let student: Person = new Student("John", 25);
+console.log(student.name); // Output: John
+                                </code>
+                            </pre>
+                        </td>
+                        <td>Traditional OOP features are available but with less syntax sugar and structure.
+                            <pre>
+                                <code>
+function Person(name, age) &#123;
+    this.name = name;
+    this.age = age;
+}
+
+let student = new Person("John", 25);
+console.log(student.name); // Output: John
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Supports modern ECMAScript features and can compile down to older versions for broader browser compatibility.</td>
+                        <td>Works directly in browsers without the need for compilation.</td>
+                    </tr>
+                    <tr>
+                        <td>Offers better scalability and maintainability for large projects.</td>
+                        <td>More suitable for smaller projects or quick prototyping.</td>
+                    </tr>
+                    <tr>
+                        <td>If you try to install a package whose dependencies are missing, APT downloads the dependencies.</td>
+                        <td>Dpkg will terminate and report missing dependencies if you try to install a package with it’s dependencies missing.</td>
+                    </tr>
+                </table>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
     </div>
+
 </div>
