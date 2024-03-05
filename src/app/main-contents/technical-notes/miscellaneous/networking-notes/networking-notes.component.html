@@ -137,6 +137,34 @@
             and also at the data link layer of the OSI (Open Systems Interconnection) model.</li>
     </ul>
 
+    <h3>Wi-Fi Connection Signal Level vs Link Quality</h3>
+    <ul>
+        <li>Linux tools to check signal level and link quality</li>
+            <ul>
+                <li>iwinfo</li>
+                <li>iwcnfig</li>
+            </ul>
+        <li>Signal level</li>
+        <ul>
+            <li>Measured in dBm</li>
+            <li>A good Wi-Fi signal is usually between -30dBm and -60dBm</li>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <img src="https://eyenetworks.no/wp-content/uploads/what-is-a-good-wifi-signal.png" width="60%">
+                <span style="font-style: italic;">Source of image: https://eyenetworks.no/en/wifi-signal-strength/</span>
+            </div>
+        </ul>
+        <li>Link Quality</li>
+        <ul>
+            <li>The iwinfo and iwconfig tools assumes a signal range of -110dBm and -40dBm.</li>
+            <li>The calculation for link quality is as below:</li>
+                <ul>
+                    <li>If signal strength >= -40dBm, link quality = 70/70</li>
+                    <li>Else if signal strength &lt;= -110dBm, link quality = 0/70</li>
+                    <li>Else, link quality = (signal level + 110)/70</li>
+                </ul>
+        </ul>
+    </ul>
+
     <h3>Proxies</h3>
     <ul>
         <li>Forward Proxy = a server that sits between a client and servers, and acts on behalf of the client, typically

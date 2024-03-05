@@ -41,6 +41,7 @@ import { DjangoNotesComponent } from './webDevelopment/django-notes/django-notes
 import { HtmlCssNotesComponent } from './webDevelopment/html-css-notes/html-css-notes.component';
 import { CodingMathComponent } from './miscellaneous/coding-math/coding-math.component';
 import { MathsComponent } from './miscellaneous/maths/maths.component';
+import { AiGeneralComponent } from './AI/ai-general/ai-general.component';
 
 const routes: Routes = [{
   path:'',
@@ -141,6 +142,10 @@ const routes: Routes = [{
     {
       path:'robotics/UsefulResources',
       component: UsefulResourcesComponent
+    },
+    {
+      path:'ai/general',
+      component: AiGeneralComponent
     },
     {
       path: 'webDevelopment/general',
