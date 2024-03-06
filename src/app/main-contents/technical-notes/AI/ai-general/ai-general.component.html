@@ -103,4 +103,56 @@
           
     </div>
     <mat-divider></mat-divider>
+
+    <div>
+        <h2>Types of Neural Networks</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Feedforward</th>
+                <th>Convolutional (CNN)</th>
+                <th>Recurrent (RNN)</th>
+                <th>Long Short-Term Memory (LSTM)</th>
+                <th>Gated Recurrent Unit (GRU)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Information Flow</td>
+                <td>One-way, layered</td>
+                <td>One-way, grid-like connections</td>
+                <td>Sequential, loops information</td>
+                <td>Sequential, stores long-term dependencies</td>
+                <td>Sequential, similar to LSTM but simpler</td>
+              </tr>
+              <tr>
+                <td>Suitable for</td>
+                <td>General classification, regression</td>
+                <td>Image recognition, time series analysis</td>
+                <td>Sequential data, language translation</td>
+                <td>Long-term dependencies in sequences</td>
+                <td>Similar to LSTM, but faster and less complex</td>
+              </tr>
+              <tr>
+                <td>Strengths</td>
+                <td>Simple, efficient</td>
+                <td>Excellent for spatial data like images</td>
+                <td>Captures temporal relationships</td>
+                <td>Remembers long-term information</td>
+                <td>Faster and less memory-intensive than LSTM</td>
+              </tr>
+              <tr>
+                <td>Weaknesses</td>
+                <td>Difficulty handling long-term dependencies</td>
+                <td>Not ideal for non-grid data</td>
+                <td>Can struggle with long sequences</td>
+                <td>Computationally expensive</td>
+                <td>Less powerful than LSTM for some tasks</td>
+              </tr>
+            </tbody>
+          </table>
+          
+    </div>
+    <mat-divider></mat-divider>
 </div>
